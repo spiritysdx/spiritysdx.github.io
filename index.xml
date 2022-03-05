@@ -1,0 +1,115 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>二叉树的博客</title>
+        <link>http://www.spiritysdx.top/</link>
+        <description>个人学习日志</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="http://www.spiritysdx.top/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>(MCM/ICM)The Best Investment Strategies For Gold And Bitcoin</title>
+    <link>http://www.spiritysdx.top/63/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/63/</guid>
+    <description><![CDATA[前言 美赛论文，由于不能在md中方便的插入图片与数学公式，所以我选择删掉对应的地方。 英文译制版本。 论文配套的代码均为本人编写，感谢组员组长的配]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略</title>
+    <link>http://www.spiritysdx.top/68/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/68/</guid>
+    <description><![CDATA[感谢组员组长的配合论文撰写。 1 Introduction Background and restatement of the problem 在如今金融迅猛发展的大背景下，交易员可以对众多的金融投资产品进行选择，并对其投资的波动性资产进行]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略的主体代码部分</title>
+    <link>http://www.spiritysdx.top/64/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/64/</guid>
+    <description><![CDATA[前言 美赛论文对应主体代码部分，吐槽一句美赛居然不收代码也是离谱。 论文配套的代码均为本人编写，运行无问题。 感谢组员组长的配合论文撰写。 正文 1 2]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略的策略代码部分</title>
+    <link>http://www.spiritysdx.top/65/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/65/</guid>
+    <description><![CDATA[前言 美赛论文对应策略代码部分，吐槽一句美赛居然不收代码也是离谱。 论文配套的代码均为本人编写，运行无碍。 感谢组员组长的配合论文撰写。 正文 1 2 3]]></description>
+</item><item>
+    <title>(MCM/ICM)2022C题比特币与黄金投资问题汉译题目</title>
+    <link>http://www.spiritysdx.top/70/</link>
+    <pubDate>Mon, 21 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/70/</guid>
+    <description><![CDATA[背景： 市场交易者频繁买卖波动性资产，目标是最大化其总回报。每次买卖通常都会有佣金。 两种这样的资产是黄金和比特币。 图 1：黄金每日价格，每金衡盎]]></description>
+</item><item>
+    <title>Suzhou Carbon Neutral-Circular Development Creative Plan</title>
+    <link>http://www.spiritysdx.top/67/</link>
+    <pubDate>Sun, 13 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/67/</guid>
+    <description><![CDATA[前言 很水的比赛，官方求着收论文，说是保底有钱。。。。 英文译制版本。 感谢组员组长的配合论文撰写。 正文 Suzhou Carbon Neutral Circular Development Creative Plan Problem Analysis 1.1 Background brief 1.1.1 Problem introduction In recent years, Suzhou has faced]]></description>
+</item><item>
+    <title>苏州市碳中和-循环发展创意方案书</title>
+    <link>http://www.spiritysdx.top/66/</link>
+    <pubDate>Sat, 12 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/66/</guid>
+    <description><![CDATA[前言 很水的比赛，官方求着收论文，说是保底有钱。。。。 感谢组员组长的配合论文撰写。 正文 问题分析 背景简述 问题引入 近年来，苏州由于面临经济的转型、]]></description>
+</item><item>
+    <title>自建青龙代理拉取Github仓库或文件</title>
+    <link>http://www.spiritysdx.top/60/</link>
+    <pubDate>Wed, 19 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/60/</guid>
+    <description><![CDATA[前言 因为青龙拉取部分作者仓库通过https://ghproxy.com/代理拉取频繁，导致了请求量比较大的仓库被该代理加速作者封禁。所以可以]]></description>
+</item><item>
+    <title>本地ARM机子&#43;云服务vps指定端口内穿&#43;开机自启=外网访问本地机子</title>
+    <link>http://www.spiritysdx.top/58/</link>
+    <pubDate>Mon, 17 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/58/</guid>
+    <description><![CDATA[前言 事先声明，本文为个人内网穿透经验，可能不具备复刻性质，自行查验。 前期配置 A 腾讯云的VPS一台(配置带宽决定你的上限) &mdash; 我的是Ubuntu]]></description>
+</item><item>
+    <title>给轻量应用腾讯云服务器加上IPV6地址隧道</title>
+    <link>http://www.spiritysdx.top/57/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/57/</guid>
+    <description><![CDATA[1 进入页面https://tunnelbroker.net/注册 注意需要“魔法”，而且不能使用yandex邮箱作为注册信息。 2 注册完毕后登录]]></description>
+</item><item>
+    <title>2021年全国大学生数学建模竞赛C题省一等奖代码部分</title>
+    <link>http://www.spiritysdx.top/56/</link>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/56/</guid>
+    <description><![CDATA[前言 论文配套的代码均为本人编写，第三四问存在部分代码问题，需要改动细节部分才能运行成功，后面两问的代码时间成本很高，长则数小时，短则十几二十]]></description>
+</item><item>
+    <title>2021年全国大学生数学建模竞赛C题省一等奖论文部分</title>
+    <link>http://www.spiritysdx.top/55/</link>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/55/</guid>
+    <description><![CDATA[前言 博客展示的是机器转义的markdown格式的，部分内容无法正常展示，完整内容详见博客相关资源。 论文配套的代码均为本人编写，第三四问存在部]]></description>
+</item><item>
+    <title>逻辑回归1-乳腺癌数据案例</title>
+    <link>http://www.spiritysdx.top/53/</link>
+    <pubDate>Wed, 28 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/53/</guid>
+    <description><![CDATA[前言 逻辑回归的一个小案例，使用sklearn自带的一个数据 代码 1 2 3 4 5 6 from sklearn.linear_model import LogisticRegression as LR #逻辑回归 from sklearn.datasets import load_breast_cancer #导入乳腺癌数据集 import numpy as np import matplotlib.pyplot as plt from]]></description>
+</item><item>
+    <title>随机森林在乳腺癌数据上的调参</title>
+    <link>http://www.spiritysdx.top/52/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/52/</guid>
+    <description><![CDATA[前言 数据集合来自kaggle 链接：https://www.kaggle.com/c/digit-recognizer/data 其中test和]]></description>
+</item><item>
+    <title>删除进程操作</title>
+    <link>http://www.spiritysdx.top/51/</link>
+    <pubDate>Mon, 26 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/51/</guid>
+    <description><![CDATA[删除指定端口的所有进程 1 sudo kill -9 $(lsof -i:端口号 -t) 删除指定名称的所有进程 1 sudo kill -9 $(pidof 名字) 查看指定端口占用情况 1 sudo lsof -i:端口号 删除指定pid的进]]></description>
+</item></channel>
+</rss>

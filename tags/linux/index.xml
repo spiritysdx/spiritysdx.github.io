@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/linux/</link>
+        <description>linux - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 19 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>自建青龙代理拉取Github仓库或文件</title>
+    <link>http://www.spiritysdx.top/60/</link>
+    <pubDate>Wed, 19 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/60/</guid>
+    <description><![CDATA[前言 因为青龙拉取部分作者仓库通过https://ghproxy.com/代理拉取频繁，导致了请求量比较大的仓库被该代理加速作者封禁。所以可以]]></description>
+</item><item>
+    <title>本地ARM机子&#43;云服务vps指定端口内穿&#43;开机自启=外网访问本地机子</title>
+    <link>http://www.spiritysdx.top/58/</link>
+    <pubDate>Mon, 17 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/58/</guid>
+    <description><![CDATA[前言 事先声明，本文为个人内网穿透经验，可能不具备复刻性质，自行查验。 前期配置 A 腾讯云的VPS一台(配置带宽决定你的上限) &mdash; 我的是Ubuntu]]></description>
+</item><item>
+    <title>给轻量应用腾讯云服务器加上IPV6地址隧道</title>
+    <link>http://www.spiritysdx.top/57/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/57/</guid>
+    <description><![CDATA[1 进入页面https://tunnelbroker.net/注册 注意需要“魔法”，而且不能使用yandex邮箱作为注册信息。 2 注册完毕后登录]]></description>
+</item><item>
+    <title>删除进程操作</title>
+    <link>http://www.spiritysdx.top/51/</link>
+    <pubDate>Mon, 26 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/51/</guid>
+    <description><![CDATA[删除指定端口的所有进程 1 sudo kill -9 $(lsof -i:端口号 -t) 删除指定名称的所有进程 1 sudo kill -9 $(pidof 名字) 查看指定端口占用情况 1 sudo lsof -i:端口号 删除指定pid的进]]></description>
+</item><item>
+    <title>Okteto常用项目</title>
+    <link>http://www.spiritysdx.top/50/</link>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/50/</guid>
+    <description><![CDATA[docker-compose搭建 wordpress 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 version:&#39;3.3&#39;services:db:image:mysql:latestvolumes:- /data/wordpress_db:/var/lib/mysqlrestart:alwaysenvironment:MYSQL_ROOT_PASSWORD:rootwordpressMYSQL_DATABASE:wordpressMYSQL_USER:wordpressMYSQL_PASSWORD:wordpresswordpress:depends_on:- dbimage:wordpress:latestports:- &#34;8000:80&#34;restart:alwaysenvironment:WORDPRESS_DB_HOST:db:3306WORDPRESS_DB_USER:wordpressWORDPRESS_DB_PASSWORD:wordpressWORDPRESS_DB_NAME:wordpress Cloudreve 1 2 3 4 5 6 7 8 9 services:cloudreve:public:truecontainer_name:cloudreveimage:jialezi/cloudreveports:- 5212:5212volumes:- /root/cloudreve Bitwarden 管理地址为“xx]]></description>
+</item><item>
+    <title>直接通过jupyternotebook安装库</title>
+    <link>http://www.spiritysdx.top/42/</link>
+    <pubDate>Mon, 19 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/42/</guid>
+    <description><![CDATA[我的前提条件，实际能使用jupyternotebook都可 Ubuntu 20.0系统 miniconda3和jupyter 直接通过jupyter noteb]]></description>
+</item><item>
+    <title>JD脚本仓库合集</title>
+    <link>http://www.spiritysdx.top/35/</link>
+    <pubDate>Tue, 06 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/35/</guid>
+    <description><![CDATA[一、使用说明 更新一个整库脚本 1 ql repo &lt;repourl&gt; &lt;path&gt; &lt;blacklist&gt; &lt;dependence&gt; &lt;branch&gt; 更新单个脚本文件 1 ql raw &lt;fileurl&gt; 二、拉取整库实例【以下仓库排名不分先后，纯粹随机排列】 （一）某已退圈并不]]></description>
+</item><item>
+    <title>CentOS8的VNC窗口桌面使用</title>
+    <link>http://www.spiritysdx.top/32/</link>
+    <pubDate>Mon, 05 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/32/</guid>
+    <description><![CDATA[CentOS8安装VNC窗口桌面并使用 Step1 安装vnc软件 终端窗口输入 1 2 sudo -i dnf install tigervnc tigervnc-server Step2 修改vncserver-config-defaults ，]]></description>
+</item><item>
+    <title>go-cqhttp搭建教程</title>
+    <link>http://www.spiritysdx.top/30/</link>
+    <pubDate>Sat, 03 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/30/</guid>
+    <description><![CDATA[官方安装教程 官方教程 个人使用经验 压缩包里的是适配Linux环境的二进制文件 按照官方文档操作后，发现一些小问题 首先是config.yml的部分]]></description>
+</item><item>
+    <title>青龙面板搭建教程</title>
+    <link>http://www.spiritysdx.top/29/</link>
+    <pubDate>Fri, 02 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/29/</guid>
+    <description><![CDATA[2.8版本青龙面板搭建教程 step1 需要有一个云服务器，推荐我自用的腾讯云无忧计划： 优惠渠道 优点：每月续费同价，可随时重置服务器系统。 我的配置： 1 2]]></description>
+</item></channel>
+</rss>
