@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>电脑技巧 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/</link>
+        <description>电脑技巧 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/" rel="self" type="application/rss+xml" /><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[前言 最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。 pve proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方]]></description>
+</item><item>
+    <title>阿里云、腾讯云、甲骨文云、华为云、UCLOUD的监控卸载</title>
+    <link>http://www.spiritysdx.top/20231025/</link>
+    <pubDate>Wed, 25 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231025/</guid>
+    <description><![CDATA[前言 众所周知的原因，服务器大厂的监控一直是介于保护隐私和侵犯隐私的边缘的，所以为了去除掉这些烦人的监控，我开发了下面的脚本进行一键卸载 脚本 脚]]></description>
+</item><item>
+    <title>给轻量应用腾讯云服务器或阿里云服务器加上IPV6地址隧道(2023)</title>
+    <link>http://www.spiritysdx.top/20211231/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20211231/</guid>
+    <description><![CDATA[给轻量应用腾讯云服务器加上IPV6地址隧道 这里使用6in4方法解决宿主机本身没有IPV6地址的问题。 给宿主机附加免费的IPV6地址段 有的机器]]></description>
+</item><item>
+    <title>为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)</title>
+    <link>http://www.spiritysdx.top/20230829/</link>
+    <pubDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230829/</guid>
+    <description><![CDATA[前言 观望了全网的Docker启用IPV6的方法，要么是Docker版本更替法子不通了，要么是没说明一些前置条件的细节，导致方法也用不了，所以]]></description>
+</item><item>
+    <title>共享D盘给同一局域网下的其他电脑(WiFi)</title>
+    <link>http://www.spiritysdx.top/20230611/</link>
+    <pubDate>Sun, 11 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230611/</guid>
+    <description><![CDATA[要通过WiFi共享D盘给其他电脑，可以使用以下方法： 1.创建共享文件夹：首先，需要在D盘上创建一个共享文件夹。右键单击D盘上的文件夹，选择&]]></description>
+</item><item>
+    <title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title>
+    <link>http://www.spiritysdx.top/20230506/</link>
+    <pubDate>Sat, 06 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230506/</guid>
+    <description><![CDATA[PVE 感谢 Proxmox VE 的免费订阅支持 原始仓库：https://github.com/spiritLHLS/pve 说明文档 国内(China)： virt.spiritlhl.net 国际(Gl]]></description>
+</item><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[前言 该方法的前提： 商家使用PVE虚拟化WIN服务器 WIN服务器可配置使用Network进行启动 启动时可使用NO VNC操控IPXE命令 已知符合]]></description>
+</item><item>
+    <title>为openvz或kvm架构的linux服务器增加swap分区</title>
+    <link>http://www.spiritysdx.top/20221206/</link>
+    <pubDate>Tue, 06 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221206/</guid>
+    <description><![CDATA[为openvz或kvm架构的linux服务器增加swap分区 addswap 更新时间：2022.12.05 为openvz或kvm架构的linux服务器增加]]></description>
+</item><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡) Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容]]></description>
+</item><item>
+    <title>白嫖永久的免费VPS云服务器(2022.1.16已报废)</title>
+    <link>http://www.spiritysdx.top/20220120/</link>
+    <pubDate>Thu, 20 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220120/</guid>
+    <description><![CDATA[2022.1.16 Euserv激活账号以及安装机子需要钱了，无法白嫖了。。。 但是有别的机子有类似机制能白嫖，详情请看 https://github.com/spiritLHL/Hang-up-items 原有已经嫖到的自动续期脚本还是有效的。]]></description>
+</item></channel>
+</rss>

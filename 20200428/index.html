@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>爬虫流程及方法11(PyQuery解析网页篇)(全) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="爬虫流程及方法11(PyQuery解析网页篇)(全)" />
+<meta property="og:description" content="前言 本篇鸣谢 清华——尹成 的整理收集 PyQuery文档https://www.osgeo.cn/pyquery/index.html PyQue" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20200428/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="爬虫流程及方法11(PyQuery解析网页篇)(全)"/>
+<meta name="twitter:description" content="前言 本篇鸣谢 清华——尹成 的整理收集 PyQuery文档https://www.osgeo.cn/pyquery/index.html PyQue"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200428/" /><link rel="prev" href="http://www.spiritysdx.top/20200426/" /><link rel="next" href="http://www.spiritysdx.top/20200429/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "爬虫流程及方法11(PyQuery解析网页篇)(全)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200428\/"
+        },"genre": "posts","keywords": "python, 爬虫","wordcount":  2648 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200428\/","datePublished": "2020-04-28T00:00:00+00:00","dateModified": "2020-04-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">爬虫流程及方法11(PyQuery解析网页篇)(全)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-28">2020-04-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2648 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#基本的css选择器">基本的CSS选择器</a></li>
+        <li><a href="#查找元素">查找元素</a></li>
+        <li><a href="#获取信息">获取信息</a></li>
+        <li><a href="#dom操作">DOM操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>本篇鸣谢 清华——尹成 的整理收集</p>
+<p>PyQuery文档<a href="https://www.osgeo.cn/pyquery/index.html" target="_blank" rel="noopener noreffer">https://www.osgeo.cn/pyquery/index.html</a></p>
+<p>PyQuery库也是一个非常强大又灵活的网页解析库，如果你有前端开发经验的，都应该接触过jQuery,那么PyQuery就是你非常绝佳的选择，PyQuery 是 Python 仿照 jQuery 的严格实现。语法与 jQuery 几乎完全相同，所以不用再去费心去记一些奇怪的方法了。 <br>
+官网地址:<a href="http://pyquery.readthedocs.io/en/latest/" target="_blank" rel="noopener noreffer">http://pyquery.readthedocs.io/en/latest/</a>    <br>
+jQuery参考文档:<a href="http://jquery.cuishifeng.cn/" target="_blank" rel="noopener noreffer">http://jquery.cuishifeng.cn/</a></p>
+<h3 id="初始化">初始化</h3>
+<p>初始化的时候一般有三种传入方式：传入字符串，传入url,传入文件</p>
+<p><em>字符串初始化</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/ba8b877c7e7e7.png"
+        data-srcset="https://pic./2020/04/29/ba8b877c7e7e7.png, https://pic./2020/04/29/ba8b877c7e7e7.png 1.5x, https://pic./2020/04/29/ba8b877c7e7e7.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/ba8b877c7e7e7.png"
+        title="1" /></p>
+<p>由于PyQuery写起来比较麻烦，所以我们导入的时候都会添加别名：<br>
+from pyquery import PyQuery as pq<br>
+这里我们可以知道上述代码中的doc其实就是一个pyquery对象，我们可以通过doc可以进行元素的选择，其实这里就是一个css选择器，所以CSS选择器的规则都可以用，直接doc(标签名)就可以获取所有的该标签的内容，如果想要获取class 则doc(&rsquo;.class_name&rsquo;),如果是id则doc(&rsquo;#id_name&rsquo;)&hellip;.</p>
+<p><em>URL初始化</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&#34;http://www.baidu.com&#34;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>文件初始化</em></p>
+<p>我们在pq()这里可以传入url参数也可以传入文件参数，当然这里的文件通常是一个html文件。 <br>
+例如：pq(filename=&lsquo;index.html&rsquo;)</p>
+<h3 id="基本的css选择器">基本的CSS选择器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">(</span><span class="s1">&#39;#container .list li&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里我们需要注意的一个地方是doc(&rsquo;#container .list li&rsquo;)，这里的三者之间的并不是必须要挨着，只要是层级关系就可以,下面是常用的CSS选择器方法：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/b5a5f51927ac0.png"
+        data-srcset="https://pic./2020/04/29/b5a5f51927ac0.png, https://pic./2020/04/29/b5a5f51927ac0.png 1.5x, https://pic./2020/04/29/b5a5f51927ac0.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/b5a5f51927ac0.png"
+        title="2" /></p>
+<h3 id="查找元素">查找元素</h3>
+<p><em>子元素</em><br>
+children,find<br>
+代码例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">items</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lis</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lis</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">lis</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/adbf8b4ab3269.png"
+        data-srcset="https://pic./2020/04/29/adbf8b4ab3269.png, https://pic./2020/04/29/adbf8b4ab3269.png 1.5x, https://pic./2020/04/29/adbf8b4ab3269.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/adbf8b4ab3269.png"
+        title="3" /></p>
+<p>从结果里我们也可以看出通过pyquery找到结果其实还是一个pyquery对象，可以继续查找，上述中的代码中的items.find(&rsquo;li&rsquo;) 则表示查找ul里的所有的li标签
+当然这里通过children可以实现同样的效果,并且通过.children方法得到的结果也是一个pyquery对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">li</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同时在children里也可以用CSS选择器<br>
+li2 = items.children(&rsquo;.active&rsquo;) print(li2)<br>
+<em>父元素</em><br>
+parent,parents方法<br>
+通过.parent就可以找到父元素的内容，例子如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">items</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">container</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">container</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过.parents就可以找到祖先节点的内容，例子如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">items</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parents</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">parents</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">parents</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：<br>
+从结果我们可以看出返回了两部分内容，一个是的父节点的信息，一个是父节点的父节点的信息即祖先节点的信息</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/f82d49527826d.png"
+        data-srcset="https://pic./2020/04/29/f82d49527826d.png, https://pic./2020/04/29/f82d49527826d.png 1.5x, https://pic./2020/04/29/f82d49527826d.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/f82d49527826d.png"
+        title="4" /></p>
+<p>同样我们通过.parents查找的时候也可以添加css选择器来进行内容的筛选</p>
+<p><em>兄弟元素</em></p>
+<p>siblings</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.list .item-0.active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="o">.</span><span class="n">siblings</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码中doc(&rsquo;.list .item-0.active&rsquo;) 中的.tem-0和.active是紧挨着的，所以表示是并的关系，这样满足条件的就剩下一个了：thired item的那个标签了<br>
+这样在通过.siblings就可以获取所有的兄弟标签，当然这里是不包括自己的<br>
+同样的在.siblings()里也是可以通过CSS选择器进行筛选</p>
+<p><em>遍历</em></p>
+<p>单个元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">lis</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lis</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">lis</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">li</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/9d22dd913a0f4.png"
+        data-srcset="https://pic./2020/04/29/9d22dd913a0f4.png, https://pic./2020/04/29/9d22dd913a0f4.png 1.5x, https://pic./2020/04/29/9d22dd913a0f4.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/9d22dd913a0f4.png"
+        title="5" /></p>
+<p>从结果中我们可以看出通过items()可以得到一个生成器，并且我们通过for循环得到的每个元素依然是一个pyquery对象。</p>
+<h3 id="获取信息">获取信息</h3>
+<p><em>获取属性</em></p>
+<p>pyquery对象.attr(属性名)<br>
+pyquery对象.attr.属性名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active a&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">href</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/3d16423ac2a91.png"
+        data-srcset="https://pic./2020/04/29/3d16423ac2a91.png, https://pic./2020/04/29/3d16423ac2a91.png 1.5x, https://pic./2020/04/29/3d16423ac2a91.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/3d16423ac2a91.png"
+        title="6" /></p>
+<p>所以这里我们也可以知道获得属性值的时候可以直接a.attr(属性名)或者a.attr.属性名</p>
+<p><em>获取文本</em></p>
+<p>在很多时候我们是需要获取被html标签包含的文本信息,通过.text()就可以获取文本信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active a&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/cb44f196b165e.png"
+        data-srcset="https://pic./2020/04/29/cb44f196b165e.png, https://pic./2020/04/29/cb44f196b165e.png 1.5x, https://pic./2020/04/29/cb44f196b165e.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/cb44f196b165e.png"
+        title="7" /></p>
+<p><em>获取html</em></p>
+<p>我们通过.html()的方式可以获取当前标签所包含的html信息，例子如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="o">.</span><span class="n">html</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/cacdd3db6b0cb.png"
+        data-srcset="https://pic./2020/04/29/cacdd3db6b0cb.png, https://pic./2020/04/29/cacdd3db6b0cb.png 1.5x, https://pic./2020/04/29/cacdd3db6b0cb.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/cacdd3db6b0cb.png"
+        title="8" /></p>
+<h3 id="dom操作">DOM操作</h3>
+<p>addClass、removeClass<br>
+熟悉前端操作的话，通过这两个操作可以添加和删除属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>attr,css
+同样的我们可以通过attr给标签添加和修改属性，
+如果之前没有该属性则是添加，如果有则是修改
+我们也可以通过css添加一些css属性，这个时候，标签的属性里会多一个style属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;div id=&#34;container&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;ul class=&#34;list&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;first item&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1&#34;&gt;&lt;a href=&#34;link2.html&#34;&gt;second item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0 active&#34;&gt;&lt;a href=&#34;link3.html&#34;&gt;&lt;span class=&#34;bold&#34;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-1 active&#34;&gt;&lt;a href=&#34;link4.html&#34;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &lt;li class=&#34;item-0&#34;&gt;&lt;a href=&#34;link5.html&#34;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">         &lt;/ul&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.item-0.active&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;14px&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/4999462149acb.png"
+        data-srcset="https://pic./2020/04/29/4999462149acb.png, https://pic./2020/04/29/4999462149acb.png 1.5x, https://pic./2020/04/29/4999462149acb.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/4999462149acb.png"
+        title="9" /></p>
+<p>remove<br>
+有时候我们获取文本信息的时候可能并列的会有一些其他标签干扰，这个时候通过remove就可以将无用的或者干扰的标签直接删除，从而方便操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&lt;div class=&#34;wrap&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    Hello, World
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &lt;/div&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyquery</span> <span class="kn">import</span> <span class="n">PyQuery</span> <span class="k">as</span> <span class="n">pq</span>
+</span></span><span class="line"><span class="cl"><span class="n">doc</span> <span class="o">=</span> <span class="n">pq</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">wrap</span> <span class="o">=</span> <span class="n">doc</span><span class="p">(</span><span class="s1">&#39;.wrap&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">wrap</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">wrap</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">wrap</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/29/f7a6912c9b7c9.png"
+        data-srcset="https://pic./2020/04/29/f7a6912c9b7c9.png, https://pic./2020/04/29/f7a6912c9b7c9.png 1.5x, https://pic./2020/04/29/f7a6912c9b7c9.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/29/f7a6912c9b7c9.png"
+        title="10" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-28</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)" data-hashtags="python,爬虫"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200428/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200428/" data-title="爬虫流程及方法11(PyQuery解析网页篇)(全)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200426/" class="prev" rel="prev" title="爬虫流程及方法08(BeautifulSoup实例)(非ajax请求)"><i class="fas fa-angle-left fa-fw"></i>爬虫流程及方法08(BeautifulSoup实例)(非ajax请求)</a>
+            <a href="/20200429/" class="next" rel="next" title="爬虫流程及方法10(爬虫伪装专题篇)">爬虫流程及方法10(爬虫伪装专题篇)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

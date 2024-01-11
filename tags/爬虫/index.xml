@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>爬虫 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%88%AC%E8%99%AB/</link>
+        <description>爬虫 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" /><item>
+    <title>Selenium的web自动化操作02(基本语法)</title>
+    <link>http://www.spiritysdx.top/20200516/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200516/</guid>
+    <description><![CDATA[前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下： Firefox Chrome 其他版本请]]></description>
+</item><item>
+    <title>创建新线程(通用)</title>
+    <link>http://www.spiritysdx.top/20200831/</link>
+    <pubDate>Mon, 31 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200831/</guid>
+    <description><![CDATA[创建并使用多线程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 print(&#39;主线程执行代码&#39;) # 从 threading 库中导入T]]></description>
+</item><item>
+    <title>Appium自动化操作03(界面操作和adb命令)</title>
+    <link>http://www.spiritysdx.top/20200525/</link>
+    <pubDate>Mon, 25 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200525/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环]]></description>
+</item><item>
+    <title>Appium自动化操作02(元素定位及查看工具)</title>
+    <link>http://www.spiritysdx.top/20200527/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200527/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环]]></description>
+</item><item>
+    <title>Appium自动化操作01(环境安装与初始结构)</title>
+    <link>http://www.spiritysdx.top/20200523/</link>
+    <pubDate>Sat, 23 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200523/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 本篇用到的相关软件链接： 链接: https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA 提取码: h9b2 Appium 基础知识 Appium 用途和特点 Appium 是一个移动 App （手机应用）]]></description>
+</item><item>
+    <title>Selenium的web自动化操作03(语法补充)</title>
+    <link>http://www.spiritysdx.top/20200517/</link>
+    <pubDate>Sun, 17 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200517/</guid>
+    <description><![CDATA[前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下： Firefox Chrome 其他版本请]]></description>
+</item><item>
+    <title>Selenium的web自动化操作01(环境布置与标准流程)</title>
+    <link>http://www.spiritysdx.top/20200510/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200510/</guid>
+    <description><![CDATA[前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下： Firefox Chrome 其他版本请]]></description>
+</item><item>
+    <title>爬虫流程及方法14(正则表达式篇)</title>
+    <link>http://www.spiritysdx.top/20200506/</link>
+    <pubDate>Tue, 05 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200506/</guid>
+    <description><![CDATA[前言 re库的实用实例如下 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 import requests import re import os a = True while a: #创建一个文件夹，保存所有]]></description>
+</item><item>
+    <title>爬虫流程及方法13(xpath解析页面)</title>
+    <link>http://www.spiritysdx.top/20200504/</link>
+    <pubDate>Mon, 04 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200504/</guid>
+    <description><![CDATA[前言 xpath解析原理: 1.实例化一个etree的对象，且需要将被解析的页面源码数据加载到该对象中。 2.调用et ree对象中的xpath方法]]></description>
+</item><item>
+    <title>爬虫流程及方法12(高性能异步爬虫)</title>
+    <link>http://www.spiritysdx.top/20200501/</link>
+    <pubDate>Fri, 01 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200501/</guid>
+    <description><![CDATA[前言 目的:在爬虫中使用异步实现高性能的数据爬取操作。 异步爬虫的方式: &ndash;多线程，多进程(不建议): 好处:可以为相关阻塞的操作单独开]]></description>
+</item></channel>
+</rss>
