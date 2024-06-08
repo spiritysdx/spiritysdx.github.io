@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>python - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/python/</link>
+        <description>python - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/python/" rel="self" type="application/rss+xml" /><item>
+    <title>conda使用GPU时的一些陷阱</title>
+    <link>http://www.spiritysdx.top/20240607/</link>
+    <pubDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240607/</guid>
+    <description><![CDATA[conda默认的python环境版本过高，需要降级默认的Python环境 假设原始环境是Python12的环境 直接使用 1 conda install python==3.11 类似上述方法指定]]></description>
+</item><item>
+    <title>Golang的重定向比Python的重定向次数要多</title>
+    <link>http://www.spiritysdx.top/20240328/</link>
+    <pubDate>Thu, 28 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240328/</guid>
+    <description><![CDATA[前言 之前有使用 FastAPI 开发过一套后端，但占用属实有点大，最近使用 Gin-Vue-Admin 进行重构，在构建爬虫模块的时候，发现了一些有趣的事情，Python的重定向比Go]]></description>
+</item><item>
+    <title>神经网络(GNN)的表达能力</title>
+    <link>http://www.spiritysdx.top/20231101/</link>
+    <pubDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231101/</guid>
+    <description><![CDATA[GNN GIN]]></description>
+</item><item>
+    <title>GAT 详解</title>
+    <link>http://www.spiritysdx.top/20231024/</link>
+    <pubDate>Tue, 24 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231024/</guid>
+    <description><![CDATA[GAT 原文： 流程 上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.]]></description>
+</item><item>
+    <title>GraphSAGE 详解</title>
+    <link>http://www.spiritysdx.top/20231023/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231023/</guid>
+    <description><![CDATA[前言 空域提出 &ndash;&gt; 频域提出 &ndash;&gt; 图神经网络提出 &ndash;&gt; 主要回到空域发展 图表示学习 和 图神经网络 平行的两个方向，互补的方向。 MPNN 后面两个图神经网络都是基于 MPNN 进行]]></description>
+</item><item>
+    <title>GCN 详解</title>
+    <link>http://www.spiritysdx.top/20231022/</link>
+    <pubDate>Sun, 22 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231022/</guid>
+    <description><![CDATA[前言 GCN 可以说是一个函数拟合器。 每个计算图就是一个样本 感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则]]></description>
+</item><item>
+    <title>图神经网络的前情提要</title>
+    <link>http://www.spiritysdx.top/20231021/</link>
+    <pubDate>Sat, 21 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231021/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>深度学习前情提要</title>
+    <link>http://www.spiritysdx.top/20231020/</link>
+    <pubDate>Fri, 20 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231020/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>半监督节点分类</title>
+    <link>http://www.spiritysdx.top/20230928/</link>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230928/</guid>
+    <description><![CDATA[前言 Label Propagation (Relational Classification) 这是一种集体分类方法。 Iterative Classification 这是一种集体分类方法。 既要用到节点的连接信息，也要用到节点本身的属性信息(特征)，分别训练两个分类器解]]></description>
+</item><item>
+    <title>PageRank实战-西游记人物节点重要程度</title>
+    <link>http://www.spiritysdx.top/20230927/</link>
+    <pubDate>Wed, 27 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230927/</guid>
+    <description><![CDATA[PageRank节点重要度 在NetworkX中，计算有向图节点的PageRank节点重要度。 参考资料 networkx官方教程：https:/]]></description>
+</item></channel>
+</rss>

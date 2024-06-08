@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>port - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/port/</link>
+        <description>port - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/port/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的Ubuntu22.04的Linux进行内穿映射端口</title>
+    <link>http://www.spiritysdx.top/20240512/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240512/</guid>
+    <description><![CDATA[前言 因为机房的机器没有公网IP，所以需要跳板机进行IP映射内穿，所以需要2样东西： 1 服务器A - 服务端 - 一个有公网IPV4地址的云服务器，IP]]></description>
+</item></channel>
+</rss>

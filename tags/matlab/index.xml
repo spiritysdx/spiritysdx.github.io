@@ -1,0 +1,50 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>matlab - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/matlab/</link>
+        <description>matlab - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/matlab/" rel="self" type="application/rss+xml" /><item>
+    <title>多元回归和熵值评价法及多目标遗传优化算法</title>
+    <link>http://www.spiritysdx.top/20210713/</link>
+    <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210713/</guid>
+    <description><![CDATA[前言 感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。 第一届长三角数学建模 B题 锅炉水冷壁温度曲线 1Stopt多元拟合 个人体会： 只]]></description>
+</item><item>
+    <title>改进的SIR差分模型及三个模型的应用</title>
+    <link>http://www.spiritysdx.top/20210709/</link>
+    <pubDate>Fri, 09 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210709/</guid>
+    <description><![CDATA[前言 感谢组员的共同协作，做组长的有些东西帮不上实在抱歉。 改进的SIR差分模型 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32]]></description>
+</item><item>
+    <title>基于常微分及时间序列模型的印度人口增长预测</title>
+    <link>http://www.spiritysdx.top/20210627/</link>
+    <pubDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210627/</guid>
+    <description><![CDATA[前言 感谢组员的共同协作。 问题 以人口总数、人口年度增长率为研究对象，利用并根据世界人口网搜索1959年到2018年印度国家人口统计数据进行参数]]></description>
+</item><item>
+    <title>小额贷款的划算问题(matlab数学建模)</title>
+    <link>http://www.spiritysdx.top/20210201/</link>
+    <pubDate>Mon, 01 Feb 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210201/</guid>
+    <description><![CDATA[代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68]]></description>
+</item><item>
+    <title>Matlab02(矩阵运算)</title>
+    <link>http://www.spiritysdx.top/20200702/</link>
+    <pubDate>Thu, 02 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200702/</guid>
+    <description><![CDATA[通过下标引用矩阵元素 A(3,2)表示A矩阵第3行第2列的元素。 如若超出限制行列维数，自动扩展，未赋值的默认为0 通过序号来引用矩阵元素 A(3)]]></description>
+</item><item>
+    <title>Matlab01(基础命令)</title>
+    <link>http://www.spiritysdx.top/20200701/</link>
+    <pubDate>Wed, 01 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200701/</guid>
+    <description><![CDATA[基础命令 1.打开文件夹 命令行窗口输入 cd 文件夹名 这里推荐先在文件管理器先创建后打开 2.赋值变量会在工作区显示 可在命令行窗口输入whos 或 who 可以]]></description>
+</item></channel>
+</rss>

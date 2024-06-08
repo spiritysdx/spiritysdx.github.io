@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>使用LXD对服务器进行LXC容器切分 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="使用LXD对服务器进行LXC容器切分" />
+<meta property="og:description" content="使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡) Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20221205/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-12-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="使用LXD对服务器进行LXC容器切分"/>
+<meta name="twitter:description" content="使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡) Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20221205/" /><link rel="prev" href="http://www.spiritysdx.top/20221103/" /><link rel="next" href="http://www.spiritysdx.top/20221206/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用LXD对服务器进行LXC容器切分",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20221205\/"
+        },"genre": "posts","keywords": "linux, lxd, lxc, shell, server, nat, vps, kvm, virtual, vnstat","wordcount":  1836 ,
+        "url": "http:\/\/www.spiritysdx.top\/20221205\/","datePublished": "2022-12-05T00:00:00+00:00","dateModified": "2022-12-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">使用LXD对服务器进行LXC容器切分</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-12-05">2022-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1836 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</a></li>
+        <li><a href="#自写仓库链接">自写仓库链接</a></li>
+        <li><a href="#实验性一键脚本">实验性一键脚本</a></li>
+        <li><a href="#如果上述一键安装出现问题建议使用手动自动结合的方式如下">如果上述一键安装出现问题，建议使用手动+自动结合的方式，如下</a>
+          <ul>
+            <li><a href="#普通版本带1个ssh端口25个外网端口">普通版本(带1个SSH端口，25个外网端口)</a></li>
+            <li><a href="#纯探针版本只有一个ssh端口">纯探针版本(只有一个SSH端口)</a></li>
+          </ul>
+        </li>
+        <li><a href="#开完多个容器后具体信息会生成在当前目录下的log文件中格式如下">开完多个容器后，具体信息会生成在当前目录下的log文件中，格式如下</a></li>
+        <li><a href="#只开一个容器">只开一个容器</a></li>
+        <li><a href="#常用lxc命令">常用LXC命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#更多更新以及使用方式以仓库说明为准">更多更新以及使用方式以仓库说明为准</a></li>
+    <li><a href="#备份仓库">备份仓库：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</h3>
+<p>Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容器，一键多开NAT小鸡，一键多开NAT服务器</p>
+<p>上述需求都得到了解决</p>
+<h3 id="自写仓库链接">自写仓库链接</h3>
+<p><a href="https://github.com/spiritLHLS/lxd" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/lxd</a></p>
+<h3 id="实验性一键脚本">实验性一键脚本</h3>
+<p>环境要求：必须为Ubuntu系统</p>
+<p>一键安装lxd环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/lxd/main/lxdinstall.sh -o lxdinstall.sh <span class="o">&amp;&amp;</span> chmod +x lxdinstall.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置母鸡内存虚拟化大小以及资源池硬盘大小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./lxdinstall.sh 内存大小以MB计算 硬盘大小以GB计算
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一键安装开lxd母鸡所需要的带vnstat环境的常用预配置环境</p>
+<p>(实际主体功能是一键安装vnstat工具)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/lxd/main/backend.sh -o backend.sh <span class="o">&amp;&amp;</span> chmod +x backend.sh <span class="o">&amp;&amp;</span> bash backend.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="如果上述一键安装出现问题建议使用手动自动结合的方式如下">如果上述一键安装出现问题，建议使用手动+自动结合的方式，如下</h3>
+<p>同时进行TCP和UDP转发，除了SSH端口其他的映射内网外网端口一致，且只适用于Ubuntu或Debian，推荐Ubuntu20或Ubuntu更低版本，debian系列多半有问题</p>
+<p>一定要在 /root 的路径下运行本脚本！</p>
+<h4 id="普通版本带1个ssh端口25个外网端口">普通版本(带1个SSH端口，25个外网端口)</h4>
+<p>开出的小鸡配置：1核256MB内存1GB硬盘限速250MB</p>
+<p>自动关闭防火墙</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install curl wget sudo dos2unix ufw -y
+</span></span><span class="line"><span class="cl">ufw disable
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内存看你开多少小鸡，这里如果要开8个，换算需要2G内存，实际内存如果是512MB内存，还需要开1.5G，保守点开2G虚拟内存即可</p>
+<p>执行下面命令，输入1，再输入2048，代表开2G虚拟内存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/lxd/main/swap.sh -o swap.sh &amp;&amp; chmod +x swap.sh &amp;&amp; bash swap.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际swap开的虚拟内存应该是实际内存的2倍，也就是开1G是合理的，上面我描述的情况属于超开了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install snapd -y
+</span></span><span class="line"><span class="cl">snap install lxd
+</span></span><span class="line"><span class="cl">/snap/bin/lxd init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果上面的命令中出现下面的错误</p>
+<p>(snap &ldquo;lxd&rdquo; assumes unsupported features: snapd2.39 (try to update snapd and refresh the core snap))</p>
+<p>使用命令修补后再进行lxd的安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">snap install core
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果无异常，上面三行命令执行结果如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png"
+        data-srcset="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png, https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png 1.5x, https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png 2x"
+        data-sizes="auto"
+        alt="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png"
+        title="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png" /></p>
+<p>一般的选项回车默认即可</p>
+<p>选择配置物理盘大小(提示默认最小1GB那个选项)，一般我填空闲磁盘大小减去内存大小后乘以0.95并向下取整</p>
+<p>提示带auto的更新image的选项记得选no，避免更新占用</p>
+<p>软连接lxc命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">! lxc -h &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;alias lxc=&#34;/snap/bin/lxc&#34;&#39;</span> &gt;&gt; /root/.bashrc <span class="o">&amp;&amp;</span> <span class="nb">source</span> /root/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/snap/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试lxc有没有软连接上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>lxc命令无问题，执行初始化开小鸡，这一步最好放screen中后台挂起执行，开小鸡时长与你开几个和母鸡配置相关</p>
+<p>执行下面命令加载开机脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 初始化
+</span></span><span class="line"><span class="cl">rm -rf init.sh
+</span></span><span class="line"><span class="cl">wget https://github.com/spiritLHLS/lxd/raw/main/init.sh
+</span></span><span class="line"><span class="cl">chmod 777 init.sh
+</span></span><span class="line"><span class="cl">apt install dos2unix -y
+</span></span><span class="line"><span class="cl">dos2unix init.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面命令为开小鸡名字前缀为<strong>tj</strong>的<strong>10</strong>个小鸡</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./init.sh tj 10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有时候init.sh的运行路径有问题，此时建议前面加上sudo强制根目录执行</p>
+<h4 id="纯探针版本只有一个ssh端口">纯探针版本(只有一个SSH端口)</h4>
+<p>开出的小鸡配置：1核128MB内存300MB硬盘限速200MB</p>
+<p>自动关闭防火墙</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install curl wget sudo dos2unix ufw -y
+</span></span><span class="line"><span class="cl">ufw disable
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内存看你开多少小鸡，这里如果要开10个，换算需要1G内存，实际内存如果是512MB内存，还需要开0.5G，保守点开1G虚拟内存即可</p>
+<p>执行下面命令，输入1，再输入1024，代表开1G虚拟内存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/lxd/main/swap.sh -o swap.sh <span class="o">&amp;&amp;</span> chmod +x swap.sh <span class="o">&amp;&amp;</span> bash swap.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际swap开的虚拟内存应该是实际内存的2倍，也就是开1G是合理的，再多就超开了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install snapd -y
+</span></span><span class="line"><span class="cl">snap install lxd
+</span></span><span class="line"><span class="cl">/snap/bin/lxd init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果上面的命令中出现下面的错误</p>
+<p>(snap &ldquo;lxd&rdquo; assumes unsupported features: snapd2.39 (try to update snapd and refresh the core snap))</p>
+<p>使用命令修补后再进行lxd的安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">snap install core
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果无异常，上面三行命令执行结果如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png"
+        data-srcset="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png, https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png 1.5x, https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png 2x"
+        data-sizes="auto"
+        alt="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png"
+        title="https://i.bmp.ovh/imgs/2022/06/01/76dd73f43e138c88.png" /></p>
+<p>一般的选项回车默认即可</p>
+<p>选择配置物理盘大小(提示默认最小1GB那行)，一般我填空闲磁盘大小减去内存大小后乘以0.95并向下取整</p>
+<p>提示带auto的更新image的选项记得选no，避免更新占用</p>
+<p>软连接lxc命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">! lxc -h &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;alias lxc=&#34;/snap/bin/lxc&#34;&#39;</span> &gt;&gt; /root/.bashrc <span class="o">&amp;&amp;</span> <span class="nb">source</span> /root/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/snap/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试lxc有没有软连接上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>lxc命令无问题，执行初始化开小鸡，这一步最好放screen中后台挂起执行，开小鸡时长与你开几个和母鸡配置相关</p>
+<p>加载开机脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 初始化
+</span></span><span class="line"><span class="cl">rm -rf least.sh
+</span></span><span class="line"><span class="cl">wget https://github.com/spiritLHLS/lxd/raw/main/least.sh
+</span></span><span class="line"><span class="cl">chmod 777 least.sh
+</span></span><span class="line"><span class="cl">apt install dos2unix -y
+</span></span><span class="line"><span class="cl">dos2unix least.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下列命令最后一行为开小鸡名字前缀为<strong>tj</strong>的<strong>10</strong>个小鸡</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./least.sh tj 10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有时候least.sh的运行路径有问题，此时建议前面加上sudo强制根目录执行</p>
+<h3 id="开完多个容器后具体信息会生成在当前目录下的log文件中格式如下">开完多个容器后，具体信息会生成在当前目录下的log文件中，格式如下</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1号服务器名称 密码 ssh端口 外网端口起始 外网端口终止
+</span></span><span class="line"><span class="cl">2号服务器名称 密码 ssh端口 外网端口起始 外网端口终止
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="只开一个容器">只开一个容器</h3>
+<p>预装环境如上面的那些一样</p>
+<p>加载开机脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 初始化
+</span></span><span class="line"><span class="cl">rm -rf buildone.sh
+</span></span><span class="line"><span class="cl">wget https://github.com/spiritLHLS/lxd/raw/main/buildone.sh
+</span></span><span class="line"><span class="cl">chmod 777 buildone.sh
+</span></span><span class="line"><span class="cl">apt install dos2unix -y
+</span></span><span class="line"><span class="cl">dos2unix buildone.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开鸡</p>
+<p>内存大小以MB计算，硬盘大小以GB计算</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./buildone.sh 小鸡名称 内存大小 硬盘大小 SSH端口 外网起端口 外网止端口
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="常用lxc命令">常用LXC命令</h3>
+<p>查看所有</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看个例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc info 服务器名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动个例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc start 服务器名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>停止个例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc stop 服务器名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除个例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc rm -f 服务器名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="更多更新以及使用方式以仓库说明为准">更多更新以及使用方式以仓库说明为准</h2>
+<h2 id="备份仓库">备份仓库：</h2>
+<p><a href="https://gitlab.com/spiritysdx/lxc" target="_blank" rel="noopener noreffer">https://gitlab.com/spiritysdx/lxc</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-12-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分" data-hashtags="linux,lxd,lxc,shell,server,nat,vps,kvm,virtual,vnstat"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20221205/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20221205/" data-title="使用LXD对服务器进行LXC容器切分"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/lxd/">lxd</a>,&nbsp;<a href="/tags/lxc/">lxc</a>,&nbsp;<a href="/tags/shell/">shell</a>,&nbsp;<a href="/tags/server/">server</a>,&nbsp;<a href="/tags/nat/">nat</a>,&nbsp;<a href="/tags/vps/">vps</a>,&nbsp;<a href="/tags/kvm/">kvm</a>,&nbsp;<a href="/tags/virtual/">virtual</a>,&nbsp;<a href="/tags/vnstat/">vnstat</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20221103/" class="prev" rel="prev" title="免费破解图片验证码(数字或中英混合)(附代码)(2022)"><i class="fas fa-angle-left fa-fw"></i>免费破解图片验证码(数字或中英混合)(附代码)(2022)</a>
+            <a href="/20221206/" class="next" rel="next" title="为openvz或kvm架构的linux服务器增加swap分区">为openvz或kvm架构的linux服务器增加swap分区<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

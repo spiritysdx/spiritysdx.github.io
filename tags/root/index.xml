@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>root - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/root/</link>
+        <description>root - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 10 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/root/" rel="self" type="application/rss+xml" /><item>
+    <title>在root权限下使用守护进程自托管Github的Runners</title>
+    <link>http://www.spiritysdx.top/20240510/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240510/</guid>
+    <description><![CDATA[前置条件 1 2 3 cd /root apt update apt install curl sudo -y 安装 执行下述命令 1 export RUNNER_ALLOW_RUNASROOT=1 执行后正常安装至于./config那一步，然后不要使用官方的启动方式，而是使用守护进程]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>PageRank实战-西游记人物节点重要程度 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="PageRank实战-西游记人物节点重要程度" />
+<meta property="og:description" content="PageRank节点重要度 在NetworkX中，计算有向图节点的PageRank节点重要度。 参考资料 networkx官方教程：https:/" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20230927/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="PageRank实战-西游记人物节点重要程度"/>
+<meta name="twitter:description" content="PageRank节点重要度 在NetworkX中，计算有向图节点的PageRank节点重要度。 参考资料 networkx官方教程：https:/"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230927/" /><link rel="prev" href="http://www.spiritysdx.top/20230926/" /><link rel="next" href="http://www.spiritysdx.top/20230928/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PageRank实战-西游记人物节点重要程度",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230927\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, 图神经网络, PageRank, CS244W","wordcount":  1992 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230927\/","datePublished": "2023-09-27T00:00:00+00:00","dateModified": "2023-09-27T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">PageRank实战-西游记人物节点重要程度</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1992 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考资料">参考资料</a></li>
+    <li><a href="#导入工具包">导入工具包</a></li>
+    <li><a href="#计算pagerank节点重要度">计算PageRank节点重要度</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="pagerank节点重要度">PageRank节点重要度</h1>
+<p>在NetworkX中，计算有向图节点的PageRank节点重要度。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>networkx官方教程：<a href="https://networkx.org/documentation/stable/tutorial.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html</a></p>
+<p>nx.Graph <a href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph</a></p>
+<p>给图、节点、连接添加属性：<a href="https://networkx.org/documentation/stable/tutorial.html#attributes" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html#attributes</a></p>
+<p>读写图：<a href="https://networkx.org/documentation/stable/reference/readwrite/index.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/readwrite/index.html</a></p>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span> <span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># 数据分析</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># 随机数</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">star_graph</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="计算pagerank节点重要度">计算PageRank节点重要度</h2>
+<p>数据下载地址：http://www.openkg.cn/dataset/ch4masterpieces</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pagerank</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{0: 0.4583348922684132,
+ 1: 0.07738072967594098,
+ 2: 0.07738072967594098,
+ 3: 0.07738072967594098,
+ 4: 0.07738072967594098,
+ 5: 0.07738072967594098,
+ 6: 0.07738072967594098,
+ 7: 0.07738072967594098}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 导入 csv 文件定义的有向图</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./triples.csv&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>head</th>
+      <th>tail</th>
+      <th>relation</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>金蝉子</td>
+      <td>唐僧</td>
+      <td>past_life</td>
+      <td>前世</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>孙悟空</td>
+      <td>唐僧</td>
+      <td>apprentice</td>
+      <td>徒弟</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>猪八戒</td>
+      <td>唐僧</td>
+      <td>apprentice</td>
+      <td>徒弟</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>沙僧</td>
+      <td>唐僧</td>
+      <td>apprentice</td>
+      <td>徒弟</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>白龙马</td>
+      <td>唐僧</td>
+      <td>apprentice</td>
+      <td>徒弟</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>毗蓝婆菩萨</td>
+      <td>昴日星官</td>
+      <td>mother</td>
+      <td>母亲</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>嫦娥</td>
+      <td>后羿</td>
+      <td>wife</td>
+      <td>妻</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>敖摩昂</td>
+      <td>敖闰</td>
+      <td>son</td>
+      <td>儿</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>哪吒</td>
+      <td>李靖</td>
+      <td>son</td>
+      <td>儿</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>哪吒</td>
+      <td>如来</td>
+      <td>apprentice</td>
+      <td>徒弟</td>
+    </tr>
+  </tbody>
+</table>
+<p>109 rows × 4 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;head&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tail&#39;</span><span class="p">])]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 可视化</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#设置为基于弹簧布局，迭代次数为3，次数越多，根据节点之间的相互作用力找到的节点位置越合理</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span>                     <span class="c1"># NetworkX graph 有向图，如果是无向图则自动转为双向有向图</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>            <span class="c1"># Damping Factor，阻尼系数，理解这个得理解谷歌矩阵，也就是明白算法本身才行</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">personalization</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># 是否开启Personalized PageRank，随机传送至指定节点集合的概率更高或更低</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>          <span class="c1"># 最大迭代次数</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">tol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>             <span class="c1"># 判定收敛的误差</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">nstart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># 每个节点初始PageRank值      </span>
+</span></span><span class="line"><span class="cl">                       <span class="n">dangling</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>         <span class="c1"># Dead End死胡同节点</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('唐僧', 0.13349105557884888),
+ ('孙悟空', 0.10498354112014094),
+ ('白龙马', 0.09531260474698808),
+ ('猪八戒', 0.09247797536009736),
+ ('沙僧', 0.07627154154696374),
+ ('李世民', 0.052002919751408624),
+ ('观音菩萨', 0.026625716774094633),
+ ('高翠兰', 0.02579183411604112),
+ ('卵二姐', 0.01860884001045803),
+ ('太上老君', 0.014430996933862522),
+ ('如来', 0.013334300311185142),
+ ('牛魔王', 0.010256020230003658),
+ ('哪吒', 0.009171370913926254),
+ ('灵吉菩萨', 0.007800320258156309),
+ ('宼栋', 0.007432108638238391),
+ ('昴日星官', 0.007432108638238391),
+ ('后羿', 0.007432108638238391),
+ ('李靖', 0.006787403654483575),
+ ('殷温娇', 0.005344620286308959),
+ ('寇梁', 0.005344620286308959),
+ ('袁天罡', 0.005344620286308959),
+ ('金角', 0.005344620286308959),
+ ('银角', 0.005344620286308959),
+ ('西海龙王太子', 0.005344620286308959),
+ ('弥勒佛', 0.005344620286308959),
+ ('毗蓝婆菩萨', 0.005344620286308959),
+ ('文殊菩萨', 0.005344620286308959),
+ ('普贤菩萨', 0.005344620286308959),
+ ('太乙救苦天尊', 0.005344620286308959),
+ ('嫦娥', 0.005344620286308959),
+ ('南极寿星', 0.005344620286308959),
+ ('东来佛祖笑和尚', 0.005344620286308959),
+ ('敖闰', 0.005344620286308959),
+ ('木吒', 0.004812288400108432),
+ ('金吒', 0.004812288400108432),
+ ('高玉兰', 0.004116770300385284),
+ ('金蝉子', 0.0028889203144616088),
+ ('陈光蕊', 0.0028889203144616088),
+ ('法明和尚', 0.0028889203144616088),
+ ('殷开山', 0.0028889203144616088),
+ ('菩提老祖', 0.0028889203144616088),
+ ('镇元子', 0.0028889203144616088),
+ ('蛟魔王', 0.0028889203144616088),
+ ('鹏魔王', 0.0028889203144616088),
+ ('狮驼王', 0.0028889203144616088),
+ ('猕猴王', 0.0028889203144616088),
+ ('禺狨王', 0.0028889203144616088),
+ ('天蓬元帅', 0.0028889203144616088),
+ ('卷帘大将', 0.0028889203144616088),
+ ('西海龙王', 0.0028889203144616088),
+ ('西海龙母', 0.0028889203144616088),
+ ('敖摩昂太子', 0.0028889203144616088),
+ ('西海龙女', 0.0028889203144616088),
+ ('李渊', 0.0028889203144616088),
+ ('李建成', 0.0028889203144616088),
+ ('李元吉', 0.0028889203144616088),
+ ('王珪', 0.0028889203144616088),
+ ('秦琼', 0.0028889203144616088),
+ ('萧瑀', 0.0028889203144616088),
+ ('傅奕', 0.0028889203144616088),
+ ('魏征', 0.0028889203144616088),
+ ('李玉英', 0.0028889203144616088),
+ ('房玄龄', 0.0028889203144616088),
+ ('杜如晦', 0.0028889203144616088),
+ ('徐世绩', 0.0028889203144616088),
+ ('徐茂公', 0.0028889203144616088),
+ ('许敬宗', 0.0028889203144616088),
+ ('马三宝', 0.0028889203144616088),
+ ('段志贤', 0.0028889203144616088),
+ ('程咬金', 0.0028889203144616088),
+ ('虞世南', 0.0028889203144616088),
+ ('张道源', 0.0028889203144616088),
+ ('张士衡', 0.0028889203144616088),
+ ('高太公', 0.0028889203144616088),
+ ('高香兰', 0.0028889203144616088),
+ ('寇洪', 0.0028889203144616088),
+ ('袁守诚', 0.0028889203144616088),
+ ('正元龙', 0.0028889203144616088),
+ ('二十四路诸天', 0.0028889203144616088),
+ ('守山大神', 0.0028889203144616088),
+ ('善财童子', 0.0028889203144616088),
+ ('捧珠龙女', 0.0028889203144616088),
+ ('红孩儿', 0.0028889203144616088),
+ ('黑风怪', 0.0028889203144616088),
+ ('黄风怪', 0.0028889203144616088),
+ ('黄毛貂鼠', 0.0028889203144616088),
+ ('铁扇公主', 0.0028889203144616088),
+ ('九尾狐狸', 0.0028889203144616088),
+ ('狐阿七', 0.0028889203144616088),
+ ('鼍龙怪', 0.0028889203144616088),
+ ('灵感大王', 0.0028889203144616088),
+ ('独角兕大王', 0.0028889203144616088),
+ ('玉面公主', 0.0028889203144616088),
+ ('金毛犼', 0.0028889203144616088),
+ ('黄眉道童', 0.0028889203144616088),
+ ('百眼魔君', 0.0028889203144616088),
+ ('青狮', 0.0028889203144616088),
+ ('白象', 0.0028889203144616088),
+ ('大鹏金翅雕', 0.0028889203144616088),
+ ('九头狮子', 0.0028889203144616088),
+ ('玉兔精', 0.0028889203144616088),
+ ('白鹿精', 0.0028889203144616088),
+ ('黄眉大王', 0.0028889203144616088),
+ ('敖摩昂', 0.0028889203144616088)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点尺寸</span>
+</span></span><span class="line"><span class="cl"><span class="n">node_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span> <span class="o">*</span> <span class="mi">8000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">node_sizes</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([  23, 1067,  839,  739,  610,  762,   23,   42,   23,  416,   23,
+         23,   23,   82,   23,   23,   23,   23,   23,   23,  148,  206,
+         23,   23,   23,   23,   23,   23,   23,   23,   23,   23,   23,
+         23,   23,   23,   23,   23,   23,   23,   23,   23,   23,   23,
+         23,   23,   23,   23,   23,   32,   23,   42,   59,   23,   42,
+         54,   38,   73,   38,   23,  213,   23,   23,   23,   23,  106,
+         23,   23,   23,   62,   23,   42,  115,   42,   23,   23,   23,
+         23,   42,   23,   23,   23,   23,   23,   42,   23,   42,   23,
+         42,   23,   42,   23,   23,   42,   23,   42,   23,   42,   23,
+         42,   59,   59,   23,   42])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点颜色</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">edge_colors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 绘制节点</span>
+</span></span><span class="line"><span class="cl"><span class="n">nodes</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="n">node_sizes</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_sizes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 绘制连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">G</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">node_size</span><span class="o">=</span><span class="n">node_sizes</span><span class="p">,</span>   <span class="c1"># 节点尺寸</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&#34;-&gt;&#34;</span><span class="p">,</span>        <span class="c1"># 箭头样式</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arrowsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>           <span class="c1"># 箭头尺寸</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edge_color</span><span class="o">=</span><span class="n">edge_colors</span><span class="p">,</span> <span class="c1"># 连接颜色</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edge_cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span><span class="c1"># 连接配色方案，可选：plt.cm.Blues</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="o">=</span><span class="mi">4</span>                 <span class="c1"># 连接线宽</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置每个连接的透明度</span>
+</span></span><span class="line"><span class="cl"><span class="n">edge_alphas</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">5</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">edge_alphas</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># # 图例</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pc = mpl.collections.PatchCollection(edges, cmap=cmap)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pc.set_array(edge_colors)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># plt.colorbar(pc)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>/tmp/ipykernel_206894/3554403709.py:12: DeprecationWarning: `alltrue` is deprecated as of NumPy 1.25.0, and will be removed in NumPy 2.0. Please use `all` instead.
+  edges = nx.draw_networkx_edges(
+</code></pre>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-09-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度" data-hashtags="机器学习,深度学习,图神经网络,PageRank,CS244W"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230927/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230927/" data-title="PageRank实战-西游记人物节点重要程度"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/pagerank/">PageRank</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230926/" class="prev" rel="prev" title="PageRank"><i class="fas fa-angle-left fa-fw"></i>PageRank</a>
+            <a href="/20230928/" class="next" rel="next" title="半监督节点分类">半监督节点分类<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

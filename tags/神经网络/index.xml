@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>神经网络 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link>
+        <description>神经网络 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 28 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+    <title>逻辑回归1-乳腺癌数据案例</title>
+    <link>http://www.spiritysdx.top/20210728/</link>
+    <pubDate>Wed, 28 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210728/</guid>
+    <description><![CDATA[前言 逻辑回归的一个小案例，使用sklearn自带的一个数据 代码 1 2 3 4 5 6 from sklearn.linear_model import LogisticRegression as LR #逻辑回归 from sklearn.datasets import load_breast_cancer #导入乳腺癌数据集 import numpy as np import matplotlib.pyplot as plt from]]></description>
+</item><item>
+    <title>随机森林在乳腺癌数据上的调参</title>
+    <link>http://www.spiritysdx.top/20210727/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210727/</guid>
+    <description><![CDATA[前言 数据集合来自kaggle 链接：https://www.kaggle.com/c/digit-recognizer/data 其中test和]]></description>
+</item><item>
+    <title>预处理3-连续值与特征选取</title>
+    <link>http://www.spiritysdx.top/20210724/</link>
+    <pubDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210724/</guid>
+    <description><![CDATA[前言 使用的相关数据链接如下： 点我跳转 代码 连续值预处理 1 2 3 4 5 6 7 8 9 10 import pandas as pd data = pd.read_csv(&#34;Narrativedata.csv&#34; ,index_col=0 )#index_col=0将第0列作为索引，不写则认]]></description>
+</item><item>
+    <title>预处理2-随机森林填补缺失值</title>
+    <link>http://www.spiritysdx.top/20210723/</link>
+    <pubDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210723/</guid>
+    <description><![CDATA[随机森林填补缺失值(实测回归比较好) 1 2 3 4 5 %matplotlib inline from sklearn.tree import DecisionTreeClassifier from sklearn.ensemble import RandomForestClassifier#随机森林分类树 from sklearn.datasets import load_wine from sklearn.model_selection import train_test_split]]></description>
+</item><item>
+    <title>预处理1-分类数据</title>
+    <link>http://www.spiritysdx.top/20210722/</link>
+    <pubDate>Thu, 22 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210722/</guid>
+    <description><![CDATA[前言 使用的相关数据链接如下： 点我跳转 数据预处理 无量纲化 1 2 #归一化 收到0~1之间 #正则化不是归一化 1 2 3 4 5 6 7 8 from sklearn.preprocessing import MinMaxScaler data = [[-1, 2], [-0.5, 6], [0, 10], [1,]]></description>
+</item><item>
+    <title>决策树3-泰坦尼克号实例(网格搜索,超参数调参)</title>
+    <link>http://www.spiritysdx.top/20210721/</link>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210721/</guid>
+    <description><![CDATA[前言 数据集来自kaggle 链接：https://www.kaggle.com/c/titanic/data 里面的test和train的csv]]></description>
+</item><item>
+    <title>决策树2-简单调参</title>
+    <link>http://www.spiritysdx.top/20210720/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210720/</guid>
+    <description><![CDATA[代码 1 2 3 from sklearn import tree from sklearn.datasets import load_wine from sklearn.model_selection import train_test_split 1 wine = load_wine() 1 wine.data.shape (178, 13) 1 wine.target array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,]]></description>
+</item><item>
+    <title>决策树1-分类器</title>
+    <link>http://www.spiritysdx.top/20210719/</link>
+    <pubDate>Mon, 19 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210719/</guid>
+    <description><![CDATA[代码 1 2 3 4 5 import numpy as np import matplotlib.pyplot as plt from sklearn import datasets from sklearn.model_selection import train_test_split #分割训练集和测试集 from sklearn.neighbors import KNeighborsClassifier #K近邻 简单案例 1 2 3 iris=datasets.load_iris() iris_X = iris.data iris_y=iris.target 1 iris_X[:2,:]#四个属]]></description>
+</item><item>
+    <title>决策树线性回归</title>
+    <link>http://www.spiritysdx.top/20210718/</link>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210718/</guid>
+    <description><![CDATA[代码 1 2 3 import numpy as np from sklearn.tree import DecisionTreeRegressor #回归树 import matplotlib.pyplot as plt 1 2 3 #生成噪声曲线 rng = np.random.RandomState(1) rng.rand(2,3)#生成区分行列的二维数据，一维数据不分行列，生]]></description>
+</item><item>
+    <title>深度学习之神经网络</title>
+    <link>http://www.spiritysdx.top/20200409/</link>
+    <pubDate>Thu, 09 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200409/</guid>
+    <description><![CDATA[教计算机识别手写数字 (转载自YouTube) 人工神经网络是在现代神经科学的基础上提出和发展起来的，旨在反映人脑结构及功能的一种抽象数学模型。]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>MySQL数据库02(图形界面客户端基本运行指令) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="MySQL数据库02(图形界面客户端基本运行指令)" />
+<meta property="og:description" content="前言 图形界面客户端下载链接 https://spiritlhl.lanzous.com/id5vuji 客户端安装 1.配置证书 2.新建用户配置 3.启用 4.询问(navaicate)窗口是命令行窗口 5.ctrl&#43;s保存" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20200530/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="MySQL数据库02(图形界面客户端基本运行指令)"/>
+<meta name="twitter:description" content="前言 图形界面客户端下载链接 https://spiritlhl.lanzous.com/id5vuji 客户端安装 1.配置证书 2.新建用户配置 3.启用 4.询问(navaicate)窗口是命令行窗口 5.ctrl&#43;s保存"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200530/" /><link rel="prev" href="http://www.spiritysdx.top/20200529/" /><link rel="next" href="http://www.spiritysdx.top/20200531/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL数据库02(图形界面客户端基本运行指令)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200530\/"
+        },"genre": "posts","keywords": "MySQL","wordcount":  2094 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200530\/","datePublished": "2020-05-30T00:00:00+00:00","dateModified": "2020-05-30T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">MySQL数据库02(图形界面客户端基本运行指令)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="far fa-folder fa-fw"></i>数据库</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-30">2020-05-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2094 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基础查询">基础查询</a></li>
+        <li><a href="#为字段起别名">为字段起别名</a></li>
+        <li><a href="#去重">去重</a></li>
+        <li><a href="#号作用">+号作用</a></li>
+        <li><a href="#拼接">拼接</a></li>
+        <li><a href="#判断是否为空">判断是否为空</a></li>
+        <li><a href="#条件查询">条件查询</a></li>
+        <li><a href="#模糊查询">模糊查询</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>图形界面客户端下载链接</p>
+<p><a href="https://spiritlhl.lanzous.com/id5vuji" target="_blank" rel="noopener noreffer">https://spiritlhl.lanzous.com/id5vuji</a></p>
+<h1 id="客户端安装">客户端安装</h1>
+<p>1.配置证书 <br>
+2.新建用户配置<br>
+3.启用<br>
+4.询问(navaicate)窗口是命令行窗口<br>
+5.ctrl+s保存指令<br>
+6.ctrl+鼠标滚动轴调整字体大小<br>
+7.指令末尾加分号</p>
+<hr>
+<h1 id="dql语言data-query-language">DQL语言(Data Query Language)</h1>
+<h3 id="基础查询">基础查询</h3>
+<pre><code>ues 上级表名;  
+(打开你要查询的上级表/库名)     
+(这里点击查询的库也能进入，但不推荐使用这种方法，尽量用SQL命令执行)    
+select 查询列表 from 表名;  
+(查询列表可以是表中字段，常量值，表达式，函数)  
+(查询结果是一个虚拟表格)  
+</code></pre>
+<hr>
+<p><strong>查询表中字段</strong></p>
+<p>1.查询单个字段</p>
+<pre><code>select xxx from 上级表名;
+</code></pre>
+<p>2.查询多个字段</p>
+<pre><code>select 字段1,字段2,字段3 from 表名;   
+(这里的顺序与表内顺序无关，只是显示顺序)  
+</code></pre>
+<p>3.查询表中所有字段</p>
+<pre><code>select (双击表名，此处会显示`所选表名`) from 上级表名;    
+(这里的表名顺序无要求，是展示的顺序)    
+(格式切换是选中所有指令后按Fn+F12，格式化)    
+select * from 上级表名;    
+(这种方式选中的表顺序与源顺序一样)    
+</code></pre>
+<p>(这里的`是着重号不是单引号，着重号主要用于区分表名为保留字，其他时候可有可无)</p>
+<p>(执行命令选中指令按Fn+F9或者按栏目里的执行按钮)</p>
+<hr>
+<p><strong>查询常量值</strong></p>
+<pre><code>select 数字常量;   
+select 字段常量;
+</code></pre>
+<hr>
+<p><strong>查询表达式</strong></p>
+<pre><code>select 100*333;   
+(数字运算)
+</code></pre>
+<hr>
+<p><strong>查询函数</strong></p>
+<pre><code>select version();
+</code></pre>
+<hr>
+<h3 id="为字段起别名">为字段起别名</h3>
+<p><strong>方式一</strong></p>
+<p>使用as</p>
+<pre><code>select 100*333 as 结果;
+
+select last_name as 姓,first_name as 名 from 上级表名;
+
+select   xxx as yyy, kkk from 上级表名
+</code></pre>
+<p>好处：</p>
+<pre><code>1.便于理解       
+2.如果要查询的字段有重名，使用别名区分开来   
+3.别名在表头显示
+</code></pre>
+<p><strong>方式二</strong></p>
+<p>使用空格</p>
+<pre><code>select last_name 姓,first_name 名 from 上级表名;
+</code></pre>
+<p>这里建议别名与保留字重复时用双引号或单引号括起来</p>
+<hr>
+<h3 id="去重">去重</h3>
+<pre><code>select distinct 表中字段 from 上级表名;
+</code></pre>
+<hr>
+<h3 id="号作用">+号作用</h3>
+<p>仅仅表示运算符</p>
+<pre><code>select 100+90;                   两个操作数都为数值型，则做加法运算      
+select '123'+90;                 其中一方为字符型，试图将字符型数值转换成数值型       
+select 'john'+90;                如果转换成功，则继续做加法运算，如果转换失败，则将字符型数值转换成0    
+select nu11+10;                  只要其中一方为nu11，则结果肯定为nu11    
+</code></pre>
+<hr>
+<h3 id="拼接">拼接</h3>
+<p>调用concat函数</p>
+<pre><code>select concat('a','b','c')
+</code></pre>
+<hr>
+<h3 id="判断是否为空">判断是否为空</h3>
+<pre><code>select ifnull(表名,返回值)
+</code></pre>
+<hr>
+<h3 id="条件查询">条件查询</h3>
+<p>语法</p>
+<pre><code>select
+       查询列表
+from
+        表名
+where
+        筛选条件
+</code></pre>
+<p>分类</p>
+<pre><code>1.按条件表达式筛选      
+    条件运算符:   &gt; &lt; = &lt;= &gt;= != &lt;&gt;   
+    (最后一个是不等号)   
+2.按逻辑表达式筛选   
+    逻辑运算符：   
+        &amp;与 ||或 !非   
+        and  or  not   
+3.模糊查询
+    like   
+    between and   
+    in   
+    is null   
+</code></pre>
+<hr>
+<p><strong>按条件表达式筛选</strong></p>
+<p>案例1:查询收入大于10000的人员信息</p>
+<p>指令如下</p>
+<pre><code>select
+        *
+from
+        employees
+where
+        salary&gt;10000;
+</code></pre>
+<p>案例2:查询部门编号不等于90的员工名称</p>
+<p>指令如下</p>
+<pre><code>select
+        last_name,
+        department_id
+from
+        employees
+where
+        department_id != 90;
+</code></pre>
+<hr>
+<p><strong>按逻辑表达式筛选</strong></p>
+<p>&amp;&amp;和and:两个条件都为true,结果为true，反之为false <br>
+||或or: 只要有一个条件为true,结果为true, 反之为false<br>
+|或not:_如果连按的条件本身为false, 结果为true,反之为falsd</p>
+<p>案例3：查询工资z在10000到20000之.间的员工名、工资以及奖金</p>
+<pre><code>SELECT
+        last_ name ,
+        salary,
+        commission_ pct
+FROM
+        employees
+WHERE
+        salary&gt;=10000 AND salary&lt;=2 0000;
+</code></pre>
+<p>案例4:查询部门编号不是在90到110之间，或者工资高于15000的员工信息</p>
+<pre><code>SELECT
+        *
+FROM
+        employees
+WHERE
+        NOT (department_ id&gt;=90 AND department_ id&lt;=110) OR salary&gt;15000;
+</code></pre>
+<hr>
+<h3 id="模糊查询">模糊查询</h3>
+<p><strong>like</strong></p>
+<p>特点:</p>
+<pre><code>一般和通配符搭配使用   
+通配符:   
+%   任意多个字符,包含0个字符   
+_   任意单个字符   
+</code></pre>
+<p>案例5:查询员工名中包含字符a的员工信息</p>
+<pre><code>SELECT
+        *
+FROM
+        employees
+WHERE
+        last_ name LIKE '%a%' ;#abc
+</code></pre>
+<p>案例6:查询员工名中第三个字符为e，第五个字符为a的员工名和工资</p>
+<pre><code>SELECT
+        last_ name,
+        salary
+FROM
+        employees
+WHERE
+        last_ name LIKE '__n_l%';|
+</code></pre>
+<p>案例7:查询员工名中第二个字符为_的员工名</p>
+<pre><code>SELECT
+        last_ name
+FROM
+        employees
+WHERE
+        last_ name LIKE '_ $_%' ESCAPE '$' ;
+</code></pre>
+<p>或者</p>
+<pre><code>'_\_%'也能转义_
+</code></pre>
+<hr>
+<p><strong>between and</strong></p>
+<p>I
+案例3:查询员工编号在100到120之间的员工信息</p>
+<pre><code>SELECT
+        *
+FROM
+        employees
+WHERE
+        employee_ _id &gt;= 100 AND employee_ id&lt;=120;
+</code></pre>
+<p>#&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-等同于</p>
+<pre><code>SELECT
+        *
+FROM
+        employees
+WHERE
+        employee_ id BETWEEN 100 AND 120; .
+</code></pre>
+<p>这里的</p>
+<pre><code>employee_ id BETWEEN 大于等于的值 AND 小于等于的值;
+</code></pre>
+<hr>
+<p><strong>in</strong></p>
+<p>含义:判断某字段的值是否属于in列表中的某一项</p>
+<p>特点:</p>
+<pre><code>1.使用in提高语句简洁度
+2.in列表的值类型必须一致或兼容
+3.不能和通配符混用
+</code></pre>
+<p>案例8:查询员工的工种编号是IT_PROG、 AD_VP、 AD_PRES中的一个员工名和工种编号</p>
+<pre><code>SELECT
+        last_ name,
+        job_ id
+FROM
+        employees
+WHERE
+        job_ id = 'IT_ PROT' OR job_ id = 'AD_ VP' OR JOB_ ID ='AD_ PRES' ;
+</code></pre>
+<p>这里的</p>
+<pre><code>job_id = 'IT_ PROT' OR job_id = 'AD_ VP' OR JOB_ID ='AD_ PRES' ;
+</code></pre>
+<p>等同于</p>
+<pre><code>job_id IN('T_PROT','AD_ VP', 'AD_ PRES');
+</code></pre>
+<hr>
+<p><strong>is null</strong></p>
+<p>=或&lt;&gt;不能用于判断null值</p>
+<p>is null或is not null 可以判断null值</p>
+<p>案例9：查询没有奖金的员工名和奖金率</p>
+<pre><code>SELECT
+        last_ name，.
+        commission_pct
+FROM
+        employees
+WHERE
+        commission_pct IS NULL;
+</code></pre>
+<p>如果是查询有奖金的，写<code>is not null</code></p>
+<hr>
+<p><strong>安全等于 &lt;==&gt;</strong></p>
+<p>&lt;==&gt;可以判断null值也可以判断一般数值</p>
+<p>Is NULL: 仅仅可以判断NULL值，可读性较高，建议使用</p>
+<p>&lt;=&gt;: 既可以判断NULL值，又可以判断普通的数值，可读性较低</p>
+<hr>
+<h1 id="排序查询">排序查询</h1>
+<p>引入:</p>
+<pre><code>select * from employees ;
+</code></pre>
+<p>语法:</p>
+<pre><code>select  查询列表
+from    表
+[where筛选条件]
+order by 排序列表 [asc|desc]
+</code></pre>
+<p>案例:查询员工信息，要求工资从高到低排序</p>
+<pre><code>SELECT * FROM employees ORDER BY salary DESC;
+</code></pre>
+<p>案例:查询员工信息，要求工资从低到高排序</p>
+<p>SELECT * FROM employees ORDER BY salary ASC;</p>
+<p>特点:</p>
+<p>1.asc代表的是升序，desc代表的是降序</p>
+<p>2.如果不写，默认是升序</p>
+<p>3.支持按表达式，别名，函数排序</p>
+<p>4.order by子句一般是放在查询语句的最后面，limit子句除外</p>
+<p>案例:按姓名的长度显示员工的姓名和工资[按函数排序]</p>
+<pre><code>SELECT LENGTH(last_ name) 字节长度,last_ name, salary
+FROM employees
+ORDER BY LENGTH (last_ name) DESC;
+</code></pre>
+<p>案例:查询员工信息，要求先按工资升序，再按员工编号降序[按多个字段排序]
+SELECT *
+FROM employees
+ORDER BY salary ASC, employee_ _id DESC;</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-30</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)" data-hashtags="MySQL"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200530/" data-hashtag="MySQL"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200530/" data-title="MySQL数据库02(图形界面客户端基本运行指令)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">MySQL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200529/" class="prev" rel="prev" title="MySQL数据库01(cmder基本运行指令)"><i class="fas fa-angle-left fa-fw"></i>MySQL数据库01(cmder基本运行指令)</a>
+            <a href="/20200531/" class="next" rel="next" title="MySQL数据库03(常见函数)">MySQL数据库03(常见函数)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

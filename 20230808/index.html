@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>通过GCN生成概率图引导树搜索解决图的组合优化问题 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="通过GCN生成概率图引导树搜索解决图的组合优化问题" />
+<meta property="og:description" content="前言 老板下指示复现两篇文章，这是其中一篇 https://arxiv.org/pdf/1810.10659.pdf 文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解 原始数据 Training Data" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20230808/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-08-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="通过GCN生成概率图引导树搜索解决图的组合优化问题"/>
+<meta name="twitter:description" content="前言 老板下指示复现两篇文章，这是其中一篇 https://arxiv.org/pdf/1810.10659.pdf 文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解 原始数据 Training Data"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230808/" /><link rel="prev" href="http://www.spiritysdx.top/20230727/" /><link rel="next" href="http://www.spiritysdx.top/20230812/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "通过GCN生成概率图引导树搜索解决图的组合优化问题",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230808\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, jupyter, dgl, pytorch, conda, Python, GCN, Gurobi, CNF, GR, LS","wordcount":  2290 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230808\/","datePublished": "2023-08-08T00:00:00+00:00","dateModified": "2023-08-08T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">通过GCN生成概率图引导树搜索解决图的组合优化问题</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-08">2023-08-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2290 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#原始数据">原始数据</a>
+      <ul>
+        <li><a href="#training-data">Training Data</a></li>
+        <li><a href="#testing-data">Testing Data</a>
+          <ul>
+            <li><a href="#sat-competition-2017">SAT Competition 2017</a></li>
+            <li><a href="#buaa-mc">BUAA-MC</a></li>
+            <li><a href="#snap-social-networks">SNAP Social Networks</a></li>
+            <li><a href="#citation-networks">Citation networks</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#相关github仓库">相关Github仓库</a></li>
+    <li><a href="#大体思路">大体思路</a>
+      <ul>
+        <li><a href="#一根据最基础的gcn结构做了以下的改进">一、根据最基础的GCN结构，做了以下的改进</a></li>
+        <li><a href="#二为了生成多个概率图但又保持准确性和多样性做了以下改进">二、为了生成多个概率图但又保持准确性和多样性，做了以下改进</a></li>
+        <li><a href="#三树搜索算法改进概率图的选择尽可能快速的遍历到所有可能的解做了以下操作">三、树搜索算法改进概率图的选择，尽可能快速的遍历到所有可能的解，做了以下操作</a></li>
+        <li><a href="#四用了局部搜索和图缩减技术进一步优化算法">四、用了局部搜索和图缩减技术进一步优化算法</a>
+          <ul>
+            <li><a href="#局部搜索ls">局部搜索(LS)</a></li>
+            <li><a href="#图缩减gr">图缩减(GR)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实验比较">实验比较</a></li>
+    <li><a href="#后言">后言</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1810.10659.pdf</a></p>
+<p>文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="training-data">Training Data</h3>
+<p><a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer">https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html</a></p>
+<h3 id="testing-data">Testing Data</h3>
+<h4 id="sat-competition-2017">SAT Competition 2017</h4>
+<p><a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer">https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf</a></p>
+<h4 id="buaa-mc">BUAA-MC</h4>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0004370207000653" target="_blank" rel="noopener noreffer">https://www.sciencedirect.com/science/article/pii/S0004370207000653</a></p>
+<h4 id="snap-social-networks">SNAP Social Networks</h4>
+<p><a href="http://snap.stanford.edu/data/#socnets" target="_blank" rel="noopener noreffer">http://snap.stanford.edu/data/#socnets</a></p>
+<h4 id="citation-networks">Citation networks</h4>
+<p><a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2157" target="_blank" rel="noopener noreffer">https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2157</a></p>
+<h2 id="相关github仓库">相关Github仓库</h2>
+<p>原作者仓库的脚本年久失修且数据需要自己生成，但作者又没给生成方式，只给了一个mat文件，仓库issues有不少对此的疑问</p>
+<p><a href="https://github.com/isl-org/NPHard" target="_blank" rel="noopener noreffer">https://github.com/isl-org/NPHard</a></p>
+<p>另一位瑞士博士将原作者的代码修复后，又使用了<code>dgl</code>库进行优化，不用自己写基础代码构建了，同时还给出了原始数据如何标记的代码和生成的一些随机图实例，可以说是拿到就能跑了，这些在第二个仓库中都有</p>
+<p><a href="https://github.com/MaxiBoether/mis-benchmark-framework" target="_blank" rel="noopener noreffer">https://github.com/MaxiBoether/mis-benchmark-framework</a></p>
+<p>但暂时由于第二个仓库作者的数据集的链接失效无法跑通，已发issue询问，已经和他联系上了，待他有空补一下数据集就能跑通了</p>
+<h2 id="大体思路">大体思路</h2>
+<p>分了几步走，我精简的总结一下</p>
+<h3 id="一根据最基础的gcn结构做了以下的改进">一、根据最基础的GCN结构，做了以下的改进</h3>
+<ul>
+<li>输入层不变，激活函数是ReLU</li>
+<li>在隐藏层加入<code>drop out</code>在激活函数前，激活函数是ReLU</li>
+<li>输出层不变，激活函数是sigmod</li>
+<li>二元交叉熵损失函数输出值不舍入为0或1，保持为[0, 1]上的值</li>
+</ul>
+<p>层数作者实验过了，最好的层数是20层，输入层大小32，隐藏层大小都是32，输出层大小也是32</p>
+<p>由于数据集 SATLIB 包含合成的 SAT 实例，知道其真实的指派情况。通过切换子句中的自由变量的开启和关闭，可以生成相应图的多个标记。</p>
+<p>(上面这句话就看不懂了，生成标记卡住我了，原始的数据是一堆.cnf文件，第二个仓库作者用的<code>Gurobi</code>生成的标记，准备按第二个仓库作者的思路来)</p>
+<p>使用Adam进行单图小批量训练，并使用学习率 10−4，训练进行200个epochs。</p>
+<h3 id="二为了生成多个概率图但又保持准确性和多样性做了以下改进">二、为了生成多个概率图但又保持准确性和多样性，做了以下改进</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">为了使网络能够区分不同的模式，扩展了函数 \(f\) 的结构以生成多个概率图。给定输入图 \(G\)，改进后的网络 \(f\) 生成 \(M\) 个概率图：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\[ f_1(G_i; \theta), \ldots, f_M(G_i; \theta) \]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">为了训练 \(f\) 生成多样且高质量的概率图，采用了反思损失：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">\[ L(D, \theta) = \sum_i \min_m \ell(l_i, f_m(G_i; \theta)) \]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">其中，\(\ell(\cdot, \cdot)\) 是在公式 (2) 中定义的二元交叉熵损失函数。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>大白话就是对于每个样本，计算 M 个概率图中的每个图与实际标签之间的损失，然后选择其中最小的损失作为训练损失。这样设计促使网络在生成多个概率图时，更加青睐于与实际标签最为接近的概率图，从而提高了生成结果的质量和多样性。</p>
+<h3 id="三树搜索算法改进概率图的选择尽可能快速的遍历到所有可能的解做了以下操作">三、树搜索算法改进概率图的选择，尽可能快速的遍历到所有可能的解，做了以下操作</h3>
+<p>维护一个不完整解决方案的队列， 并在每一步中随机选择一个进行扩展。</p>
+<p>当扩展一个不完整的解决方案时， 使用原有的M个概率图生成M个新的更完整的解决方案，并将它们加入到队列后面。</p>
+<p>这有点类似于广度优先搜索(BSF)，而不是深度优先搜索(DSF)。因为如果以深度优先的方式扩展树，解决方案的多样性将会受到影响，因为它们的大多数原始的解决方案是相同的。通过以广度优先的方式扩展树，可以获得更高的多样性。</p>
+<p>扩展后的树节点被保留在一个队列中，并且每次迭代中随机选择一个节点进行扩展。</p>
+<p>( 这块作者说是使用了多线程，个人感觉上还能再进一步使用 多进程+多线程，但感觉进程之间的通信可能会影响解决的速度，得有阻塞的选择最优解，很麻烦且开销大，可能这就是没使用该方法的原因吧 )</p>
+<h3 id="四用了局部搜索和图缩减技术进一步优化算法">四、用了局部搜索和图缩减技术进一步优化算法</h3>
+<p>老实说这一步我没看太懂，因为作者说的很简洁，有空我再补补对应的知识，暂时先就文章字面的描述总结和翻译一下。</p>
+<h4 id="局部搜索ls">局部搜索(LS)</h4>
+<p>通过简单地插入、删除和交换节点，在局部范围内修改解决方案，以使解决方案的质量只能提高。</p>
+<p>使用这种方法来优化树搜索产生的候选解</p>
+<p><a href="https://pubsonline.informs.org/doi/abs/10.1287/opre.42.5.860" target="_blank" rel="noopener noreffer">https://pubsonline.informs.org/doi/abs/10.1287/opre.42.5.860</a></p>
+<p>对于局部搜索，采用了一种2-改进局部搜索算法。</p>
+<p><a href="https://dl.acm.org/doi/10.1145/3447548.3467232" target="_blank" rel="noopener noreffer">https://dl.acm.org/doi/10.1145/3447548.3467232</a></p>
+<p>该算法遍历图中的所有顶点，并尝试将一个标记为1的顶点vi替换为两个标记为1的顶点vj和vk。在最大独立集（MIS）中，vj和vk必须是vi的邻居，并且1-紧密而且彼此不邻接。这里，如果一个顶点的邻居中只有一个被标记为1，我们称该顶点为1-紧密。换句话说，在图中vj和vk的唯一一个标记为1的邻居是vi。</p>
+<p>通过使用一种数据结构，使得插入和删除节点的时间与它们的度成正比，这个局部搜索算法可以在O(E)的时间内找到一个有效的2-改进（如果存在）。该算法的一种更快的增量版本维护了一个包含参与2-改进的候选节点的列表。它确保只有当节点的邻居发生了某些变化时才会反复检查一个节点。</p>
+<h4 id="图缩减gr">图缩减(GR)</h4>
+<p>还有一些图缩减技术可以快速将图缩减为一个更小的图，同时保持最优独立集的大小不变。</p>
+<p>通过仅将f应用于图的「复杂」部分来加速计算。</p>
+<p><a href="https://arxiv.org/abs/1411.2680" target="_blank" rel="noopener noreffer">https://arxiv.org/abs/1411.2680</a></p>
+<p><a href="https://arxiv.org/abs/1509.00764" target="_blank" rel="noopener noreffer">https://arxiv.org/abs/1509.00764</a></p>
+<h2 id="实验比较">实验比较</h2>
+<p>最后测试了四个经典的NP-hard问题：可满足性（SAT）、最大独立集（MIS）、最小顶点覆盖（MVC）和最大团（MC）。</p>
+<p>(其他三种问题都可转换为MIS问题解决)</p>
+<p>结果表明，与基于强化学习的方法相比，该方法在SATLIB基准测试中解决了所有问题，而强化学习方法没有解决任何问题。</p>
+<p>此外，该方法在性能上与基于传统启发式方法的高度优化的求解器相当或更好。</p>
+<h2 id="后言">后言</h2>
+<p>总体读下来感觉自己对离散数学的图论部分基础不够扎实，看后面的树优化吃力</p>
+<p>关于GCN的部分还是很好理解的，图嵌入树部分也还行，但到后面树优化部分就开始抓瞎了</p>
+<p>看了项目仓库是conda的env做环境的约束，但我想我以后做的项目最好还是打包成docker镜像比较好，环境以及依赖版本的约束更有效一些</p>
+<p>conda的依赖导出的yml文件好多都是没版本号的，属实坑后来者复现，docker的话一般导出都有版本号约束，几乎不需要改什么依赖就能跑了</p>
+<p>这里其实还缺少了两个模型评价部分互相比较的别的模型，这些东西由于两篇文章都有点关系，所以准备整合到一起总结，不单独每篇文章都拉出来说一遍了。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题" data-hashtags="机器学习,深度学习,jupyter,dgl,pytorch,conda,Python,GCN,Gurobi,CNF,GR,LS"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230808/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230808/" data-title="通过GCN生成概率图引导树搜索解决图的组合优化问题"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/jupyter/">jupyter</a>,&nbsp;<a href="/tags/dgl/">dgl</a>,&nbsp;<a href="/tags/pytorch/">pytorch</a>,&nbsp;<a href="/tags/conda/">conda</a>,&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/gcn/">GCN</a>,&nbsp;<a href="/tags/gurobi/">Gurobi</a>,&nbsp;<a href="/tags/cnf/">CNF</a>,&nbsp;<a href="/tags/gr/">GR</a>,&nbsp;<a href="/tags/ls/">LS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230727/" class="prev" rel="prev" title="深度学习环境安装(李沐老师相关)"><i class="fas fa-angle-left fa-fw"></i>深度学习环境安装(李沐老师相关)</a>
+            <a href="/20230812/" class="next" rel="next" title="Python加速科学运算的一些小技巧">Python加速科学运算的一些小技巧<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

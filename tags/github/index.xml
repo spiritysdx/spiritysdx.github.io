@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>github - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/github/</link>
+        <description>github - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 10 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/github/" rel="self" type="application/rss+xml" /><item>
+    <title>在root权限下使用守护进程自托管Github的Runners</title>
+    <link>http://www.spiritysdx.top/20240510/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240510/</guid>
+    <description><![CDATA[前置条件 1 2 3 cd /root apt update apt install curl sudo -y 安装 执行下述命令 1 export RUNNER_ALLOW_RUNASROOT=1 执行后正常安装至于./config那一步，然后不要使用官方的启动方式，而是使用守护进程]]></description>
+</item><item>
+    <title>Okteto常用项目</title>
+    <link>http://www.spiritysdx.top/20210725/</link>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210725/</guid>
+    <description><![CDATA[docker-compose搭建 wordpress 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 version: &#39;3.3&#39; services: db: image: mysql:latest volumes: - /data/wordpress_db:/var/lib/mysql restart: always environment: MYSQL_ROOT_PASSWORD: rootwordpress MYSQL_DATABASE: wordpress MYSQL_USER: wordpress MYSQL_PASSWORD: wordpress wordpress: depends_on: - db image: wordpress:latest]]></description>
+</item></channel>
+</rss>

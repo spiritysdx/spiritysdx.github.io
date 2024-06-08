@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析" />
+<meta property="og:description" content="新型冠状病毒（COVID-19/2019-nCoV）疫情分析 spiritLHL 重要说明 帮同一个选修课的学妹码的结课作业，这是我个人完善后的版本(她的还有很多" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20210512/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析"/>
+<meta name="twitter:description" content="新型冠状病毒（COVID-19/2019-nCoV）疫情分析 spiritLHL 重要说明 帮同一个选修课的学妹码的结课作业，这是我个人完善后的版本(她的还有很多"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210512/" /><link rel="prev" href="http://www.spiritysdx.top/20210426/" /><link rel="next" href="http://www.spiritysdx.top/20210515/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210512\/"
+        },"genre": "posts","keywords": "python, 数学建模","wordcount":  6210 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210512\/","datePublished": "2021-05-12T00:00:00+00:00","dateModified": "2021-05-12T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-12">2021-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6210 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred重要说明font"><font color='red'>重要说明</font></a></li>
+    <li><a href="#源文档">源文档</a></li>
+    <li><a href="#一-提出问题">一. 提出问题</a></li>
+    <li><a href="#二-理解数据">二. 理解数据</a></li>
+    <li><a href="#三-数据清洗">三. 数据清洗</a>
+      <ul>
+        <li><a href="#一基本数据处理">（一）基本数据处理</a>
+          <ul>
+            <li><a href="#font-colorredb国内疫情数据选取最终选取的数据命名为chinabfont"><font color='red'><b>国内疫情数据选取（最终选取的数据命名为china）</b></font></a></li>
+            <li><a href="#font-colorredb你所在省市疫情数据选取最终选取的数据命名为myhomebfont"><font color='red'><b>你所在省市疫情数据选取（最终选取的数据命名为myhome）</b></font></a></li>
+            <li><a href="#font-colorredb全球疫情数据选取最终选取的数据命名为worldbfont"><font color='red'><b>全球疫情数据选取（最终选取的数据命名为world）</b></font></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#四-数据分析及可视化">四. 数据分析及可视化</a>
+      <ul>
+        <li><a href="#基础分析">基础分析</a>
+          <ul>
+            <li><a href="#一全国累计确诊治愈死亡情况随时间变化趋势如何">（一）全国累计确诊/治愈/死亡情况随时间变化趋势如何？</a></li>
+            <li><a href="#二你所在的省市情况如何">（二）你所在的省市情况如何？</a></li>
+            <li><a href="#三全球疫情态势如何">（三）全球疫情态势如何？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="新型冠状病毒covid-192019-ncov疫情分析">新型冠状病毒（COVID-19/2019-nCoV）疫情分析</h1>
+<blockquote>
+<p><strong>spiritLHL</strong></p>
+</blockquote>
+<h2 id="font-colorred重要说明font"><font color='red'>重要说明</font></h2>
+<p>帮同一个选修课的学妹码的结课作业，这是我个人完善后的版本(她的还有很多错漏)</p>
+<p>分析文档：完成度：代码质量 3:5:2</p>
+<p>其中分析文档是指你数据分析的过程中，对各问题分析的思路、对结果的解释、说明(要求言简意赅，不要为写而写)</p>
+<p>ps:<font color='red'><b>你自己写的代码远胜一切之代笔，无关美丑，只问今日比昨日更长进！加油！</b></font></p>
+<h2 id="源文档">源文档</h2>
+<p><strong>源文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-新冠疫情数据分析文件</a></strong></p>
+<p><strong>温馨提示</strong>：</p>
+<p><strong>疫情尚肆虐，请积极防护，保护自己</strong></p>
+<p>由于数据过多，查看数据尽量使用head()或tail()，以免程序长时间无响应</p>
+<p>=======================</p>
+<p>本项目数据来源于丁香园。本项目主要目的是<strong>通过对疫情历史数据的分析研究，以更好的了解疫情与疫情的发展态势，为抗击疫情之决策提供数据支持。</strong></p>
+<h2 id="一-提出问题">一. 提出问题</h2>
+<p>从全国范围，你所在省市，国外疫情等三个方面主要研究以下几个问题：</p>
+<p>（一）全国累计确诊/疑似/治愈/死亡情况随时间变化趋势如何？</p>
+<p>（二）你所在的省市情况如何？</p>
+<p>（三）全球疫情总体态势如何？</p>
+<p>（四）结合你的分析结果，对未来半年的疫情趋势给出你的判断，对个人和社会在抗击疫情方面有何建议？</p>
+<h2 id="二-理解数据">二. 理解数据</h2>
+<p>原始数据集：AreaInfo.csv，导入相关包及读取数据，并赋值为 <strong>areas</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入需要的数据库和文件</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">MultipleLocator</span>
+</span></span><span class="line"><span class="cl"><span class="n">areas</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/AreaInfo.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">r_hex</span> <span class="o">=</span> <span class="s1">&#39;#dc2624&#39;</span>     <span class="c1"># red,       RGB = 220,38,36</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt_hex</span> <span class="o">=</span> <span class="s1">&#39;#2b4750&#39;</span>    <span class="c1"># dark teal, RGB = 43,71,80</span>
+</span></span><span class="line"><span class="cl"><span class="n">tl_hex</span> <span class="o">=</span> <span class="s1">&#39;#45a0a2&#39;</span>    <span class="c1"># teal,      RGB = 69,160,162</span>
+</span></span><span class="line"><span class="cl"><span class="n">r1_hex</span> <span class="o">=</span> <span class="s1">&#39;#e87a59&#39;</span>    <span class="c1"># red,       RGB = 232,122,89</span>
+</span></span><span class="line"><span class="cl"><span class="n">tl1_hex</span> <span class="o">=</span> <span class="s1">&#39;#7dcaa9&#39;</span>   <span class="c1"># teal,      RGB = 125,202,169</span>
+</span></span><span class="line"><span class="cl"><span class="n">g_hex</span> <span class="o">=</span> <span class="s1">&#39;#649E7D&#39;</span>     <span class="c1"># green,     RGB = 100,158,125</span>
+</span></span><span class="line"><span class="cl"><span class="n">o_hex</span> <span class="o">=</span> <span class="s1">&#39;#dc8018&#39;</span>     <span class="c1"># orange,    RGB = 220,128,24</span>
+</span></span><span class="line"><span class="cl"><span class="n">tn_hex</span> <span class="o">=</span> <span class="s1">&#39;#C89F91&#39;</span>    <span class="c1"># tan,       RGB = 200,159,145</span>
+</span></span><span class="line"><span class="cl"><span class="n">g50_hex</span> <span class="o">=</span> <span class="s1">&#39;#6c6d6c&#39;</span>   <span class="c1"># grey-50,   RGB = 108,109,108</span>
+</span></span><span class="line"><span class="cl"><span class="n">bg_hex</span> <span class="o">=</span> <span class="s1">&#39;#4f6268&#39;</span>    <span class="c1"># blue grey, RGB = 79,98,104</span>
+</span></span><span class="line"><span class="cl"><span class="n">g25_hex</span> <span class="o">=</span> <span class="s1">&#39;#c7cccf&#39;</span>   <span class="c1"># grey-25,   RGB = 199,204,207</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看与统计数据，以对数据有一个大致了解</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#数据过多，查看前几行</span>
+</span></span><span class="line"><span class="cl"><span class="n">areas</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continentName</th>
+      <th>continentEnglishName</th>
+      <th>countryName</th>
+      <th>countryEnglishName</th>
+      <th>provinceName</th>
+      <th>provinceEnglishName</th>
+      <th>province_zipCode</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>updateTime</th>
+      <th>cityName</th>
+      <th>cityEnglishName</th>
+      <th>city_zipCode</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>亚洲</td>
+      <td>Asia</td>
+      <td>中国</td>
+      <td>China</td>
+      <td>澳门</td>
+      <td>Macau</td>
+      <td>820000</td>
+      <td>47</td>
+      <td>9.0</td>
+      <td>46</td>
+      <td>0</td>
+      <td>2021-01-22 23:40:08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>北美洲</td>
+      <td>North America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>971002</td>
+      <td>24632468</td>
+      <td>0.0</td>
+      <td>10845438</td>
+      <td>410378</td>
+      <td>2021-01-22 23:40:08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>南美洲</td>
+      <td>South America</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>973003</td>
+      <td>8699814</td>
+      <td>0.0</td>
+      <td>7580741</td>
+      <td>214228</td>
+      <td>2021-01-22 23:40:08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>961001</td>
+      <td>686827</td>
+      <td>0.0</td>
+      <td>19239</td>
+      <td>20620</td>
+      <td>2021-01-22 23:40:08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>964006</td>
+      <td>3677352</td>
+      <td>0.0</td>
+      <td>3081536</td>
+      <td>68412</td>
+      <td>2021-01-22 23:40:08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong>相关字段含义介绍：</strong></p>
+<p><strong>小提示：</strong></p>
+<p>国外数据的provinceName并非是省名，而是用其国家名标注，即数据不再细分到省。</p>
+<p>中国数据的provinceName中也有&rsquo;中国&rsquo;这样的记录，代表当日全国各省之合计。善用之，对全国情况进行分析时就方便多了。</p>
+<p>continentName介绍了哪些大洲参与统计；中国数据中有的给出了省名，有的是用“中国”标注，代表当日全国各省之合计；国外数据的provinceName并非是省名，而是用其国家名标注，即数据不再细分到省
+province_suspectedCount一栏中有过多的缺失值，需填补或舍弃；数据中没有详细给到城市数据。</p>
+<h2 id="三-数据清洗">三. 数据清洗</h2>
+<h3 id="一基本数据处理">（一）基本数据处理</h3>
+<p>数据清洗主要包括：<strong>选取子集，缺失数据处理、数据格式转换、异常值数据处理</strong>等。</p>
+<p><strong>提示：因数据皆赖各国上报，情势危杂之际，难免瞒报漏报，故存在较多缺失值，<font color='red'>可以将其补全或舍弃</font>，参见&quot;Pandas之缺失值的处理.ipynb&quot;</strong></p>
+<h4 id="font-colorredb国内疫情数据选取最终选取的数据命名为chinabfont"><font color='red'><b>国内疫情数据选取（最终选取的数据命名为china）</b></font></h4>
+<ol>
+<li>
+<p>选取国内疫情数据</p>
+</li>
+<li>
+<p>对于更新时间(updateTime)列，需将其转换为日期类型并提取出年-月-日，并查看处理结果。(提示：dt.date)</p>
+</li>
+<li>
+<p>因数据每天按小时更新，一天之内有很多重复数据，请去重并只保留一天之内最新的数据。</p>
+</li>
+</ol>
+<blockquote>
+<p>提示：df.drop_duplicates(subset=[&lsquo;provinceName&rsquo;, &lsquo;updateTime&rsquo;], keep=&lsquo;first&rsquo;, inplace=False)</p>
+</blockquote>
+<blockquote>
+<p><strong>其中df是你选择的国内疫情数据的DataFrame</strong></p>
+</blockquote>
+<ol start="4">
+<li>去除不在此次研究范围内的列,只留下[&lsquo;continentName&rsquo;,&lsquo;countryName&rsquo;,&lsquo;provinceName&rsquo;,&lsquo;province_confirmedCount&rsquo;,&lsquo;province_suspectedCount&rsquo;,&lsquo;province_curedCount&rsquo;,&lsquo;province_deadCount&rsquo;,&lsquo;updateTime&rsquo;]这几列，并以&rsquo;updateTime&rsquo;为行索引。</li>
+</ol>
+<blockquote>
+<p>提示：两种方法都可以：(1)选取这几列  或  (2)去除其余的列</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 此处给出代码，后面省市数据和全球数据的获取与此大同小异</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span> <span class="o">=</span> <span class="n">areas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">areas</span><span class="o">.</span><span class="n">countryName</span><span class="o">==</span><span class="s1">&#39;中国&#39;</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">china</span><span class="o">.</span><span class="n">updateTime</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span> <span class="o">=</span> <span class="n">china</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;provinceName&#39;</span><span class="p">,</span> <span class="s1">&#39;updateTime&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将&#34;字符类型的日期列(Index)&#34;转为&#34;时间戳索引(DatetimeIndex)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">china</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span> <span class="o">=</span> <span class="n">china</span><span class="p">[[</span><span class="s1">&#39;continentName&#39;</span><span class="p">,</span><span class="s1">&#39;countryName&#39;</span><span class="p">,</span><span class="s1">&#39;provinceName&#39;</span><span class="p">,</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">,</span><span class="s1">&#39;province_suspectedCount&#39;</span><span class="p">,</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">,</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span> <span class="o">=</span> <span class="n">china</span><span class="p">[</span><span class="n">china</span><span class="o">.</span><span class="n">provinceName</span><span class="o">==</span><span class="s1">&#39;中国&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continentName</th>
+      <th>countryName</th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+    </tr>
+    <tr>
+      <th>updateTime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-22</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99667</td>
+      <td>0.0</td>
+      <td>92275</td>
+      <td>4810</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99513</td>
+      <td>0.0</td>
+      <td>92198</td>
+      <td>4809</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看数据信息，是否有缺失数据/数据类型是否正确。若有缺失值，<strong><font color='red'>可以将其补全或舍弃</font></strong>，参见**&ldquo;Pandas之缺失值的处理.ipynb&rdquo;**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#有些城市不是每天上报，如果只统计那天上报的，那些不上报的就会被忽略，数据就会有错误,查看缺失值</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#china.info()</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="p">[</span><span class="n">china</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span> <span class="o">=</span> <span class="n">china</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continentName</th>
+      <th>countryName</th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+    </tr>
+    <tr>
+      <th>updateTime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-22</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99667</td>
+      <td>0.0</td>
+      <td>92275</td>
+      <td>4810</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99513</td>
+      <td>0.0</td>
+      <td>92198</td>
+      <td>4809</td>
+    </tr>
+    <tr>
+      <th>2021-01-20</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99285</td>
+      <td>0.0</td>
+      <td>92130</td>
+      <td>4808</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99094</td>
+      <td>0.0</td>
+      <td>92071</td>
+      <td>4806</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>98922</td>
+      <td>0.0</td>
+      <td>91994</td>
+      <td>4805</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h4 id="font-colorredb你所在省市疫情数据选取最终选取的数据命名为myhomebfont"><font color='red'><b>你所在省市疫情数据选取（最终选取的数据命名为myhome）</b></font></h4>
+<p>此步也可在后面用到的再做</p>
+<ol>
+<li>
+<p>选取所在省市疫情数据(细化到市；若是直辖市，细化到区)</p>
+</li>
+<li>
+<p>对于更新时间(updateTime)列，需将其转换为日期类型并提取出年-月-日，并查看处理结果。(提示：dt.date)</p>
+</li>
+<li>
+<p>因数据每天按小时更新，一天之内有很多重复数据，请去重并只保留一天之内最新的数据，并以&rsquo;updateTime&rsquo;为行索引。</p>
+</li>
+</ol>
+<blockquote>
+<p>提示：df.drop_duplicates(subset=[&lsquo;cityName&rsquo;, &lsquo;updateTime&rsquo;], keep=&lsquo;first&rsquo;, inplace=False)</p>
+</blockquote>
+<ol start="4">
+<li>去除不在此次研究范围内的列</li>
+</ol>
+<blockquote>
+<p>提示：df.drop([&lsquo;continentName&rsquo;,&lsquo;continentEnglishName&rsquo;,&lsquo;countryName&rsquo;,&lsquo;countryEnglishName&rsquo;,&lsquo;provinceEnglishName&rsquo;,<br>
+&lsquo;province_zipCode&rsquo;,&lsquo;cityEnglishName&rsquo;,&lsquo;updateTime&rsquo;,&lsquo;city_zipCode&rsquo;],axis=1,inplace=True)</p>
+</blockquote>
+<p><strong>其中df是你选择的省市疫情数据的DataFrame</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#首先选取相应内容，后转换为日期类型并提取出年-月-日，去重</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">=</span><span class="n">areas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">areas</span><span class="o">.</span><span class="n">provinceName</span><span class="o">==</span><span class="s1">&#39;河北省&#39;</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">myhome</span><span class="o">.</span><span class="n">updateTime</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;provinceName&#39;</span><span class="p">,</span> <span class="s1">&#39;updateTime&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将&#34;字符类型的日期列(Index)&#34;转为&#34;时间戳索引(DatetimeIndex)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#去除不在此次研究范围内的列</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continentName&#39;</span><span class="p">,</span><span class="s1">&#39;continentEnglishName&#39;</span><span class="p">,</span><span class="s1">&#39;countryName&#39;</span><span class="p">,</span><span class="s1">&#39;countryEnglishName&#39;</span><span class="p">,</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">,</span><span class="s1">&#39;province_zipCode&#39;</span><span class="p">,</span><span class="s1">&#39;cityEnglishName&#39;</span><span class="p">,</span><span class="s1">&#39;city_zipCode&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>cityName</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+    <tr>
+      <th>updateTime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-22</th>
+      <td>河北省</td>
+      <td>1252</td>
+      <td>0.0</td>
+      <td>405</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>843.0</td>
+      <td>0.0</td>
+      <td>54.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>河北省</td>
+      <td>1245</td>
+      <td>0.0</td>
+      <td>395</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>842.0</td>
+      <td>0.0</td>
+      <td>54.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>查看数据信息，是否有缺失数据/数据类型是否正确。若有缺失值，<strong><font color='red'>可以将其补全或舍弃</font></strong>，参见**&ldquo;Pandas之缺失值的处理.ipynb&rdquo;**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#查看缺失值</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#myhome.info()</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="p">[</span><span class="n">myhome</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span> <span class="o">=</span> <span class="n">myhome</span><span class="o">.</span><span class="n">province_suspectedCount</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">myhome</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>D:\Anaconda\envs\python32\lib\site-packages\ipykernel_launcher.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  This is separate from the ipykernel package so we can avoid doing imports until
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>cityName</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+    <tr>
+      <th>updateTime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-27</th>
+      <td>河北省</td>
+      <td>18</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-26</th>
+      <td>河北省</td>
+      <td>13</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-25</th>
+      <td>河北省</td>
+      <td>8</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-24</th>
+      <td>河北省</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-22</th>
+      <td>河北省</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h4 id="font-colorredb全球疫情数据选取最终选取的数据命名为worldbfont"><font color='red'><b>全球疫情数据选取（最终选取的数据命名为world）</b></font></h4>
+<p>此步也可在后面用到的再做</p>
+<ol>
+<li>选取国外疫情数据</li>
+</ol>
+<blockquote>
+<p>提示：选取国外疫情数据（countryName!=&lsquo;中国&rsquo;）</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>对于更新时间(updateTime)列，需将其转换为日期类型并提取出年-月-日，并查看处理结果。(提示：dt.date)</p>
+</li>
+<li>
+<p>因数据每天按小时更新，一天之内有很多重复数据，请去重并只保留一天之内最新的数据。</p>
+</li>
+</ol>
+<blockquote>
+<p>提示：df.drop_duplicates(subset=[&lsquo;provinceName&rsquo;, &lsquo;updateTime&rsquo;], keep=&lsquo;first&rsquo;, inplace=False)</p>
+</blockquote>
+<blockquote>
+<p><strong>其中df是你选择的国内疫情数据的DataFrame</strong></p>
+</blockquote>
+<ol start="4">
+<li>去除不在此次研究范围内的列,只留下[&lsquo;continentName&rsquo;,&lsquo;countryName&rsquo;,&lsquo;provinceName&rsquo;,&lsquo;province_confirmedCount&rsquo;,&lsquo;province_suspectedCount&rsquo;,&lsquo;province_curedCount&rsquo;,&lsquo;province_deadCount&rsquo;,&lsquo;updateTime&rsquo;]这几列，并以&rsquo;updateTime&rsquo;为行索引。</li>
+</ol>
+<blockquote>
+<p>提示：两种方法都可以：(1)选取这几列  或  (2)去除其余的列</p>
+</blockquote>
+<ol start="5">
+<li>得到全球数据</li>
+</ol>
+<blockquote>
+<p>提示：用 concat 函数将前面的china与国外数据按「轴」连接得到全球数据。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">world</span><span class="o">=</span><span class="n">areas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">areas</span><span class="o">.</span><span class="n">countryName</span><span class="o">!=</span><span class="s1">&#39;中国&#39;</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">updateTime</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;provinceName&#39;</span><span class="p">,</span> <span class="s1">&#39;updateTime&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将&#34;字符类型的日期列(Index)&#34;转为&#34;时间戳索引(DatetimeIndex)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;updateTime&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#去除不在此次研究范围内的列</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#world.drop([&#39;continentName&#39;,&#39;countryName&#39;,&#39;provinceName&#39;,&#39;province_confirmedCount&#39;,&#39;province_suspectedCount&#39;,&#39;province_curedCount&#39;,&#39;province_deadCount&#39;],axis=1,inplace=True)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#更改索引，按轴1链接</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">world</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span> <span class="o">=</span> <span class="n">china</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">world</span><span class="p">,</span><span class="n">temp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>updateTime</th>
+      <th>continentName</th>
+      <th>continentEnglishName</th>
+      <th>countryName</th>
+      <th>countryEnglishName</th>
+      <th>provinceName</th>
+      <th>provinceEnglishName</th>
+      <th>province_zipCode</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>...</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+      <th>updateTime</th>
+      <th>continentName</th>
+      <th>countryName</th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-22</td>
+      <td>北美洲</td>
+      <td>North America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>971002</td>
+      <td>24632468</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2021-01-22</td>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99667.0</td>
+      <td>0.0</td>
+      <td>92275.0</td>
+      <td>4810.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-22</td>
+      <td>南美洲</td>
+      <td>South America</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>973003</td>
+      <td>8699814</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2021-01-21</td>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99513.0</td>
+      <td>0.0</td>
+      <td>92198.0</td>
+      <td>4809.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>961001</td>
+      <td>686827</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2021-01-20</td>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99285.0</td>
+      <td>0.0</td>
+      <td>92130.0</td>
+      <td>4808.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>964006</td>
+      <td>3677352</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2021-01-19</td>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>99094.0</td>
+      <td>0.0</td>
+      <td>92071.0</td>
+      <td>4806.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>965013</td>
+      <td>436121</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2021-01-18</td>
+      <td>亚洲</td>
+      <td>中国</td>
+      <td>中国</td>
+      <td>98922.0</td>
+      <td>0.0</td>
+      <td>91994.0</td>
+      <td>4805.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>301542</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>马来西亚</td>
+      <td>Malaysia</td>
+      <td>马来西亚</td>
+      <td>Malaysia</td>
+      <td>952007</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301543</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>法国</td>
+      <td>France</td>
+      <td>法国</td>
+      <td>France</td>
+      <td>961002</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301544</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>越南</td>
+      <td>Vietnam</td>
+      <td>越南</td>
+      <td>Vietnam</td>
+      <td>952011</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301545</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>尼泊尔</td>
+      <td>Nepal</td>
+      <td>尼泊尔</td>
+      <td>Nepal</td>
+      <td>953005</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301546</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>加拿大</td>
+      <td>Canada</td>
+      <td>加拿大</td>
+      <td>Canada</td>
+      <td>971001</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>301547 rows × 27 columns</p>
+</div>
+<p>查看数据信息，是否有缺失数据/数据类型是否正确。</p>
+<p>提示：因数据皆赖各国上报，情势危杂之际，难免瞒报漏报，故存在较多缺失值，<strong><font color='red'>可以将其补全或舍弃</font></strong>，参见**&ldquo;Pandas之缺失值的处理.ipynb&rdquo;**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#因数据皆赖各国上报，情势危杂之际，难免瞒报漏报，故存在较多缺失值</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#world.info()</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>updateTime</th>
+      <th>continentName</th>
+      <th>continentEnglishName</th>
+      <th>countryName</th>
+      <th>countryEnglishName</th>
+      <th>provinceName</th>
+      <th>provinceEnglishName</th>
+      <th>province_zipCode</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>cityName</th>
+      <th>cityEnglishName</th>
+      <th>city_zipCode</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-22</td>
+      <td>北美洲</td>
+      <td>North America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>971002</td>
+      <td>24632468</td>
+      <td>0.0</td>
+      <td>10845438</td>
+      <td>410378</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-22</td>
+      <td>南美洲</td>
+      <td>South America</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>973003</td>
+      <td>8699814</td>
+      <td>0.0</td>
+      <td>7580741</td>
+      <td>214228</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>961001</td>
+      <td>686827</td>
+      <td>0.0</td>
+      <td>19239</td>
+      <td>20620</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>964006</td>
+      <td>3677352</td>
+      <td>0.0</td>
+      <td>3081536</td>
+      <td>68412</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>965013</td>
+      <td>436121</td>
+      <td>0.0</td>
+      <td>50185</td>
+      <td>5263</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="四-数据分析及可视化">四. 数据分析及可视化</h2>
+<p>在进行数据分析及可视化时，依据每个问题选取所需变量并新建DataFrame再进行分析和可视化展示，这样数据不易乱且条理更清晰。</p>
+<h3 id="基础分析">基础分析</h3>
+<p>基础分析，<strong>只允许使用numpy、pandas和matplotlib库</strong>。</p>
+<p>可以在一张图上多个坐标系展示也可以在多张图上展示</p>
+<p>请根据分析目的选择图形的类型(折线图、饼图、直方图和散点图等等)，实在没有主意可以到百度疫情地图或其他疫情分析的站点激发激发灵感。</p>
+<h4 id="一全国累计确诊治愈死亡情况随时间变化趋势如何">（一）全国累计确诊/治愈/死亡情况随时间变化趋势如何？</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">china</span><span class="o">.</span><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#首先整合每天全国累计确诊/治愈/死亡情况做成新的列表</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_a</span><span class="o">=</span><span class="n">china</span><span class="p">[</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#遍历时间将其改为字符串形式</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_updatetime</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">china</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list_updatetime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_a</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">list_a</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">list_updatetime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_a</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;updatetime&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_a</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_a</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>province_confirmedCount</th>
+    </tr>
+    <tr>
+      <th>updatetime</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-22</th>
+      <td>99667</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>99513</td>
+    </tr>
+    <tr>
+      <th>2021-01-20</th>
+      <td>99285</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>99094</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>98922</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#画折线图表示</span>
+</span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">=</span><span class="n">updatetime_a</span><span class="o">.</span><span class="n">index</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">=</span><span class="n">updatetime_a</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">dt_hex</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">25</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#重复以上步骤，绘制治愈/死亡的折线图</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_b</span><span class="o">=</span><span class="n">china</span><span class="p">[</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#遍历时间将其改为字符串形式</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_updatetime</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">china</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list_updatetime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_b</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">list_b</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">list_updatetime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_b</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;updatetime&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_b</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_b</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#画折线图表示</span>
+</span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">=</span><span class="n">updatetime_b</span><span class="o">.</span><span class="n">index</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">=</span><span class="n">updatetime_b</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">dt_hex</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">25</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#绘制死亡人数图</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_c</span><span class="o">=</span><span class="n">china</span><span class="p">[</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#遍历时间将其改为字符串形式</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_updatetime</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">china</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list_updatetime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_c</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">list_a</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">list_updatetime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_c</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;updatetime&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_c</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">updatetime_c</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#画折线图表示</span>
+</span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">=</span><span class="n">updatetime_c</span><span class="o">.</span><span class="n">index</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">=</span><span class="n">updatetime_c</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="o">=</span><span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">dt_hex</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">25</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#分析：确诊与死亡人数的折线图显示出人数在逐渐增加，增速有加快的趋势；治愈人数虽然也是再增加，但是增速逐渐变慢</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://ftp.bmp.ovh/imgs/2021/07/1b67cdb784fde315.png"
+        data-srcset="https://ftp.bmp.ovh/imgs/2021/07/1b67cdb784fde315.png, https://ftp.bmp.ovh/imgs/2021/07/1b67cdb784fde315.png 1.5x, https://ftp.bmp.ovh/imgs/2021/07/1b67cdb784fde315.png 2x"
+        data-sizes="auto"
+        alt="https://ftp.bmp.ovh/imgs/2021/07/1b67cdb784fde315.png"
+        title="png" /></p>
+<p>第二幅图为</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://ftp.bmp.ovh/imgs/2021/07/c69aaf11c7d1f9d9.png"
+        data-srcset="https://ftp.bmp.ovh/imgs/2021/07/c69aaf11c7d1f9d9.png, https://ftp.bmp.ovh/imgs/2021/07/c69aaf11c7d1f9d9.png 1.5x, https://ftp.bmp.ovh/imgs/2021/07/c69aaf11c7d1f9d9.png 2x"
+        data-sizes="auto"
+        alt="https://ftp.bmp.ovh/imgs/2021/07/c69aaf11c7d1f9d9.png"
+        title="png" /></p>
+<p>第三幅图为</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://ftp.bmp.ovh/imgs/2021/07/38935c779266c522.png"
+        data-srcset="https://ftp.bmp.ovh/imgs/2021/07/38935c779266c522.png, https://ftp.bmp.ovh/imgs/2021/07/38935c779266c522.png 1.5x, https://ftp.bmp.ovh/imgs/2021/07/38935c779266c522.png 2x"
+        data-sizes="auto"
+        alt="https://ftp.bmp.ovh/imgs/2021/07/38935c779266c522.png"
+        title="png" /></p>
+<h4 id="二你所在的省市情况如何">（二）你所在的省市情况如何？</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">myhome</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>provinceName</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>cityName</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+    <tr>
+      <th>updateTime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-22</th>
+      <td>河北省</td>
+      <td>1252</td>
+      <td>0.0</td>
+      <td>405</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>843.0</td>
+      <td>0.0</td>
+      <td>54.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2021-01-21</th>
+      <td>河北省</td>
+      <td>1245</td>
+      <td>0.0</td>
+      <td>395</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>842.0</td>
+      <td>0.0</td>
+      <td>54.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2021-01-20</th>
+      <td>河北省</td>
+      <td>1222</td>
+      <td>0.0</td>
+      <td>384</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>813.0</td>
+      <td>0.0</td>
+      <td>45.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>河北省</td>
+      <td>1198</td>
+      <td>0.0</td>
+      <td>383</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>801.0</td>
+      <td>0.0</td>
+      <td>45.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>河北省</td>
+      <td>1171</td>
+      <td>0.0</td>
+      <td>379</td>
+      <td>7</td>
+      <td>石家庄</td>
+      <td>774.0</td>
+      <td>0.0</td>
+      <td>41.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-01-27</th>
+      <td>河北省</td>
+      <td>18</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-26</th>
+      <td>河北省</td>
+      <td>13</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-25</th>
+      <td>河北省</td>
+      <td>8</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-24</th>
+      <td>河北省</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>石家庄</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-22</th>
+      <td>河北省</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>134 rows × 10 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_updatetime</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">myhome</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list_updatetime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">list_updatetime</span>
+</span></span><span class="line"><span class="cl"><span class="n">y1</span><span class="o">=</span><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y2</span><span class="o">=</span><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y3</span><span class="o">=</span><span class="n">myhome</span><span class="p">[</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">r_hex</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">tl_hex</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_curedCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">g_hex</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;province_deadCount&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_major_locator</span> <span class="o">=</span> <span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">x_major_locator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://ftp.bmp.ovh/imgs/2021/07/9aa6f38f37bd3bfa.png"
+        data-srcset="https://ftp.bmp.ovh/imgs/2021/07/9aa6f38f37bd3bfa.png, https://ftp.bmp.ovh/imgs/2021/07/9aa6f38f37bd3bfa.png 1.5x, https://ftp.bmp.ovh/imgs/2021/07/9aa6f38f37bd3bfa.png 2x"
+        data-sizes="auto"
+        alt="https://ftp.bmp.ovh/imgs/2021/07/9aa6f38f37bd3bfa.png"
+        title="png" /></p>
+<h4 id="三全球疫情态势如何">（三）全球疫情态势如何？</h4>
+<ol>
+<li>
+<p>全球 TOP10 国家的疫情情况如何？</p>
+</li>
+<li>
+<p>各大洲情况对比？</p>
+</li>
+<li>
+<p>选一个你感兴趣的大洲，分析各国疫情之间的联系、分布、对比和构成情况。</p>
+</li>
+</ol>
+<blockquote>
+<p>提示：注意数据透视、分组和整合知识的运用</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">world</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>updateTime</th>
+      <th>continentName</th>
+      <th>continentEnglishName</th>
+      <th>countryName</th>
+      <th>countryEnglishName</th>
+      <th>provinceName</th>
+      <th>provinceEnglishName</th>
+      <th>province_zipCode</th>
+      <th>province_confirmedCount</th>
+      <th>province_suspectedCount</th>
+      <th>province_curedCount</th>
+      <th>province_deadCount</th>
+      <th>cityName</th>
+      <th>cityEnglishName</th>
+      <th>city_zipCode</th>
+      <th>city_confirmedCount</th>
+      <th>city_suspectedCount</th>
+      <th>city_curedCount</th>
+      <th>city_deadCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-22</td>
+      <td>北美洲</td>
+      <td>North America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>美国</td>
+      <td>United States of America</td>
+      <td>971002</td>
+      <td>24632468</td>
+      <td>0.0</td>
+      <td>10845438</td>
+      <td>410378</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-22</td>
+      <td>南美洲</td>
+      <td>South America</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>巴西</td>
+      <td>Brazil</td>
+      <td>973003</td>
+      <td>8699814</td>
+      <td>0.0</td>
+      <td>7580741</td>
+      <td>214228</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>比利时</td>
+      <td>Belgium</td>
+      <td>961001</td>
+      <td>686827</td>
+      <td>0.0</td>
+      <td>19239</td>
+      <td>20620</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>俄罗斯</td>
+      <td>Russia</td>
+      <td>964006</td>
+      <td>3677352</td>
+      <td>0.0</td>
+      <td>3081536</td>
+      <td>68412</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-22</td>
+      <td>欧洲</td>
+      <td>Europe</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>塞尔维亚</td>
+      <td>Republic of Serbia</td>
+      <td>965013</td>
+      <td>436121</td>
+      <td>0.0</td>
+      <td>50185</td>
+      <td>5263</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>301542</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>马来西亚</td>
+      <td>Malaysia</td>
+      <td>马来西亚</td>
+      <td>Malaysia</td>
+      <td>952007</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301543</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>法国</td>
+      <td>France</td>
+      <td>法国</td>
+      <td>France</td>
+      <td>961002</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301544</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>越南</td>
+      <td>Vietnam</td>
+      <td>越南</td>
+      <td>Vietnam</td>
+      <td>952011</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301545</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>尼泊尔</td>
+      <td>Nepal</td>
+      <td>尼泊尔</td>
+      <td>Nepal</td>
+      <td>953005</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>301546</th>
+      <td>2020-01-27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>加拿大</td>
+      <td>Canada</td>
+      <td>加拿大</td>
+      <td>Canada</td>
+      <td>971001</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>301547 rows × 19 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">country</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="n">date_y</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="n">country</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;updateTime&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">date_y</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">country</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">world</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;updateTime&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span><span class="o">.</span><span class="n">updateTime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">updateTime</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+</span></span><span class="line"><span class="cl"><span class="n">world_confirmed</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">world</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">,</span><span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">draft_c</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;provinceEnglishName&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;province_confirmedCount&#39;</span><span class="p">,</span><span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">world_confirmed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">world_confirmed</span><span class="p">,</span><span class="n">draft_c</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;updateTime&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">world_confirmed</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">world_confirmed</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&#34;ffill&#34;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">world_confirmed</span>
+</span></span><span class="line"><span class="cl"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world_confirmed</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">world_confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;前15个国家累计确诊人数&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;日期&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;人数/百万&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://ftp.bmp.ovh/imgs/2021/07/7d534b3e928b244d.png"
+        data-srcset="https://ftp.bmp.ovh/imgs/2021/07/7d534b3e928b244d.png, https://ftp.bmp.ovh/imgs/2021/07/7d534b3e928b244d.png 1.5x, https://ftp.bmp.ovh/imgs/2021/07/7d534b3e928b244d.png 2x"
+        data-sizes="auto"
+        alt="https://ftp.bmp.ovh/imgs/2021/07/7d534b3e928b244d.png"
+        title="png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-05-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析" data-hashtags="python,数学建模"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210512/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210512/" data-title="2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210426/" class="prev" rel="prev" title="C&#43;&#43;数值逼近-迭代法求非线性方程的根"><i class="fas fa-angle-left fa-fw"></i>C&#43;&#43;数值逼近-迭代法求非线性方程的根</a>
+            <a href="/20210515/" class="next" rel="next" title="C&#43;&#43;数值逼近-迭代法Aikten法以及牛顿法求解线性方程根通用程序">C&#43;&#43;数值逼近-迭代法Aikten法以及牛顿法求解线性方程根通用程序<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

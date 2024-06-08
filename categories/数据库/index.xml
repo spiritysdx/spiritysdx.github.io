@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据库 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>数据库 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Mon, 15 Jun 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL数据库04(常见函数)</title>
+    <link>http://www.spiritysdx.top/20200615/</link>
+    <pubDate>Mon, 15 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200615/</guid>
+    <description><![CDATA[分组函数 功能：作统计使用，又称为聚合函数或统计函数或组函数 分类： sum 求和 avg 平均值 max 最大值 min 最小值 count 计算个数 特点： 1.sum，avg一般用于处理]]></description>
+</item><item>
+    <title>MySQL数据库03(常见函数)</title>
+    <link>http://www.spiritysdx.top/20200531/</link>
+    <pubDate>Sun, 31 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200531/</guid>
+    <description><![CDATA[函数 概念:类似于java的方法，将-组逻辑语句封装在方法体中，对外暴露方法名 好处: 1、隐藏了实现细节 2、 提高代码的重用性 调用: select 函数名(实参]]></description>
+</item><item>
+    <title>MySQL数据库02(图形界面客户端基本运行指令)</title>
+    <link>http://www.spiritysdx.top/20200530/</link>
+    <pubDate>Sat, 30 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200530/</guid>
+    <description><![CDATA[前言 图形界面客户端下载链接 https://spiritlhl.lanzous.com/id5vuji 客户端安装 1.配置证书 2.新建用户配置 3.启用 4.询问(navaicate)窗口是命令行窗口 5.ctrl+s保存]]></description>
+</item><item>
+    <title>MySQL数据库01(cmder基本运行指令)</title>
+    <link>http://www.spiritysdx.top/20200529/</link>
+    <pubDate>Fri, 29 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200529/</guid>
+    <description><![CDATA[前言 MySQL数据库下载链接(5.5版本) https://spiritlhl.lanzous.com/id5vt2f 常用指令 1.查看当前所有的数据库 show dat abases; 2.打开指定的库 use 库名; 3.查看当前库的所有表 show_ tables; 4.查看]]></description>
+</item></channel>
+</rss>

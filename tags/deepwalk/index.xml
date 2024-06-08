@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>DeepWalk - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/deepwalk/</link>
+        <description>DeepWalk - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sat, 23 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/deepwalk/" rel="self" type="application/rss+xml" /><item>
+    <title>DeepWalk实战-维基百科词条图嵌入可视化</title>
+    <link>http://www.spiritysdx.top/20230923/</link>
+    <pubDate>Sat, 23 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230923/</guid>
+    <description><![CDATA[参考资料 https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/ https://github.com/prateekjoshi565/DeepWalk 安装工具包 1 !pip install networkx gensim pandas numpy tqdm scikit-learn matplotlib Collecting networkx Downloading networkx-3.1-py3-none-any.whl (2.1 MB) [2K [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━]]></description>
+</item><item>
+    <title>DeepWalk</title>
+    <link>http://www.spiritysdx.top/20230922/</link>
+    <pubDate>Fri, 22 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230922/</guid>
+    <description><![CDATA[前言 深度学习思想用于图嵌入的开山之作 - DeepWalk 学习路径： Random Walk 是一种遍历图的基本方法，而 Deep Walk 则是一种利用 Random Walk 生成的序列来学习节点嵌入的具体方法。 背景]]></description>
+</item><item>
+    <title>嵌入整张图</title>
+    <link>http://www.spiritysdx.top/20230921/</link>
+    <pubDate>Thu, 21 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230921/</guid>
+    <description><![CDATA[如何嵌入 全图进行编码嵌入 引入虚拟节点 匿名随机游走 https://arxiv.org/pdf/1805.11921.pdf 只要是新节点就标记新的一号，认号不认原来的节点标识。 使用不同匿名随机游走序列的个数构成的向]]></description>
+</item><item>
+    <title>矩阵分解角度 - 图嵌入(节点嵌入)和随机游走</title>
+    <link>http://www.spiritysdx.top/20230920/</link>
+    <pubDate>Wed, 20 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230920/</guid>
+    <description><![CDATA[前言 矩阵分解和随机游走在数学上意义是一样的。 矩阵分解计算 矩阵分解这里可能解析解不能直接求得，且可能不唯一，所以实际计算用的数值解。 具体的证明]]></description>
+</item></channel>
+</rss>

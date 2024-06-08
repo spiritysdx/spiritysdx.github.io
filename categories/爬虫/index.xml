@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>爬虫 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E7%88%AC%E8%99%AB/</link>
+        <description>爬虫 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" /><item>
+    <title>在seleniumwire中解决Not Secure问题</title>
+    <link>http://www.spiritysdx.top/20221212/</link>
+    <pubDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221212/</guid>
+    <description><![CDATA[解决上一篇文章的一些问题 解决方法： https://github.com/wkeeling/selenium-wire/issues/622 下载证书 https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt 将该 ca.crt 添加到受信任的证书中 google浏览器打开chrome://settings/secur]]></description>
+</item><item>
+    <title>Selenium的web自动化操作02(基本语法)</title>
+    <link>http://www.spiritysdx.top/20200516/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200516/</guid>
+    <description><![CDATA[前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下： Firefox Chrome 其他版本请]]></description>
+</item><item>
+    <title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title>
+    <link>http://www.spiritysdx.top/20221211/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221211/</guid>
+    <description><![CDATA[前言 爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么]]></description>
+</item><item>
+    <title>免费破解图片验证码(数字或中英混合)(附代码)(2022)</title>
+    <link>http://www.spiritysdx.top/20221103/</link>
+    <pubDate>Thu, 03 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221103/</guid>
+    <description><![CDATA[前言 前面有破解谷歌验证码，现在来破解相对简单的图片验证码。(数字以及中英混合) 插件过验证码 需要加载谷歌插件AutoVerify 这种识别是为了]]></description>
+</item><item>
+    <title>Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)</title>
+    <link>http://www.spiritysdx.top/20221102/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221102/</guid>
+    <description><![CDATA[前言 破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。 网上现在流传的几乎都说Google验证码]]></description>
+</item><item>
+    <title>图片验证码增强技术(提高识别正确率)</title>
+    <link>http://www.spiritysdx.top/20220206/</link>
+    <pubDate>Sun, 06 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220206/</guid>
+    <description><![CDATA[直接使用原始图片做验证码识别正确率较低，使用增强技术后能大大提高识别率 黑底填充白底 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 from PIL]]></description>
+</item><item>
+    <title>创建新线程(通用)</title>
+    <link>http://www.spiritysdx.top/20200831/</link>
+    <pubDate>Mon, 31 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200831/</guid>
+    <description><![CDATA[创建并使用多线程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 print(&#39;主线程执行代码&#39;) # 从 threading 库中导入T]]></description>
+</item><item>
+    <title>Appium自动化操作03(界面操作和adb命令)</title>
+    <link>http://www.spiritysdx.top/20200525/</link>
+    <pubDate>Mon, 25 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200525/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环]]></description>
+</item><item>
+    <title>Appium自动化操作02(元素定位及查看工具)</title>
+    <link>http://www.spiritysdx.top/20200527/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200527/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环]]></description>
+</item><item>
+    <title>Appium自动化操作01(环境安装与初始结构)</title>
+    <link>http://www.spiritysdx.top/20200523/</link>
+    <pubDate>Sat, 23 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200523/</guid>
+    <description><![CDATA[前言 最好有Selenium的Web自动化的实际经验 本篇用到的相关软件链接： 链接: https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA 提取码: h9b2 Appium 基础知识 Appium 用途和特点 Appium 是一个移动 App （手机应用）]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MiniBatch - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/minibatch/</link>
+        <description>MiniBatch - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/minibatch/" rel="self" type="application/rss+xml" /><item>
+    <title>Random Walk &amp; Node2vec - 图表示学习起始</title>
+    <link>http://www.spiritysdx.top/20230919/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230919/</guid>
+    <description><![CDATA[前言 本文讲述映射成D维向量的基于随机游走方法。 学习路径： 图嵌入 - Node Embedding 把节点映射为一个D维向量。 图表示学习用表示学习替代手工的特征工程，自动化]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>强化学习 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+        <description>强化学习 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sat, 09 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="self" type="application/rss+xml" /><item>
+    <title>Python相关的深度学习的学习路径</title>
+    <link>http://www.spiritysdx.top/20230909/</link>
+    <pubDate>Sat, 09 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230909/</guid>
+    <description><![CDATA[前言 所有资源均免费，遇到付费推荐勿要付费 方向是 图神经网络 和 强化学习 的学习路径 基础知识 白月黑羽的网站： https://www.byhy.net/ 适合学习Python基础知识，有对应的]]></description>
+</item><item>
+    <title>Actor-Critic Methods</title>
+    <link>http://www.spiritysdx.top/20230908/</link>
+    <pubDate>Fri, 08 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230908/</guid>
+    <description><![CDATA[前言 Actor-Critic Methods 结合了价值学习和策略学习，同时训练了两个神经网络。 Actor 网络用于产生策略，Critic 网络用于评估策略。 目标 ① 更新策略网络Π的参数，是为]]></description>
+</item><item>
+    <title>Policy-Based learning</title>
+    <link>http://www.spiritysdx.top/20230907/</link>
+    <pubDate>Thu, 07 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230907/</guid>
+    <description><![CDATA[用策略函数指导动作 使用策略函数随机抽样得到动作。 近似策略函数 由于实际的策略函数无法得到，需要用各种方式去近似策略函数，所以这里可以使用神经网]]></description>
+</item><item>
+    <title>Deep Q-Network (DQN) (Value-Based learning)</title>
+    <link>http://www.spiritysdx.top/20230906/</link>
+    <pubDate>Wed, 06 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230906/</guid>
+    <description><![CDATA[寻找最佳的Q值函数 实际并不知道最佳的Q值函数，需要使用神经网络 Q(s,a;w) 来近似最佳的Q值函数。 实际流程大致为当前状态转换为矩阵后，通过卷积层提取特征]]></description>
+</item><item>
+    <title>强化学习术语翻译</title>
+    <link>http://www.spiritysdx.top/20230905/</link>
+    <pubDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230905/</guid>
+    <description><![CDATA[State 状态，即状态空间，表示环境中的当前状态。 Action &amp;&amp; Agent 动作，即动作空间，表示在当前状态下，执行的动作。 动作由谁做的就是Agent，即智能体。 Policy Π 策]]></description>
+</item></channel>
+</rss>

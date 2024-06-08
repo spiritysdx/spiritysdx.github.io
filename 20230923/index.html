@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>DeepWalk实战-维基百科词条图嵌入可视化 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="DeepWalk实战-维基百科词条图嵌入可视化" />
+<meta property="og:description" content="参考资料 https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/ https://github.com/prateekjoshi565/DeepWalk 安装工具包 1 !pip install networkx gensim pandas numpy tqdm scikit-learn matplotlib Collecting networkx Downloading networkx-3.1-py3-none-any.whl (2.1 MB) [2K [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20230923/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="DeepWalk实战-维基百科词条图嵌入可视化"/>
+<meta name="twitter:description" content="参考资料 https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/ https://github.com/prateekjoshi565/DeepWalk 安装工具包 1 !pip install networkx gensim pandas numpy tqdm scikit-learn matplotlib Collecting networkx Downloading networkx-3.1-py3-none-any.whl (2.1 MB) [2K [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230923/" /><link rel="prev" href="http://www.spiritysdx.top/20230922/" /><link rel="next" href="http://www.spiritysdx.top/20230924/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DeepWalk实战-维基百科词条图嵌入可视化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230923\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, 图神经网络, DeepWalk, CS244W","wordcount":  6660 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230923\/","datePublished": "2023-09-23T00:00:00+00:00","dateModified": "2023-09-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">DeepWalk实战-维基百科词条图嵌入可视化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-23">2023-09-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6660 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考资料">参考资料</a></li>
+    <li><a href="#安装工具包">安装工具包</a></li>
+    <li><a href="#导入工具包">导入工具包</a></li>
+    <li><a href="#获取维基百科网页引用关联数据">获取维基百科网页引用关联数据</a></li>
+    <li><a href="#构建无向图">构建无向图</a></li>
+    <li><a href="#因节点数过多省去可视化步骤">因节点数过多，省去可视化步骤</a></li>
+    <li><a href="#生成随机游走节点序列的函数">生成随机游走节点序列的函数</a></li>
+    <li><a href="#生成随机游走序列">生成随机游走序列</a></li>
+    <li><a href="#训练word2vec模型">训练Word2Vec模型</a></li>
+    <li><a href="#分析word2vec结果">分析Word2Vec结果</a></li>
+    <li><a href="#pca降维可视化">PCA降维可视化</a>
+      <ul>
+        <li><a href="#可视化全部词条的二维embedding">可视化全部词条的二维Embedding</a></li>
+        <li><a href="#可视化某个词条的二维embedding">可视化某个词条的二维Embedding</a></li>
+        <li><a href="#可视化某些词条的二维embedding">可视化某些词条的二维Embedding</a></li>
+      </ul>
+    </li>
+    <li><a href="#tsne降维可视化">TSNE降维可视化</a>
+      <ul>
+        <li><a href="#可视化全部词条的二维embedding-1">可视化全部词条的二维Embedding¶</a></li>
+        <li><a href="#可视化全部词条和关键词条的二维embedding">可视化全部词条和关键词条的二维Embedding</a></li>
+        <li><a href="#导出tsne降维到二维之后的embedding">导出TSNE降维到二维之后的Embedding</a></li>
+        <li><a href="#可视化全部词条的三维embedding">可视化全部词条的三维Embedding</a></li>
+        <li><a href="#导出tsne降维到三维之后的embedding">导出TSNE降维到三维之后的Embedding</a></li>
+      </ul>
+    </li>
+    <li><a href="#作业">作业</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/" target="_blank" rel="noopener noreffer">https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/</a></p>
+<p><a href="https://github.com/prateekjoshi565/DeepWalk" target="_blank" rel="noopener noreffer">https://github.com/prateekjoshi565/DeepWalk</a></p>
+<h2 id="安装工具包">安装工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">networkx</span> <span class="n">gensim</span> <span class="n">pandas</span> <span class="n">numpy</span> <span class="n">tqdm</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">matplotlib</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Collecting networkx
+  Downloading networkx-3.1-py3-none-any.whl (2.1 MB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.1/2.1 MB[0m [31m50.1 MB/s[0m eta [36m0:00:00[0ma [36m0:00:01[0m
+[?25hCollecting gensim
+  Obtaining dependency information for gensim from https://files.pythonhosted.org/packages/22/40/7d2cce3ad4ad5d02aa68e253e6ea5f0acc381f02f594e235fe00a274faff/gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.3 kB)
+Collecting pandas
+  Obtaining dependency information for pandas from https://files.pythonhosted.org/packages/de/ce/b5d9c7ce1aaf9023b823c81932a50cd5e8f407198a696b0d1c6025a40b03/pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Collecting numpy
+  Obtaining dependency information for numpy from https://files.pythonhosted.org/packages/c4/36/161e2f8110f8c49e59f6107bd6da4257d30aff9f06373d0471811f73dcc5/numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (58 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m58.5/58.5 kB[0m [31m4.8 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting tqdm
+  Obtaining dependency information for tqdm from https://files.pythonhosted.org/packages/00/e5/f12a80907d0884e6dff9c16d0c0114d81b8cd07dc3ae54c5e962cc83037e/tqdm-4.66.1-py3-none-any.whl.metadata
+  Downloading tqdm-4.66.1-py3-none-any.whl.metadata (57 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m57.6/57.6 kB[0m [31m19.5 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting scikit-learn
+  Obtaining dependency information for scikit-learn from https://files.pythonhosted.org/packages/8f/87/5969092159207f583481ad80a03f09e2d4af1ebd197f4530ca4e906c947e/scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting matplotlib
+  Obtaining dependency information for matplotlib from https://files.pythonhosted.org/packages/65/5b/3b8fd7d66043f0638a35fa650570cbe69efd42fe169e5024f9307598b47e/matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)
+Collecting scipy&gt;=1.7.0 (from gensim)
+  Obtaining dependency information for scipy&gt;=1.7.0 from https://files.pythonhosted.org/packages/ef/1b/7538792254aec6850657d5b940fd05fe60582af829ffe40d6c054f065f34/scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m60.4/60.4 kB[0m [31m23.3 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting smart-open&gt;=1.8.1 (from gensim)
+  Obtaining dependency information for smart-open&gt;=1.8.1 from https://files.pythonhosted.org/packages/fc/d9/d97f1db64b09278aba64e8c81b5d322d436132df5741c518f3823824fae0/smart_open-6.4.0-py3-none-any.whl.metadata
+  Downloading smart_open-6.4.0-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from pandas) (2023.3.post1)
+Collecting tzdata&gt;=2022.1 (from pandas)
+  Downloading tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m341.8/341.8 kB[0m [31m66.1 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting joblib&gt;=1.1.1 (from scikit-learn)
+  Obtaining dependency information for joblib&gt;=1.1.1 from https://files.pythonhosted.org/packages/10/40/d551139c85db202f1f384ba8bcf96aca2f329440a844f924c8a0040b6d02/joblib-1.3.2-py3-none-any.whl.metadata
+  Downloading joblib-1.3.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting threadpoolctl&gt;=2.0.0 (from scikit-learn)
+  Obtaining dependency information for threadpoolctl&gt;=2.0.0 from https://files.pythonhosted.org/packages/81/12/fd4dea011af9d69e1cad05c75f3f7202cdcbeac9b712eea58ca779a72865/threadpoolctl-3.2.0-py3-none-any.whl.metadata
+  Downloading threadpoolctl-3.2.0-py3-none-any.whl.metadata (10.0 kB)
+Collecting contourpy&gt;=1.0.1 (from matplotlib)
+  Obtaining dependency information for contourpy&gt;=1.0.1 from https://files.pythonhosted.org/packages/b7/f6/78f60fa0b6ae64971178e2542e8b3ad3ba5f4f379b918ab7b18038a3f897/contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.9 kB)
+Collecting cycler&gt;=0.10 (from matplotlib)
+  Obtaining dependency information for cycler&gt;=0.10 from https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl.metadata
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools&gt;=4.22.0 (from matplotlib)
+  Obtaining dependency information for fonttools&gt;=4.22.0 from https://files.pythonhosted.org/packages/72/2c/7634a6c16b29d0c31cf54051beefab796abdfe8f52abead6d09e5403696e/fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (152 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m152.4/152.4 kB[0m [31m68.2 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting kiwisolver&gt;=1.0.1 (from matplotlib)
+  Obtaining dependency information for kiwisolver&gt;=1.0.1 from https://files.pythonhosted.org/packages/17/ba/17a706b232308e65f57deeccae503c268292e6a091313f6ce833a23093ea/kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+Requirement already satisfied: packaging&gt;=20.0 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from matplotlib) (23.1)
+Collecting pillow&gt;=6.2.0 (from matplotlib)
+  Obtaining dependency information for pillow&gt;=6.2.0 from https://files.pythonhosted.org/packages/3c/49/f87cecbdec4b00cc1187f01196d48c08828204cd861915fab44972dc705c/Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata
+  Downloading Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Collecting pyparsing&gt;=2.3.1 (from matplotlib)
+  Obtaining dependency information for pyparsing&gt;=2.3.1 from https://files.pythonhosted.org/packages/39/92/8486ede85fcc088f1b3dba4ce92dd29d126fd96b0008ea213167940a2475/pyparsing-3.1.1-py3-none-any.whl.metadata
+  Downloading pyparsing-3.1.1-py3-none-any.whl.metadata (5.1 kB)
+Requirement already satisfied: six&gt;=1.5 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.16.0)
+Downloading gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (26.7 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m26.7/26.7 MB[0m [31m11.2 MB/s[0m eta [36m0:00:00[0m00:01[0m00:01[0m
+[?25hDownloading pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m12.2/12.2 MB[0m [31m227.0 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m18.2/18.2 MB[0m [31m215.8 MB/s[0m eta [36m0:00:00[0ma [36m0:00:01[0m
+[?25hDownloading tqdm-4.66.1-py3-none-any.whl (78 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m78.3/78.3 kB[0m [31m40.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.9 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m10.9/10.9 MB[0m [31m258.3 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m11.6/11.6 MB[0m [31m261.5 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (302 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m302.8/302.8 kB[0m [31m121.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.8 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.8/4.8 MB[0m [31m268.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading joblib-1.3.2-py3-none-any.whl (302 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m302.2/302.2 kB[0m [31m124.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.4/1.4 MB[0m [31m240.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl (3.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.6/3.6 MB[0m [31m271.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pyparsing-3.1.1-py3-none-any.whl (103 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m103.1/103.1 kB[0m [31m51.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (36.4 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m36.4/36.4 MB[0m [31m64.6 MB/s[0m eta [36m0:00:00[0m:00:01[0m00:01[0m
+[?25hDownloading smart_open-6.4.0-py3-none-any.whl (57 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m57.0/57.0 kB[0m [31m17.1 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading threadpoolctl-3.2.0-py3-none-any.whl (15 kB)
+Installing collected packages: tzdata, tqdm, threadpoolctl, smart-open, pyparsing, pillow, numpy, networkx, kiwisolver, joblib, fonttools, cycler, scipy, pandas, contourpy, scikit-learn, matplotlib, gensim
+Successfully installed contourpy-1.1.1 cycler-0.12.1 fonttools-4.43.1 gensim-4.3.2 joblib-1.3.2 kiwisolver-1.4.5 matplotlib-3.8.0 networkx-3.1 numpy-1.26.0 pandas-2.1.1 pillow-10.0.1 pyparsing-3.1.1 scikit-learn-1.3.1 scipy-1.11.3 smart-open-6.4.0 threadpoolctl-3.2.0 tqdm-4.66.1 tzdata-2023.3
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m
+</code></pre>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span> <span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据分析</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># 随机数</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># 进度条</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取维基百科网页引用关联数据">获取维基百科网页引用关联数据</h2>
+<p>1.打开网站<code>https://densitydesign.github.io/strumentalia-seealsology</code></p>
+<p>2.Distance设置为<code>4</code></p>
+<p>3.输入以下链接</p>
+<p><a href="https://en.wikipedia.org/wiki/Computer_vision" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Computer_vision</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Deep_learning</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Convolutional_neural_network</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Decision_tree</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Support-vector_machine" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Support-vector_machine</a></p>
+<p>4.点击<code>START CRAWLING</code>，爬取1000个网页之后，点击<code>STOP &amp; CLEAR QUEUE</code></p>
+<p>5.Download-下载TSV文件，保存至代码相同目录，命名为<code>seealsology-data.tsv</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;seealsology-data.tsv&#34;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source</th>
+      <th>target</th>
+      <th>depth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>support-vector machine</td>
+      <td>in situ adaptive tabulation</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>support-vector machine</td>
+      <td>kernel machines</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>support-vector machine</td>
+      <td>fisher kernel</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>support-vector machine</td>
+      <td>platt scaling</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>support-vector machine</td>
+      <td>polynomial kernel</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(13211, 3)
+</code></pre>
+<h2 id="构建无向图">构建无向图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_pandas_edgelist</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&#34;source&#34;</span><span class="p">,</span> <span class="s2">&#34;target&#34;</span><span class="p">,</span> <span class="n">edge_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_using</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点个数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>8560
+</code></pre>
+<h2 id="因节点数过多省去可视化步骤">因节点数过多，省去可视化步骤</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # 可视化</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># plt.figure(figsize=(15,14))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nx.draw(G)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># plt.show()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="生成随机游走节点序列的函数">生成随机游走节点序列的函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_randomwalk</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">path_length</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    输入起始节点和路径长度，生成随机游走节点序列
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">random_walk</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">path_length</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 汇总邻接节点</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">random_walk</span><span class="p">))</span>    
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 从邻接节点中随机选择下一个节点</span>
+</span></span><span class="line"><span class="cl">        <span class="n">random_node</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">random_walk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_node</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span> <span class="o">=</span> <span class="n">random_node</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">random_walk</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">all_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">all_nodes</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['support-vector machine',
+ 'in situ adaptive tabulation',
+ 'kernel machines',
+ 'fisher kernel',
+ 'platt scaling',
+ 'polynomial kernel',
+ 'predictive analytics',
+ 'regularization perspectives on support-vector machines',
+ 'relevance vector machine',
+ 'sequential minimal optimization',
+ 'space mapping',
+ 'winnow (algorithm)',
+ 'decision tree',
+ 'behavior tree (artificial intelligence, robotics and control)',
+ 'boosting (machine learning)',
+ 'decision cycle',
+ 'decision list',
+ 'decision matrix',
+ 'decision table',
+ 'decision tree model',
+ 'design rationale',
+ 'drakon',
+ 'markov chain',
+ 'random forest',
+ 'odds algorithm',
+ 'topological combinatorics',
+ 'truth table',
+ 'convolutional neural network',
+ 'attention (machine learning)',
+ 'convolution',
+ 'deep learning',
+ 'natural-language processing',
+ 'neocognitron',
+ 'scale-invariant feature transform',
+ 'time delay neural network',
+ 'vision processing unit',
+ 'applications of artificial intelligence',
+ 'comparison of deep learning software',
+ 'compressed sensing',
+ 'differentiable programming',
+ 'echo state network',
+ 'liquid state machine',
+ 'reservoir computing',
+ 'scale space',
+ 'sparse coding',
+ 'computer vision',
+ 'computational imaging',
+ 'computational photography',
+ 'computer audition',
+ 'egocentric vision',
+ 'machine vision glossary',
+ 'teknomo–fernandez algorithm',
+ 'vision science',
+ 'visual agnosia',
+ 'visual perception',
+ 'visual system',
+ 'achromatopsia',
+ 'akinetopsia',
+ 'apperceptive agnosia',
+ 'associative visual agnosia',
+ 'asthenopia',
+ 'astigmatism (eye)',
+ 'color blindness',
+ 'human echolocation',
+ 'helmholtz–kohlrausch effect',
+ 'color balance',
+ 'magnocellular cell',
+ 'memory-prediction framework',
+ 'prosopagnosia',
+ 'scotopic sensitivity syndrome',
+ 'recovery from blindness',
+ 'visual modularity',
+ 'visual processing',
+ 'color vision',
+ 'depth perception',
+ 'entoptic phenomenon',
+ 'gestalt psychology',
+ 'lateral masking',
+ 'looming',
+ 'naked eye',
+ 'machine vision',
+ 'motion perception',
+ 'multisensory integration',
+ 'interpretation (philosophy)',
+ 'spatial frequency',
+ 'visual illusion',
+ 'wikt:sensation',
+ 'hallucinogen persisting perception disorder',
+ 'illusory palinopsia',
+ 'refractive error',
+ 'visual snow',
+ 'cognitive science',
+ 'neuroscience',
+ 'ophthalmology',
+ 'optometry',
+ 'psychophysics',
+ 'agnosia',
+ 'blindness',
+ 'color agnosia',
+ 'gestaltzerfall',
+ 'riddoch syndrome',
+ 'topographical disorientation',
+ 'brain',
+ 'color constancy',
+ 'eye',
+ 'linguistic relativity and the color naming debate',
+ 'neuropsychology',
+ 'optical illusion',
+ 'primary colors',
+ 'visual cortex',
+ 'visual neuroscience',
+ 'adaptive control',
+ 'cognitive model',
+ 'computational electromagnetics',
+ 'computer-aided design',
+ 'engineering optimization',
+ 'finite element method',
+ 'kriging',
+ 'linear approximation',
+ 'machine learning',
+ 'mental model',
+ 'mental rotation',
+ 'mirror neuron',
+ 'model-dependent realism',
+ 'multiphysics',
+ 'performance tuning',
+ 'response surface methodology',
+ 'semiconductor device modeling',
+ 'spatial cognition',
+ 'spatial memory',
+ 'support vector machine',
+ 'theory of mind',
+ 'attribution bias',
+ 'cephalopod intelligence',
+ 'cetacean intelligence',
+ 'eliminative materialism',
+ 'empathy',
+ 'grounding in communication',
+ 'intentional stance',
+ 'joint attention',
+ 'mental body',
+ 'mentalization',
+ 'mini-sea',
+ 'origin of language',
+ 'perspective-taking',
+ 'quantum mind',
+ 'relational frame theory',
+ 'self-awareness',
+ 'social neuroscience',
+ 'embodied cognition',
+ 'the mind of an ape',
+ 'turing test',
+ 'type physicalism',
+ 'interpersonal accuracy',
+ 'cognitive map',
+ 'dissociation (neuropsychology)',
+ 'method of loci',
+ 'spatial ability',
+ 'visual memory',
+ 'mind mapping',
+ 'spatial contextual awareness',
+ 'sense of direction',
+ 'cognition',
+ 'diode modelling',
+ 'transistor models',
+ 'compact model coalition',
+ 'technology cad',
+ 'electronic circuit simulation',
+ 'bipolar junction transistor',
+ 'safe operating area',
+ 'electronic design automation',
+ 'cognitive biology',
+ 'cognitive musicology',
+ 'cognitive computing',
+ 'cognitive psychology',
+ 'cognitivism (psychology)',
+ 'comparative cognition',
+ 'information processing technology and aging',
+ 'mental chronometry',
+ 'nootropic',
+ 'cognitive abilities screening instrument',
+ 'affective science',
+ 'cognitive anthropology',
+ 'cognitive ethology',
+ 'cognitive linguistics',
+ 'cognitive neuropsychology',
+ 'cognitive neuroscience',
+ 'cognitive science of religion',
+ 'computational neuroscience',
+ 'computational-representational understanding of mind',
+ 'concept mining',
+ 'decision field theory',
+ 'decision theory',
+ 'dynamicism',
+ 'educational neuroscience',
+ 'educational psychology',
+ 'embodied cognitive science',
+ 'enactivism',
+ 'epistemology',
+ 'folk psychology',
+ 'heterophenomenology',
+ 'human cognome project',
+ 'human–computer interaction',
+ 'indiana archives of cognitive science',
+ 'informatics (academic field)',
+ 'malleable intelligence',
+ 'neural darwinism',
+ 'personal information management',
+ 'qualia',
+ 'quantum cognition',
+ 'simulated consciousness',
+ 'situated cognition',
+ 'society of mind theory',
+ 'speech–language pathology',
+ 'personal relative direction',
+ 'spatial disorientation',
+ 'augmented reality',
+ 'context awareness',
+ 'context-aware pervasive systems',
+ 'fiduciary marker',
+ 'human-computer interaction',
+ 'location awareness',
+ 'location-based service',
+ 'situational awareness',
+ 'topology',
+ 'ubiquitous computing',
+ 'mechanical aptitude',
+ 'motor imagery',
+ &quot;raven's progressive matrices&quot;,
+ 'exquisite corpse',
+ 'graph (discrete mathematics)',
+ 'idea',
+ 'mental literacy',
+ 'nodal organizational structure',
+ 'personal wiki',
+ 'rhizome (philosophy)',
+ 'social map',
+ 'spider mapping',
+ 'cognitive geography',
+ 'fuzzy cognitive map',
+ 'repertory grid',
+ 'mind map',
+ 'kernel perceptron',
+ 'kernel trick',
+ 'actuarial science',
+ 'artificial intelligence in healthcare',
+ 'analytical procedures (finance auditing)',
+ 'computational sociology',
+ 'criminal reduction utilising statistical history',
+ 'disease surveillance',
+ 'learning analytics',
+ 'pattern recognition',
+ 'predictive inference',
+ 'predictive policing',
+ 'social media analytics',
+ 'fisher information metric',
+ 'kernel methods for vector output',
+ 'kernel density estimation',
+ 'representer theorem',
+ 'similarity learning',
+ &quot;cover's theorem&quot;,
+ 'radial basis function network',
+ 'recurrent neural networks',
+ 'tensor product network',
+ 'consciousness',
+ 'biological naturalism',
+ 'emergent materialism',
+ 'materialism',
+ 'mind–body problem',
+ 'monism',
+ 'philosophy of mind',
+ 'physicalism',
+ 'presentism (philosophy of time)',
+ 'natural language processing',
+ 'artificial intelligence in fiction',
+ 'blindsight',
+ 'causality',
+ 'computer game bot turing test',
+ 'explanation',
+ 'explanatory gap',
+ 'functionalism (philosophy of mind)',
+ 'graphics turing test',
+ 'ex machina (film)',
+ 'hard problem of consciousness',
+ 'mark v. shaney',
+ 'mind-body problem',
+ 'philosophical zombie',
+ 'problem of other minds',
+ 'reverse engineering',
+ 'sentience',
+ 'simulated reality',
+ 'social bot',
+ 'technological singularity',
+ 'uncanny valley',
+ 'voight-kampff machine',
+ 'winograd schema challenge',
+ 'shrdlu',
+ 'primate cognition',
+ 'thomas nagel',
+ 'animal cognition',
+ 'alex (parrot)',
+ 'action-specific perception',
+ 'active inference',
+ 'blue brain project',
+ 'conceptual blending',
+ 'conceptual metaphor',
+ 'ecological psychology',
+ 'embodied bilingual language',
+ 'embodied embedded cognition',
+ 'embodied music cognition',
+ 'embodied phenomenology',
+ 'extended cognition',
+ 'extended mind thesis',
+ 'externalism',
+ 'feeling',
+ 'image schema',
+ 'metaphors we live by',
+ &quot;moravec's paradox&quot;,
+ 'motor cognition',
+ 'neuroconstructivism',
+ 'neurophenomenology',
+ 'plant cognition',
+ 'where mathematics comes from',
+ 'women, fire, and dangerous things',
+ 'biocultural evolution',
+ 'emotion',
+ 'social cognition',
+ 'social cognitive neuroscience',
+ 'social cognitive and affective neuroscience',
+ 'social psychology',
+ 'sociobiology',
+ 'neural synchrony',
+ 'animal consciousness',
+ 'bicameral mentality',
+ 'boltzmann brain',
+ 'cartesian theater',
+ 'childhood amnesia',
+ 'confidence',
+ 'deindividuation',
+ 'dunning–kruger effect',
+ 'feldenkrais method',
+ 'higher consciousness',
+ 'human self-reflection',
+ 'intentionality',
+ 'julian jaynes',
+ 'lucid dream',
+ 'memory inhibition',
+ 'mental noting',
+ 'mindfulness',
+ 'mirror test',
+ 'modesty',
+ 'the origin of consciousness in the breakdown of the bicameral mind',
+ 'psychological mindedness',
+ 'robert langs',
+ 'autonomic computing',
+ 'self-consciousness',
+ 'self-knowledge (psychology)',
+ 'situation awareness',
+ 'vedanta',
+ 'vipassanā',
+ 'yoga nidra',
+ 'cognitive grammar',
+ 'construction grammar',
+ 'constructivism (psychological school)',
+ 'operant conditioning',
+ 'personal construct theory',
+ 'schema (psychology)',
+ 'artificial consciousness',
+ 'bohm interpretation',
+ 'coincidence detection in neurobiology',
+ 'electromagnetic theories of consciousness',
+ 'evolutionary neuroscience',
+ 'many-minds interpretation',
+ 'orch-or',
+ 'holonomic brain theory',
+ 'mechanism (philosophy)',
+ 'quantum neural network',
+ 'role reversal',
+ 'role-taking theory',
+ 'abiogenesis',
+ 'biolinguistics',
+ 'bouba/kiki effect',
+ 'bow-wow theory',
+ 'digital infinity',
+ 'essay on the origin of languages',
+ 'evolutionary psychology of language',
+ 'foxp2 and human evolution',
+ 'generative anthropology',
+ 'historical linguistics',
+ &quot;man's first word&quot;,
+ 'neurobiological origins of language',
+ 'origins of society',
+ 'origin of speech',
+ 'proto-language',
+ 'theory of language',
+ 'ambit (adolescent mentalization-based integrative treatment)',
+ 'mentalization based treatment',
+ 'metacognition',
+ 'psychic equivalence',
+ 'esoteric',
+ 'esoteric cosmology',
+ 'etheric body',
+ 'spiritual evolution',
+ 'subtle body',
+ 'thoughtform',
+ 'science',
+ 'mind',
+ 'asperger syndrome',
+ 'cooperative eye hypothesis',
+ 'vocabulary development',
+ 'four causes',
+ 'telos',
+ 'teleology',
+ 'high- and low-level',
+ 'instrumentalism',
+ 'intention',
+ 'level of analysis',
+ 'life stance',
+ 'david marr (psychologist)',
+ 'naturalization of intentionality',
+ 'operationalism',
+ 'philosophical realism',
+ 'stance (linguistics)',
+ &quot;the philosophy of 'as if'&quot;,
+ 'communication',
+ 'common knowledge (logic)',
+ 'media richness theory',
+ 'against empathy',
+ 'artificial empathy',
+ 'attribution (psychology)',
+ 'digital empathy',
+ 'emotional intelligence',
+ 'emotional literacy',
+ 'empathic concern',
+ 'empathizing–systemizing theory',
+ 'empathy in chickens',
+ 'empathy in literature',
+ 'empathy in online communities',
+ 'empathism',
+ 'ethnocultural empathy',
+ 'highly sensitive person',
+ 'humanistic coefficient',
+ 'identification (psychology)',
+ 'life skills',
+ 'mimpathy',
+ 'moral emotions',
+ 'oxytocin',
+ 'people skills',
+ 'philip k. dick',
+ 'do androids dream of electric sheep?',
+ 'rapport',
+ 'self-conscious emotions',
+ 'sensibility',
+ 'simulation theory of empathy',
+ 'social emotions',
+ 'soft skills',
+ 'theory of mind in animals',
+ 'vicarious embarrassment',
+ 'attention schema theory',
+ 'constructivist epistemology',
+ 'cotard delusion',
+ 'deconstructivism',
+ 'epiphenomenalism',
+ 'nihilism',
+ 'phenomenology (philosophy)',
+ 'principle of locality',
+ 'property dualism',
+ 'reductionism',
+ 'scientism',
+ 'substance dualism',
+ &quot;morgan's canon&quot;,
+ 'john c. lilly',
+ 'louis herman',
+ 'animal language',
+ 'vocal learning',
+ 'spindle neuron',
+ 'military dolphin',
+ 'u.s. navy marine mammal program',
+ 'so long, and thanks for all the fish',
+ 'uplift universe',
+ 'box–behnken design',
+ 'central composite design',
+ 'gradient-enhanced kriging',
+ 'ioso',
+ 'optimal design',
+ 'plackett–burman design',
+ 'polynomial and rational function modeling',
+ 'polynomial regression',
+ 'probabilistic design',
+ 'surrogate model',
+ 'performance application programming interface',
+ 'profiling (computer programming)',
+ 'radial basis function',
+ 'optiy',
+ 'surrogate endpoint',
+ 'surrogate data',
+ 'fitness approximation',
+ 'computer experiment',
+ 'conceptual model',
+ 'bayesian regression',
+ 'bayesian model selection',
+ 'interval finite element',
+ 'curve fitting',
+ 'line regression',
+ 'local polynomial regression',
+ 'polynomial interpolation',
+ 'smoothing spline',
+ 'padé approximant',
+ 'bayesian experimental design',
+ 'blocking (statistics)',
+ 'convex function',
+ 'convex optimization',
+ 'design of experiments',
+ 'efficiency (statistics)',
+ 'entropy (information theory)',
+ 'fisher information',
+ 'glossary of experimental design',
+ &quot;hadamard's maximal determinant problem&quot;,
+ 'information theory',
+ 'jack kiefer (mathematician)',
+ 'replication (statistics)',
+ 'statistical model',
+ 'abraham wald',
+ 'jacob wolfowitz',
+ 'finite difference time-domain method',
+ 'all models are wrong',
+ 'commensurability (philosophy of science)',
+ 'conceptualist realism',
+ 'fallibilism',
+ 'internal realism',
+ 'models of scientific inquiry',
+ 'ontological pluralism',
+ 'pragmatism',
+ 'scientific realism',
+ 'associative sequence learning',
+ 'common coding theory',
+ 'emotional contagion',
+ 'mirror-touch synesthesia',
+ 'mirroring (psychology)',
+ 'motor theory of speech perception',
+ 'on intelligence',
+ 'positron emission tomography',
+ 'speech repetition',
+ 'mental event',
+ 'mental function',
+ 'mental operations',
+ 'functional neuroimaging',
+ 'noumenon',
+ 'psychedelic experience',
+ 'synchronicity',
+ 'alan baddeley',
+ 'auditory processing disorder',
+ &quot;baddeley's model of working memory&quot;,
+ 'conduction aphasia',
+ 'developmental verbal dyspraxia',
+ 'echoic memory',
+ 'echolalia',
+ 'language development',
+ 'language acquisition',
+ 'language-based learning disability',
+ 'mirror neurons',
+ 'passive speakers (language)',
+ 'phonological development',
+ 'pronunciation',
+ 'second-language acquisition',
+ 'short-term memory',
+ 'speech perception',
+ 'thematic coherence',
+ 'transcortical motor aphasia',
+ 'transcortical sensory aphasia',
+ 'vocabulary',
+ 'diffuse optical imaging',
+ 'hot cell',
+ 'molecular imaging',
+ 'hierarchical temporal memory',
+ 'cohort model',
+ 'speech recognition',
+ 'auditory phonetics',
+ 'trace (psycholinguistics)',
+ 'haskins laboratories',
+ 'procedural memory',
+ 'kinesthetic learning',
+ 'nonverbal communication',
+ 'affective neuroscience',
+ 'autism',
+ 'behavioral contagion',
+ 'emotional detachment',
+ 'emotional competence',
+ 'folie à deux',
+ 'groupthink',
+ 'limbic resonance',
+ 'limbic regulation',
+ 'microexpression',
+ 'projective identification',
+ 'viral phenomenon',
+ 'lawrence w. barsalou',
+ 'mental practice of action',
+ 'predictive coding',
+ 'roger sperry',
+ 'vittorio guidano',
+ 'william james',
+ 'anti-realism',
+ 'critical realism (philosophy of perception)',
+ 'dialectical materialism',
+ &quot;musgrave's scientific realism&quot;,
+ 'naïve realism',
+ 'pessimistic induction',
+ 'scientific materialism',
+ 'scientific perspectivism',
+ 'social constructionism',
+ 'american philosophy',
+ 'charles sanders peirce bibliography',
+ 'doctrine of internal relations',
+ 'holistic pragmatism',
+ 'new legal realism',
+ 'communication theory as a field',
+ 'scientific method',
+ 'realpolitik',
+ 'dialectical realism',
+ 'epistemological realism',
+ 'extended modal realism',
+ 'legal realism',
+ 'modal realism',
+ 'objectivism',
+ 'philosophy of social science',
+ 'principle of bivalence',
+ 'problem of future contingents',
+ 'truth-value link realism',
+ 'speculative realism',
+ 'direct and indirect realism',
+ 'anekantavada',
+ 'legal pluralism',
+ 'nelson goodman',
+ 'panarchy (political philosophy)',
+ 'pantheism',
+ 'pluralism (political philosophy)',
+ 'pluralism (political theory)',
+ 'postmodernism',
+ 'quantifier variance',
+ 'religious pluralism',
+ 'value pluralism',
+ 'deductive-nomological',
+ 'explanandum',
+ 'hypothetico-deductive method',
+ 'inquiry',
+ 'instrumental and value rationality',
+ 'instrumental and intrinsic value',
+ 'natural kind',
+ 'fact–value distinction',
+ 'inductive reasoning',
+ 'john dewey',
+ 'richard rorty',
+ 'is logic empirical?',
+ 'logical holism',
+ 'pancritical rationalism',
+ 'perspectivism',
+ 'probabilism',
+ 'defeasible reasoning',
+ 'autopoiesis',
+ 'consensus reality',
+ 'constructivism in international relations',
+ 'cultural pluralism',
+ 'epistemological pluralism',
+ 'tinkerbell effect',
+ 'map–territory relation',
+ 'meaning making',
+ 'personal construct psychology',
+ 'post-rationalist cognitive therapy',
+ 'eigenmode expansion',
+ 'beam propagation method',
+ 'finite-difference frequency-domain',
+ 'scattering-matrix method',
+ 'discrete dipole approximation',
+ 'internal model (motor control)',
+ 'knowledge representation',
+ 'lovemap',
+ 'macrocognition',
+ 'neuro-linguistic programming',
+ 'neuroeconomics',
+ 'neuroplasticity',
+ 'ooda loop',
+ 'psyche (psychology)',
+ 'self-stereotyping',
+ 'social intuitionism',
+ 'system dynamics',
+ 'text and conversation theory',
+ 'binomial approximation',
+ &quot;euler's method&quot;,
+ 'finite differences',
+ 'finite difference methods',
+ &quot;newton's method&quot;,
+ 'power series',
+ 'taylor series',
+ 'bayes linear statistics',
+ 'gaussian process',
+ 'multivariate interpolation',
+ 'nonparametric regression',
+ 'radial basis function interpolation',
+ 'spatial dependence',
+ 'variogram',
+ 'information field theory',
+ 'bayesian inference',
+ 'bayesian hierarchical modeling',
+ 'statistical inference',
+ 'buffer analysis',
+ 'cartography',
+ 'complete spatial randomness',
+ 'cost distance analysis',
+ 'geocomputation',
+ 'geospatial intelligence',
+ 'geospatial predictive modeling',
+ 'de-9im',
+ 'geographic information science',
+ 'mathematical statistics',
+ 'modifiable areal unit problem',
+ 'point process',
+ 'proximity analysis',
+ 'spatial autocorrelation',
+ 'spatial descriptive statistics',
+ 'spatial relation',
+ 'terrain analysis',
+ 'boundary problem (in spatial analysis)',
+ 'extrapolation domain analysis',
+ 'fuzzy architectural spatial analysis',
+ 'geodemographic segmentation',
+ 'geographic information systems',
+ 'geoinformatics',
+ 'geostatistics',
+ 'permeability (spatial and transport planning)',
+ 'spatial econometrics',
+ 'spatial epidemiology',
+ 'suitability analysis',
+ 'viewshed analysis',
+ 'lasso (statistics)',
+ 'local regression',
+ 'non-parametric statistics',
+ 'semiparametric regression',
+ 'isotonic regression',
+ 'multivariate adaptive regression splines',
+ 'surface fitting',
+ 'smoothing',
+ 'bayesian interpretation of regularization',
+ 'gaussian free field',
+ 'gauss–markov process',
+ &quot;student's t-distribution&quot;,
+ 'imprecise probability',
+ 'asymptotic expansion',
+ 'generating function',
+ 'madhava series',
+ 'newton polynomial',
+ 'puiseux series',
+ 'shift operator',
+ &quot;aitken's delta-squared process&quot;,
+ 'bisection method',
+ 'euler method',
+ 'fast inverse square root',
+ 'scoring algorithm',
+ 'gradient descent',
+ 'integer square root',
+ 'kantorovich theorem',
+ &quot;laguerre's method&quot;,
+ 'methods of computing square roots',
+ &quot;newton's method in optimization&quot;,
+ 'richardson extrapolation',
+ 'root-finding algorithm',
+ 'secant method',
+ &quot;steffensen's method&quot;,
+ 'subgradient method',
+ 'finite difference',
+ 'finite difference time domain',
+ 'infinite difference method',
+ 'stencil (numerical analysis)',
+ 'finite difference coefficients',
+ 'five-point stencil',
+ 'lax–richtmyer theorem',
+ 'finite difference methods for option pricing',
+ 'upwind differencing scheme for convection',
+ 'central differencing scheme',
+ 'discrete poisson equation',
+ 'discrete laplace operator',
+ 'discrete calculus',
+ 'divided differences',
+ 'finite-difference time-domain method',
+ 'finite volume method',
+ 'ftcs scheme',
+ &quot;gilbreath's conjecture&quot;,
+ 'sheffer sequence',
+ 'summation by parts',
+ 'time scale calculus',
+ 'crank–nicolson method',
+ 'linear multistep method',
+ 'numerical integration',
+ 'numerical methods for ordinary differential equations',
+ 'tacit knowledge',
+ 'explicit knowledge',
+ 'conversation theory',
+ 'organizational structure',
+ 'organizational culture',
+ 'organizational communication',
+ 'sensemaking',
+ 'structuration theory',
+ 'causal loop diagram',
+ 'comparison of system dynamics software',
+ 'ecosystem model',
+ 'plateau principle',
+ 'system archetype',
+ 'system dynamics society',
+ 'twelve leverage points',
+ 'wicked problem',
+ 'world3',
+ 'population dynamics',
+ 'predator-prey interaction',
+ 'dynamical systems theory',
+ 'grey box model',
+ 'operations research',
+ 'social dynamics',
+ 'system identification',
+ 'systems theory',
+ 'systems thinking',
+ 'triz',
+ 'jay forrester',
+ 'dennis meadows',
+ 'donella meadows',
+ 'peter senge',
+ 'graeme snooks',
+ 'john sterman',
+ 'contagion heuristic',
+ 'dual process theory (moral psychology)',
+ 'ethical intuitionism',
+ 'moral foundations theory',
+ 'moral sense theory',
+ 'social identity theory',
+ 'social identity approach',
+ 'ego death',
+ 'human spirit',
+ 'inscape (visual art)',
+ 'motivation',
+ 'nafs',
+ 'persona',
+ 'persona (psychology)',
+ 'reincarnation',
+ 'psychosis',
+ 'control theory',
+ 'double-loop learning',
+ 'dmaic',
+ 'pdca',
+ 'learning cycle',
+ 'maneuver warfare',
+ 'nursing process',
+ 'problem solving',
+ 'swot analysis',
+ 'united states army strategist',
+ 'activity-dependent plasticity',
+ 'brain training',
+ 'environmental enrichment (neural)',
+ 'neural backpropagation',
+ 'neuroplastic effects of pollution',
+ 'psychedelic drug',
+ 'kinesiology',
+ 'journal of neuroscience, psychology, and economics',
+ 'emotional freedom technique',
+ 'milton h. erickson',
+ 'family systems therapy',
+ 'frank farrelly',
+ 'avatar course',
+ 'steve andreas',
+ 'richard bandler',
+ 'john grinder',
+ 'paul mckenna',
+ 'allegory of the cave',
+ 'blind men and an elephant',
+ 'emic and etic',
+ 'fallacy of misplaced concreteness',
+ 'good regulator',
+ 'ludic fallacy',
+ &quot;mary's room&quot;,
+ 'mind projection fallacy',
+ 'nominalism',
+ 'non-aristotelian logic',
+ 'on the content and object of presentations',
+ 'philosophy of perception',
+ 'reification (fallacy)',
+ 'structural differential',
+ 'surrogation',
+ 'unintended consequences',
+ 'use–mention distinction',
+ 'when a white horse is not a horse',
+ 'naturalistic decision-making',
+ 'karol g. ross',
+ 'sexual script theory',
+ 'alphabet of human thought',
+ 'belief revision',
+ 'chunking (psychology)',
+ 'commonsense knowledge (artificial intelligence)',
+ 'conceptual graph',
+ 'datr',
+ 'fo(.)',
+ 'first-order logic',
+ 'logico-linguistic modeling',
+ 'knowledge graph',
+ 'knowledge management',
+ 'semantic technology',
+ 'valuation-based system',
+ 'repetitive control',
+ 'common sense',
+ 'concept',
+ 'concept mapping',
+ 'conceptual framework',
+ 'conceptual model (computer science)',
+ 'conceptual schema',
+ 'conceptual system',
+ 'information model',
+ 'international conference on conceptual modeling',
+ 'interpretation (logic)',
+ 'isolated system',
+ 'ontology (computer science)',
+ 'paradigm',
+ 'physical model',
+ 'process of concept formation',
+ 'scientific modeling',
+ 'theory',
+ 'cognitive bias',
+ 'cognitive description',
+ 'cognitive development',
+ 'cognitive interventions',
+ 'cognitive module',
+ 'cognitive poetics',
+ 'cognitive robotics',
+ 'connectionism',
+ 'discursive psychology',
+ 'evolutionary psychology',
+ 'fuzzy-trace theory',
+ 'genetic epistemology',
+ 'artificial intelligence',
+ 'intertrial priming',
+ 'models of abnormality',
+ 'neurocognitive',
+ 'perceptual control theory',
+ 'psychological adaptation',
+ 'rubicon model (psychology)',
+ 'water-level task',
+ 'applied element method',
+ 'boundary element method',
+ &quot;céa's lemma&quot;,
+ 'direct stiffness method',
+ 'discontinuity layout optimization',
+ 'discrete element method',
+ 'finite difference method',
+ 'finite element machine',
+ 'finite element method in structural mechanics',
+ 'finite volume method for unsteady flow',
+ 'infinite element method',
+ 'isogeometric analysis',
+ 'lattice boltzmann methods',
+ 'meshfree methods',
+ 'movable cellular automaton',
+ 'multidisciplinary design optimization',
+ 'patch test (finite elements)',
+ 'rayleigh–ritz method',
+ 'tessellation (computer graphics)',
+ 'weakened weak form',
+ '3d computer graphics',
+ '3d printing',
+ 'additive manufacturing file format',
+ 'algorithmic art',
+ 'cad standards',
+ 'coarse space (numerical analysis)',
+ 'comparison of 3d computer graphics software',
+ 'comparison of cad, cam, and cae file viewers',
+ 'comparison of computer-aided design software',
+ 'comparison of eda software',
+ 'computer-aided industrial design',
+ 'digital architecture',
+ 'iso 128',
+ 'iso 10303',
+ 'model-based definition',
+ 'molecular design software',
+ 'open-source hardware',
+ 'rapid prototyping',
+ 'responsive computer-aided design',
+ 'system integration',
+ 'virtual prototyping',
+ 'virtual reality',
+ 'em simulation software',
+ 'analytical regularization',
+ 'computational physics',
+ 'electromagnetic field solver',
+ 'electromagnetic wave equation',
+ 'mie theory',
+ 'physical optics',
+ 'rigorous coupled-wave analysis',
+ 'uniform theory of diffraction',
+ 'shooting and bouncing rays',
+ 'computational cognition',
+ 'computational models of language acquisition',
+ 'mindmodeling@home',
+ 'vernon mountcastle',
+ 'adaptive resonance theory',
+ 'stephen grossberg',
+ 'predictive learning',
+ ...]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">get_randomwalk</span><span class="p">(</span><span class="s1">&#39;random forest&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['random forest',
+ 'bootstrap aggregating',
+ 'cascading classifiers',
+ 'boosting (meta-algorithm)',
+ 'margin classifier']
+</code></pre>
+<h2 id="生成随机游走序列">生成随机游走序列</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">gamma</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># 每个节点作为起始点生成随机游走序列个数</span>
+</span></span><span class="line"><span class="cl"><span class="n">walk_length</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># 随机游走序列最大长度</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">random_walks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">):</span> <span class="c1"># 遍历每个节点</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gamma</span><span class="p">):</span> <span class="c1"># 每个节点作为起始点生成gamma个随机游走序列</span>
+</span></span><span class="line"><span class="cl">        <span class="n">random_walks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_randomwalk</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">walk_length</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>100%|██████████| 8560/8560 [00:00&lt;00:00, 29750.07it/s]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 生成随机游走序列个数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">random_walks</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>85600
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">random_walks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['support-vector machine',
+ 'in situ adaptive tabulation',
+ 'support vector machine',
+ 'kernel machines',
+ 'representer theorem']
+</code></pre>
+<h2 id="训练word2vec模型">训练Word2Vec模型</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span> <span class="c1"># 自然语言处理</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">vector_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="c1"># Embedding维数</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># 窗口宽度</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">sg</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Skip-Gram</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">hs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># 不加分层softmax</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">negative</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># 负采样</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>  <span class="c1"># 初始学习率</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">min_alpha</span><span class="o">=</span><span class="mf">0.0007</span><span class="p">,</span> <span class="c1"># 最小学习率</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">seed</span><span class="o">=</span><span class="mi">14</span> <span class="c1"># 随机数种子</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 用随机游走序列构建词汇表</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">random_walks</span><span class="p">,</span> <span class="n">progress_per</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 训练（耗时1分钟左右）</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">random_walks</span><span class="p">,</span> <span class="n">total_examples</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">corpus_count</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">report_delay</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(16577429, 16582850)
+</code></pre>
+<h2 id="分析word2vec结果">分析Word2Vec结果</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 查看某个节点的Embedding</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">get_vector</span><span class="p">(</span><span class="s1">&#39;random forest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(256,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">get_vector</span><span class="p">(</span><span class="s1">&#39;random forest&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([ 0.23334791, -0.00155042, -0.33077806,  0.17064342, -0.1081422 ,
+        0.0355994 ,  0.24897015, -0.04796787, -0.75819224,  0.25839478,
+        0.6178689 ,  0.0565461 , -0.06071352, -0.04134927, -0.04617707,
+        0.103586  , -0.36969525,  0.15610352, -0.37987182,  0.4583097 ,
+       -0.33232433, -0.15699145,  0.21371919,  0.28104368,  0.10022977,
+       -0.37963775, -0.03466332,  0.53544474,  0.1582788 , -0.23802406,
+        0.31076565, -0.26209658, -0.5055485 , -0.09460515,  0.16454849,
+       -0.34730902,  0.23466834, -0.20844714,  0.00270234, -0.3288512 ,
+       -0.06863198, -0.20678101, -0.24483734,  0.10853583,  0.6155114 ,
+        0.1928504 , -0.7044639 ,  0.6126048 ,  0.17559509, -0.19937247,
+        0.4083251 , -0.2327426 , -0.04890826,  0.21921228, -0.11285872,
+       -0.13407706, -0.4656657 , -0.2325841 , -0.3509935 ,  0.44738993,
+        0.34505916,  0.0984872 , -0.30333465, -0.3040225 , -0.15608855,
+       -0.22470486, -0.14090897,  0.32624975,  0.02556773, -0.17766297,
+       -0.03282307, -0.06009924, -0.8818592 ,  0.25421733,  0.03796612,
+        0.15704152,  1.0321482 , -0.2573714 , -0.40552002, -0.1648857 ,
+       -0.22849622, -0.15332152,  0.11458287,  0.0682546 , -0.41684514,
+       -0.1707345 , -0.4403224 , -0.28976214, -0.4716022 ,  0.50526184,
+       -0.09183959,  0.17879933, -0.2811215 , -0.03059806,  0.25511235,
+        0.6181534 ,  0.29505378, -0.22633915, -0.03940143,  0.06210095,
+        0.21721607, -0.0526966 , -0.37159044,  0.35864654, -0.17438811,
+       -0.22126454, -0.4025731 ,  0.58789897, -0.41082326,  0.17033327,
+        0.34257182,  0.6182118 , -0.23921025, -0.21790318,  0.30060363,
+       -0.20056939, -0.36237326,  0.36493126,  0.11915668,  0.4602384 ,
+       -0.08704186, -0.30845055, -0.23525943, -0.11308478, -0.10704424,
+       -0.55574316, -0.20751908,  0.31260073,  0.21971068, -0.07155439,
+       -0.07340603, -0.17634007, -0.0146748 , -0.28767866,  0.17059626,
+       -0.35025132,  0.18504645, -0.38653925,  0.01171829, -0.9433046 ,
+       -0.38610327,  0.32028997, -0.3758984 ,  0.16362464, -0.0357476 ,
+       -0.40415367,  0.09392213,  0.13586934, -0.18233965,  0.08914205,
+        0.25584528,  0.05338218,  0.3587864 , -0.01985494,  0.17005035,
+       -0.03306824, -0.04700813, -0.26085326, -0.78282183,  0.44279492,
+        0.17237511, -0.08858976, -0.30706018,  0.09871512, -0.3005835 ,
+        0.04916183, -0.05475043, -0.04583912, -0.11915255,  0.25339088,
+       -0.37361142, -0.25820956, -0.16901338,  0.06111354, -0.22381096,
+       -0.67695826, -0.03763117,  0.28279755, -0.07734507, -0.09612124,
+       -0.25081888,  0.08107558,  0.3038904 ,  0.23102888, -0.14562789,
+       -0.169836  , -0.18778533, -0.06876044,  0.0312659 ,  0.52690244,
+        0.11245615, -0.19194236, -0.09534905, -0.354454  ,  0.44036543,
+       -0.443105  ,  0.19732304,  0.31750274,  0.5105512 , -0.03289589,
+       -0.1481061 ,  0.38620627, -0.42837468,  0.10600033, -0.09797872,
+       -0.01391832, -0.2905861 ,  0.06858752, -0.31003636,  0.52351254,
+        0.13377245, -0.70264685, -0.09665483, -0.16441043, -0.04715606,
+       -0.1264535 , -0.11374191,  0.422727  , -0.16340947,  0.1502349 ,
+       -0.07239548, -0.17635728, -0.06277203,  0.08725803,  1.0166868 ,
+        0.10296601,  0.08663206,  0.21920188,  0.04908649,  0.4252364 ,
+        0.17294641,  0.58820933,  1.0219544 , -0.37107244, -0.37064922,
+        0.3717883 ,  0.47950497, -0.37201375, -0.25528926,  0.45519346,
+        0.07936895, -0.18259984,  0.05479478,  0.01196737,  0.02831526,
+       -0.17895861,  0.35639855,  0.16127516, -0.59905547,  0.20060547,
+       -0.18414594,  0.4863781 ,  0.74616545, -0.21859436, -0.31797457,
+        0.10649797], dtype=float32)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 找相似词语</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">similar_by_word</span><span class="p">(</span><span class="s1">&#39;decision tree&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('drakon', 0.7287265658378601),
+ ('comparison sort', 0.69761723279953),
+ ('decision list', 0.6575663685798645),
+ ('behavior trees (artificial intelligence, robotics and control)',
+  0.6542879343032837),
+ ('behavior tree (artificial intelligence, robotics and control)',
+  0.653127908706665),
+ ('minimum spanning tree', 0.6494240164756775),
+ ('decision tree model', 0.6384998559951782),
+ ('decision matrix', 0.627086877822876),
+ ('decision stump', 0.5921448469161987),
+ ('pseudocode', 0.5691863298416138)]
+</code></pre>
+<h2 id="pca降维可视化">PCA降维可视化</h2>
+<h3 id="可视化全部词条的二维embedding">可视化全部词条的二维Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vectors</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 将Embedding用PCA降维到2维</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</span></span><span class="line"><span class="cl"><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">embed_2d</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">embed_2d</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(8560, 2)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># import os</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># import shutil</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># import urllib.request</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># import matplotlib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # 设置字体文件的URL和目标文件路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># font_url = &#34;https://github.com/StellarCN/scp_zh/raw/master/fonts/SimHei.ttf&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># target_font_path = os.path.join(matplotlib.get_data_path(), &#34;fonts/ttf/SimHei.ttf&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # 下载字体文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># urllib.request.urlretrieve(font_url, target_font_path)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # 找到matplotlibrc文件的路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># matplotlibrc_path = matplotlib.matplotlib_fname()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># # 获取matplotlibrc文件所在的文件夹路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># matplotlibrc_dir = os.path.dirname(matplotlibrc_path)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # 找到fonts/ttf目录的路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># fonts_dir = os.path.join(matplotlib.get_data_path(), &#34;fonts/ttf&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # 删除缓存文件夹中的内容</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cache_dir = matplotlib.get_cachedir()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># shutil.rmtree(cache_dir, ignore_errors=True)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># print(&#34;字体文件已下载到:&#34;, target_font_path)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(&#34;matplotlibrc文件所在目录:&#34;, matplotlibrc_dir)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(&#34;删除缓存文件夹:&#34;, cache_dir)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可视化某个词条的二维embedding">可视化某个词条的二维Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;computer vision&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_256d</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">term</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_256d</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1, 256)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_2d</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">term_256d</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">term_2d</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[-0.31159213, -0.55424124]], dtype=float32)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">term_2d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">term_2d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可视化某些词条的二维embedding">可视化某些词条的二维Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 计算PageRank重要度</span>
+</span></span><span class="line"><span class="cl"><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从高到低排序</span>
+</span></span><span class="line"><span class="cl"><span class="n">node_importance</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 取最高的前n个节点</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl"><span class="n">terms_chosen</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">node_importance</span><span class="p">[:</span><span class="n">n</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">terms_chosen</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 手动补充新节点</span>
+</span></span><span class="line"><span class="cl"><span class="n">terms_chosen</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;computer vision&#39;</span><span class="p">,</span><span class="s1">&#39;deep learning&#39;</span><span class="p">,</span><span class="s1">&#39;convolutional neural network&#39;</span><span class="p">,</span><span class="s1">&#39;convolution&#39;</span><span class="p">,</span><span class="s1">&#39;natural-language processing&#39;</span><span class="p">,</span><span class="s1">&#39;attention (machine learning)&#39;</span><span class="p">,</span><span class="s1">&#39;support-vector machine&#39;</span><span class="p">,</span><span class="s1">&#39;decision tree&#39;</span><span class="p">,</span><span class="s1">&#39;random forest&#39;</span><span class="p">,</span><span class="s1">&#39;computational imaging&#39;</span><span class="p">,</span><span class="s1">&#39;machine vision&#39;</span><span class="p">,</span><span class="s1">&#39;cognitive science&#39;</span><span class="p">,</span><span class="s1">&#39;neuroscience&#39;</span><span class="p">,</span><span class="s1">&#39;psychophysics&#39;</span><span class="p">,</span><span class="s1">&#39;brain&#39;</span><span class="p">,</span><span class="s1">&#39;visual cortex&#39;</span><span class="p">,</span><span class="s1">&#39;visual neuroscience&#39;</span><span class="p">,</span><span class="s1">&#39;cognitive model&#39;</span><span class="p">,</span><span class="s1">&#39;finite difference&#39;</span><span class="p">,</span><span class="s1">&#39;finite difference time domain&#39;</span><span class="p">,</span><span class="s1">&#39;finite difference coefficients&#39;</span><span class="p">,</span><span class="s1">&#39;finite difference methods for option pricing&#39;</span><span class="p">,</span><span class="s1">&#39;iso 128&#39;</span><span class="p">,</span><span class="s1">&#39;iso 10303&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">terms_chosen</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['graph theory',
+ 'chaos theory',
+ 'claude shannon',
+ 'information theory',
+ 'operations research',
+ 'quantum logic gate',
+ 'data mining',
+ 'remote sensing',
+ 'electromagnetic wave equation',
+ 'collective intelligence',
+ 'control theory',
+ 'fourier transform',
+ 'empathy',
+ 'false dilemma',
+ 'simulated reality',
+ 'superlens',
+ 'digital preservation',
+ 'wearable computer',
+ 'low-density parity-check code',
+ 'analytics',
+ 'spatial dependence',
+ 'constructed language',
+ 'correlation',
+ 'semantic web',
+ 'psychoacoustics',
+ 'collaborative software',
+ 'philosophy of perception',
+ 'cognitive science',
+ 'transhumanism',
+ 'self-awareness',
+ 'computer vision',
+ 'deep learning',
+ 'convolutional neural network',
+ 'convolution',
+ 'natural-language processing',
+ 'attention (machine learning)',
+ 'support-vector machine',
+ 'decision tree',
+ 'random forest',
+ 'computational imaging',
+ 'machine vision',
+ 'cognitive science',
+ 'neuroscience',
+ 'psychophysics',
+ 'brain',
+ 'visual cortex',
+ 'visual neuroscience',
+ 'cognitive model',
+ 'finite difference',
+ 'finite difference time domain',
+ 'finite difference coefficients',
+ 'finite difference methods for option pricing',
+ 'iso 128',
+ 'iso 10303']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 输入词条，输出词典中的索引号</span>
+</span></span><span class="line"><span class="cl"><span class="n">term2index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># index2term = model.wv.index_to_key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># term_index = np.array(term2index.values())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 可视化全部词条和关键词条的二维Embedding</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">terms_chosen</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">=</span> <span class="n">term2index</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="tsne降维可视化">TSNE降维可视化</h2>
+<h3 id="可视化全部词条的二维embedding-1">可视化全部词条的二维Embedding¶</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 将Embedding用TSNE降维到2维</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+</span></span><span class="line"><span class="cl"><span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">embed_2d</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可视化全部词条和关键词条的二维embedding">可视化全部词条和关键词条的二维Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">terms_chosen</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">=</span> <span class="n">term2index</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">embed_2d</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">embed_2d</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(8560, 2)
+</code></pre>
+<h3 id="导出tsne降维到二维之后的embedding">导出TSNE降维到二维之后的Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">terms_chosen_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">terms_chosen</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span> <span class="o">=</span> <span class="n">term2index</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">terms_chosen_mask</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embed_2d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index_to_key</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pagerank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pagerank</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;chosen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">terms_chosen_mask</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>item</th>
+      <th>pagerank</th>
+      <th>chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>86.368530</td>
+      <td>19.423891</td>
+      <td>graph theory</td>
+      <td>0.000289</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>37.059536</td>
+      <td>-4.361592</td>
+      <td>information theory</td>
+      <td>0.000185</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49.873173</td>
+      <td>-24.942081</td>
+      <td>claude shannon</td>
+      <td>0.000173</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.228913</td>
+      <td>-9.877577</td>
+      <td>data mining</td>
+      <td>0.000091</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-27.195446</td>
+      <td>-0.748093</td>
+      <td>chaos theory</td>
+      <td>0.000083</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8555</th>
+      <td>-28.879446</td>
+      <td>54.118038</td>
+      <td>clive wearing</td>
+      <td>0.000050</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8556</th>
+      <td>-37.767330</td>
+      <td>20.450050</td>
+      <td>shy tory factor</td>
+      <td>0.000051</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8557</th>
+      <td>0.282963</td>
+      <td>60.908173</td>
+      <td>collective intentionality</td>
+      <td>0.000051</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8558</th>
+      <td>-13.359755</td>
+      <td>-6.086845</td>
+      <td>variational bayesian methods</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8559</th>
+      <td>22.884514</td>
+      <td>82.094078</td>
+      <td>vocabulary learning</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>8560 rows × 5 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;tsne_vis_2d.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可视化全部词条的三维embedding">可视化全部词条的三维Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 将Embedding用TSNE降维到2维</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+</span></span><span class="line"><span class="cl"><span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">embed_3d</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="导出tsne降维到三维之后的embedding">导出TSNE降维到三维之后的Embedding</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embed_3d</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embed_3d</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">embed_3d</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index_to_key</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pagerank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pagerank</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;chosen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">terms_chosen_mask</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Z</th>
+      <th>item</th>
+      <th>pagerank</th>
+      <th>chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25.126606</td>
+      <td>-1.095677</td>
+      <td>-5.323648</td>
+      <td>graph theory</td>
+      <td>0.000289</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12.123558</td>
+      <td>-8.145174</td>
+      <td>-4.209531</td>
+      <td>information theory</td>
+      <td>0.000185</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12.928997</td>
+      <td>-6.321793</td>
+      <td>2.291451</td>
+      <td>claude shannon</td>
+      <td>0.000173</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-7.868805</td>
+      <td>-13.286612</td>
+      <td>-14.298657</td>
+      <td>data mining</td>
+      <td>0.000091</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.674853</td>
+      <td>-2.698683</td>
+      <td>8.963208</td>
+      <td>chaos theory</td>
+      <td>0.000083</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8555</th>
+      <td>-5.377722</td>
+      <td>20.571009</td>
+      <td>3.298291</td>
+      <td>clive wearing</td>
+      <td>0.000050</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8556</th>
+      <td>-12.325991</td>
+      <td>19.030151</td>
+      <td>-8.670228</td>
+      <td>shy tory factor</td>
+      <td>0.000051</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8557</th>
+      <td>4.694840</td>
+      <td>23.837486</td>
+      <td>-1.217674</td>
+      <td>collective intentionality</td>
+      <td>0.000051</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8558</th>
+      <td>-11.294335</td>
+      <td>-2.773937</td>
+      <td>-14.848171</td>
+      <td>variational bayesian methods</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8559</th>
+      <td>-2.179960</td>
+      <td>17.069071</td>
+      <td>-16.326900</td>
+      <td>vocabulary learning</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>8560 rows × 6 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;tsne_vis_3d.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="作业">作业</h2>
+<p>用<code>tsne_vis_2d.csv</code>和<code>tsne_vis_3d.csv</code>做可视化</p>
+<p>参考代码：<a href="https://echarts.apache.org/examples/zh/editor.html?c=scatter3d&amp;gl=1&amp;theme=dark" target="_blank" rel="noopener noreffer">https://echarts.apache.org/examples/zh/editor.html?c=scatter3d&gl=1&theme=dark</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-09-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化" data-hashtags="机器学习,深度学习,图神经网络,DeepWalk,CS244W"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230923/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230923/" data-title="DeepWalk实战-维基百科词条图嵌入可视化"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/deepwalk/">DeepWalk</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230922/" class="prev" rel="prev" title="DeepWalk"><i class="fas fa-angle-left fa-fw"></i>DeepWalk</a>
+            <a href="/20230924/" class="next" rel="next" title="Node2Vec">Node2Vec<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据结构 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+        <description>数据结构 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 25 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+    <title>多重算法实现的迷宫求解问题</title>
+    <link>http://www.spiritysdx.top/20210625/</link>
+    <pubDate>Fri, 25 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210625/</guid>
+    <description><![CDATA[前言 感谢组员的共同协作。 题目背景 迷宫问题是取自心理学的一个古典实验。在该实验中，将一只老鼠放入一个无顶大盒子的门口处，在出口处放置一块奶酪，]]></description>
+</item><item>
+    <title>C&#43;&#43;中序线索二叉链表的建立及遍历</title>
+    <link>http://www.spiritysdx.top/20210519/</link>
+    <pubDate>Wed, 19 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210519/</guid>
+    <description><![CDATA[题目 中序线索二叉链表的建立及遍历(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：结点的相关信息，中序序列 处理方法: 1 2 3 4 5 6 1]]></description>
+</item><item>
+    <title>C&#43;&#43;二叉树中叶子结点的个数与深度的统计</title>
+    <link>http://www.spiritysdx.top/20210517/</link>
+    <pubDate>Mon, 17 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210517/</guid>
+    <description><![CDATA[题目 统计二叉树中叶子结点的个数，计算二叉树的深度(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：叶子结点的个数，二叉树的深度 处理]]></description>
+</item><item>
+    <title>C&#43;&#43;二叉树的建立</title>
+    <link>http://www.spiritysdx.top/20210516/</link>
+    <pubDate>Sun, 16 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210516/</guid>
+    <description><![CDATA[题目 二叉链表的建立，先（中、后）序遍历(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：先（中、后）序序列 处理方法：通过补虚结点，]]></description>
+</item><item>
+    <title>C&#43;&#43;栈结构实现行编辑</title>
+    <link>http://www.spiritysdx.top/20210417/</link>
+    <pubDate>Sat, 17 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210417/</guid>
+    <description><![CDATA[题目 行编辑(数据结构严蔚敏C语言版的C++实现) 输入：一行有误的数据 输出：一行正确的数据 处理方法： 允许用户输入出差错，并在发现有误时及时更正]]></description>
+</item><item>
+    <title>C&#43;&#43;栈结构实现括号匹配</title>
+    <link>http://www.spiritysdx.top/20210415/</link>
+    <pubDate>Thu, 15 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210415/</guid>
+    <description><![CDATA[题目 括号匹配检验(数据结构严蔚敏C语言版的C++实现) 输入：一串括号 输出：检验结果（缺左括号、有多余左括号、左右不匹配、匹配成功） 处理方法：]]></description>
+</item><item>
+    <title>C&#43;&#43;栈结构实现进制转换</title>
+    <link>http://www.spiritysdx.top/20210414/</link>
+    <pubDate>Wed, 14 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210414/</guid>
+    <description><![CDATA[题目 数制转换(数据结构严蔚敏C语言版的C++实现) 输入：十进制整数 输出：八进制整数 处理方法：基于下列原理： 1 N = (N div d)×d + N mod d (其中：]]></description>
+</item><item>
+    <title>C&#43;&#43;单链表尾插法</title>
+    <link>http://www.spiritysdx.top/20210413/</link>
+    <pubDate>Tue, 13 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210413/</guid>
+    <description><![CDATA[题目 尾插法(数据结构严蔚敏C语言版的C++实现) 输入：键盘输入 输出：带头结点的单链表L 处理方法：待插结点*s插入到最后一个结点之后。 步骤： 1]]></description>
+</item><item>
+    <title>C&#43;&#43;非递减有序顺序表合并</title>
+    <link>http://www.spiritysdx.top/20210412/</link>
+    <pubDate>Mon, 12 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210412/</guid>
+    <description><![CDATA[题目 按值非递减有序排列表合并(数据结构严蔚敏C语言版的C++实现) 已知线性表La和Lb中的数据元素按值非递减有序排列，要求将La和Lb归并成]]></description>
+</item><item>
+    <title>C&#43;&#43;顺序表合并</title>
+    <link>http://www.spiritysdx.top/20210411/</link>
+    <pubDate>Sun, 11 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210411/</guid>
+    <description><![CDATA[题目 C++顺序表合并(数据结构严蔚敏C语言版的C++实现) 求两个线性表La和Lb的并集La = La U Lb （用顺序表实现） ( 要求：“就地运算”，运算]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>DQN - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/dqn/</link>
+        <description>DQN - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 06 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/dqn/" rel="self" type="application/rss+xml" /><item>
+    <title>Deep Q-Network (DQN) (Value-Based learning)</title>
+    <link>http://www.spiritysdx.top/20230906/</link>
+    <pubDate>Wed, 06 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230906/</guid>
+    <description><![CDATA[寻找最佳的Q值函数 实际并不知道最佳的Q值函数，需要使用神经网络 Q(s,a;w) 来近似最佳的Q值函数。 实际流程大致为当前状态转换为矩阵后，通过卷积层提取特征]]></description>
+</item><item>
+    <title>图优化问题经常拿来比较的一些模型</title>
+    <link>http://www.spiritysdx.top/20230816/</link>
+    <pubDate>Wed, 16 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230816/</guid>
+    <description><![CDATA[前言 两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分 由于两篇文章都涉及该方法的比较，所以重头戏是DQN以及其衍生的一]]></description>
+</item></channel>
+</rss>

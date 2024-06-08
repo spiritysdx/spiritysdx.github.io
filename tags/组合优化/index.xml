@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>组合优化 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/</link>
+        <description>组合优化 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Mon, 25 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+    <title>用图卷积和树搜索解决组合优化问题(含笔记)</title>
+    <link>http://www.spiritysdx.top/20230925/</link>
+    <pubDate>Mon, 25 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230925/</guid>
+    <description><![CDATA[基于原文作的个人笔记，在此展出 建议按住ctrl然后滑动鼠标滑轮放大查看，笔记做的很小，图片分辨率很高，放大也不会糊 原文：Combinator]]></description>
+</item><item>
+    <title>命题逻辑</title>
+    <link>http://www.spiritysdx.top/20230714/</link>
+    <pubDate>Tue, 18 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230714/</guid>
+    <description><![CDATA[一、命题逻辑与真值函数 命题逻辑：（又称命题演算、布尔逻辑）是最简单的一种形式逻辑系统。 主要研究对象：命题（常用p,q,r&hellip;代表]]></description>
+</item></channel>
+</rss>

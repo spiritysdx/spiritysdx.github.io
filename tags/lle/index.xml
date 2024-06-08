@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>LLE - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/lle/</link>
+        <description>LLE - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/lle/" rel="self" type="application/rss+xml" /><item>
+    <title>关于手写数字识别的特征工程</title>
+    <link>http://www.spiritysdx.top/20221230/</link>
+    <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221230/</guid>
+    <description><![CDATA[只给出个人完成的代码部分与一些简单的结果和说明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 from sklearn.decomposition import PCA from sklearn.ensemble import RandomForestClassifier as RFC from sklearn.neighbors import KNeighborsClassifier as KNN from sklearn.model_selection import cross_val_score from sklearn import datasets, decomposition,manifold import matplotlib.pyplot as plt import pandas as]]></description>
+</item></channel>
+</rss>

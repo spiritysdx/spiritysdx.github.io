@@ -1,0 +1,115 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>二叉树的博客</title>
+        <link>http://www.spiritysdx.top/</link>
+        <description>个人学习日志</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="http://www.spiritysdx.top/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>conda使用GPU时的一些陷阱</title>
+    <link>http://www.spiritysdx.top/20240607/</link>
+    <pubDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240607/</guid>
+    <description><![CDATA[conda默认的python环境版本过高，需要降级默认的Python环境 假设原始环境是Python12的环境 直接使用 1 conda install python==3.11 类似上述方法指定]]></description>
+</item><item>
+    <title>给机房的LXD容器配置跳板机进行连接</title>
+    <link>http://www.spiritysdx.top/20240515/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240515/</guid>
+    <description><![CDATA[前言 由于机房的服务器(下称宿主机)都是没有公网IP的(只有NAT的IPV4网络)，所以需要通过跳板机进行连接。 由于Pycharm的远程连接是]]></description>
+</item><item>
+    <title>在Pycharm上连接远程虚拟环境进行使用</title>
+    <link>http://www.spiritysdx.top/20240514/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240514/</guid>
+    <description><![CDATA[前言 相信通过前面教程，大部分问题都解决了，目前就剩一个Pycharm怎么连接远程的LXC容器运行Python项目的问题了。 (为什么不用VSC]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04安装LXD共享GPU资源</title>
+    <link>http://www.spiritysdx.top/20240513/</link>
+    <pubDate>Mon, 13 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240513/</guid>
+    <description><![CDATA[前言 为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LX]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04的Linux进行内穿映射端口</title>
+    <link>http://www.spiritysdx.top/20240512/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240512/</guid>
+    <description><![CDATA[前言 因为机房的机器没有公网IP，所以需要跳板机进行IP映射内穿，所以需要2样东西： 1 服务器A - 服务端 - 一个有公网IPV4地址的云服务器，IP]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04的Linux安装SSH的server</title>
+    <link>http://www.spiritysdx.top/20240511/</link>
+    <pubDate>Sat, 11 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240511/</guid>
+    <description><![CDATA[废话少说 1 sed -i &#39;s/.*precedence ::ffff:0:0\/96.*/precedence ::ffff:0:0\/96 100/g&#39; /etc/gai.conf 1 2 3 4 apt update apt install openssh-server -y systemctl enable --now ssh systemctl status ssh 1 2 3 4 5 6 7 8 9 sed -i &#39;s/^#\?Port.*/Port 22/g&#39; /etc/ssh/sshd_config sed -i &#39;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config sed -i &#39;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config sed -i &#39;s/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/&#39; /etc/ssh/sshd_config sed -i &#39;s/#ListenAddress ::/ListenAddress ::/&#39; /etc/ssh/sshd_config sed -i &#39;s/#AddressFamily any/AddressFamily any/&#39;]]></description>
+</item><item>
+    <title>在root权限下使用守护进程自托管Github的Runners</title>
+    <link>http://www.spiritysdx.top/20240510/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240510/</guid>
+    <description><![CDATA[前置条件 1 2 3 cd /root apt update apt install curl sudo -y 安装 执行下述命令 1 export RUNNER_ALLOW_RUNASROOT=1 执行后正常安装至于./config那一步，然后不要使用官方的启动方式，而是使用守护进程]]></description>
+</item><item>
+    <title>给机房的windows11系统安装Ubuntu22.04的Linux双系统</title>
+    <link>http://www.spiritysdx.top/20240509/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240509/</guid>
+    <description><![CDATA[前言 前置条件以及一些碎碎念： 至少两块硬盘，一块硬盘已安装Windows11，另一块硬盘用于安装Ubuntu22.04，两块硬盘保证系统不会互]]></description>
+</item><item>
+    <title>Golang的重定向比Python的重定向次数要多</title>
+    <link>http://www.spiritysdx.top/20240328/</link>
+    <pubDate>Thu, 28 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240328/</guid>
+    <description><![CDATA[前言 之前有使用 FastAPI 开发过一套后端，但占用属实有点大，最近使用 Gin-Vue-Admin 进行重构，在构建爬虫模块的时候，发现了一些有趣的事情，Python的重定向比Go]]></description>
+</item><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[前言 最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。 pve proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方]]></description>
+</item><item>
+    <title>神经网络(GNN)的表达能力</title>
+    <link>http://www.spiritysdx.top/20231101/</link>
+    <pubDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231101/</guid>
+    <description><![CDATA[GNN GIN]]></description>
+</item><item>
+    <title>阿里云、腾讯云、甲骨文云、华为云、UCLOUD的监控卸载</title>
+    <link>http://www.spiritysdx.top/20231025/</link>
+    <pubDate>Wed, 25 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231025/</guid>
+    <description><![CDATA[前言 众所周知的原因，服务器大厂的监控一直是介于保护隐私和侵犯隐私的边缘的，所以为了去除掉这些烦人的监控，我开发了下面的脚本进行一键卸载 脚本 脚]]></description>
+</item><item>
+    <title>GAT 详解</title>
+    <link>http://www.spiritysdx.top/20231024/</link>
+    <pubDate>Tue, 24 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231024/</guid>
+    <description><![CDATA[GAT 原文： 流程 上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.]]></description>
+</item><item>
+    <title>GraphSAGE 详解</title>
+    <link>http://www.spiritysdx.top/20231023/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231023/</guid>
+    <description><![CDATA[前言 空域提出 &ndash;&gt; 频域提出 &ndash;&gt; 图神经网络提出 &ndash;&gt; 主要回到空域发展 图表示学习 和 图神经网络 平行的两个方向，互补的方向。 MPNN 后面两个图神经网络都是基于 MPNN 进行]]></description>
+</item><item>
+    <title>GCN 详解</title>
+    <link>http://www.spiritysdx.top/20231022/</link>
+    <pubDate>Sun, 22 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231022/</guid>
+    <description><![CDATA[前言 GCN 可以说是一个函数拟合器。 每个计算图就是一个样本 感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则]]></description>
+</item></channel>
+</rss>

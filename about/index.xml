@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on 二叉树的博客</title>
+    <link>http://www.spiritysdx.top/about/</link>
+    <description>Recent content in Abouts on 二叉树的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+    <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster>
+    <lastBuildDate>Mon, 22 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客相关资源</title>
+      <link>http://www.spiritysdx.top/about/ziyuan/</link>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+      <author>spiritlhlbusiness@163.com (二叉树上的我)</author>
+      <guid>http://www.spiritysdx.top/about/ziyuan/</guid>
+      <description>尹成爬虫课件 蓝奏云链接 电脑抓包工具fiddler fiddler百度云盘链接 提取码：qk5c fiddler蓝奏云盘链接 爬虫headers伪装U</description>
+    </item>
+    
+    <item>
+      <title>关于本站</title>
+      <link>http://www.spiritysdx.top/about/about/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      <author>spiritlhlbusiness@163.com (二叉树上的我)</author>
+      <guid>http://www.spiritysdx.top/about/about/</guid>
+      <description>更多学习资料欢迎访问吾爱破解论坛，本人工作向GitHub账户，本人娱乐向Github账户获取。 本站用于本人的学习笔记展出，以及部分个人兴趣使</description>
+    </item>
+    
+  </channel>
+</rss>

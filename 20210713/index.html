@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>多元回归和熵值评价法及多目标遗传优化算法 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="多元回归和熵值评价法及多目标遗传优化算法" />
+<meta property="og:description" content="前言 感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。 第一届长三角数学建模 B题 锅炉水冷壁温度曲线 1Stopt多元拟合 个人体会： 只" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20210713/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="多元回归和熵值评价法及多目标遗传优化算法"/>
+<meta name="twitter:description" content="前言 感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。 第一届长三角数学建模 B题 锅炉水冷壁温度曲线 1Stopt多元拟合 个人体会： 只"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210713/" /><link rel="prev" href="http://www.spiritysdx.top/20210709/" /><link rel="next" href="http://www.spiritysdx.top/20210714/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "多元回归和熵值评价法及多目标遗传优化算法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210713\/"
+        },"genre": "posts","keywords": "matlab, 数学建模, 皮尔逊相关系数, 熵值法, 多元函数拟合","wordcount":  2776 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210713\/","datePublished": "2021-07-13T00:00:00+00:00","dateModified": "2021-07-13T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">多元回归和熵值评价法及多目标遗传优化算法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-13">2021-07-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2776 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#第一届长三角数学建模">第一届长三角数学建模</a></li>
+    <li><a href="#b题--锅炉水冷壁温度曲线">B题  锅炉水冷壁温度曲线</a></li>
+    <li><a href="#1stopt多元拟合">1Stopt多元拟合</a></li>
+    <li><a href="#逐步线性回归">逐步线性回归</a></li>
+    <li><a href="#皮尔逊相关系数">皮尔逊相关系数</a></li>
+    <li><a href="#熵值法">熵值法</a></li>
+    <li><a href="#第一问代码">第一问代码</a></li>
+    <li><a href="#多目标遗传优化算法">多目标遗传优化算法</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。</p>
+<h2 id="第一届长三角数学建模">第一届长三角数学建模</h2>
+<h2 id="b题--锅炉水冷壁温度曲线">B题  锅炉水冷壁温度曲线</h2>
+<h2 id="1stopt多元拟合">1Stopt多元拟合</h2>
+<p>个人体会：</p>
+<p>只能确定2个自变量1个因变量的拟合函数形式，更高维的无法寻找公式进行拟合。</p>
+<p>优点是优化算法基本包含，可以拿来做模型优化（简单的函数形式）。</p>
+<p>多于2个自变量的拟合可以使用逐步线性回归法（matlab内置工具箱），缺点是拟合项数会很多，难以写出函数形式。</p>
+<p><strong>ps：相关资源在右上角博客资源页面</strong></p>
+<h2 id="逐步线性回归">逐步线性回归</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">clc</span>
+</span></span><span class="line"><span class="cl"><span class="n">clear</span> <span class="n">all</span>
+</span></span><span class="line"><span class="cl"><span class="n">X1</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件1.xlsx&#39;</span><span class="p">);</span><span class="c">%因变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">data1</span><span class="p">=</span><span class="n">X1</span><span class="p">(</span><span class="mi">3172</span><span class="p">:</span><span class="k">end</span><span class="p">,</span><span class="mi">11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">X2</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件2.xlsx&#39;</span><span class="p">);</span><span class="c">%自变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">data2</span><span class="p">=</span><span class="n">X2</span><span class="p">(</span><span class="mi">3172</span><span class="p">:</span><span class="k">end</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">50</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c">%1 2 3 4 6 12 13 31 34 37 38 39</span>
+</span></span><span class="line"><span class="cl"><span class="c">%temp=[data2,data2.^2,data2.^3,log10(data2)];</span>
+</span></span><span class="line"><span class="cl"><span class="c">%stepwise(temp,data1);%0.6990</span>
+</span></span><span class="line"><span class="cl"><span class="c">%temp1=data2;</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp1</span><span class="p">=[</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">4</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">6</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">12</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">13</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">31</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">34</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">37</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">38</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">39</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp2</span><span class="p">=[</span><span class="n">temp1</span><span class="p">,</span><span class="n">temp1</span><span class="o">.^</span><span class="mi">2</span><span class="p">,</span><span class="n">temp1</span><span class="o">.^</span><span class="mi">3</span><span class="p">,</span><span class="n">temp1</span><span class="o">.^</span><span class="mi">4</span><span class="p">,</span><span class="n">temp1</span><span class="o">.^</span><span class="mi">5</span><span class="p">,</span><span class="nb">log10</span><span class="p">(</span><span class="n">temp1</span><span class="p">),</span><span class="mf">1.</span><span class="o">/</span><span class="n">temp1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c">%stepwise(temp2,data1);%0.6990</span>
+</span></span><span class="line"><span class="cl"><span class="n">stepwise</span><span class="p">(</span><span class="n">temp2</span><span class="p">,</span><span class="n">data1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c">%12列拟合相关度54%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%stats beta</span>
+</span></span><span class="line"><span class="cl"><span class="c">%temp3=[x1,x2,x3,x4,x6,x12,x13,x31,x34,x37,x38,x39];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重点是这个：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">stepwise</span><span class="p">(</span>自变量函数项<span class="p">,</span>因变量<span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="皮尔逊相关系数">皮尔逊相关系数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">clc</span>
+</span></span><span class="line"><span class="cl"><span class="n">clear</span> <span class="n">all</span>
+</span></span><span class="line"><span class="cl"><span class="n">X1</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件1.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data1</span><span class="p">=</span><span class="n">X1</span><span class="p">(:,</span><span class="mi">11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">X2</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件2.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data2</span><span class="p">=</span><span class="n">X2</span><span class="p">(:,</span><span class="mi">44</span><span class="p">:</span><span class="k">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c">%data=zscore(data);%对变量标准化</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span><span class="p">=</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="c">%生成皮尔森相关性系数计算公式</span>
+</span></span><span class="line"><span class="cl"><span class="n">pershen</span><span class="p">=</span><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">);</span><span class="c">%求附件一管道十对附件二111个操作变量的皮尔森相关性系数</span>
+</span></span><span class="line"><span class="cl"><span class="n">pershen</span><span class="p">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">pershen</span><span class="p">);</span> <span class="c">%将皮尔森相关性系数求取绝对值</span>
+</span></span><span class="line"><span class="cl"><span class="n">csvwrite</span><span class="p">(</span><span class="s">&#39;wenti4.csv&#39;</span><span class="p">,</span><span class="n">pershen</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似照着写10个管道的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">clc</span>
+</span></span><span class="line"><span class="cl"><span class="n">clear</span> <span class="n">all</span>
+</span></span><span class="line"><span class="cl"><span class="n">X1</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件1.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data1</span><span class="p">=</span><span class="n">X1</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="mi">11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">X2</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;附件2.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data2</span><span class="p">=</span><span class="n">X2</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c">%data=zscore(data);%对变量进行标准化</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span><span class="p">=</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data</span><span class="p">);</span><span class="c">% 生成皮尔森相关性系数计算公式</span>
+</span></span><span class="line"><span class="cl"><span class="n">pershen</span><span class="p">=</span><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="k">end</span><span class="p">);</span><span class="c">%求附件一十个管道对附件二111个操作变量和53个状态变量的皮尔森相关性系数</span>
+</span></span><span class="line"><span class="cl"><span class="n">pershen</span><span class="p">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">pershen</span><span class="p">);</span><span class="c">%将皮尔森相关性系数求取绝对值</span>
+</span></span><span class="line"><span class="cl"><span class="n">csvwrite</span><span class="p">(</span><span class="s">&#39;wenti3.csv&#39;</span><span class="p">,</span><span class="n">pershen</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c">%经过Excel筛选皮尔森相关性系数最大列数分别为119 112 114 5 115 121 91 92 1 73</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=[</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">119</span><span class="p">),</span><span class="n">data2</span><span class="p">(:,</span><span class="mi">112</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl"><span class="n">csvwrite</span><span class="p">(</span><span class="s">&#39;data10.csv&#39;</span><span class="p">,</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">拟合函数图像代码：
+</span></span><span class="line"><span class="cl"><span class="n">clc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">clear</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data1.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">366.623574952674</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="o">-</span><span class="mf">6309.81591583794</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">57878.3062818374</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">15903.1406517026</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">53.4927163299915</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">0.0889609164030065</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="mf">542.236136002024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="o">-</span><span class="mf">218.986158913513</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p9</span><span class="p">=</span><span class="mf">17.338434284516</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=(</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">p5</span><span class="o">*</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p6</span><span class="o">*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="p">)</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p7</span><span class="o">*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">p8</span><span class="o">*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p9</span><span class="o">.*</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道一温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data2.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">760228.816854935</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="mf">9.40803736929389</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">0.0110468670816608</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">2.36049470120192E-7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="mf">10924.026332869</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="o">-</span><span class="mf">58.9224433132279</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="mf">0.141102010823114</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="o">-</span><span class="mf">0.000126582641617285</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="n">y</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p8</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道二温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data3.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">278364.765528611</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="o">-</span><span class="mf">8053.13293300719</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="mf">702.700979973376</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">4525.26042721373</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">25.4017726090204</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">0.063270352619814</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">5.9005816668393E-5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="n">y</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道三温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data4.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">72.9520473758939</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="o">-</span><span class="mf">556.535840804353</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">6289.99299391888</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">38088.2044118192</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">187.688895088328</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="o">-</span><span class="mf">0.314791034083831</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">36.6632213229309</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="o">-</span><span class="mf">7693.38639121209</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p9</span><span class="p">=</span><span class="mf">65.3375954195133</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p10</span><span class="p">=</span><span class="mf">135.981090347525</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p11</span><span class="p">=</span><span class="mf">4418.78480395924</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=(</span><span class="n">p1</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="n">p7</span><span class="o">*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p9</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p11</span><span class="o">.*</span><span class="n">x</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p8</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p10</span><span class="o">.*</span><span class="n">x</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道四温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data5.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="mf">6636.72503715224</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="mf">826099.455060947</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">498.995296492192</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">1.80238545972406</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">1143812.65641828</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">3030.85414746531</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">4932.54637234801</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="mf">3.5943846329167</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=(</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="n">y</span><span class="p">)</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="n">y</span><span class="o">+</span><span class="n">p8</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道五温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data6.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">5883.284880402</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="mf">60.424921963928</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">0.164225401010505</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">0.000149967919524129</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="mf">61332.3184515964</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">79523.3753333665</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">54368.4125968335</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="mf">10405.5019030654</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p9</span><span class="p">=</span><span class="o">-</span><span class="mf">639.850116036068</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p8</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">4</span><span class="o">+</span><span class="n">p9</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道六温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data7.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="mf">201478.39441699</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="mf">372414.059548135</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="o">-</span><span class="mf">147089.218042618</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">12485.7289898091</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">224.561025015429</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">3.32272031088369</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">173.088899267814</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="mf">4.01866601526878</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="p">=</span> <span class="p">(</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="n">y</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">p8</span><span class="o">.*</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道七温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data8.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="mf">682051.099193563</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="o">-</span><span class="mf">166.30866016075</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="mf">0.443241999640146</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="o">-</span><span class="mf">0.000392578722960921</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="o">-</span><span class="mf">340091.23447923</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">58193.7202898162</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">3310.5722076251</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=</span><span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">.*</span><span class="n">x</span><span class="o">+</span><span class="n">p3</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p4</span><span class="o">.*</span><span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="o">+</span><span class="n">p5</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="n">p6</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="n">p7</span><span class="o">.*</span><span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道八温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data9.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="mf">421.576820618631</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="mf">386.777802412627</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="mf">119.426378501925</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="mf">481.83371005309</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="mf">254.888468073613</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">5.98063835171261</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="o">-</span><span class="mf">525.072127917344</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span><span class="p">=</span><span class="n">p1</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">p2</span><span class="p">)</span><span class="o">./</span><span class="n">p3</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">p4</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">p5</span><span class="p">)</span><span class="o">./</span><span class="n">p6</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">p7</span><span class="o">./</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">p2</span><span class="p">)</span><span class="o">./</span><span class="n">p3</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">p5</span><span class="p">)</span><span class="o">./</span><span class="n">p6</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道九温度曲线&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">csvread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\data\data10.csv&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="p">=</span><span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="p">=</span><span class="o">-</span><span class="mf">1217.63395897089</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="p">=</span><span class="o">-</span><span class="mf">27430.5826029483</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p3</span><span class="p">=</span><span class="mf">380.735591383903</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p4</span><span class="p">=</span><span class="o">-</span><span class="mf">8.70371508967982</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p5</span><span class="p">=</span><span class="mf">1639.83545496426</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p6</span><span class="p">=</span><span class="mf">276.790380488085</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p7</span><span class="p">=</span><span class="mf">423.356786189341</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p8</span><span class="p">=</span><span class="mf">27449.3757790585</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="p">=</span> <span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">p3</span><span class="p">)</span><span class="o">./</span><span class="n">p4</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">p5</span><span class="o">./</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">p6</span><span class="p">)</span><span class="o">./</span><span class="n">p7</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">p8</span><span class="o">./</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">p3</span><span class="p">)</span><span class="o">./</span><span class="n">p4</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">p6</span><span class="p">)</span><span class="o">./</span><span class="n">p7</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;采样点&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;温度&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;管道十温度曲线&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="熵值法">熵值法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function y=guiyi(x,type,ymin,ymax)
+</span></span><span class="line"><span class="cl">%实现正向或负向指标归一化，返回归一化后的数据矩阵
+</span></span><span class="line"><span class="cl">%x为原始数据矩阵, 一行代表一个样本, 每列对应一个指标
+</span></span><span class="line"><span class="cl">%type设定正向指标1,负向指标2
+</span></span><span class="line"><span class="cl">%ymin,ymax为归一化的区间端点
+</span></span><span class="line"><span class="cl">[n,m]=size(x);
+</span></span><span class="line"><span class="cl">y=zeros(n,m);
+</span></span><span class="line"><span class="cl">xmin=min(x);
+</span></span><span class="line"><span class="cl">xmax=max(x);
+</span></span><span class="line"><span class="cl">switch type
+</span></span><span class="line"><span class="cl">    case 1
+</span></span><span class="line"><span class="cl">        for j=1:m
+</span></span><span class="line"><span class="cl">            y(:,j)=(ymax-ymin)*(x(:,j)-xmin(j))/(xmax(j)-xmin(j))+ymin;
+</span></span><span class="line"><span class="cl">        end
+</span></span><span class="line"><span class="cl">    case 2
+</span></span><span class="line"><span class="cl">        for j=1:m
+</span></span><span class="line"><span class="cl">            y(:,j)=(ymax-ymin)*(xmax(j)-x(:,j))/(xmax(j)-xmin(j))+ymin;
+</span></span><span class="line"><span class="cl">        end
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">clc
+</span></span><span class="line"><span class="cl">clear all
+</span></span><span class="line"><span class="cl">X=xlsread(&#39;附件1.xlsx&#39;);
+</span></span><span class="line"><span class="cl">data=X(:,2:end);
+</span></span><span class="line"><span class="cl">[max_data,index1]=max(data);
+</span></span><span class="line"><span class="cl">[min_data,index]=min(data);
+</span></span><span class="line"><span class="cl">fangcha=var(data);
+</span></span><span class="line"><span class="cl">[max_data,index1]=max(data);
+</span></span><span class="line"><span class="cl">D=[fangcha;max_data]&#39;;
+</span></span><span class="line"><span class="cl">temp=[2 2];
+</span></span><span class="line"><span class="cl">[pj w]=shang(D,temp);
+</span></span><span class="line"><span class="cl">pj%pj 评价分
+</span></span><span class="line"><span class="cl">w%w 权重
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">function [s,w]=shang(x,ind)
+</span></span><span class="line"><span class="cl">%实现用熵值法求各指标(列）的权重及各数据行的得分
+</span></span><span class="line"><span class="cl">%x为原始数据矩阵, 一行代表一个样本, 每列对应一个指标
+</span></span><span class="line"><span class="cl">%ind指示向量，指示各列正向指标还是负向指标，1表示正向指标，2表示负向指标
+</span></span><span class="line"><span class="cl">%s返回各行（样本）得分，w返回各列权重
+</span></span><span class="line"><span class="cl">[n,m]=size(x); % n个样本, m个指标
+</span></span><span class="line"><span class="cl">%%数据的归一化处理
+</span></span><span class="line"><span class="cl">for i=1:m
+</span></span><span class="line"><span class="cl">    if ind(i)==1 %正向指标归一化
+</span></span><span class="line"><span class="cl">        X(:,i)=guiyi(x(:,i),1,0.002,0.996);    %若归一化到[0,1], 0会出问题
+</span></span><span class="line"><span class="cl">    else %负向指标归一化
+</span></span><span class="line"><span class="cl">        X(:,i)=guiyi(x(:,i),2,0.002,0.996);
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">%%计算第j个指标下，第i个样本占该指标的比重p(i,j)
+</span></span><span class="line"><span class="cl">for i=1:n
+</span></span><span class="line"><span class="cl">    for j=1:m
+</span></span><span class="line"><span class="cl">        p(i,j)=X(i,j)/sum(X(:,j));
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">%%计算第j个指标的熵值e(j)
+</span></span><span class="line"><span class="cl">k=1/log(n);
+</span></span><span class="line"><span class="cl">for j=1:m
+</span></span><span class="line"><span class="cl">    e(j)=-k*sum(p(:,j).*log(p(:,j)));
+</span></span><span class="line"><span class="cl">end
+</span></span><span class="line"><span class="cl">d=ones(1,m)-e; %计算信息熵冗余度
+</span></span><span class="line"><span class="cl">w=d./sum(d); %求权值w
+</span></span><span class="line"><span class="cl">s=100*w*X&#39;; %求综合得分
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第一问代码">第一问代码</h2>
+<p>抄的某公众号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">Y</span><span class="p">=</span><span class="n">xlsread</span><span class="p">(</span><span class="s">&#39;C:\Users\86152\Desktop\附件1.xlsx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="p">=</span><span class="n">Y</span><span class="p">(:,[</span><span class="mi">2</span><span class="p">:</span><span class="mi">11</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span><span class="p">=</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c">%求十个管道温度平均值</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">max_X</span><span class="p">,</span><span class="n">index</span><span class="p">]=</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c">%求十个管道温度最大值</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">min_X</span><span class="p">,</span><span class="n">index</span><span class="p">]=</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c">%求十个管道温度最小值</span>
+</span></span><span class="line"><span class="cl"><span class="n">DX</span><span class="p">=</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>      <span class="c">%求十个管道温度方差</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="多目标遗传优化算法">多目标遗传优化算法</h2>
+<p>先写目标函数，再给定约束，求符合的自变量取值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="k">function</span><span class="w"> </span>y<span class="p">=</span><span class="nf">fun</span><span class="p">(</span>x<span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">90</span><span class="o">/</span><span class="mi">3</span>  <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">80</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="mi">70</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)=</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clear</span>
+</span></span><span class="line"><span class="cl"><span class="n">clc</span>
+</span></span><span class="line"><span class="cl"><span class="n">fitnessfcn</span><span class="p">=@</span><span class="n">fun</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c">% 变量个数</span>
+</span></span><span class="line"><span class="cl"><span class="n">nvars</span><span class="p">=</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c">% lb&lt;= X &lt;= ub</span>
+</span></span><span class="line"><span class="cl"><span class="n">lb</span><span class="p">=[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">ub</span><span class="p">=[];</span>
+</span></span><span class="line"><span class="cl"><span class="c">% A*X &lt;= b </span>
+</span></span><span class="line"><span class="cl"><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span>    <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>  <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">     <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">     <span class="mi">0</span>    <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">48</span> <span class="p">;</span> <span class="mi">30</span> <span class="p">;</span> <span class="mi">30</span> <span class="p">;</span> <span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c">% Aeq*X = beq</span>
+</span></span><span class="line"><span class="cl"><span class="n">Aeq</span><span class="p">=[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">beq</span><span class="p">=[</span><span class="mi">120</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c">%最优个体系数paretoFraction</span>
+</span></span><span class="line"><span class="cl"><span class="c">%种群大小populationsize</span>
+</span></span><span class="line"><span class="cl"><span class="c">%最大进化代数generations</span>
+</span></span><span class="line"><span class="cl"><span class="c">%停止代数stallGenLimit</span>
+</span></span><span class="line"><span class="cl"><span class="c">%适应度函数偏差TolFun</span>
+</span></span><span class="line"><span class="cl"><span class="c">%函数gaplotpareto：绘制Pareto前沿 options=gaoptimset(&#39;paretoFraction&#39;,0.3,&#39;populationsize&#39;,200,&#39;generations&#39;,300,&#39;stallGenLimit&#39;,200,&#39;TolFun&#39;,1e-10,&#39;PlotFcns&#39;,@gaplotpareto);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">]=</span><span class="n">gamultiobj</span><span class="p">(</span><span class="n">fitnessfcn</span><span class="p">,</span><span class="n">nvars</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">options</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">fval</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">fval</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="s">&#39;pr&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;f_1(x)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;f_2(x)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">(</span><span class="s">&#39;Pareto front&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">grid</span> <span class="n">on</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>完整文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-长三角数学建模B题</a></strong></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法" data-hashtags="matlab,数学建模,皮尔逊相关系数,熵值法,多元函数拟合"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210713/" data-hashtag="matlab"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210713/" data-title="多元回归和熵值评价法及多目标遗传优化算法"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/matlab/">matlab</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>,&nbsp;<a href="/tags/%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/">皮尔逊相关系数</a>,&nbsp;<a href="/tags/%E7%86%B5%E5%80%BC%E6%B3%95/">熵值法</a>,&nbsp;<a href="/tags/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88/">多元函数拟合</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210709/" class="prev" rel="prev" title="改进的SIR差分模型及三个模型的应用"><i class="fas fa-angle-left fa-fw"></i>改进的SIR差分模型及三个模型的应用</a>
+            <a href="/20210714/" class="next" rel="next" title="某区域流体数据处理(只会写操作，不知道具体意义)">某区域流体数据处理(只会写操作，不知道具体意义)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

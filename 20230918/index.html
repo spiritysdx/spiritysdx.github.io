@@ -1,0 +1,2392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>NetworkX实战 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="NetworkX实战" />
+<meta property="og:description" content="北京上海地铁站图数据挖掘 上海、北京地铁站点图数据挖掘，计算地铁站点的最短路径、节点重要度、集群系数、连通性。 导入工具包 1 2 3 4 5 import networkx as nx import pandas" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20230918/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="NetworkX实战"/>
+<meta name="twitter:description" content="北京上海地铁站图数据挖掘 上海、北京地铁站点图数据挖掘，计算地铁站点的最短路径、节点重要度、集群系数、连通性。 导入工具包 1 2 3 4 5 import networkx as nx import pandas"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230918/" /><link rel="prev" href="http://www.spiritysdx.top/20230917/" /><link rel="next" href="http://www.spiritysdx.top/20230919/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NetworkX实战",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230918\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, 特征工程, 图神经网络, networkx, CS244W","wordcount":  11238 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230918\/","datePublished": "2023-09-18T00:00:00+00:00","dateModified": "2023-09-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">NetworkX实战</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-18">2023-09-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11238 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 23 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#导入工具包">导入工具包</a></li>
+    <li><a href="#可视化辅助函数">可视化辅助函数</a></li>
+    <li><a href="#字典按值排序辅助函数">字典按值排序辅助函数</a></li>
+    <li><a href="#导入地铁站连接表">导入地铁站连接表</a></li>
+    <li><a href="#创建图">创建图</a></li>
+    <li><a href="#从连接表创建图">从连接表创建图</a></li>
+    <li><a href="#检查是否导入成功">检查是否导入成功</a></li>
+    <li><a href="#可视化">可视化</a></li>
+    <li><a href="#shortest-path-最短路径">Shortest Path 最短路径</a></li>
+    <li><a href="#地铁导航系统">地铁导航系统</a></li>
+    <li><a href="#node-degree">Node Degree</a></li>
+    <li><a href="#degree-centrality">Degree Centrality</a></li>
+    <li><a href="#eigenvector-centrality可能不收敛">Eigenvector Centrality（可能不收敛）</a></li>
+    <li><a href="#betweenness-centrality必经之地">Betweenness Centrality（必经之地）</a></li>
+    <li><a href="#closeness-centrality去哪儿都近">Closeness Centrality（去哪儿都近）</a></li>
+    <li><a href="#pagerank">PageRank</a></li>
+    <li><a href="#katz-centrality">Katz Centrality</a></li>
+    <li><a href="#hits-hubs-and-authorities">HITS Hubs and Authorities</a></li>
+    <li><a href="#networkx文档社群属性-clustering">NetworkX文档：社群属性 Clustering</a></li>
+    <li><a href="#三角形个数">三角形个数</a></li>
+    <li><a href="#clustering-coefficient">Clustering Coefficient</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#导入工具包-1">导入工具包</a></li>
+    <li><a href="#导入全图">导入全图</a></li>
+    <li><a href="#指定graphlet">指定Graphlet</a></li>
+    <li><a href="#匹配graphlet统计个数">匹配Graphlet，统计个数</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#导入工具包-2">导入工具包</a></li>
+    <li><a href="#创建图-1">创建图</a></li>
+    <li><a href="#邻接矩阵adjacency-matrix">邻接矩阵（Adjacency Matrix）</a></li>
+    <li><a href="#拉普拉斯矩阵laplacian-matrix">拉普拉斯矩阵（Laplacian Matrix）</a></li>
+    <li><a href="#归一化拉普拉斯矩阵normalized-laplacian-matrix">归一化拉普拉斯矩阵（Normalized Laplacian Matrix）</a></li>
+    <li><a href="#特征值分解">特征值分解</a></li>
+    <li><a href="#特征值分布直方图">特征值分布直方图</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="北京上海地铁站图数据挖掘">北京上海地铁站图数据挖掘</h1>
+<p>上海、北京地铁站点图数据挖掘，计算地铁站点的最短路径、节点重要度、集群系数、连通性。</p>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="可视化辅助函数">可视化辅助函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">measure_name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nodes</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                   <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">measures</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">nodelist</span><span class="o">=</span><span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nodes</span><span class="o">.</span><span class="n">set_norm</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">SymLogNorm</span><span class="p">(</span><span class="n">linthresh</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">linscale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># labels = nx.draw_networkx_labels(G, pos)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">measure_name</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># plt.colorbar(nodes)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字典按值排序辅助函数">字典按值排序辅助函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dict_sort_by_value</span><span class="p">(</span><span class="n">dict_input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    输入字典，输出按值排序的字典
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dict_input</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="导入地铁站连接表">导入地铁站连接表</h2>
+<p>数据来源：</p>
+<p>上海地铁线路图：<a href="http://www.shmetro.com" target="_blank" rel="noopener noreffer">http://www.shmetro.com</a></p>
+<p>上海地铁时刻表：<a href="http://service.shmetro.com/hcskb/index.htm" target="_blank" rel="noopener noreffer">http://service.shmetro.com/hcskb/index.htm</a></p>
+<p>北京地铁线路图：<a href="https://map.bjsubway.com" target="_blank" rel="noopener noreffer">https://map.bjsubway.com</a></p>
+<p>北京地铁时刻表：<a href="https://www.bjsubway.com/station/smcsj" target="_blank" rel="noopener noreffer">https://www.bjsubway.com/station/smcsj</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 上海地铁站点连接表</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;shanghai_subway.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 北京地铁站点连接表</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># df = pd.read_csv(&#39;beijing_subway.csv&#39;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>前一站</th>
+      <th>后一站</th>
+      <th>地铁线</th>
+      <th>时间（分钟）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>莘庄</td>
+      <td>外环路</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>外环路</td>
+      <td>莲花路</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>莲花路</td>
+      <td>锦江乐园</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>锦江乐园</td>
+      <td>上海南站</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>上海南站</td>
+      <td>漕宝路</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>487</th>
+      <td>抚顺路</td>
+      <td>国权路</td>
+      <td>18</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>488</th>
+      <td>国权路</td>
+      <td>复旦大学</td>
+      <td>18</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>489</th>
+      <td>复旦大学</td>
+      <td>上海财经大学</td>
+      <td>18</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>490</th>
+      <td>上海财经大学</td>
+      <td>殷高路</td>
+      <td>18</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>491</th>
+      <td>殷高路</td>
+      <td>长江南路</td>
+      <td>18</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>492 rows × 4 columns</p>
+</div>
+<h2 id="创建图">创建图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 创建无向图</span>
+</span></span><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="从连接表创建图">从连接表创建图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span> <span class="c1"># 遍历表格的每一行</span>
+</span></span><span class="line"><span class="cl">    <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;前一站&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;后一站&#39;</span><span class="p">])],</span> <span class="n">line</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;地铁线&#39;</span><span class="p">],</span> <span class="n">time</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;时间（分钟）&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># for idx, row in df.iterrows(): # 遍历表格的每一行</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     G.add_edges_from([</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         (row[&#39;前一站&#39;], row[&#39;后一站&#39;], {&#39;line&#39;: row[&#39;地铁线&#39;], &#39;time&#39;:row[&#39;时间（分钟）&#39;]})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     ])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="检查是否导入成功">检查是否导入成功</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点个数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>402
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点个数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>402
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 连接个数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>480
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 查看连接属性特征</span>
+</span></span><span class="line"><span class="cl"><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[(</span><span class="s1">&#39;同济大学&#39;</span><span class="p">,</span> <span class="s1">&#39;四平路&#39;</span><span class="p">)]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'line': 10, 'time': 2}
+</code></pre>
+<h2 id="可视化">可视化</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点排版布局-默认弹簧布局</span>
+</span></span><span class="line"><span class="cl"><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 节点排版布局-每个节点单独设置坐标</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pos = {1: [0.1, 0.9], 2: [0.4, 0.8], 3: [0.8, 0.9], 4: [0.15, 0.55],</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         5: [0.5,  0.5], 6: [0.8,  0.5], 7: [0.22, 0.3], 8: [0.30, 0.27],</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         9: [0.38, 0.24], 10: [0.7,  0.3], 11: [0.75, 0.35]}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="shortest-path-最短路径">Shortest Path 最短路径</h2>
+<p>NetworkX-最短路径算法：<a href="https://networkx.org/documentation/stable/reference/algorithms/shortest_paths.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/algorithms/shortest_paths.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 任意两节点之间是否存在路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">has_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;昌吉东路&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;同济大学&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>True
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 任意两节点之间的最短路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;昌吉东路&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;同济大学&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['昌吉东路',
+ '上海赛车场',
+ '嘉定新城',
+ '马陆',
+ '陈翔公路',
+ '南翔',
+ '桃浦新村',
+ '武威路',
+ '祁连山路',
+ '李子园',
+ '上海西站',
+ '真如',
+ '枫桥路',
+ '曹杨路',
+ '镇坪路',
+ '中潭路',
+ '上海火车站',
+ '宝山路',
+ '海伦路',
+ '邮电新村',
+ '四平路',
+ '同济大学']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 任意两节点之间的最短路径长度</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;昌吉东路&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;同济大学&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>59
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 全图平均最短路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>41.06494956638255
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># # 某一站去其他站的最短路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nx.single_source_shortest_path(G, source=&#39;同济大学&#39;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 某一站去其他站的最短路径长度</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nx.single_source_shortest_path_length(G, source=&#39;同济大学&#39;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="地铁导航系统">地铁导航系统</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 指定起始站和终点站</span>
+</span></span><span class="line"><span class="cl"><span class="n">A_station</span> <span class="o">=</span> <span class="s1">&#39;昌吉东路&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">B_station</span> <span class="o">=</span> <span class="s1">&#39;同济大学&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取最短路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">shortest_path_list</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">A_station</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">B_station</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shortest_path_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">previous_station</span> <span class="o">=</span> <span class="n">shortest_path_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">next_station</span> <span class="o">=</span> <span class="n">shortest_path_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line_id</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[(</span><span class="n">previous_station</span><span class="p">,</span> <span class="n">next_station</span><span class="p">)][</span><span class="s1">&#39;line&#39;</span><span class="p">]</span> <span class="c1"># 地铁线编号</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[(</span><span class="n">previous_station</span><span class="p">,</span> <span class="n">next_station</span><span class="p">)][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>    <span class="c1"># 时间</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">---&gt;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">号线 </span><span class="si">{}</span><span class="s1">分钟&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">previous_station</span><span class="p">,</span> <span class="n">next_station</span><span class="p">,</span> <span class="n">line_id</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span> <span class="c1"># 输出结果</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1"># 最短路径长度</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;共计 </span><span class="si">{}</span><span class="s1"> 分钟&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">A_station</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">B_station</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>昌吉东路---&gt;上海赛车场 11号线 4分钟
+上海赛车场---&gt;嘉定新城 11号线 4分钟
+嘉定新城---&gt;马陆 11号线 3分钟
+马陆---&gt;陈翔公路 11号线 4分钟
+陈翔公路---&gt;南翔 11号线 3分钟
+南翔---&gt;桃浦新村 11号线 3分钟
+桃浦新村---&gt;武威路 11号线 3分钟
+武威路---&gt;祁连山路 11号线 2分钟
+祁连山路---&gt;李子园 11号线 3分钟
+李子园---&gt;上海西站 11号线 2分钟
+上海西站---&gt;真如 11号线 3分钟
+真如---&gt;枫桥路 11号线 2分钟
+枫桥路---&gt;曹杨路 11号线 2分钟
+曹杨路---&gt;镇坪路 4号线 3分钟
+镇坪路---&gt;中潭路 4号线 2分钟
+中潭路---&gt;上海火车站 4号线 3分钟
+上海火车站---&gt;宝山路 4号线 4分钟
+宝山路---&gt;海伦路 4号线 3分钟
+海伦路---&gt;邮电新村 10号线 2分钟
+邮电新村---&gt;四平路 10号线 2分钟
+四平路---&gt;同济大学 10号线 2分钟
+共计 59 分钟
+</code></pre>
+<h2 id="node-degree">Node Degree</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict(G.degree())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(dict(G.degree()))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()),</span> <span class="s1">&#39;Node Degree&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="degree-centrality">Degree Centrality</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.degree_centrality(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.degree_centrality(G))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Degree Centrality&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="eigenvector-centrality可能不收敛">Eigenvector Centrality（可能不收敛）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.eigenvector_centrality(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dict_sort_by_value</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('南京西路', 0.34518830475920503),
+ ('人民广场', 0.32714367869804883),
+ ('陕西南路', 0.29476635705907395),
+ ('一大会址·黄陂南路', 0.27634308858888684),
+ ('静安寺', 0.27321037099703027),
+ ('汉中路', 0.23555647374614153),
+ ('大世界', 0.22428268234399096),
+ ('常熟路', 0.18814941101791502),
+ ('曲阜路', 0.17433210873324256),
+ ('南京东路', 0.16614884934649515),
+ ('一大会址·新天地', 0.15807115407289815),
+ ('豫园', 0.1560268098793676),
+ ('老西门', 0.14902071652673546),
+ ('自然博物馆', 0.1433653828402798),
+ ('新闸路', 0.13890944689388865),
+ ('嘉善路', 0.13046505843944672),
+ ('江苏路', 0.12516435598675363),
+ ('淮海中路', 0.12423759493693706),
+ ('肇嘉浜路', 0.12087703703752431),
+ ('徐家汇', 0.10860529839818872),
+ ('天潼路', 0.0972848797028609),
+ ('上海图书馆', 0.0957967326770932),
+ ('交通大学', 0.09326712605450173),
+ ('陆家嘴', 0.09259583711035488),
+ ('武定路', 0.0869184732746459),
+ ('昌平路', 0.08492332314892047),
+ ('隆德路', 0.08405180976485153),
+ ('武宁路', 0.07885946996469545),
+ ('曹杨路', 0.07765153506881935),
+ ('上海火车站', 0.07677540807840737),
+ ('江宁路', 0.07562534195479777),
+ ('衡山路', 0.07326580131695953),
+ ('马当路', 0.07228575502247306),
+ ('长寿路', 0.070782329141782),
+ ('陆家浜路', 0.06528067406662807),
+ ('宜山路', 0.0633384339774855),
+ ('大木桥路', 0.06276223702141297),
+ ('东安路', 0.06238176849565273),
+ ('金沙江路', 0.058751965444709536),
+ ('中山公园', 0.056441377217852876),
+ ('上海体育馆', 0.056272028186685856),
+ ('打浦桥', 0.05005398149819857),
+ ('虹桥路', 0.048190584835098596),
+ ('镇坪路', 0.04729440444519273),
+ ('中兴路', 0.046209625938393645),
+ ('龙华中路', 0.03972543191788755),
+ ('上海游泳馆', 0.03284216844978234),
+ ('中潭路', 0.0306300344668945),
+ ('上海体育场', 0.029297614084239275),
+ ('四川北路', 0.02775006843829703),
+ ('东昌路', 0.026993861657928154),
+ ('漕宝路', 0.026648571941170006),
+ ('浦东南路', 0.02592997856476124),
+ ('国际客运中心', 0.02586095375191745),
+ ('延安西路', 0.02583496933801722),
+ ('西藏南路', 0.02488675862249297),
+ ('宝山路', 0.024541259007936158),
+ ('龙华', 0.024403908411204447),
+ ('桂林路', 0.022912025965744074),
+ ('枫桥路', 0.022769743149125294),
+ ('中宁路', 0.022769743149125294),
+ ('鲁班路', 0.021639260802360106),
+ ('漕溪路', 0.020527666807312838),
+ ('中山北路', 0.020274763838109527),
+ ('大渡河路', 0.019805076597075946),
+ ('龙漕路', 0.019788994948518823),
+ ('世博会博物馆', 0.01940734737404672),
+ ('娄山关路', 0.018847854611684107),
+ ('小南门', 0.01824826459592638),
+ ('桂林公园', 0.017013822697997696),
+ ('世纪大道', 0.016756099978825333),
+ ('海伦路', 0.015128915024740227),
+ ('上海南站', 0.01483211996475074),
+ ('真如', 0.014565008548043375),
+ ('西藏北路', 0.012857640018257952),
+ ('宋园路', 0.01272971743342056),
+ ('岚皋路', 0.012491658380544748),
+ ('浦东大道', 0.012446070401746818),
+ ('后滩', 0.011346417324877846),
+ ('长风公园', 0.00954424219179578),
+ ('商城路', 0.00864086121103916),
+ ('石龙路', 0.008550854087711803),
+ ('东宝兴路', 0.007508673168681236),
+ ('提篮桥', 0.007476289289692376),
+ ('铜川路', 0.007249426679812461),
+ ('中华艺术宫', 0.007232801738549839),
+ ('梅岭北路', 0.006680680656542667),
+ ('南浦大桥', 0.006657191218658478),
+ ('云锦路', 0.006473532928517094),
+ ('吴中路', 0.0063746443228935214),
+ ('世博大道', 0.006328898598717274),
+ ('长清路', 0.0062286609139391115),
+ ('上海西站', 0.006195443108502219),
+ ('漕河泾开发区', 0.0060533904113758644),
+ ('虹口足球场', 0.005875555718867289),
+ ('杨高中路', 0.005778121061354283),
+ ('红宝石路', 0.005370142786911231),
+ ('延长路', 0.005354109068034759),
+ ('真北路', 0.00523168023322469),
+ ('威宁路', 0.004978825017992365),
+ ('源深体育中心', 0.004969251340305569),
+ ('临平路', 0.004827039756296572),
+ ('浦电路', 0.004572594456108166),
+ ('虹漕路', 0.0044957409194985466),
+ ('上海科技馆', 0.004480147523162711),
+ ('大连路', 0.0044254553108306685),
+ ('耀华路', 0.0044110460960415845),
+ ('邮电新村', 0.004167930947709774),
+ ('杨树浦路', 0.004164635049643304),
+ ('锦江乐园', 0.003919476448894465),
+ ('华东理工大学', 0.003919476448893693),
+ ('源深路', 0.003569512135038515),
+ ('民生路', 0.0033753044571646325),
+ ('伊犁路', 0.003362845014875709),
+ ('新村路', 0.0032994414915865394),
+ ('成山路', 0.0031411487140143774),
+ ('姚虹路', 0.0029004082761595966),
+ ('塘桥', 0.0020799150248948127),
+ ('昌邑路', 0.0020146473642981126),
+ ('真光路', 0.0019152696299063227),
+ ('曲阳路', 0.001883693955659403),
+ ('龙耀路', 0.001811408766047648),
+ ('蓝村路', 0.0017682199268821354),
+ ('四平路', 0.001755295103356084),
+ ('迎春路', 0.0017141311537059482),
+ ('武威东路', 0.0016368308747279113),
+ ('李子园', 0.0016368308531014269),
+ ('合川路', 0.0015994233244844365),
+ ('芳甸路', 0.0015628733049145526),
+ ('赤峰路', 0.001551547270322036),
+ ('江浦公园', 0.0014599564930694298),
+ ('上海马戏城', 0.0014138912315826064),
+ ('世纪公园', 0.0013937561653742923),
+ ('祁连山南路', 0.00138202432056844),
+ ('北新泾', 0.0013160601758069933),
+ ('云台路', 0.0012637460791386503),
+ ('虹梅路', 0.0011880635902502042),
+ ('龙阳路', 0.0011663034785088777),
+ ('东明路', 0.0010941201839890734),
+ ('莲花路', 0.001035849251776343),
+ ('罗秀路', 0.0010358492517732573),
+ ('杨思', 0.0009883693868621057),
+ ('北洋泾路', 0.0009123104804158303),
+ ('水城路', 0.0008888380045468889),
+ ('大华三路', 0.0008715099898583807),
+ ('东方体育中心', 0.0008616466562712704),
+ ('高科西路', 0.0007074848196767199),
+ ('丹阳路', 0.0006242578841500306),
+ ('歇浦路', 0.000592890289872722),
+ ('江浦路', 0.0005891525706053762),
+ ('鞍山新村', 0.0005787111669631342),
+ ('蓝天路', 0.0005535268088532484),
+ ('平凉路', 0.0005144548922657166),
+ ('上海儿童医学中心', 0.0005107272054483918),
+ ('真新新村', 0.0005060398632236523),
+ ('同济大学', 0.00048045161002464577),
+ ('古浪路', 0.0004324787271686449),
+ ('祁连山路', 0.00043247863978375346),
+ ('星中路', 0.00042263199138590753),
+ ('大柏树', 0.0004097349043706069),
+ ('云山路', 0.00038739071546400476),
+ ('宁国路', 0.0003854984366046461),
+ ('华夏中路', 0.0003846246897586962),
+ ('汶水路', 0.00037337199995836015),
+ ('丰庄', 0.00036499253122866546),
+ ('淞虹路', 0.0003509681597168936),
+ ('德平路', 0.0003207976692851701),
+ ('芳华路', 0.00031998459260626375),
+ ('芳芯路', 0.0003167222405210595),
+ ('东兰路', 0.00031398941613808924),
+ ('张江高科', 0.0003079520055746811),
+ ('临沂新村', 0.0003007572216867355),
+ ('高青路', 0.0002929075434238003),
+ ('华鹏路', 0.00028970916901226553),
+ ('花木路', 0.00028788156085499144),
+ ('外环路', 0.0002737887469452818),
+ ('朱梅路', 0.00027378874693370105),
+ ('龙溪路', 0.00023655271725270757),
+ ('灵岩南路', 0.00023260463819611013),
+ ('行知路', 0.00023020664721295182),
+ ('三林', 0.00022906695414238562),
+ ('凌兆新村', 0.00022765380714946624),
+ ('杨高南路', 0.00020678820658205882),
+ ('抚顺路', 0.00019258449081970013),
+ ('国权路', 0.0001910707382340992),
+ ('莲溪路', 0.00015660284787605007),
+ ('黄兴路', 0.00015555966731948926),
+ ('台儿庄路', 0.0001461514479808473),
+ ('黄杨路', 0.0001461472429082843),
+ ('罗山路', 0.0001337685013604797),
+ ('定边路', 0.00013371252887067506),
+ ('锦绣路', 0.00013004150633398124),
+ ('北中路', 0.00011683649781411802),
+ ('祁安路', 0.00011427755864585485),
+ ('武威路', 0.00011427722707529744),
+ ('七宝', 0.00011168655559676712),
+ ('江湾镇', 0.0001082992466994145),
+ ('虹桥2号航站楼', 0.00010523981878059764),
+ ('金桥路', 0.00010229599405730827),
+ ('隆昌路', 0.00010179753191052721),
+ ('中科路', 0.00010152913633164698),
+ ('彭浦新村', 9.859705892814365e-05),
+ ('金沙江西路', 9.599313885706678e-05),
+ ('华夏西路', 9.213435265242265e-05),
+ ('御桥', 8.663050138456528e-05),
+ ('顾戴路', 8.296880382168908e-05),
+ ('金科路', 8.131188947111461e-05),
+ ('上南路', 8.020078988775062e-05),
+ ('下南路', 7.918741731422785e-05),
+ ('莘庄', 7.237575735460137e-05),
+ ('华泾西', 7.237575731124801e-05),
+ ('上海动物园', 6.905084145021053e-05),
+ ('三林东', 6.587483382235718e-05),
+ ('大场镇', 6.0810735633317576e-05),
+ ('芦恒路', 6.015221993516688e-05),
+ ('复旦大学', 5.059116545983654e-05),
+ ('五角场', 5.045024325873357e-05),
+ ('陈春路', 4.631030751906198e-05),
+ ('虹桥1号航站楼', 4.30441410805867e-05),
+ ('延吉中路', 4.107282131124138e-05),
+ ('金桥', 3.8602629952531715e-05),
+ ('云顺路', 3.8585594926562154e-05),
+ ('浦三路', 3.7658616676167844e-05),
+ ('嘉怡路', 3.5333693341064326e-05),
+ ('周浦东', 3.5325790612266245e-05),
+ ('秀沿路', 3.531460528829171e-05),
+ ('虹桥火车站', 3.214643341063452e-05),
+ ('北蔡', 3.0987072791060275e-05),
+ ('南大路', 3.0200381450407823e-05),
+ ('桃浦新村', 3.019912827307753e-05),
+ ('中春路', 2.9517885308330953e-05),
+ ('殷高西路', 2.8993571989767872e-05),
+ ('博兴路', 2.706829176293026e-05),
+ ('爱国路', 2.6917645251336415e-05),
+ ('学林路', 2.668845362396324e-05),
+ ('共康路', 2.603646829290025e-05),
+ ('金运路', 2.3707557375910697e-05),
+ ('康桥', 2.2880578017653626e-05),
+ ('虹莘路', 2.183396879575416e-05),
+ ('广兰路', 2.1469814539144915e-05),
+ ('春申路', 1.913543471800008e-05),
+ ('虹梅南路', 1.9135434555495407e-05),
+ ('场中路', 1.6064940238762195e-05),
+ ('浦江镇', 1.5894843290796643e-05),
+ ('上海财经大学', 1.389145200192103e-05),
+ ('江湾体育场', 1.3320507989667622e-05),
+ ('黄兴公园', 1.0844032390498784e-05),
+ ('金吉路', 1.024895634040226e-05),
+ ('浦东足球场', 1.0184146988913355e-05),
+ ('临洮路', 9.3351708704171e-06),
+ ('鹤沙航城', 9.329671887799534e-06),
+ ('康新公路', 9.284415930638734e-06),
+ ('长江南路', 9.157809732431543e-06),
+ ('诸光路', 8.493984750404255e-06),
+ ('龙柏新村', 8.491290081546015e-06),
+ ('丰翔路', 7.986065347070663e-06),
+ ('南翔', 7.981328901681124e-06),
+ ('徐泾东', 7.939542480126271e-06),
+ ('九亭', 7.802299209891346e-06),
+ ('五莲路', 7.374855805492639e-06),
+ ('复兴岛', 7.257261233416775e-06),
+ ('通河新村', 6.875359111788295e-06),
+ ('张江路', 6.58817740797362e-06),
+ ('周浦', 6.0439405959160685e-06),
+ ('殷高路', 5.68913878863468e-06),
+ ('唐镇', 5.669062135147163e-06),
+ ('七莘路', 5.395593476698256e-06),
+ ('银都路', 5.060132186224369e-06),
+ ('景西路', 5.060131576269231e-06),
+ ('上大路', 4.246791633419134e-06),
+ ('江月路', 4.199284519605183e-06),
+ ('三门路', 3.516942151319783e-06),
+ ('金海路', 2.922160108332692e-06),
+ ('翔殷路', 2.862108404036366e-06),
+ ('巨峰路', 2.812373402257501e-06),
+ ('金粤路', 2.6766187609425924e-06),
+ ('东陆路', 2.4853186757134015e-06),
+ ('航头东', 2.4643100499360915e-06),
+ ('乐秀路', 2.456211272228161e-06),
+ ('淞发路', 2.418017752550578e-06),
+ ('迪士尼', 2.2923268717626103e-06),
+ ('蟠龙路', 2.2445378510100166e-06),
+ ('紫藤路', 2.233634307270689e-06),
+ ('锦秋路', 2.1275517941027036e-06),
+ ('陈翔公路', 2.1096458102969884e-06),
+ ('泗泾', 2.0626298860041646e-06),
+ ('呼兰路', 1.815526345079715e-06),
+ ('繁荣路', 1.5968157450142117e-06),
+ ('创新中路', 1.4969618823401352e-06),
+ ('颛桥', 1.338369412987595e-06),
+ ('曙建路', 1.338367120825213e-06),
+ ('南陈路', 1.1323857696790865e-06),
+ ('联航路', 1.1048489132148824e-06),
+ ('殷高东路', 9.285278822875906e-07),
+ ('申江路', 8.193989270942173e-07),
+ ('杨高北路', 7.922930588010286e-07),
+ ('顾唐路', 7.712500607519193e-07),
+ ('嫩江路', 7.522042423411743e-07),
+ ('东靖路', 7.424977244597947e-07),
+ ('桂桥路', 6.606161442250491e-07),
+ ('新场', 6.51034021652862e-07),
+ ('张华浜', 6.384325713646042e-07),
+ ('顾村公园', 6.254152790687604e-07),
+ ('封浜', 6.06874735333989e-07),
+ ('徐盈路', 5.931779898987262e-07),
+ ('马陆', 5.577069963479668e-07),
+ ('航中路', 5.517476014197456e-07),
+ ('佘山', 5.453696697009482e-07),
+ ('共富新村', 4.793960231362631e-07),
+ ('沈梅路', 4.219843712816389e-07),
+ ('金京路', 3.977829250264296e-07),
+ ('华夏东路', 3.9531027766563646e-07),
+ ('北桥', 3.540747574772615e-07),
+ ('双柏路', 3.5406613486469205e-07),
+ ('上海大学', 3.385229218199973e-07),
+ ('沈杜公路', 2.7297364509663744e-07),
+ ('新江湾城', 2.4513691583190427e-07),
+ ('祁华路', 2.381744420948116e-07),
+ ('民雷路', 2.0270142913861996e-07),
+ ('五洲大道', 1.9603039710651717e-07),
+ ('市光路', 1.856434794471213e-07),
+ ('野生动物园', 1.7203838559130252e-07),
+ ('淞滨路', 1.685607318622697e-07),
+ ('刘行', 1.653625126136348e-07),
+ ('徐泾北城', 1.5678068428999187e-07),
+ ('嘉定新城', 1.474602382775197e-07),
+ ('洞泾', 1.442257188993948e-07),
+ ('宝安公路', 1.2654689042081076e-07),
+ ('鹤涛路', 1.1152432880799095e-07),
+ ('川沙', 1.0440193856554608e-07),
+ ('剑川路', 9.369904774262517e-08),
+ ('元江路', 9.366658252213859e-08),
+ ('国帆路', 6.47161144465196e-08),
+ ('洲海路', 5.175810533707712e-08),
+ ('曹路', 5.002963760098825e-08),
+ ('惠南', 4.547848857949125e-08),
+ ('水产路', 4.4502148043878555e-08),
+ ('潘广路', 4.3718166159875194e-08),
+ ('嘉松中路', 4.144359229612825e-08),
+ ('白银路', 3.899669573711562e-08),
+ ('松江大学城', 3.8149491837363796e-08),
+ ('友谊西路', 3.326351669368966e-08),
+ ('下沙', 2.9363434860805047e-08),
+ ('凌空路', 2.7576280942869793e-08),
+ ('东川路', 2.4803650989623975e-08),
+ ('永德路', 2.46813212649182e-08),
+ ('双江路', 1.708895506049985e-08),
+ ('外高桥保税区南站', 1.3672268341756097e-08),
+ ('惠南东', 1.2028167424890085e-08),
+ ('宝杨路', 1.1748385691452752e-08),
+ ('罗南新村', 1.1511626793160564e-08),
+ ('赵巷', 1.0956924381367109e-08),
+ ('嘉定西', 1.0315218108832666e-08),
+ ('松江新城', 1.0093352857726008e-08),
+ ('富锦路', 8.210622560671108e-09),
+ ('远东大道', 7.283323035094685e-09),
+ ('航头', 7.261958216822991e-09),
+ ('江川路', 6.5683787771182e-09),
+ ('紫竹高新区', 6.1071303290981765e-09),
+ ('高桥西', 4.5300828131546704e-09),
+ ('航津路', 3.6335154149788168e-09),
+ ('书院', 3.1824816648712607e-09),
+ ('友谊路', 3.100468256406229e-09),
+ ('汇金路', 2.8973229616244033e-09),
+ ('美兰湖', 2.8464308457705746e-09),
+ ('嘉定北', 2.7292461471009787e-09),
+ ('松江体育中心', 2.670415798052803e-09),
+ ('海天三路', 1.916073159712836e-09),
+ ('西渡', 1.740156144517946e-09),
+ ('高桥', 1.2681133827697382e-09),
+ ('外高桥保税区北站', 1.0472670808864178e-09),
+ ('临港大道', 8.392009147533852e-10),
+ ('铁力路', 8.147483303301796e-10),
+ ('青浦新城', 7.662911149570269e-10),
+ ('上海赛车场', 7.223360738663101e-10),
+ ('醉白池', 7.037382414795119e-10),
+ ('港城路', 6.086085102874774e-10),
+ ('浦东国际机场', 4.734473543870188e-10),
+ ('萧塘', 4.612484483959065e-10),
+ ('滴水湖', 2.0790492492163032e-10),
+ ('漕盈路', 2.0271460316168133e-10),
+ ('江杨北路', 2.0105418042463568e-10),
+ ('昌吉东路', 1.912449298550137e-10),
+ ('松江南站', 1.7415177584811688e-10),
+ ('基隆路', 1.5024096205463907e-10),
+ ('奉浦大道', 1.2232972542206332e-10),
+ ('淀山湖大道', 5.3624867368877837e-11),
+ ('上海汽车城', 5.065466344149559e-11),
+ ('环城东路', 3.246522146891751e-11),
+ ('朱家角', 1.4129609700584414e-11),
+ ('安亭', 1.3422980238458734e-11),
+ ('望园路', 8.622613686296197e-12),
+ ('兆丰路', 3.5578715548799247e-12),
+ ('东方绿舟', 3.49607594627485e-12),
+ ('金海湖', 2.2921633664651897e-12),
+ ('光明路', 9.395865630498605e-13),
+ ('奉贤新城', 6.09955284192513e-13),
+ ('花桥', 2.330088423693451e-13),
+ ('金平路', 1.6250169546464013e-13),
+ ('华宁路', 4.333913458088084e-14),
+ ('文井路', 1.1525417889624957e-14),
+ ('闵行开发区', 2.8780955283508334e-15)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="betweenness-centrality必经之地">Betweenness Centrality（必经之地）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.betweenness_centrality(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.betweenness_centrality(G))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Betweenness Centrality&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="closeness-centrality去哪儿都近">Closeness Centrality（去哪儿都近）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.closeness_centrality(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.eigenvector_centrality(G))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pagerank">PageRank</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.pagerank(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.pagerank(G))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">),</span> <span class="s1">&#39;PageRank&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="katz-centrality">Katz Centrality</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.katz_centrality(G, alpha=0.1, beta=1.0)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.katz_centrality(G, alpha=0.1, beta=1.0))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">katz_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="s1">&#39;Katz Centrality&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="hits-hubs-and-authorities">HITS Hubs and Authorities</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">h</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">hits</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;DiGraph HITS Hubs&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;DiGraph HITS Authorities&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="networkx文档社群属性-clustering">NetworkX文档：社群属性 Clustering</h2>
+<p><a href="https://networkx.org/documentation/stable/reference/algorithms/clustering.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/algorithms/clustering.html</a></p>
+<h2 id="三角形个数">三角形个数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.triangles(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">dict_sort_by_value</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('曹杨路', 2),
+ ('大世界', 2),
+ ('豫园', 2),
+ ('隆德路', 2),
+ ('上海南站', 1),
+ ('漕宝路', 1),
+ ('上海体育馆', 1),
+ ('徐家汇', 1),
+ ('一大会址·黄陂南路', 1),
+ ('人民广场', 1),
+ ('汉中路', 1),
+ ('南京西路', 1),
+ ('南京东路', 1),
+ ('陆家嘴', 1),
+ ('宜山路', 1),
+ ('金沙江路', 1),
+ ('大木桥路', 1),
+ ('东安路', 1),
+ ('龙华中路', 1),
+ ('长清路', 1),
+ ('耀华路', 1),
+ ('成山路', 1),
+ ('老西门', 1),
+ ('上海西站', 1),
+ ('真如', 1),
+ ('桂林公园', 1),
+ ('武宁路', 1),
+ ('自然博物馆', 1),
+ ('铜川路', 1),
+ ('莘庄', 0),
+ ('外环路', 0),
+ ('莲花路', 0),
+ ('锦江乐园', 0),
+ ('衡山路', 0),
+ ('常熟路', 0),
+ ('陕西南路', 0),
+ ('新闸路', 0),
+ ('上海火车站', 0),
+ ('中山北路', 0),
+ ('延长路', 0),
+ ('上海马戏城', 0),
+ ('汶水路', 0),
+ ('彭浦新村', 0),
+ ('共康路', 0),
+ ('通河新村', 0),
+ ('呼兰路', 0),
+ ('共富新村', 0),
+ ('宝安公路', 0),
+ ('友谊西路', 0),
+ ('富锦路', 0),
+ ('徐泾东', 0),
+ ('虹桥火车站', 0),
+ ('虹桥2号航站楼', 0),
+ ('淞虹路', 0),
+ ('北新泾', 0),
+ ('威宁路', 0),
+ ('娄山关路', 0),
+ ('中山公园', 0),
+ ('江苏路', 0),
+ ('静安寺', 0),
+ ('东昌路', 0),
+ ('世纪大道', 0),
+ ('上海科技馆', 0),
+ ('世纪公园', 0),
+ ('龙阳路', 0),
+ ('张江高科', 0),
+ ('金科路', 0),
+ ('广兰路', 0),
+ ('唐镇', 0),
+ ('创新中路', 0),
+ ('华夏东路', 0),
+ ('川沙', 0),
+ ('凌空路', 0),
+ ('远东大道', 0),
+ ('海天三路', 0),
+ ('浦东国际机场', 0),
+ ('石龙路', 0),
+ ('龙漕路', 0),
+ ('漕溪路', 0),
+ ('虹桥路', 0),
+ ('延安西路', 0),
+ ('镇坪路', 0),
+ ('中潭路', 0),
+ ('宝山路', 0),
+ ('东宝兴路', 0),
+ ('虹口足球场', 0),
+ ('赤峰路', 0),
+ ('大柏树', 0),
+ ('江湾镇', 0),
+ ('殷高西路', 0),
+ ('长江南路', 0),
+ ('淞发路', 0),
+ ('张华浜', 0),
+ ('淞滨路', 0),
+ ('水产路', 0),
+ ('宝杨路', 0),
+ ('友谊路', 0),
+ ('铁力路', 0),
+ ('江杨北路', 0),
+ ('海伦路', 0),
+ ('临平路', 0),
+ ('大连路', 0),
+ ('杨树浦路', 0),
+ ('浦东大道', 0),
+ ('浦电路', 0),
+ ('蓝村路', 0),
+ ('塘桥', 0),
+ ('南浦大桥', 0),
+ ('西藏南路', 0),
+ ('鲁班路', 0),
+ ('上海体育场', 0),
+ ('春申路', 0),
+ ('银都路', 0),
+ ('颛桥', 0),
+ ('北桥', 0),
+ ('剑川路', 0),
+ ('东川路', 0),
+ ('江川路', 0),
+ ('西渡', 0),
+ ('萧塘', 0),
+ ('奉浦大道', 0),
+ ('环城东路', 0),
+ ('望园路', 0),
+ ('金海湖', 0),
+ ('奉贤新城', 0),
+ ('金平路', 0),
+ ('华宁路', 0),
+ ('文井路', 0),
+ ('闵行开发区', 0),
+ ('东方体育中心', 0),
+ ('灵岩南路', 0),
+ ('上南路', 0),
+ ('华夏西路', 0),
+ ('高青路', 0),
+ ('东明路', 0),
+ ('高科西路', 0),
+ ('临沂新村', 0),
+ ('上海儿童医学中心', 0),
+ ('源深体育中心', 0),
+ ('民生路', 0),
+ ('北洋泾路', 0),
+ ('德平路', 0),
+ ('云山路', 0),
+ ('金桥路', 0),
+ ('博兴路', 0),
+ ('五莲路', 0),
+ ('巨峰路', 0),
+ ('东靖路', 0),
+ ('五洲大道', 0),
+ ('洲海路', 0),
+ ('外高桥保税区南站', 0),
+ ('航津路', 0),
+ ('外高桥保税区北站', 0),
+ ('港城路', 0),
+ ('美兰湖', 0),
+ ('罗南新村', 0),
+ ('潘广路', 0),
+ ('刘行', 0),
+ ('顾村公园', 0),
+ ('祁华路', 0),
+ ('上海大学', 0),
+ ('南陈路', 0),
+ ('上大路', 0),
+ ('场中路', 0),
+ ('大场镇', 0),
+ ('行知路', 0),
+ ('大华三路', 0),
+ ('新村路', 0),
+ ('岚皋路', 0),
+ ('长寿路', 0),
+ ('昌平路', 0),
+ ('肇嘉浜路', 0),
+ ('后滩', 0),
+ ('云台路', 0),
+ ('杨高南路', 0),
+ ('锦绣路', 0),
+ ('芳华路', 0),
+ ('花木路', 0),
+ ('沈杜公路', 0),
+ ('联航路', 0),
+ ('江月路', 0),
+ ('浦江镇', 0),
+ ('芦恒路', 0),
+ ('凌兆新村', 0),
+ ('杨思', 0),
+ ('中华艺术宫', 0),
+ ('陆家浜路', 0),
+ ('曲阜路', 0),
+ ('中兴路', 0),
+ ('西藏北路', 0),
+ ('曲阳路', 0),
+ ('四平路', 0),
+ ('鞍山新村', 0),
+ ('江浦路', 0),
+ ('黄兴路', 0),
+ ('延吉中路', 0),
+ ('黄兴公园', 0),
+ ('翔殷路', 0),
+ ('嫩江路', 0),
+ ('市光路', 0),
+ ('松江南站', 0),
+ ('醉白池', 0),
+ ('松江体育中心', 0),
+ ('松江新城', 0),
+ ('松江大学城', 0),
+ ('洞泾', 0),
+ ('佘山', 0),
+ ('泗泾', 0),
+ ('九亭', 0),
+ ('中春路', 0),
+ ('七宝', 0),
+ ('星中路', 0),
+ ('合川路', 0),
+ ('漕河泾开发区', 0),
+ ('桂林路', 0),
+ ('嘉善路', 0),
+ ('打浦桥', 0),
+ ('马当路', 0),
+ ('小南门', 0),
+ ('商城路', 0),
+ ('杨高中路', 0),
+ ('芳甸路', 0),
+ ('蓝天路', 0),
+ ('台儿庄路', 0),
+ ('金桥', 0),
+ ('金吉路', 0),
+ ('金海路', 0),
+ ('顾唐路', 0),
+ ('民雷路', 0),
+ ('曹路', 0),
+ ('航中路', 0),
+ ('紫藤路', 0),
+ ('龙柏新村', 0),
+ ('虹桥1号航站楼', 0),
+ ('上海动物园', 0),
+ ('龙溪路', 0),
+ ('水城路', 0),
+ ('伊犁路', 0),
+ ('宋园路', 0),
+ ('交通大学', 0),
+ ('上海图书馆', 0),
+ ('一大会址·新天地', 0),
+ ('天潼路', 0),
+ ('四川北路', 0),
+ ('邮电新村', 0),
+ ('同济大学', 0),
+ ('国权路', 0),
+ ('五角场', 0),
+ ('江湾体育场', 0),
+ ('三门路', 0),
+ ('殷高东路', 0),
+ ('新江湾城', 0),
+ ('国帆路', 0),
+ ('双江路', 0),
+ ('高桥西', 0),
+ ('高桥', 0),
+ ('基隆路', 0),
+ ('花桥', 0),
+ ('光明路', 0),
+ ('兆丰路', 0),
+ ('安亭', 0),
+ ('上海汽车城', 0),
+ ('昌吉东路', 0),
+ ('上海赛车场', 0),
+ ('嘉定北', 0),
+ ('嘉定西', 0),
+ ('白银路', 0),
+ ('嘉定新城', 0),
+ ('马陆', 0),
+ ('陈翔公路', 0),
+ ('南翔', 0),
+ ('桃浦新村', 0),
+ ('武威路', 0),
+ ('祁连山路', 0),
+ ('李子园', 0),
+ ('枫桥路', 0),
+ ('上海游泳馆', 0),
+ ('龙华', 0),
+ ('云锦路', 0),
+ ('龙耀路', 0),
+ ('三林', 0),
+ ('三林东', 0),
+ ('浦三路', 0),
+ ('御桥', 0),
+ ('罗山路', 0),
+ ('秀沿路', 0),
+ ('康新公路', 0),
+ ('迪士尼', 0),
+ ('七莘路', 0),
+ ('虹莘路', 0),
+ ('顾戴路', 0),
+ ('东兰路', 0),
+ ('虹梅路', 0),
+ ('虹漕路', 0),
+ ('国际客运中心', 0),
+ ('提篮桥', 0),
+ ('江浦公园', 0),
+ ('宁国路', 0),
+ ('隆昌路', 0),
+ ('爱国路', 0),
+ ('复兴岛', 0),
+ ('东陆路', 0),
+ ('杨高北路', 0),
+ ('金京路', 0),
+ ('申江路', 0),
+ ('金运路', 0),
+ ('金沙江西路', 0),
+ ('丰庄', 0),
+ ('祁连山南路', 0),
+ ('真北路', 0),
+ ('大渡河路', 0),
+ ('江宁路', 0),
+ ('淮海中路', 0),
+ ('世博会博物馆', 0),
+ ('世博大道', 0),
+ ('华鹏路', 0),
+ ('下南路', 0),
+ ('北蔡', 0),
+ ('陈春路', 0),
+ ('莲溪路', 0),
+ ('华夏中路', 0),
+ ('中科路', 0),
+ ('学林路', 0),
+ ('张江路', 0),
+ ('封浜', 0),
+ ('乐秀路', 0),
+ ('临洮路', 0),
+ ('嘉怡路', 0),
+ ('定边路', 0),
+ ('真新新村', 0),
+ ('真光路', 0),
+ ('中宁路', 0),
+ ('武定路', 0),
+ ('浦东南路', 0),
+ ('源深路', 0),
+ ('昌邑路', 0),
+ ('歇浦路', 0),
+ ('黄杨路', 0),
+ ('云顺路', 0),
+ ('浦东足球场', 0),
+ ('金粤路', 0),
+ ('桂桥路', 0),
+ ('紫竹高新区', 0),
+ ('永德路', 0),
+ ('元江路', 0),
+ ('双柏路', 0),
+ ('曙建路', 0),
+ ('景西路', 0),
+ ('虹梅南路', 0),
+ ('华泾西', 0),
+ ('朱梅路', 0),
+ ('罗秀路', 0),
+ ('华东理工大学', 0),
+ ('吴中路', 0),
+ ('姚虹路', 0),
+ ('红宝石路', 0),
+ ('长风公园', 0),
+ ('梅岭北路', 0),
+ ('武威东路', 0),
+ ('古浪路', 0),
+ ('祁安路', 0),
+ ('南大路', 0),
+ ('丰翔路', 0),
+ ('锦秋路', 0),
+ ('周浦东', 0),
+ ('鹤沙航城', 0),
+ ('航头东', 0),
+ ('新场', 0),
+ ('野生动物园', 0),
+ ('惠南', 0),
+ ('惠南东', 0),
+ ('书院', 0),
+ ('临港大道', 0),
+ ('滴水湖', 0),
+ ('诸光路', 0),
+ ('蟠龙路', 0),
+ ('徐盈路', 0),
+ ('徐泾北城', 0),
+ ('嘉松中路', 0),
+ ('赵巷', 0),
+ ('汇金路', 0),
+ ('青浦新城', 0),
+ ('漕盈路', 0),
+ ('淀山湖大道', 0),
+ ('朱家角', 0),
+ ('东方绿舟', 0),
+ ('航头', 0),
+ ('下沙', 0),
+ ('鹤涛路', 0),
+ ('沈梅路', 0),
+ ('繁荣路', 0),
+ ('周浦', 0),
+ ('康桥', 0),
+ ('北中路', 0),
+ ('芳芯路', 0),
+ ('迎春路', 0),
+ ('丹阳路', 0),
+ ('平凉路', 0),
+ ('抚顺路', 0),
+ ('复旦大学', 0),
+ ('上海财经大学', 0),
+ ('殷高路', 0)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">triangles</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Triangles&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="clustering-coefficient">Clustering Coefficient</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># nx.clustering(G)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># dict_sort_by_value(nx.clustering(G))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">clustering</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="s1">&#39;Clustering Coefficient&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="计算全图graphlet个数">计算全图Graphlet个数</h1>
+<h2 id="导入工具包-1">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">itertools</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="导入全图">导入全图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指定graphlet">指定Graphlet</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">target</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="匹配graphlet统计个数">匹配Graphlet，统计个数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">sub_nodes</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">nodes</span><span class="p">())):</span>  <span class="c1"># 遍历全图中，符合graphlet节点个数的所有节点组合</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subg</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">sub_nodes</span><span class="p">)</span>                                          <span class="c1"># 从全图中抽取出子图</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">subg</span><span class="p">)</span> <span class="ow">and</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_isomorphic</span><span class="p">(</span><span class="n">subg</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>          <span class="c1"># 如果子图是完整连通域，并且符合graphlet特征，输出原图节点编号</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">subg</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[(0, 1), (0, 2), (1, 2)]
+[(0, 1), (0, 3), (1, 3)]
+[(0, 1), (0, 7), (1, 7)]
+[(0, 1), (0, 13), (1, 13)]
+[(0, 1), (0, 17), (1, 17)]
+[(0, 1), (0, 19), (1, 19)]
+[(0, 1), (0, 21), (1, 21)]
+[(0, 2), (0, 3), (2, 3)]
+[(0, 2), (0, 7), (2, 7)]
+[(0, 2), (0, 8), (8, 2)]
+[(0, 2), (0, 13), (2, 13)]
+[(0, 3), (0, 7), (3, 7)]
+[(0, 3), (0, 12), (3, 12)]
+[(0, 3), (0, 13), (3, 13)]
+[(0, 4), (0, 6), (4, 6)]
+[(0, 4), (0, 10), (10, 4)]
+[(0, 5), (0, 6), (5, 6)]
+[(0, 5), (0, 10), (10, 5)]
+[(1, 2), (1, 3), (2, 3)]
+[(1, 2), (1, 7), (2, 7)]
+[(1, 2), (1, 13), (2, 13)]
+[(1, 3), (1, 7), (3, 7)]
+[(1, 3), (1, 13), (3, 13)]
+[(2, 3), (2, 7), (3, 7)]
+[(2, 3), (2, 13), (3, 13)]
+[(8, 2), (8, 32), (2, 32)]
+[(16, 5), (16, 6), (5, 6)]
+[(8, 30), (8, 32), (32, 30)]
+[(8, 30), (8, 33), (33, 30)]
+[(8, 32), (8, 33), (33, 32)]
+[(32, 14), (32, 33), (33, 14)]
+[(32, 15), (32, 33), (33, 15)]
+[(32, 18), (32, 33), (33, 18)]
+[(32, 20), (32, 33), (33, 20)]
+[(32, 22), (32, 33), (33, 22)]
+[(33, 23), (33, 27), (27, 23)]
+[(32, 23), (32, 29), (29, 23)]
+[(33, 23), (33, 29), (29, 23)]
+[(32, 23), (32, 33), (33, 23)]
+[(24, 25), (24, 31), (25, 31)]
+[(33, 26), (33, 29), (26, 29)]
+[(33, 28), (33, 31), (28, 31)]
+[(32, 29), (32, 33), (33, 29)]
+[(32, 30), (32, 33), (33, 30)]
+[(32, 31), (32, 33), (33, 31)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">num</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>45
+</code></pre>
+<h1 id="拉普拉斯矩阵特征值分解">拉普拉斯矩阵特征值分解</h1>
+<p>参考文档：<a href="https://networkx.org/documentation/stable/auto_examples/drawing/plot_eigenvalues.html#sphx-glr-auto-examples-drawing-plot-eigenvalues-py" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/auto_examples/drawing/plot_eigenvalues.html#sphx-glr-auto-examples-drawing-plot-eigenvalues-py</a></p>
+<h2 id="导入工具包-2">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="c1"># 线性代数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="创建图-1">创建图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># 节点个数</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># 连接个数</span>
+</span></span><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">gnm_random_graph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5040</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="邻接矩阵adjacency-matrix">邻接矩阵（Adjacency Matrix）</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1000, 1000)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>matrix([[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]], dtype=int64)
+</code></pre>
+<h2 id="拉普拉斯矩阵laplacian-matrix">拉普拉斯矩阵（Laplacian Matrix）</h2>
+<p>$$
+L = D - A
+$$</p>
+<p>L 为拉普拉斯矩阵（Laplacian Matrix）</p>
+<p>D 为节点degree对角矩阵</p>
+<p>A 为邻接矩阵（Adjacency Matrix）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">L</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1000, 1000)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 节点degree对角矩阵</span>
+</span></span><span class="line"><span class="cl"><span class="n">D</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">A</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">D</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>matrix([[12,  0,  0, ...,  0,  0,  0],
+        [ 0,  6,  0, ...,  0,  0,  0],
+        [ 0,  0,  8, ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0, ...,  8,  0,  0],
+        [ 0,  0,  0, ...,  0,  6,  0],
+        [ 0,  0,  0, ...,  0,  0,  7]], dtype=int64)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># G.degree()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="归一化拉普拉斯矩阵normalized-laplacian-matrix">归一化拉普拉斯矩阵（Normalized Laplacian Matrix）</h2>
+<p>$$
+L_n = D^{-\frac{1}{2}}LD^{-\frac{1}{2}}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">L_n</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">normalized_laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">L_n</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1000, 1000)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">L_n</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>matrix([[1., 0., 0., ..., 0., 0., 0.],
+        [0., 1., 0., ..., 0., 0., 0.],
+        [0., 0., 1., ..., 0., 0., 0.],
+        ...,
+        [0., 0., 0., ..., 1., 0., 0.],
+        [0., 0., 0., ..., 0., 1., 0.],
+        [0., 0., 0., ..., 0., 0., 1.]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">L_n</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="n">L_n</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>scipy.sparse.csr.csr_matrix
+</code></pre>
+<h2 id="特征值分解">特征值分解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L_n</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">e</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([-3.53879524e-16,  1.59246179e+00,  1.58938840e+00,  1.58583526e+00,
+        4.02846420e-01,  4.06224295e-01,  4.12963520e-01,  4.15548851e-01,
+        4.16517467e-01,  1.58139953e+00,  1.58070318e+00,  4.20582471e-01,
+        4.24326947e-01,  1.57786096e+00,  4.29110624e-01,  4.31464217e-01,
+        1.57398179e+00,  1.57237733e+00,  4.33218297e-01,  1.57150969e+00,
+        1.57095514e+00,  4.35026221e-01,  4.37026657e-01,  1.56726875e+00,
+        4.40378510e-01,  4.42775893e-01,  4.45046086e-01,  1.56345866e+00,
+        1.56395825e+00,  4.46753827e-01,  4.50881547e-01,  4.48717950e-01,
+        4.49417823e-01,  1.56009824e+00,  1.55880096e+00,  1.55717189e+00,
+        1.55698938e+00,  1.55475549e+00,  1.54908738e+00,  1.54681927e+00,
+        1.54491505e+00,  1.54352783e+00,  1.54231896e+00,  1.54098279e+00,
+        1.54051439e+00,  1.53578067e+00,  1.53502733e+00,  1.53439005e+00,
+        1.52838134e+00,  1.53085674e+00,  1.53141471e+00,  1.52515680e+00,
+        1.52512114e+00,  1.52151217e+00,  1.52011306e+00,  1.52064972e+00,
+        1.51734481e+00,  1.51789644e+00,  1.51650845e+00,  1.51050284e+00,
+        1.51160361e+00,  1.51266269e+00,  1.50970637e+00,  1.50786560e+00,
+        1.50593131e+00,  1.50508573e+00,  1.50356363e+00,  1.50256425e+00,
+        1.50143743e+00,  1.49974932e+00,  1.50033534e+00,  1.48749487e+00,
+        1.48806489e+00,  1.49053530e+00,  1.49336377e+00,  1.49505706e+00,
+        1.49650057e+00,  1.49229941e+00,  1.49722359e+00,  1.48940564e+00,
+        4.54190661e-01,  4.55357875e-01,  4.58263114e-01,  4.57707915e-01,
+        4.61849308e-01,  4.63660933e-01,  4.64660065e-01,  4.66860929e-01,
+        4.69366311e-01,  4.69709000e-01,  4.73545468e-01,  4.76756569e-01,
+        4.65763726e-01,  4.74333012e-01,  4.86462532e-01,  4.79394325e-01,
+        4.75649819e-01,  4.80606513e-01,  4.83264820e-01,  4.84997389e-01,
+        4.85154008e-01,  1.48542791e+00,  1.48490224e+00,  1.47887385e+00,
+        1.48185134e+00,  1.48241248e+00,  1.47794501e+00,  1.47709645e+00,
+        1.47762024e+00,  1.47552207e+00,  1.47141067e+00,  1.47388061e+00,
+        1.47033271e+00,  1.44904512e+00,  1.44986013e+00,  1.45090139e+00,
+        1.45216238e+00,  1.46817150e+00,  1.46566928e+00,  1.46791556e+00,
+        1.45500080e+00,  1.46487844e+00,  1.46269200e+00,  1.45908676e+00,
+        1.46138525e+00,  1.45410520e+00,  1.45733801e+00,  1.46156481e+00,
+        1.45644004e+00,  1.45770660e+00,  4.91621993e-01,  4.90304444e-01,
+        4.88729605e-01,  4.88322850e-01,  4.94845030e-01,  4.96583277e-01,
+        5.00214562e-01,  5.02653227e-01,  4.95732976e-01,  5.04153801e-01,
+        4.99448904e-01,  5.06512201e-01,  5.05556356e-01,  5.01180333e-01,
+        1.42699849e+00,  1.42677234e+00,  1.42988927e+00,  1.43134759e+00,
+        1.43260357e+00,  1.43846236e+00,  1.44014343e+00,  1.44739972e+00,
+        1.43619292e+00,  1.44246039e+00,  1.44531749e+00,  1.43354375e+00,
+        1.43441916e+00,  1.44589494e+00,  1.43490982e+00,  1.43713890e+00,
+        1.44158907e+00,  1.44376226e+00,  5.22556927e-01,  5.09010234e-01,
+        5.10154623e-01,  5.11622478e-01,  5.07002615e-01,  5.16057435e-01,
+        5.14665415e-01,  5.16533531e-01,  5.18785357e-01,  5.20015126e-01,
+        5.21860072e-01,  5.12797358e-01,  1.41228135e+00,  1.41347984e+00,
+        1.41448341e+00,  1.41598484e+00,  1.41748057e+00,  1.41662929e+00,
+        1.42320539e+00,  1.42542313e+00,  1.41961351e+00,  1.42457194e+00,
+        1.42052766e+00,  1.42118742e+00,  5.23407726e-01,  5.34473212e-01,
+        5.25881593e-01,  5.27322194e-01,  5.30802877e-01,  5.29711336e-01,
+        5.32286178e-01,  5.28274379e-01,  5.33613821e-01,  1.39936317e+00,
+        1.40196461e+00,  1.40361810e+00,  1.40415543e+00,  1.40498931e+00,
+        1.40702610e+00,  1.41140670e+00,  1.40819911e+00,  1.40969057e+00,
+        1.41274341e+00,  5.44579715e-01,  5.39616555e-01,  5.37113507e-01,
+        5.38466485e-01,  5.40543078e-01,  5.42474931e-01,  5.42041958e-01,
+        1.38748697e+00,  1.38793243e+00,  1.39757348e+00,  1.38899394e+00,
+        1.39625743e+00,  1.39026791e+00,  1.39235250e+00,  1.39158171e+00,
+        1.39285233e+00,  1.39073914e+00,  1.39651349e+00,  5.48067206e-01,
+        5.55908434e-01,  5.47076780e-01,  5.45647110e-01,  5.51103949e-01,
+        5.51314655e-01,  5.53584120e-01,  5.54656573e-01,  1.37512858e+00,
+        1.37634495e+00,  1.37774739e+00,  1.37947093e+00,  1.38336173e+00,
+        1.38561715e+00,  1.37881800e+00,  1.38125128e+00,  1.38474073e+00,
+        1.38167394e+00,  5.57471020e-01,  5.58337114e-01,  5.60822980e-01,
+        5.63088387e-01,  5.63882730e-01,  5.65472145e-01,  5.57092578e-01,
+        5.60005758e-01,  5.59842586e-01,  1.36388306e+00,  1.36516216e+00,
+        1.36665422e+00,  1.37131925e+00,  1.37392113e+00,  1.36916170e+00,
+        1.36865728e+00,  1.37257584e+00,  1.36949557e+00,  5.66792887e-01,
+        5.76150660e-01,  5.68163292e-01,  5.71180265e-01,  5.73122697e-01,
+        5.69767689e-01,  5.71671829e-01,  5.75206362e-01,  5.74332679e-01,
+        1.35156900e+00,  1.35260850e+00,  1.35396561e+00,  1.35207043e+00,
+        1.35825257e+00,  1.35879561e+00,  1.35989991e+00,  1.35586993e+00,
+        1.36203150e+00,  1.36246682e+00,  1.36309440e+00,  5.77960813e-01,
+        5.79394345e-01,  5.87460119e-01,  5.83681701e-01,  5.79719792e-01,
+        5.80876426e-01,  5.84596718e-01,  5.85274871e-01,  5.86873671e-01,
+        5.80144591e-01,  1.33708760e+00,  1.33958685e+00,  1.35033800e+00,
+        1.34852611e+00,  1.34791812e+00,  1.34655649e+00,  1.34444118e+00,
+        1.34673590e+00,  1.33759979e+00,  1.34376097e+00,  1.34137536e+00,
+        1.34101904e+00,  1.33836469e+00,  1.34312125e+00,  5.89386166e-01,
+        5.90261268e-01,  5.91001619e-01,  5.92983371e-01,  5.93959106e-01,
+        5.95705426e-01,  5.97060240e-01,  5.97919803e-01,  5.98748029e-01,
+        6.00580835e-01,  6.02419530e-01,  6.04141444e-01,  6.09399496e-01,
+        6.05195590e-01,  6.08130437e-01,  6.06163058e-01,  1.33467291e+00,
+        1.33135861e+00,  1.33356642e+00,  6.06794009e-01,  1.33353622e+00,
+        1.33089137e+00,  1.32688731e+00,  1.32761807e+00,  1.32974796e+00,
+        1.32903147e+00,  1.32493231e+00,  1.32398795e+00,  1.32226357e+00,
+        1.32287971e+00,  6.07745807e-01,  6.12412754e-01,  6.13657145e-01,
+        6.15201677e-01,  6.15315692e-01,  6.30773304e-01,  6.31157494e-01,
+        6.16854160e-01,  6.29631006e-01,  6.17432000e-01,  6.28063384e-01,
+        6.26677455e-01,  6.19286055e-01,  6.19155567e-01,  6.26000554e-01,
+        6.24703063e-01,  6.20784837e-01,  6.21955003e-01,  6.22970752e-01,
+        6.23345569e-01,  1.31980662e+00,  1.31873099e+00,  1.31694076e+00,
+        1.31427225e+00,  1.31682571e+00,  1.31850111e+00,  1.31540567e+00,
+        1.31264081e+00,  1.30951757e+00,  1.31091189e+00,  1.31134978e+00,
+        1.31199748e+00,  1.28373546e+00,  1.28437195e+00,  1.30686024e+00,
+        1.30758594e+00,  1.30542684e+00,  1.28514574e+00,  1.30382561e+00,
+        1.30288162e+00,  1.28719307e+00,  1.30136724e+00,  1.28803298e+00,
+        1.29840484e+00,  1.29365910e+00,  1.29200739e+00,  1.28901556e+00,
+        1.30090213e+00,  1.28924255e+00,  1.29646412e+00,  1.28976842e+00,
+        1.29466676e+00,  1.29231633e+00,  1.29574206e+00,  1.29799070e+00,
+        1.29958428e+00,  6.33692333e-01,  6.33526526e-01,  6.36668778e-01,
+        1.27737563e+00,  1.27833574e+00,  1.28191198e+00,  1.27947509e+00,
+        1.27980733e+00,  6.39340556e-01,  6.40891240e-01,  6.40003085e-01,
+        6.43931497e-01,  6.44824140e-01,  6.45942076e-01,  6.38230678e-01,
+        6.38041969e-01,  6.42578924e-01,  1.26944987e+00,  1.27080942e+00,
+        1.27414338e+00,  1.27497234e+00,  1.27620437e+00,  1.27207000e+00,
+        1.27257572e+00,  6.47740396e-01,  6.46910912e-01,  6.49333625e-01,
+        6.50087115e-01,  6.52318365e-01,  6.52959112e-01,  6.54576429e-01,
+        6.55215186e-01,  6.64085930e-01,  6.56454904e-01,  6.61610402e-01,
+        6.59666762e-01,  6.57371358e-01,  6.62900038e-01,  6.57955638e-01,
+        6.58706226e-01,  1.26811588e+00,  1.26878733e+00,  1.26673857e+00,
+        1.26048628e+00,  1.26560294e+00,  1.26470672e+00,  1.26420761e+00,
+        1.26340327e+00,  1.25912400e+00,  1.25793615e+00,  1.25680929e+00,
+        6.65616378e-01,  6.68260383e-01,  6.67620678e-01,  6.70575768e-01,
+        6.66993282e-01,  6.67059473e-01,  6.71684325e-01,  6.83115379e-01,
+        6.72642906e-01,  6.82111187e-01,  6.80358246e-01,  6.79804833e-01,
+        6.73510066e-01,  6.77890709e-01,  6.75950273e-01,  6.75209362e-01,
+        6.76667866e-01,  1.25602378e+00,  1.25534221e+00,  1.25391793e+00,
+        1.25252782e+00,  1.25122551e+00,  1.25079026e+00,  1.24829816e+00,
+        1.25310634e+00,  1.24626839e+00,  1.24778863e+00,  1.24968180e+00,
+        1.24482088e+00,  1.24432037e+00,  1.23921461e+00,  1.24118789e+00,
+        1.24249914e+00,  1.21890759e+00,  1.21950696e+00,  1.23984234e+00,
+        1.22158944e+00,  1.22223062e+00,  1.22431197e+00,  1.23721805e+00,
+        1.23501389e+00,  1.23348236e+00,  1.23683283e+00,  1.22368134e+00,
+        1.23234892e+00,  1.22534298e+00,  1.22692043e+00,  1.23040340e+00,
+        1.22893641e+00,  1.23389599e+00,  1.23087696e+00,  1.22828401e+00,
+        1.22759292e+00,  6.89960451e-01,  6.88767734e-01,  6.87203802e-01,
+        6.86431431e-01,  6.84955046e-01,  6.81926690e-01,  1.21339933e+00,
+        1.21565564e+00,  1.21751454e+00,  1.21694695e+00,  1.21449493e+00,
+        6.91354947e-01,  6.92409058e-01,  6.92838790e-01,  6.94150637e-01,
+        6.95882431e-01,  7.05239494e-01,  7.04597555e-01,  7.06434623e-01,
+        6.97247135e-01,  7.01433772e-01,  6.97535138e-01,  6.98487439e-01,
+        7.00935442e-01,  6.98690904e-01,  7.00285839e-01,  1.21247512e+00,
+        1.21171224e+00,  1.19903363e+00,  1.20142492e+00,  1.20377045e+00,
+        1.20994370e+00,  1.20695693e+00,  1.20920597e+00,  1.20868563e+00,
+        1.20321833e+00,  1.20616293e+00,  1.20971109e+00,  1.20595271e+00,
+        7.08452312e-01,  7.09516280e-01,  7.10274060e-01,  7.11088509e-01,
+        7.11924218e-01,  7.12406042e-01,  7.13011152e-01,  7.14687647e-01,
+        7.20360188e-01,  7.23262941e-01,  7.24007246e-01,  7.22530572e-01,
+        7.18253243e-01,  7.17547077e-01,  7.16438282e-01,  7.16643011e-01,
+        1.20014148e+00,  1.19814294e+00,  1.19480915e+00,  1.19403208e+00,
+        1.20225131e+00,  1.19627166e+00,  1.19262244e+00,  1.19064988e+00,
+        1.18659280e+00,  1.19186692e+00,  1.18944009e+00,  1.18840186e+00,
+        1.16246837e+00,  1.19017353e+00,  1.18554652e+00,  1.18447973e+00,
+        1.18366718e+00,  1.18274954e+00,  1.16502095e+00,  1.18110359e+00,
+        1.17758991e+00,  1.17716708e+00,  1.16808885e+00,  1.16647929e+00,
+        1.16689933e+00,  1.18067934e+00,  1.17014359e+00,  1.17932922e+00,
+        1.17063766e+00,  1.17479928e+00,  1.17475038e+00,  1.17271869e+00,
+        1.17255624e+00,  1.17148059e+00,  7.25291200e-01,  7.32435753e-01,
+        7.29910680e-01,  7.27226857e-01,  7.26180600e-01,  7.27992378e-01,
+        7.28144977e-01,  1.16100104e+00,  1.15875440e+00,  1.15770494e+00,
+        1.16170679e+00,  1.15991856e+00,  1.16409103e+00,  7.31139225e-01,
+        7.30942788e-01,  7.34213213e-01,  7.33674521e-01,  7.35942912e-01,
+        7.36896076e-01,  7.38703834e-01,  7.39619657e-01,  7.39891225e-01,
+        7.47037913e-01,  7.42472983e-01,  7.40975755e-01,  7.43435723e-01,
+        7.44294126e-01,  7.41851634e-01,  7.45793573e-01,  1.14336534e+00,
+        1.15052578e+00,  1.15145968e+00,  1.15286692e+00,  1.15601214e+00,
+        1.15570543e+00,  1.15526838e+00,  1.14565453e+00,  1.15400092e+00,
+        1.14697227e+00,  1.14815175e+00,  1.14789819e+00,  7.49153489e-01,
+        7.51992222e-01,  7.54783274e-01,  7.53308879e-01,  7.51325287e-01,
+        7.56718086e-01,  7.61247600e-01,  7.59024267e-01,  7.58002797e-01,
+        7.50972835e-01,  7.58686838e-01,  1.14482219e+00,  1.14046282e+00,
+        1.14438008e+00,  1.14252807e+00,  1.14740025e+00,  1.13453864e+00,
+        1.13946274e+00,  1.13863116e+00,  1.13793116e+00,  1.13771024e+00,
+        1.13261141e+00,  1.13372130e+00,  1.13185736e+00,  1.13095055e+00,
+        1.12915192e+00,  1.12861060e+00,  1.12832339e+00,  1.11216278e+00,
+        1.11316940e+00,  1.11347310e+00,  1.12679555e+00,  1.12379688e+00,
+        1.12052578e+00,  1.12543896e+00,  1.11679129e+00,  1.11854678e+00,
+        1.11932918e+00,  1.11647880e+00,  1.12288673e+00,  1.11531134e+00,
+        1.11937384e+00,  1.12563409e+00,  7.62380745e-01,  7.68050425e-01,
+        7.66897839e-01,  7.65950723e-01,  7.65275532e-01,  7.60917329e-01,
+        7.63937722e-01,  7.64734607e-01,  1.11032815e+00,  7.70905749e-01,
+        7.71601725e-01,  7.72365296e-01,  7.70300693e-01,  7.73832408e-01,
+        7.75396105e-01,  7.76947720e-01,  7.77238021e-01,  7.80625720e-01,
+        7.81056755e-01,  1.10630661e+00,  1.10519834e+00,  1.09958489e+00,
+        1.10208341e+00,  1.10919413e+00,  1.10776253e+00,  1.09722104e+00,
+        1.10039305e+00,  1.10273177e+00,  1.09851448e+00,  1.10976593e+00,
+        1.10820223e+00,  7.83479770e-01,  7.82319426e-01,  7.82191150e-01,
+        7.84591177e-01,  7.99687583e-01,  7.85341264e-01,  7.86745501e-01,
+        7.97855779e-01,  7.96298647e-01,  7.95946946e-01,  7.95389609e-01,
+        7.87401410e-01,  7.93354135e-01,  7.92364279e-01,  7.89976979e-01,
+        7.91807064e-01,  7.89178668e-01,  7.91211265e-01,  1.09527316e+00,
+        1.09626017e+00,  1.09662238e+00,  1.09159473e+00,  1.09381938e+00,
+        1.09340372e+00,  1.09233394e+00,  1.09002744e+00,  1.08711981e+00,
+        1.08903417e+00,  1.08856517e+00,  1.08628866e+00,  1.06737357e+00,
+        1.06766066e+00,  1.08529852e+00,  1.06975392e+00,  1.06940531e+00,
+        1.08273866e+00,  1.07292634e+00,  1.08013231e+00,  1.07372574e+00,
+        1.08353207e+00,  1.08057783e+00,  1.08107430e+00,  1.07544553e+00,
+        1.07493431e+00,  1.07805228e+00,  1.07676645e+00,  1.07852118e+00,
+        8.02564047e-01,  8.00937501e-01,  8.01526828e-01,  1.06697749e+00,
+        8.07522152e-01,  8.04652124e-01,  8.05958572e-01,  8.04102576e-01,
+        8.08665189e-01,  8.09582928e-01,  8.12518033e-01,  8.11554485e-01,
+        1.06485244e+00,  1.06315067e+00,  1.06144437e+00,  1.06175110e+00,
+        1.05986310e+00,  1.05837806e+00,  8.13964893e-01,  8.18261030e-01,
+        8.15105390e-01,  8.13856067e-01,  8.19751580e-01,  8.20706606e-01,
+        8.15960148e-01,  8.17064432e-01,  8.16951568e-01,  8.22459810e-01,
+        8.32086522e-01,  8.24785415e-01,  8.25369943e-01,  8.26334454e-01,
+        8.28740204e-01,  8.27737865e-01,  8.29569406e-01,  8.27384777e-01,
+        8.31342340e-01,  8.30983067e-01,  1.05867362e+00,  1.05737145e+00,
+        1.05450948e+00,  1.05289068e+00,  1.05597002e+00,  1.05719983e+00,
+        1.05033662e+00,  1.04967480e+00,  1.05609372e+00,  1.04893941e+00,
+        1.04749467e+00,  1.04866850e+00,  1.02211495e+00,  1.04399432e+00,
+        1.04637709e+00,  1.04557824e+00,  1.02365019e+00,  1.04169689e+00,
+        1.04251841e+00,  1.02456885e+00,  1.03924144e+00,  1.02531112e+00,
+        1.03863972e+00,  1.03730293e+00,  1.02708267e+00,  1.02818758e+00,
+        1.03036757e+00,  1.03083476e+00,  1.04273567e+00,  1.02632529e+00,
+        1.02911691e+00,  1.03297812e+00,  1.03168279e+00,  1.03441918e+00,
+        1.03611128e+00,  1.03643306e+00,  1.03453711e+00,  8.36016761e-01,
+        8.33783194e-01,  1.01533076e+00,  1.01570684e+00,  1.01721427e+00,
+        1.01888929e+00,  1.02016447e+00,  1.01998198e+00,  8.42329151e-01,
+        8.43986093e-01,  8.45366855e-01,  8.46098276e-01,  8.35504301e-01,
+        8.38139098e-01,  8.46561801e-01,  8.40875530e-01,  8.38599164e-01,
+        8.38427002e-01,  8.40619522e-01,  1.00970665e+00,  1.01074179e+00,
+        1.00765823e+00,  1.01205203e+00,  1.01350003e+00,  1.01366812e+00,
+        1.01676794e+00,  8.35400278e-01,  8.48226060e-01,  8.48656486e-01,
+        8.49958987e-01,  8.51019028e-01,  8.53460096e-01,  8.52274726e-01,
+        8.55498597e-01,  8.54479327e-01,  8.51862509e-01,  8.56444892e-01,
+        8.57826565e-01,  8.69834302e-01,  8.59157519e-01,  8.67908701e-01,
+        8.60325640e-01,  8.61149659e-01,  8.63190108e-01,  1.00713939e+00,
+        1.00242743e+00,  1.00281749e+00,  1.00593906e+00,  1.00581470e+00,
+        1.00496863e+00,  9.89140825e-01,  8.64054466e-01,  9.96598556e-01,
+        9.95042933e-01,  9.90037365e-01,  1.00458434e+00,  9.93851816e-01,
+        9.91568820e-01,  9.99529069e-01,  9.98869125e-01,  9.98046325e-01,
+        8.66983175e-01,  8.70461991e-01,  8.72092075e-01,  8.65181218e-01,
+        8.73127171e-01,  8.64568800e-01,  8.74221834e-01,  9.91411010e-01,
+        8.76002902e-01,  8.76458009e-01,  9.88131215e-01,  9.99377123e-01,
+        9.86724954e-01,  8.61718990e-01,  8.78216108e-01,  9.98252625e-01,
+        9.86206903e-01,  9.85256096e-01,  8.78533780e-01,  8.80248199e-01,
+        9.83463798e-01,  9.83841378e-01,  9.75417865e-01,  8.83948602e-01,
+        8.85098336e-01,  8.83174958e-01,  9.79524153e-01,  9.80189126e-01,
+        9.72769730e-01,  9.73138531e-01,  9.76999513e-01,  9.81332353e-01,
+        8.86718276e-01,  8.91477452e-01,  9.81115177e-01,  8.92952178e-01,
+        8.88098035e-01,  8.94177652e-01,  8.82130332e-01,  8.88784177e-01,
+        9.78367267e-01,  9.71311686e-01,  9.69117047e-01,  9.70431648e-01,
+        8.82306609e-01,  9.68091523e-01,  8.96472055e-01,  8.89494741e-01,
+        9.64839534e-01,  9.66403982e-01,  9.66506494e-01,  8.95245047e-01,
+        8.99135073e-01,  8.98756740e-01,  8.90292667e-01,  9.64191506e-01,
+        9.08267538e-01,  8.95504401e-01,  9.01519347e-01,  9.62359136e-01,
+        9.58938418e-01,  9.58109698e-01,  9.60176251e-01,  9.61686488e-01,
+        9.10300590e-01,  9.06662723e-01,  9.60655535e-01,  9.55892442e-01,
+        9.05558409e-01,  9.11210697e-01,  9.19718457e-01,  9.54209288e-01,
+        9.12112826e-01,  9.17299029e-01,  9.51649316e-01,  9.26529840e-01,
+        9.21972140e-01,  9.26966097e-01,  9.27914546e-01,  9.22430593e-01,
+        9.23435263e-01,  9.02529026e-01,  9.16098910e-01,  9.24316263e-01,
+        9.52945091e-01,  9.50064750e-01,  9.31063470e-01,  9.35733937e-01,
+        9.15253758e-01,  9.04220635e-01,  9.35031620e-01,  9.47191965e-01,
+        9.48302948e-01,  9.33158933e-01,  9.38453774e-01,  9.36808010e-01,
+        9.44294058e-01,  9.41044664e-01,  9.41940171e-01,  9.38854211e-01,
+        9.03716439e-01,  9.45496247e-01,  9.18357885e-01,  9.13077895e-01,
+        9.43067127e-01,  9.14683326e-01,  9.13868047e-01,  9.02310589e-01,
+        9.04740333e-01,  9.29166367e-01,  9.29277689e-01,  9.42409799e-01,
+        9.33718703e-01,  9.54761472e-01,  9.53383434e-01,  9.45792861e-01,
+        9.48801656e-01,  8.72911003e-01,  9.77668949e-01,  9.31713830e-01])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 最大特征值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>1.5924617911775922
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 最小特征值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>-3.5387952353433675e-16
+</code></pre>
+<h2 id="特征值分布直方图">特征值分布直方图</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># eigenvalues between 0 and 2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Eigenvalue Histogram&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Eigenvalue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># 设置坐标文字大小</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-09-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战" data-hashtags="机器学习,深度学习,特征工程,图神经网络,networkx,CS244W"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230918/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230918/" data-title="NetworkX实战"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">特征工程</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/networkx/">networkx</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230917/" class="prev" rel="prev" title="NetworkX实用模板案例"><i class="fas fa-angle-left fa-fw"></i>NetworkX实用模板案例</a>
+            <a href="/20230919/" class="next" rel="next" title="Random Walk &amp; Node2vec - 图表示学习起始">Random Walk &amp; Node2vec - 图表示学习起始<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

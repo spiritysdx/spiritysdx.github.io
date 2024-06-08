@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Matlab01(基础命令) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="Matlab01(基础命令)" />
+<meta property="og:description" content="基础命令 1.打开文件夹 命令行窗口输入 cd 文件夹名 这里推荐先在文件管理器先创建后打开 2.赋值变量会在工作区显示 可在命令行窗口输入whos 或 who 可以" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20200701/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="Matlab01(基础命令)"/>
+<meta name="twitter:description" content="基础命令 1.打开文件夹 命令行窗口输入 cd 文件夹名 这里推荐先在文件管理器先创建后打开 2.赋值变量会在工作区显示 可在命令行窗口输入whos 或 who 可以"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200701/" /><link rel="prev" href="http://www.spiritysdx.top/20200622/" /><link rel="next" href="http://www.spiritysdx.top/20200702/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Matlab01(基础命令)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200701\/"
+        },"genre": "posts","keywords": "matlab, 数学建模","wordcount":  529 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200701\/","datePublished": "2020-07-01T00:00:00+00:00","dateModified": "2020-07-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Matlab01(基础命令)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/matlab/"><i class="far fa-folder fa-fw"></i>matlab</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-01">2020-07-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 529 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="基础命令">基础命令</h1>
+<p>1.打开文件夹</p>
+<p>命令行窗口输入</p>
+<pre><code>cd 文件夹名
+</code></pre>
+<p>这里推荐先在文件管理器先创建后打开</p>
+<hr>
+<p>2.赋值变量会在工作区显示</p>
+<p>可在命令行窗口输入<code>whos</code> 或 <code>who</code><br>
+可以查看变量属性和具体参数</p>
+<hr>
+<p>3.清空数据</p>
+<pre><code>clear
+</code></pre>
+<hr>
+<p>4.设置文件搜索路径</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/1b0aba8edf652.png"
+        data-srcset="https://pic./2020/07/01/1b0aba8edf652.png, https://pic./2020/07/01/1b0aba8edf652.png 1.5x, https://pic./2020/07/01/1b0aba8edf652.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/1b0aba8edf652.png"
+        title="https://pic./2020/07/01/1b0aba8edf652.png" /></p>
+<hr>
+<p>5.数字类型转换</p>
+<p>class()函数可得数字类型</p>
+<pre><code>class(数字)
+</code></pre>
+<p><strong>整型转换</strong></p>
+<p>int8() #转换成有符号的8位整型</p>
+<p>uint8() #转换成无符号的8位整型</p>
+<p><strong>浮点型转换</strong></p>
+<p>数值数据默认为双精度型，可使用</p>
+<p>single函数：single(数字)转换成单精度型</p>
+<p>double函数：double(数字)转换成双精度型</p>
+<p><strong>复型</strong></p>
+<p><code>a+bi</code>或<code>a+bj</code></p>
+<p>real函数：取复型实部数据</p>
+<p>image函数：取复型虚部数据</p>
+<p><strong>format命令格式</strong></p>
+<pre><code>format long %输出长格式
+
+format %输出短格式
+
+format rat %输出有理数格式
+</code></pre>
+<p>这个不影响数据存储，只是表达方式不同</p>
+<p>ps:<code>%</code>是注释符号，按<code>ctrl+R</code>注释一行，<code>ctrl+T</code>取消一行注释</p>
+<hr>
+<p>6.常见函数</p>
+<p><strong>三角函数及取整函数</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/34fa13e83efaa.png"
+        data-srcset="https://pic./2020/07/01/34fa13e83efaa.png, https://pic./2020/07/01/34fa13e83efaa.png 1.5x, https://pic./2020/07/01/34fa13e83efaa.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/34fa13e83efaa.png"
+        title="https://pic./2020/07/01/34fa13e83efaa.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/eb8974fcfd129.png"
+        data-srcset="https://pic./2020/07/01/eb8974fcfd129.png, https://pic./2020/07/01/eb8974fcfd129.png 1.5x, https://pic./2020/07/01/eb8974fcfd129.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/eb8974fcfd129.png"
+        title="https://pic./2020/07/01/eb8974fcfd129.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/2dd0ac17dfecc.png"
+        data-srcset="https://pic./2020/07/01/2dd0ac17dfecc.png, https://pic./2020/07/01/2dd0ac17dfecc.png 1.5x, https://pic./2020/07/01/2dd0ac17dfecc.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/2dd0ac17dfecc.png"
+        title="https://pic./2020/07/01/2dd0ac17dfecc.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/8c3309c3dd235.png"
+        data-srcset="https://pic./2020/07/01/8c3309c3dd235.png, https://pic./2020/07/01/8c3309c3dd235.png 1.5x, https://pic./2020/07/01/8c3309c3dd235.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/8c3309c3dd235.png"
+        title="https://pic./2020/07/01/8c3309c3dd235.png" /></p>
+<p><strong>实战及其他函数</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/b095473b81ff5.png"
+        data-srcset="https://pic./2020/07/01/b095473b81ff5.png, https://pic./2020/07/01/b095473b81ff5.png 1.5x, https://pic./2020/07/01/b095473b81ff5.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/b095473b81ff5.png"
+        title="https://pic./2020/07/01/b095473b81ff5.png" /></p>
+<p>rem(除数,被除数)函数取余数</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/09dfa6f43181f.png"
+        data-srcset="https://pic./2020/07/01/09dfa6f43181f.png, https://pic./2020/07/01/09dfa6f43181f.png 1.5x, https://pic./2020/07/01/09dfa6f43181f.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/09dfa6f43181f.png"
+        title="https://pic./2020/07/01/09dfa6f43181f.png" /></p>
+<p>isprime(n)函数判断n是否为素数，当n是素数时返回1，否则返回0</p>
+<p>find()函数找寻数组中的序列号</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/011ba73d7e7ba.png"
+        data-srcset="https://pic./2020/07/01/011ba73d7e7ba.png, https://pic./2020/07/01/011ba73d7e7ba.png 1.5x, https://pic./2020/07/01/011ba73d7e7ba.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/011ba73d7e7ba.png"
+        title="https://pic./2020/07/01/011ba73d7e7ba.png" /></p>
+<hr>
+<p>7.预定义变量</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/eb683aa55d530.png"
+        data-srcset="https://pic./2020/07/01/eb683aa55d530.png, https://pic./2020/07/01/eb683aa55d530.png 1.5x, https://pic./2020/07/01/eb683aa55d530.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/eb683aa55d530.png"
+        title="https://pic./2020/07/01/eb683aa55d530.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/eb9ef8d19da54.png"
+        data-srcset="https://pic./2020/07/01/eb9ef8d19da54.png, https://pic./2020/07/01/eb9ef8d19da54.png 1.5x, https://pic./2020/07/01/eb9ef8d19da54.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/eb9ef8d19da54.png"
+        title="https://pic./2020/07/01/eb9ef8d19da54.png" /></p>
+<hr>
+<h1 id="简单矩阵的建立">简单矩阵的建立</h1>
+<p>1.直接输入法</p>
+<pre><code>A=[1,2,3;4,5,6;7,8,9]
+</code></pre>
+<hr>
+<p>2.小矩阵拼接成大矩阵</p>
+<pre><code>A=[1,2,3;4,5,6;7,8,9]    
+B=[-1,-2,3;-4,5,-6;-7,-8,-9]     
+C=[A,B;B,A]  
+</code></pre>
+<p>效果图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/0051c0de999f8.png"
+        data-srcset="https://pic./2020/07/01/0051c0de999f8.png, https://pic./2020/07/01/0051c0de999f8.png 1.5x, https://pic./2020/07/01/0051c0de999f8.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/0051c0de999f8.png"
+        title="https://pic./2020/07/01/0051c0de999f8.png" /></p>
+<hr>
+<p>3.用实部矩阵和虚部矩阵构成复数矩阵</p>
+<pre><code>B=[1,2,3;4,5,6]     
+C=[6,7,8;9,10,11]     
+A=B+i*C  
+</code></pre>
+<p>效果图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/91a2326c76d7c.png"
+        data-srcset="https://pic./2020/07/01/91a2326c76d7c.png, https://pic./2020/07/01/91a2326c76d7c.png 1.5x, https://pic./2020/07/01/91a2326c76d7c.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/91a2326c76d7c.png"
+        title="https://pic./2020/07/01/91a2326c76d7c.png" /></p>
+<hr>
+<h1 id="冒号表达式">冒号表达式</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/9c0fd9256862f.png"
+        data-srcset="https://pic./2020/07/01/9c0fd9256862f.png, https://pic./2020/07/01/9c0fd9256862f.png 1.5x, https://pic./2020/07/01/9c0fd9256862f.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/9c0fd9256862f.png"
+        title="https://pic./2020/07/01/9c0fd9256862f.png" /></p>
+<hr>
+<h1 id="结构矩阵和单元矩阵">结构矩阵和单元矩阵</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/be15fbe252582.png"
+        data-srcset="https://pic./2020/07/01/be15fbe252582.png, https://pic./2020/07/01/be15fbe252582.png 1.5x, https://pic./2020/07/01/be15fbe252582.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/be15fbe252582.png"
+        title="https://pic./2020/07/01/be15fbe252582.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/07/01/51ed61cad6093.png"
+        data-srcset="https://pic./2020/07/01/51ed61cad6093.png, https://pic./2020/07/01/51ed61cad6093.png 1.5x, https://pic./2020/07/01/51ed61cad6093.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/07/01/51ed61cad6093.png"
+        title="https://pic./2020/07/01/51ed61cad6093.png" /></p>
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-07-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)" data-hashtags="matlab,数学建模"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200701/" data-hashtag="matlab"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200701/" data-title="Matlab01(基础命令)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/matlab/">matlab</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200622/" class="prev" rel="prev" title="Matplotlib"><i class="fas fa-angle-left fa-fw"></i>Matplotlib</a>
+            <a href="/20200702/" class="next" rel="next" title="Matlab02(矩阵运算)">Matlab02(矩阵运算)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

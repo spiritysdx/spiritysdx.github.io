@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Node2Vec - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/node2vec/</link>
+        <description>Node2Vec - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sun, 24 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/node2vec/" rel="self" type="application/rss+xml" /><item>
+    <title>Node2Vec</title>
+    <link>http://www.spiritysdx.top/20230924/</link>
+    <pubDate>Sun, 24 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230924/</guid>
+    <description><![CDATA[前言 DeepWalk 仅能反映相邻节点的社群相似信息，无法反映节点的功能角色相似的信息，因为DeespWalk仅使用连接信息(结构信息)学习。 有偏随机游走 通]]></description>
+</item><item>
+    <title>嵌入整张图</title>
+    <link>http://www.spiritysdx.top/20230921/</link>
+    <pubDate>Thu, 21 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230921/</guid>
+    <description><![CDATA[如何嵌入 全图进行编码嵌入 引入虚拟节点 匿名随机游走 https://arxiv.org/pdf/1805.11921.pdf 只要是新节点就标记新的一号，认号不认原来的节点标识。 使用不同匿名随机游走序列的个数构成的向]]></description>
+</item><item>
+    <title>矩阵分解角度 - 图嵌入(节点嵌入)和随机游走</title>
+    <link>http://www.spiritysdx.top/20230920/</link>
+    <pubDate>Wed, 20 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230920/</guid>
+    <description><![CDATA[前言 矩阵分解和随机游走在数学上意义是一样的。 矩阵分解计算 矩阵分解这里可能解析解不能直接求得，且可能不唯一，所以实际计算用的数值解。 具体的证明]]></description>
+</item><item>
+    <title>Random Walk &amp; Node2vec - 图表示学习起始</title>
+    <link>http://www.spiritysdx.top/20230919/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230919/</guid>
+    <description><![CDATA[前言 本文讲述映射成D维向量的基于随机游走方法。 学习路径： 图嵌入 - Node Embedding 把节点映射为一个D维向量。 图表示学习用表示学习替代手工的特征工程，自动化]]></description>
+</item></channel>
+</rss>

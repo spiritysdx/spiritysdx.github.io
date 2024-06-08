@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>C&#43;&#43; - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/c&#43;&#43;/</link>
+        <description>C&#43;&#43; - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 25 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>多重算法实现的迷宫求解问题</title>
+    <link>http://www.spiritysdx.top/20210625/</link>
+    <pubDate>Fri, 25 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210625/</guid>
+    <description><![CDATA[前言 感谢组员的共同协作。 题目背景 迷宫问题是取自心理学的一个古典实验。在该实验中，将一只老鼠放入一个无顶大盒子的门口处，在出口处放置一块奶酪，]]></description>
+</item><item>
+    <title>几种数值算法的简单分析</title>
+    <link>http://www.spiritysdx.top/20210620/</link>
+    <pubDate>Sun, 20 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210620/</guid>
+    <description><![CDATA[前言 感谢组员的共同协作。 四阶龙格-库塔公式计算微分方程数值解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40]]></description>
+</item><item>
+    <title>C&#43;&#43;中序线索二叉链表的建立及遍历</title>
+    <link>http://www.spiritysdx.top/20210519/</link>
+    <pubDate>Wed, 19 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210519/</guid>
+    <description><![CDATA[题目 中序线索二叉链表的建立及遍历(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：结点的相关信息，中序序列 处理方法: 1 2 3 4 5 6 1]]></description>
+</item><item>
+    <title>C&#43;&#43;二叉树中叶子结点的个数与深度的统计</title>
+    <link>http://www.spiritysdx.top/20210517/</link>
+    <pubDate>Mon, 17 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210517/</guid>
+    <description><![CDATA[题目 统计二叉树中叶子结点的个数，计算二叉树的深度(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：叶子结点的个数，二叉树的深度 处理]]></description>
+</item><item>
+    <title>C&#43;&#43;二叉树的建立</title>
+    <link>http://www.spiritysdx.top/20210516/</link>
+    <pubDate>Sun, 16 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210516/</guid>
+    <description><![CDATA[题目 二叉链表的建立，先（中、后）序遍历(数据结构严蔚敏C语言版的C++实现) 输入：字符串序列 输出：先（中、后）序序列 处理方法：通过补虚结点，]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-迭代法Aikten法以及牛顿法求解线性方程根通用程序</title>
+    <link>http://www.spiritysdx.top/20210515/</link>
+    <pubDate>Sat, 15 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210515/</guid>
+    <description><![CDATA[数值逼近 公元 1225 年，比萨的数学家 Leonardo（即 Fibonacci（斐波那契）），1170-1250）研究了方程 x^3+2*x^2+10*x-20=0 得到一个根 x* = 1.368 808 107]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-迭代法求非线性方程的根</title>
+    <link>http://www.spiritysdx.top/20210426/</link>
+    <pubDate>Mon, 26 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210426/</guid>
+    <description><![CDATA[数值逼近 用迭代法求非线性方程(x+1)^2-sinx-3=0的根。 取迭代函数0.5*(3+sin((x))-1-(x)*(x))，精度要求为]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-Euler方法、改进Euler方法和经典四阶Runge-Kutta方法求解初值问题</title>
+    <link>http://www.spiritysdx.top/20210425/</link>
+    <pubDate>Sun, 25 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210425/</guid>
+    <description><![CDATA[数值积分 取步长 h = 0.1 ，分别用 Euler 方法、改进 Euler 方法和经典四阶 Runge-Kutta 方法求解初值问题 1 2 f(x,y) = ((y)-2*(x)/(y)) f(0) = 0 并将计算结果与sqrt(1+2*(x))精确解相比]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-复化梯形公式和复化 Simpson 公式计算定积分的近似值</title>
+    <link>http://www.spiritysdx.top/20210424/</link>
+    <pubDate>Sat, 24 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210424/</guid>
+    <description><![CDATA[数值逼近 将区间[0,1]四等分，分别用复化梯形公式和复化 Simpson 公式计算定积分 1 f(x) 4.0 / (1 + (x) * (x)) 的近似值。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-Newton插值法</title>
+    <link>http://www.spiritysdx.top/20210423/</link>
+    <pubDate>Fri, 23 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210423/</guid>
+    <description><![CDATA[数值逼近 天安门广场升旗的时间是日出的时刻，而降旗的时间是日落时分。根据天安门广场管理委员会的公告，某年 10 月份升降旗的时间如下： 1 2 3 日期 1 15]]></description>
+</item></channel>
+</rss>

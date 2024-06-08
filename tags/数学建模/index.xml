@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数学建模 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/</link>
+        <description>数学建模 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="self" type="application/rss+xml" /><item>
+    <title>预处理3-连续值与特征选取</title>
+    <link>http://www.spiritysdx.top/20210724/</link>
+    <pubDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210724/</guid>
+    <description><![CDATA[前言 使用的相关数据链接如下： 点我跳转 代码 连续值预处理 1 2 3 4 5 6 7 8 9 10 import pandas as pd data = pd.read_csv(&#34;Narrativedata.csv&#34; ,index_col=0 )#index_col=0将第0列作为索引，不写则认]]></description>
+</item><item>
+    <title>预处理2-随机森林填补缺失值</title>
+    <link>http://www.spiritysdx.top/20210723/</link>
+    <pubDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210723/</guid>
+    <description><![CDATA[随机森林填补缺失值(实测回归比较好) 1 2 3 4 5 %matplotlib inline from sklearn.tree import DecisionTreeClassifier from sklearn.ensemble import RandomForestClassifier#随机森林分类树 from sklearn.datasets import load_wine from sklearn.model_selection import train_test_split]]></description>
+</item><item>
+    <title>预处理1-分类数据</title>
+    <link>http://www.spiritysdx.top/20210722/</link>
+    <pubDate>Thu, 22 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210722/</guid>
+    <description><![CDATA[前言 使用的相关数据链接如下： 点我跳转 数据预处理 无量纲化 1 2 #归一化 收到0~1之间 #正则化不是归一化 1 2 3 4 5 6 7 8 from sklearn.preprocessing import MinMaxScaler data = [[-1, 2], [-0.5, 6], [0, 10], [1,]]></description>
+</item><item>
+    <title>决策树3-泰坦尼克号实例(网格搜索,超参数调参)</title>
+    <link>http://www.spiritysdx.top/20210721/</link>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210721/</guid>
+    <description><![CDATA[前言 数据集来自kaggle 链接：https://www.kaggle.com/c/titanic/data 里面的test和train的csv]]></description>
+</item><item>
+    <title>决策树2-简单调参</title>
+    <link>http://www.spiritysdx.top/20210720/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210720/</guid>
+    <description><![CDATA[代码 1 2 3 from sklearn import tree from sklearn.datasets import load_wine from sklearn.model_selection import train_test_split 1 wine = load_wine() 1 wine.data.shape (178, 13) 1 wine.target array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,]]></description>
+</item><item>
+    <title>决策树1-分类器</title>
+    <link>http://www.spiritysdx.top/20210719/</link>
+    <pubDate>Mon, 19 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210719/</guid>
+    <description><![CDATA[代码 1 2 3 4 5 import numpy as np import matplotlib.pyplot as plt from sklearn import datasets from sklearn.model_selection import train_test_split #分割训练集和测试集 from sklearn.neighbors import KNeighborsClassifier #K近邻 简单案例 1 2 3 iris=datasets.load_iris() iris_X = iris.data iris_y=iris.target 1 iris_X[:2,:]#四个属]]></description>
+</item><item>
+    <title>决策树线性回归</title>
+    <link>http://www.spiritysdx.top/20210718/</link>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210718/</guid>
+    <description><![CDATA[代码 1 2 3 import numpy as np from sklearn.tree import DecisionTreeRegressor #回归树 import matplotlib.pyplot as plt 1 2 3 #生成噪声曲线 rng = np.random.RandomState(1) rng.rand(2,3)#生成区分行列的二维数据，一维数据不分行列，生]]></description>
+</item><item>
+    <title>2020新型冠状病毒（COVID-19/2019-nCoV）疫情分析(补档)</title>
+    <link>http://www.spiritysdx.top/20210715/</link>
+    <pubDate>Thu, 15 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210715/</guid>
+    <description><![CDATA[新型冠状病毒（COVID-19/2019-nCoV）疫情分析 源文档详见：博客相关资源-新冠疫情数据分析文件 重要说明 分析文档：完成度：代码质量]]></description>
+</item><item>
+    <title>某区域流体数据处理(只会写操作，不知道具体意义)</title>
+    <link>http://www.spiritysdx.top/20210714/</link>
+    <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210714/</guid>
+    <description><![CDATA[前言 帮舍友整的，不知道具体实际意义。 代码 1 2 3 4 5 import numpy as np import pandas as pd data = pd.read_excel(r&#39;C:\Users\祈LHL\D]]></description>
+</item><item>
+    <title>多元回归和熵值评价法及多目标遗传优化算法</title>
+    <link>http://www.spiritysdx.top/20210713/</link>
+    <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210713/</guid>
+    <description><![CDATA[前言 感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。 第一届长三角数学建模 B题 锅炉水冷壁温度曲线 1Stopt多元拟合 个人体会： 只]]></description>
+</item></channel>
+</rss>

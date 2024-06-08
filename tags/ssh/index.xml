@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ssh - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/ssh/</link>
+        <description>ssh - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 14 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/ssh/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的LXD容器配置跳板机进行连接</title>
+    <link>http://www.spiritysdx.top/20240515/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240515/</guid>
+    <description><![CDATA[前言 由于机房的服务器(下称宿主机)都是没有公网IP的(只有NAT的IPV4网络)，所以需要通过跳板机进行连接。 由于Pycharm的远程连接是]]></description>
+</item><item>
+    <title>在Pycharm上连接远程虚拟环境进行使用</title>
+    <link>http://www.spiritysdx.top/20240514/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240514/</guid>
+    <description><![CDATA[前言 相信通过前面教程，大部分问题都解决了，目前就剩一个Pycharm怎么连接远程的LXC容器运行Python项目的问题了。 (为什么不用VSC]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04的Linux安装SSH的server</title>
+    <link>http://www.spiritysdx.top/20240511/</link>
+    <pubDate>Sat, 11 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240511/</guid>
+    <description><![CDATA[废话少说 1 sed -i &#39;s/.*precedence ::ffff:0:0\/96.*/precedence ::ffff:0:0\/96 100/g&#39; /etc/gai.conf 1 2 3 4 apt update apt install openssh-server -y systemctl enable --now ssh systemctl status ssh 1 2 3 4 5 6 7 8 9 sed -i &#39;s/^#\?Port.*/Port 22/g&#39; /etc/ssh/sshd_config sed -i &#39;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config sed -i &#39;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config sed -i &#39;s/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/&#39; /etc/ssh/sshd_config sed -i &#39;s/#ListenAddress ::/ListenAddress ::/&#39; /etc/ssh/sshd_config sed -i &#39;s/#AddressFamily any/AddressFamily any/&#39;]]></description>
+</item></channel>
+</rss>
