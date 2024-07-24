@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>PageRank - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/pagerank/</link>
+        <description>PageRank - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 27 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/pagerank/" rel="self" type="application/rss+xml" /><item>
+    <title>PageRank实战-西游记人物节点重要程度</title>
+    <link>http://www.spiritysdx.top/20230927/</link>
+    <pubDate>Wed, 27 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230927/</guid>
+    <description><![CDATA[PageRank节点重要度 在NetworkX中，计算有向图节点的PageRank节点重要度。 参考资料 networkx官方教程：https:/]]></description>
+</item><item>
+    <title>PageRank</title>
+    <link>http://www.spiritysdx.top/20230926/</link>
+    <pubDate>Tue, 26 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230926/</guid>
+    <description><![CDATA[Links as votes 使用In-coming links作为投票，也就是别人引用了我，即一个节点被多少其他节点指向，那么这个节点被多少用户点击的概率就越大。 p]]></description>
+</item></channel>
+</rss>

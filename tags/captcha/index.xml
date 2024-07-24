@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>captcha - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/captcha/</link>
+        <description>captcha - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/captcha/" rel="self" type="application/rss+xml" /><item>
+    <title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title>
+    <link>http://www.spiritysdx.top/20221211/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221211/</guid>
+    <description><![CDATA[前言 爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么]]></description>
+</item><item>
+    <title>免费破解图片验证码(数字或中英混合)(附代码)(2022)</title>
+    <link>http://www.spiritysdx.top/20221103/</link>
+    <pubDate>Thu, 03 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221103/</guid>
+    <description><![CDATA[前言 前面有破解谷歌验证码，现在来破解相对简单的图片验证码。(数字以及中英混合) 插件过验证码 需要加载谷歌插件AutoVerify 这种识别是为了]]></description>
+</item><item>
+    <title>图片验证码增强技术(提高识别正确率)</title>
+    <link>http://www.spiritysdx.top/20220206/</link>
+    <pubDate>Sun, 06 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220206/</guid>
+    <description><![CDATA[直接使用原始图片做验证码识别正确率较低，使用增强技术后能大大提高识别率 黑底填充白底 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 from PIL]]></description>
+</item></channel>
+</rss>

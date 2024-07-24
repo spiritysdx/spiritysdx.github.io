@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数学建模 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/</link>
+        <description>数学建模 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="self" type="application/rss+xml" /><item>
+    <title>关于手写数字识别的特征工程</title>
+    <link>http://www.spiritysdx.top/20221230/</link>
+    <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221230/</guid>
+    <description><![CDATA[只给出个人完成的代码部分与一些简单的结果和说明 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 from sklearn.decomposition import PCA from sklearn.ensemble import RandomForestClassifier as RFC from sklearn.neighbors import KNeighborsClassifier as KNN from sklearn.model_selection import cross_val_score from sklearn import datasets, decomposition,manifold import matplotlib.pyplot as plt import pandas as]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略的主体代码部分</title>
+    <link>http://www.spiritysdx.top/20220224/</link>
+    <pubDate>Thu, 24 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220224/</guid>
+    <description><![CDATA[前言 美赛论文对应主体代码部分，吐槽一句美赛居然不收代码也是离谱。 论文配套的代码均为本人编写，运行无问题。 感谢组员组长的配合论文撰写。 正文 1 2]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略</title>
+    <link>http://www.spiritysdx.top/20220226/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220226/</guid>
+    <description><![CDATA[感谢组员组长的配合论文撰写。 1 Introduction Background and restatement of the problem 在如今金融迅猛发展的大背景下，交易员可以对众多的金融投资产品进行选择，并对其投资的波动性资产进行]]></description>
+</item><item>
+    <title>(MCM/ICM)比特币和黄金组合投资策略的策略代码部分</title>
+    <link>http://www.spiritysdx.top/20220225/</link>
+    <pubDate>Wed, 23 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220225/</guid>
+    <description><![CDATA[前言 美赛论文对应策略代码部分，吐槽一句美赛居然不收代码也是离谱。 论文配套的代码均为本人编写，运行无碍。 感谢组员组长的配合论文撰写。 正文 1 2 3]]></description>
+</item><item>
+    <title>(MCM/ICM)The Best Investment Strategies For Gold And Bitcoin</title>
+    <link>http://www.spiritysdx.top/20220222/</link>
+    <pubDate>Tue, 22 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220222/</guid>
+    <description><![CDATA[前言 美赛论文，由于不能在md中方便的插入图片与数学公式，所以我选择删掉对应的地方。 英文译制版本。 论文配套的代码均为本人编写，感谢组员组长的配]]></description>
+</item><item>
+    <title>(MCM/ICM)2022C题比特币与黄金投资问题汉译题目</title>
+    <link>http://www.spiritysdx.top/20220221/</link>
+    <pubDate>Mon, 21 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220221/</guid>
+    <description><![CDATA[背景： 市场交易者频繁买卖波动性资产，目标是最大化其总回报。每次买卖通常都会有佣金。 两种这样的资产是黄金和比特币。 图 1：黄金每日价格，每金衡盎]]></description>
+</item><item>
+    <title>Suzhou Carbon Neutral-Circular Development Creative Plan</title>
+    <link>http://www.spiritysdx.top/20220213/</link>
+    <pubDate>Sun, 13 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220213/</guid>
+    <description><![CDATA[前言 很水的比赛，官方求着收论文，说是保底有钱。。。。 英文译制版本。 感谢组员组长的配合论文撰写。 正文 Suzhou Carbon Neutral Circular Development Creative Plan Problem Analysis 1.1 Background brief 1.1.1 Problem introduction In recent years, Suzhou has faced]]></description>
+</item><item>
+    <title>苏州市碳中和-循环发展创意方案书</title>
+    <link>http://www.spiritysdx.top/20220212/</link>
+    <pubDate>Sat, 12 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20220212/</guid>
+    <description><![CDATA[前言 很水的比赛，官方求着收论文，说是保底有钱。。。。 感谢组员组长的配合论文撰写。 正文 问题分析 背景简述 问题引入 近年来，苏州由于面临经济的转型、]]></description>
+</item><item>
+    <title>2021年全国大学生数学建模竞赛C题省一等奖代码部分</title>
+    <link>http://www.spiritysdx.top/20211003/</link>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20211003/</guid>
+    <description><![CDATA[前言 论文配套的代码均为本人编写，第三四问存在部分代码问题，需要改动细节部分才能运行成功，后面两问的代码时间成本很高，长则数小时，短则十几二十]]></description>
+</item><item>
+    <title>2021年全国大学生数学建模竞赛C题省一等奖论文部分</title>
+    <link>http://www.spiritysdx.top/20211002/</link>
+    <pubDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20211002/</guid>
+    <description><![CDATA[前言 博客展示的是机器转义的markdown格式的，部分内容无法正常展示，完整内容详见博客相关资源。 论文配套的代码均为本人编写，第三四问存在部]]></description>
+</item></channel>
+</rss>

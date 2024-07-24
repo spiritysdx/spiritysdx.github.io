@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>多元函数拟合 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88/</link>
+        <description>多元函数拟合 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88/" rel="self" type="application/rss+xml" /><item>
+    <title>多元回归和熵值评价法及多目标遗传优化算法</title>
+    <link>http://www.spiritysdx.top/20210713/</link>
+    <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210713/</guid>
+    <description><![CDATA[前言 感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。 第一届长三角数学建模 B题 锅炉水冷壁温度曲线 1Stopt多元拟合 个人体会： 只]]></description>
+</item></channel>
+</rss>

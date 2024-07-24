@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Golang - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/golang/</link>
+        <description>Golang - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Thu, 28 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>Golang的重定向比Python的重定向次数要多</title>
+    <link>http://www.spiritysdx.top/20240328/</link>
+    <pubDate>Thu, 28 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240328/</guid>
+    <description><![CDATA[前言 之前有使用 FastAPI 开发过一套后端，但占用属实有点大，最近使用 Gin-Vue-Admin 进行重构，在构建爬虫模块的时候，发现了一些有趣的事情，Python的重定向比Go]]></description>
+</item></channel>
+</rss>
