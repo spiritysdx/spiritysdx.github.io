@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>incus - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/incus/</link>
+        <description>incus - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Mon, 13 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/incus/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的Ubuntu22.04安装LXD共享GPU资源</title>
+    <link>http://www.spiritysdx.top/20240513/</link>
+    <pubDate>Mon, 13 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240513/</guid>
+    <description><![CDATA[前言 为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LX]]></description>
+</item></channel>
+</rss>

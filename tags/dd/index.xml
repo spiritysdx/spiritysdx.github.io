@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>dd - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/dd/</link>
+        <description>dd - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/dd/" rel="self" type="application/rss+xml" /><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[前言 该方法的前提： 商家使用PVE虚拟化WIN服务器 WIN服务器可配置使用Network进行启动 启动时可使用NO VNC操控IPXE命令 已知符合]]></description>
+</item></channel>
+</rss>

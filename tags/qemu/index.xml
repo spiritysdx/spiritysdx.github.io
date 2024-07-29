@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>qemu - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/qemu/</link>
+        <description>qemu - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/qemu/" rel="self" type="application/rss+xml" /><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[前言 最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。 pve proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方]]></description>
+</item><item>
+    <title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title>
+    <link>http://www.spiritysdx.top/20230506/</link>
+    <pubDate>Sat, 06 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230506/</guid>
+    <description><![CDATA[PVE 感谢 Proxmox VE 的免费订阅支持 原始仓库：https://github.com/spiritLHLS/pve 说明文档 国内(China)： virt.spiritlhl.net 国际(Gl]]></description>
+</item><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[前言 该方法的前提： 商家使用PVE虚拟化WIN服务器 WIN服务器可配置使用Network进行启动 启动时可使用NO VNC操控IPXE命令 已知符合]]></description>
+</item></channel>
+</rss>

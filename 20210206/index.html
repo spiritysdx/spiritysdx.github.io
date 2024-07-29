@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>C&#43;&#43;指针 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="C&#43;&#43;指针" />
+<meta property="og:description" content="指针的概念 内存地址 内存空间的编排是以字节为单位的，每一个字节（也称单元）都有一个编号，这就是地址。内存地址通常是一个大小为4个字节的整数（这" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20210206/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43;指针"/>
+<meta name="twitter:description" content="指针的概念 内存地址 内存空间的编排是以字节为单位的，每一个字节（也称单元）都有一个编号，这就是地址。内存地址通常是一个大小为4个字节的整数（这"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210206/" /><link rel="prev" href="http://www.spiritysdx.top/20210202/" /><link rel="next" href="http://www.spiritysdx.top/20210308/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++指针",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210206\/"
+        },"genre": "posts","keywords": "C\u002b\u002b","wordcount":  8340 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210206\/","datePublished": "2021-02-06T00:00:00+00:00","dateModified": "2021-02-06T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">C&#43;&#43;指针</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8340 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#指针变量的声明">指针变量的声明</a></li>
+    <li><a href="#指针的基本操作">指针的基本操作</a></li>
+    <li><a href="#指针变量的初始化">指针变量的初始化</a></li>
+    <li><a href="#指针的赋值运算">指针的赋值运算</a></li>
+    <li><a href="#指针的算数运算">指针的算数运算</a></li>
+    <li><a href="#指针的关系运算">指针的关系运算</a></li>
+    <li><a href="#指针与数组">指针与数组</a></li>
+    <li><a href="#使用指针访问数组元素">使用指针访问数组元素</a></li>
+    <li><a href="#指向多维数组的指针">指向多维数组的指针</a></li>
+    <li><a href="#多级指针">多级指针</a></li>
+    <li><a href="#指针数组">指针数组</a></li>
+    <li><a href="#指针变量作为函数参数">指针变量作为函数参数</a></li>
+    <li><a href="#指向函数的指针">指向函数的指针</a></li>
+    <li><a href="#用梯形积分公式求两个函数的积分">用梯形积分公式求两个函数的积分</a></li>
+    <li><a href="#指针作为函数的返回类型">指针作为函数的返回类型</a></li>
+    <li><a href="#字符型指针与字符串">字符型指针与字符串</a></li>
+    <li><a href="#使用字符型指针定义字符串">使用字符型指针定义字符串</a></li>
+    <li><a href="#字符串标准库函数">字符串标准库函数</a></li>
+    <li><a href="#动态内存分配与new和delete运算符">动态内存分配与new和delete运算符</a></li>
+    <li><a href="#new运算符">new运算符</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="指针的概念">指针的概念</h1>
+<p><code>内存地址</code>      <br>
+内存空间的编排是以字节为单位的，每一个字节（也称单元）都有一个编号，这就是地址。内存地址通常是一个大小为4个字节的整数（这与具体的计算机有关），一般用十六进制数表示。</p>
+<p><code>指针</code>           <br>
+指针变量是一种用来存放地址的特殊变量，简称为指针。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span> <span class="n">iPointer</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译时，系统将为指针变量iPointer分配另一个内存空间，用于存放某个变量的起始地址。	     <br>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">iPointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则：指针变量iPointer里存放的就是变量i的起始地址</p>
+<p><code>直接访问和间接访问</code>             <br>
+1.直接访问：按变量存取值。       <br>
+根据变量的地址直接访问变量的内容。       <br>
+变量名经编译后自动转换为变量的地址，直接访问时对变量的存取都是直接通过变量地址进行的。       <br>
+例如，运算式k=i+j。          <br>
+2.间接访问：            <br>
+将变量a的地址存放在变量b中，先访问变量b得到变量b的值（即变量a的地址）后，再访问变量a。       <br>
+对变量内容的访问要经过两次：先访问地址，后访问内容。         <br>
+例如，先访问iPointer，即找到存放“i的地址”的单元，从中获得i的起始地址0x20000000，然后到0x20000000起始的4个字节中取出i的值。</p>
+<h1 id="指针的变量">指针的变量</h1>
+<p>指针变量简称指针，指针变量保存的是另一个变量b的地址；               <br>
+实际上，这个地址就是一个有特殊意义的32位整数，它是系统为变量b分配的存储空间的起始地址，简称首地址。          <br>
+在C++中，可以通过指针操作直接访问存储器中的单元。</p>
+<h2 id="指针变量的声明">指针变量的声明</h2>
+<p>指针变量声明的一般形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;类型标识符&gt;   *指针变量名              
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：               <br>
+(1)申明指针变量时的 * ,只是一个标志，不表示取内容运算。          <br>
+(2)指针变量名必须符合标识符的命名规则；      <br>
+(3)申明指针变量时的数据类型是指针变量所指的变量的数据类型；          <br>
+(4)申明指针变量时,”<em>”前后可以加空格，也可以不加；            <br>
+比如：<code>int *p1;</code> 或者<code>int* p1; </code>都可以                <br>
+注意：             <br>
+int p1, <em>p2; //p1是int变量，p2是指向int的指针        <br>
+int</em> p1, p2; //p2是int变量，p1是指向int的指针        <br>
+建议</em>紧跟指针变量名。</p>
+<p>指针声明时需要特别注意：                <br>
+（1）指针变量具有数据类型          <br>
+虽然指针存放的都是内存地址，但一个指针变量只能存放声明中指定类型数据的地址，否则编译时会出错。       <br>
+例如：````int <em>ip; float * fp; ```   <br>
+则：ip只能指向int型变量、fp只能指向float型变量。             <br>
+（2）void</em>型指针         <br>
+void<em>型指针是一个类型不确定的指针。根据需要可以将void</em>型指针强制转换成int或其它类型的指针。          <br>
+（3）空指针NULL      <br>
+C++语言中定义了一个符号常数NULL用来代表空指针，用来表示“无效”的指针值，其值为0。</p>
+<h2 id="指针的基本操作">指针的基本操作</h2>
+<ol>
+<li>
+<p>&amp;变量名      <br>
+&amp;为取地址运算符，用来获取变量的首地址。</p>
+</li>
+<li>
+<p><em>指针变量名         <br>
+这里的星号“</em>”为指向运算符（也称之为：取内容运算符、间接访问运算符），用来获取指针变量所指向的变量的值。</p>
+</li>
+</ol>
+<p>“&amp;”和“*”运算符都是一元运算符，其优先级高于所有二元运算符，采用从右到左的结合性。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">*</span><span class="n">pInt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pInt</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">j</span><span class="o">=*</span><span class="n">pInt</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意其中的差别：             <br>
+第1句话中<em>pInt是申明指针变量，<em>只是一个标志；        <br>
+第2句话取i的地址为已经申明过的指针变量赋值，pInt前不再加</em>        <br>
+第3句话中</em>pInt表示取出指针pInt所指内存中的值，*表示取内容运算</p>
+<p>体会差别：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pInt</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pInt</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span><span class="n">pInt</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针变量的初始化">指针变量的初始化</h2>
+<p>指针变量也可以在声明时赋初值，完成指针变量的初始化。         <br>
+注意：       <br>
+（1）对指针变量所赋的初始值必须是同类型变量的地址；        <br>
+如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="o">*</span><span class="n">pInt</span><span class="o">=&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">//可以
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.3</span><span class="p">;</span> <span class="kt">int</span> <span class="o">*</span><span class="n">pInt</span><span class="o">=&amp;</span><span class="n">f</span><span class="p">;</span> <span class="c1">//不可以
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>（2）指针变量使用之前必须做初始化（赋初值），即把某个普通变量的地址赋给它。否则指针变量的值就是不确定的，也称之为指针的指向不定，那么贸然使用，就会导致运行错误！        <br>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>  <span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*</span><span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">;</span> <span class="c1">//错误！指向不定时无法为x所指的变量赋值！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">a</span><span class="o">=*</span><span class="n">x</span><span class="p">;</span> <span class="c1">//错误！指向不定时无法读取x所指的变量！（即无法获取指针变量所指向的变量的值）
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//指针变量的定义和使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="o">=</span><span class="n">m</span><span class="p">,</span><span class="o">*</span><span class="n">p1</span><span class="o">=&amp;</span><span class="n">m</span><span class="p">,</span><span class="o">*</span><span class="n">p2</span><span class="o">=&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">*</span><span class="n">pInt</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">k</span><span class="o">=</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;m=&#34;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， n=&#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， k=&#34;</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;&amp;m=&#34;</span><span class="o">&lt;&lt;&amp;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， &amp;n=&#34;</span><span class="o">&lt;&lt;&amp;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， &amp;k=&#34;</span><span class="o">&lt;&lt;&amp;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， p2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="s">&#34; ,  pInt=&#34;</span><span class="o">&lt;&lt;</span><span class="n">pInt</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;*p1=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， *p2=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p1</span><span class="o">+=</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p2</span><span class="o">=</span><span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">p2</span><span class="o">*=</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">pInt</span><span class="o">=</span><span class="n">p2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;*p1=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， *p2=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， p2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;m=&#34;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， n=&#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pInt=&#34;</span><span class="o">&lt;&lt;</span><span class="n">pInt</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针的赋值运算">指针的赋值运算</h2>
+<p>（1）指针变量在赋值时，不允许直接将与指针变量类型不同的指针值赋予指针变量。      <br>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span><span class="p">,</span> <span class="n">iValue</span><span class="p">;</span><span class="kt">char</span> <span class="n">ch</span><span class="o">=</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">iPointer</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">;</span> <span class="c1">//不允许
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">iValue</span> <span class="o">=</span> <span class="n">ch</span><span class="p">;</span> <span class="c1">//允许,将字符变量ch对应的ASCII码（整型数据）赋值给iValue
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>（2）用数据类型不兼容的指针指向该数据类型的变量，可以使用强制类型转换。          <br>
+如上例中，可以：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">iPointer</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ch</span><span class="p">;</span><span class="c1">//允许
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：iPointer被强制指向了ch的起始地址，但ch是字符变量，因此若取指针iPointer所指的内容，则只有最低一个字节内有值（65），高位的三个字节都是随机值（调试显示：*iPointer=-858993599）。</p>
+<p>（3）将其他的任何一种指针值赋予void*型指针变量都必须通过强制类型转换。	
+如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="n">vPointer</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">iPointer</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（4）通过强制类型转换，也可以将指针变量赋值给一个整型变量，或将一个整型常量赋予一个指针变量。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">   <span class="n">iValue</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">iPointer</span><span class="p">;</span>  	
+</span></span><span class="line"><span class="cl">	<span class="n">iPointer</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x98980000</span><span class="p">;</span><span class="c1">//但这样的地址通常不能做取内容运算！
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>但下面两种做法是错误的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="mi">20</span><span class="o">+</span><span class="n">iValue</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针的算数运算">指针的算数运算</h2>
+<p>对于非<code>void*</code>型的指针变量，只能进行加一个整数、减一个整数和两个指针变量相减3种运算。<code>void*</code>型指针变量<code>不能做任何算术运算</code>。                    <br>
+对非void* 型的指针变量做加减整数的运算，实际上就是对地址进行加法或减法运算，但这种加减是按照指针所指变量的类型所占的字节数为单位进行的。                  <br>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iValue</span><span class="p">;</span> 	
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">iPointer1</span><span class="o">=&amp;</span><span class="n">iValue</span><span class="err">，</span><span class="o">*</span><span class="n">iPointer2</span><span class="p">;</span>	    <span class="n">iPointer2</span><span class="o">=</span><span class="n">iPointer1</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>假设iValue的初始地址是0x20000000，即iPointer1的值为0x20000000，则iPointer2=iPointer1+1后，iPointer2的值为0x20000004（注意不是0x20000001）
+指针的自加（++）与自减（&ndash;）运算，即：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">iPointer2</span><span class="o">++</span><span class="p">;</span> 	
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">iPointer1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分别等价于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">iPointer2</span> <span class="o">=</span> <span class="n">iPointer2</span><span class="o">+</span><span class="mi">1</span><span class="err">；</span> 
+</span></span><span class="line"><span class="cl"><span class="n">iPointer1</span> <span class="o">=</span> <span class="n">iPointer1</span><span class="o">-</span><span class="mi">1</span><span class="err">；</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针的关系运算">指针的关系运算</h2>
+<p>指针间的关系运算结果就是两个指针所指的地址值的大小的关系运算结果。两个进行关系运算的指针一般要求是同一类型的指针。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="o">*</span><span class="n">p1</span><span class="o">=&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">*</span><span class="n">p2</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， p2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="o">=</span><span class="n">p2</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span> <span class="c1">//以int所占字节数为单位进行加减，注意地址采用16进制表示。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p2</span><span class="o">++</span><span class="p">;</span>	
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ，p2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="o">=</span><span class="n">p1</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span> 	
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p1</span><span class="o">&lt;&lt;</span><span class="s">&#34; ， p2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针与数组">指针与数组</h2>
+<p>在声明一个数组时，C++语言将在内存中开辟两个空间，一个用于保存数组元素，另一个用于保存数组的第1个元素的地址，称为数组的首地址，数组名就是保存了数组首地址的指针。</p>
+<p>因此对数组元素的访问除了常用的下标法外，还可以用指针操作代替。</p>
+<p>例如，如果定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iArray</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="o">*</span><span class="n">iPointer</span><span class="o">=</span><span class="n">iArray</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//或者int *iPointer=&amp;iArray[0]; 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样通过指针iPointer也可以访问数组中的任意一个元素，即：
+<code>iArray[n]</code>等同于<code>*(iPointer+n)</code></p>
+<p>同样，也可以把指针作为数组名使用，使用下标法访问数组元素，以下4句是等价的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="n">iValue</span> <span class="o">=</span> <span class="n">iArray</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iValue</span> <span class="o">=</span> <span class="n">iPointer</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iValue</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iValue</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">iArray</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>尽管指针和数组名都是指针，但它们也有区别：
+指针变量是变量，是可以不断赋值的；而数组名则是指针型常量，只能指向固定的内存地址（即系统为数组所分配的内存空间的首地址），因此不能给数组名赋值，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">cArray</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cArray</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">;</span> <span class="c1">//错误，不允许将一个指针值赋给数组名！
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用指针访问数组元素">使用指针访问数组元素</h2>
+<p>如果定义一维数组<code>int a[10];</code>则一维数组a中的任何一个元素<code>a[i]</code>等同于<code>*(a+i)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//如何将中间的while循环，改为for循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">iPointer</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iSum</span><span class="o">+=*</span><span class="n">iPointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//或者：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iSum</span><span class="o">+=*</span><span class="n">iPointer</span><span class="o">++</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">使用指针求一维数组中所有元素之和。</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">sum</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">iSum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">iSum</span><span class="o">+=*</span><span class="n">iPointer</span><span class="p">;</span>		
+</span></span><span class="line"><span class="cl"><span class="n">iPointer</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">n</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">iSum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>		<span class="kt">int</span> <span class="n">iArray</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">		 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;数组各元素和: sum=&#34;</span><span class="o">&lt;&lt;</span><span class="n">sum</span><span class="p">(</span><span class="n">iArray</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		 <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用指针对数组中各元素进行排序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">order</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		   <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			 <span class="n">p</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			 <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>			
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>					   <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">&lt;=*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">j</span><span class="p">))</span> <span class="n">p</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			 <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			 <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">t</span><span class="o">=*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">=*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="o">*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			 <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">iArray</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">		<span class="n">order</span><span class="p">(</span><span class="n">iArray</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;排序后的数组为：&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	  		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">iArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>order函数的其它实现方法：下标法访问数组元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">order</span><span class="p">(</span><span class="kt">int</span> <span class="n">iPointer</span><span class="p">[],</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		   		<span class="k">if</span><span class="p">(</span><span class="n">iPointer</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">iPointer</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> 
+</span></span><span class="line"><span class="cl">     <span class="n">p</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">t</span><span class="o">=</span><span class="n">iPointer</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">iPointer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">iPointer</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">iPointer</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指向多维数组的指针">指向多维数组的指针</h2>
+<p>多维数组的元素在计算机中也是线性存储的(C++采用按行顺序保存的原则)，只要知道保存某个多维数组的内存区域的首地址，就可以通过指针访问多维数组中的任何一个元素。例如，声明以下二维数组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iMatrix</span> <span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在定义一个指针变量，并将该二维数组的首地址赋予它：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">iPointer</span><span class="o">=&amp;</span><span class="n">iMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则二维数组iMatrix中的任何一个元素使用iPointer这个指针来访问的规则是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="o">*</span><span class="p">(</span><span class="n">iPointer</span><span class="o">+</span><span class="n">m</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="n">n</span><span class="p">)</span>		<span class="c1">//等同于iMatrix [m][n]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>多维数组的数组名同样也是指针，但它不指向多维数组的第一个元素，而是指向存放第一个数组元素地址的指针，即多维数组的数组名是指向（指向第一个数组元素的）指针的指针。
+比如：将二维数组iMatrix[3][4]看成由3个一维数组<code>iMatrix[i] (0&lt;i&lt;3)</code>组成的数组，其中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="n">iMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">等同于</span><span class="o">&amp;</span><span class="n">iMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="err">等同于</span><span class="o">&amp;</span><span class="n">iMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="n">iMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="err">等同于</span><span class="o">&amp;</span><span class="n">iMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因而，有二维数组<code>iMatrix</code>就是指向这3个一维数组<code>iMatrix[i]</code>组成的数组的第一个元素<code>iMatrix[0]</code>的指针，而<code>iMatrix[0]</code>是指向<code>iMatrix[0][0]</code>的指针。
+故：<code>iMatrix</code>的数据类型是<code>int**</code>，即指向<code>int</code>指针变量的指针，也称二级指针
+从地址值的角度看，<code>iMatrix</code>、<code>iMatrix[0]</code>和<code>&amp;iMatrix[0][0]</code>所代表的值是相同的，但其本质含义却不同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//使用指针实现二维数组转置（行列互换），并输出结果。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iomanip&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">*</span><span class="n">iP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;转置前的矩阵：&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">iP</span><span class="o">=</span><span class="n">iMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  	<span class="c1">//iP存放各行的起始地址(在内循环外)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>				    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">&lt;&lt;*</span><span class="p">(</span><span class="n">iP</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;转置后的矩阵：&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">iP</span><span class="o">=</span><span class="n">iMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  <span class="c1">//iP存放各行的起始地址(在内循环中)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">&lt;&lt;*</span><span class="p">(</span><span class="n">iP</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="多级指针">多级指针</h2>
+<p>多级指针一般又称为指针的指针。如果指针变量保存的是另一个指针变量的地址，则这个指针变量就是指针的指针。定义二级指针变量的一般形式是：	
+<code>&lt;类型标识符&gt; **二级指针变量名</code>
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="o">*</span><span class="n">p</span><span class="o">=&amp;</span><span class="n">i</span><span class="p">,</span><span class="o">**</span><span class="n">pp</span><span class="o">=&amp;</span><span class="n">p</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用指针操作二维数组，并输出相应的指针值（地址）。
+注意：比较各级指针加1后，地址实际增加的量。</p>
+<h2 id="指针数组">指针数组</h2>
+<p>如果数组的每一个元素都是类型相同的指针变量，则该数组称为指针数组。声明指针变量数组的形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;类型标识符&gt; *指针数组名[数组长度]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">pString</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>  <span class="c1">//声明一个保存6个char *型元素的指针数组
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//今天星期几？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">pDay</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="s">&#34;Monday&#34;</span><span class="p">,</span><span class="s">&#34;Tuesday&#34;</span><span class="p">,</span><span class="s">&#34;Wednesday&#34;</span><span class="p">,</span><span class="s">&#34;Thursday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="s">&#34;Friday&#34;</span><span class="p">,</span><span class="s">&#34;Saturday&#34;</span><span class="p">,</span><span class="s">&#34;Sunday&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">**</span><span class="n">ppDay</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;输入整数1~7:&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ppDay</span><span class="o">=</span><span class="n">pDay</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Today is &#34;</span><span class="o">&lt;&lt;*</span><span class="n">ppDay</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针变量作为函数参数">指针变量作为函数参数</h2>
+<p>普通变量作为函数参数实现的是数值传递，而指针变量作为函数参数实现的是地址传递。</p>
+<ol>
+<li>数值传递</li>
+</ol>
+<p>数值传递是普通变量作为函数形参，主调函数中的实参内容是一个数值确定的表达式，适合少量数据的传递。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">change</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">);</span>			<span class="c1">//函数声明语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数调用前：a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34; ,b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	 <span class="n">change</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span> 			 <span class="c1">//以a、b的值为实参调用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数调用后：a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34; ,b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">change</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>	<span class="n">temp</span><span class="o">=</span><span class="n">m</span><span class="p">;</span>	<span class="n">m</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>	<span class="n">n</span><span class="o">=</span><span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数中参数：m=&#34;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="s">&#34;,n=&#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>地址传递</li>
+</ol>
+<p>地址传递是指针变量作为函数参数,这时主调函数中的实参是某个变量的内存地址，被调函数的形参则必须是与实参类型相同的指针变量，用以接受由实参传过来的地址。函数调用时，通过地址传递的实参与形参指向相同的内存单元，即形参所指内容与实参所指内容为同一段内存空间，因此形参所指内容发生更改，实参也会发生相应的更改。</p>
+<p>从键盘输入两个整数，使用地址传递实现两数的真正交换。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">change</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="p">);</span>			<span class="c1">//函数声明语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数调用前：a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34; ,b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">change</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span> 			 <span class="c1">//以a、b值的地址为实参调用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数调用后：a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34; ,b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">change</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>		
+</span></span><span class="line"><span class="cl">   <span class="n">temp</span><span class="o">=*</span><span class="n">m</span><span class="p">;</span>		<span class="o">*</span><span class="n">m</span><span class="o">=*</span><span class="n">n</span><span class="p">;</span>		<span class="o">*</span><span class="n">n</span><span class="o">=</span><span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;函数中参数：m=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="s">&#34;,n=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在C++中，需要返回多个变量值时，也可以采用地址传递的方式，将变量地址传给函数形参，在函数内通过指针直接修改位于函数外部的变量的值，从而实现返回多个值的目的。</p>
+<h2 id="指向函数的指针">指向函数的指针</h2>
+<p>要调用一个函数，只要知道被调用函数的入口地址即可。函数名实际上就是一个指针，它指向函数的入口地址。因此可以定义一个指针变量，并赋予它函数名，这样的指针变量就指向该函数的入口地址。称这样的指针变量为指向函数的指针变量，简称函数指针变量，通过函数指针变量就可以实现调用它所指函数的目的。
+1．函数指针变量的声明与使用
+函数指针变量声明的一般形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">		<span class="o">&lt;</span><span class="err">类型标识符</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">*</span><span class="err">函数指针变量名</span><span class="p">)(</span><span class="err">参数表</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：	
+类型标识符说明函数指针变量所指函数返回值的数据类型；	
+定义中的(*函数指针变量名)的两对圆括号都不能遗漏，否则就成了返回指针的函数；		
+参数表中形参的类型、个数都必须与所指的函数一致。</p>
+<p>若定义函数：<code>void func(int m,int n);</code>	
+则指向该函数的函数指针变量可定义为：	
+<code> void (*pFpointer) (int,int);</code>		
+使用已经定义的函数指针变量来调用函数，分以下两步：	
+（1）将函数名赋予己定义的函数指针变量，其形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">函数指针变量名=函数名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如：<code>pFpointer = func;</code>		
+（2）使用函数指针变量调用它所指的函数，可用的形式有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(*函数指针变量名)(实参表)
+</span></span><span class="line"><span class="cl">或：		
+</span></span><span class="line"><span class="cl">函数指针变量名(实参表)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如，下面三个函数调用语句的功能是相同的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">*</span> <span class="n">pFpointer</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">pFpointer</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：函数的指针不能进行算术运算,因此不能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">pFpointer</span><span class="o">++</span> <span class="c1">//错误！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">pFpointer</span><span class="o">-</span><span class="mi">1</span> <span class="c1">//错误！
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>函数指针变量作为函数的参数
+函数指针的用处在于可以作为函数参数传递给被调函数，使得被调函数可以根据情况，调用不同的的函数，增强其通用性。</p>
+<p>将函数指针变量作为函数参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>	<span class="p">{</span>		<span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>	<span class="p">{</span>		<span class="k">return</span> <span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">;</span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">funct</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pFunc</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">),</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">result</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">pFunc</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="c1">//等价于result=pFunc(x,y);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>		
+</span></span><span class="line"><span class="cl"><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;a+b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">funct</span><span class="p">(</span><span class="n">add</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;a-b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">funct</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="用梯形积分公式求两个函数的积分">用梯形积分公式求两个函数的积分</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">);</span><span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">);</span><span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="nf">integral</span><span class="p">(</span><span class="kt">float</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)(</span><span class="kt">float</span><span class="p">),</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span><span class="kt">float</span> <span class="n">b</span><span class="p">);</span><span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">float</span> <span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s1</span><span class="o">=</span><span class="n">integral</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">);</span><span class="c1">//函数调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">s2</span><span class="o">=</span><span class="n">integral</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">);</span><span class="c1">//函数调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;s1=&#34;</span><span class="o">&lt;&lt;</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">s1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;s2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">s2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">integral</span><span class="p">(</span><span class="kt">float</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)(</span><span class="kt">float</span><span class="p">),</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span><span class="kt">float</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">float</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">sum</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="n">p</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="c1">//利用函数指针间接调用函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">return</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">f1</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">float</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">float</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="指针作为函数的返回类型">指针作为函数的返回类型</h2>
+<p>返回值是地址的函数称为指针函数，其定义的一般形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;类型标识符&gt;*函数名(形参表)
+</span></span><span class="line"><span class="cl">{  函数体 }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//函数的返回值是指针类型。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="nf">pfun</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> 	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> 		<span class="k">return</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> 		<span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">s</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;*</span><span class="n">pfun</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//	cout&lt;&lt;pfun(&amp;s[1])&lt;&lt;endl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：作为函数的返回的指针，不能是在函数体内定义的局部变量。</p>
+<h2 id="字符型指针与字符串">字符型指针与字符串</h2>
+<p>对字符串的再认识:			
+字符串由一系列字符组成，每一个字符在内存中按顺序存放，最后一个字符后面一定是结束符’\0’ 。</p>
+<p>在内存中识别字符串关键有以下两点：				
+①字符串的首地址。			
+②字符串结束符’\0’。			
+对字符串的处理通常是采用循环语句，从字符串的首地址开始，依次取出指针所指内存里的各个字符，直至遇到’\0’为止。</p>
+<h2 id="使用字符型指针定义字符串">使用字符型指针定义字符串</h2>
+<p>使用字符型指针定义字符串的形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	char  *指针变量名=&#34;字符串&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：字符型指针比字符型数组更灵活（因为字符型数组只能初始化，不能再次赋值，而字符型指针定义字符串却可以！）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">pString1</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;I love China!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">pString2</span><span class="o">=</span><span class="s">&#34;This is a string2.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">pString2</span><span class="o">=</span><span class="s">&#34;This is a new string2.&#34;</span><span class="p">;</span> 	<span class="c1">//允许，且新字符串更长！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">pString1</span><span class="o">=</span><span class="s">&#34;This is a new string1.&#34;</span><span class="p">;</span> 	<span class="c1">//不允许，数组名不能再赋值pString2=pString1;			//允许
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">pString1</span><span class="o">=</span><span class="n">pString2</span><span class="p">;</span>			<span class="c1">//不允许，数组名不能被赋值
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="o">*</span><span class="n">pString1</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="c1">//允许, pString1[0]= &#39;a&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">pString2</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span><span class="c1">//不允许，使用字符型指针定义字符串后，指针所指单个内存的内容只允许读，不允许写！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">pString1</span> <span class="o">=</span> <span class="o">*</span><span class="n">pString2</span><span class="p">;</span><span class="c1">//允许, pString1[0]= pString2[0]=‘T&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用字符型指针实现字符串的复制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">copy_string</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">to</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">from</span><span class="p">)</span><span class="c1">//复制函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(;</span><span class="o">*</span><span class="n">from</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="n">from</span><span class="o">++</span><span class="p">,</span><span class="n">to</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			     <span class="o">*</span><span class="n">to</span><span class="o">=*</span><span class="n">from</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">to</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>  <span class="c1">//赋值字符串结束标识
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">pSource</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;I am a teacher.&#34;</span><span class="p">;</span><span class="c1">//可以用char *pSource替换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="n">pDestination</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;you are a student.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//不能用char *pDestination替换（使用字符型指针定义字符串后，指针所指单个内存的内容只允许读，不允许写！ ）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//pDestination字符数组长度&gt;=pSource字符数组长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">copy_string</span><span class="p">(</span><span class="n">pDestination</span><span class="p">,</span><span class="n">pSource</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pSource:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pSource</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pDestination:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pDestination</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串标准库函数">字符串标准库函数</h2>
+<p>C++提供了许多操作字符串的标准库函数，这些函数使用时，必须在应用程序的开头添加包含头文件string.h的预处理命令：	<code>#include &lt;string&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//使用C++的标准库函数strcpy( )实现字符串的复制。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">char</span> <span class="n">pSource</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;I am a teacher.&#34;</span><span class="p">;</span> <span class="c1">//15个字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kt">char</span> <span class="n">pDestination</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;you are a student.&#34;</span><span class="p">;</span> <span class="c1">//18个字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="c1">//若char pDestination[]=“student.”; 后面拷贝时会错误！
+</span></span></span><span class="line"><span class="cl"><span class="c1">//pDestination字符串长度&gt;=pSource字符串长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">strcpy</span><span class="p">(</span><span class="n">pDestination</span><span class="p">,</span><span class="n">pSource</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//等价于strncpy(pDestination,pSource,16);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pSource:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pSource</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pDestination:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pDestination</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="动态内存分配与new和delete运算符">动态内存分配与new和delete运算符</h2>
+<p>静态内存分配是指在编译阶段就分配好存储空间，其空间大小在程序运行过程中不可更改；动态内存分配则是在程序中通过调用内存分配函数malloc或内存分配运算符new取得存储空间；			
+区别：静态内存分配的变量空间，在其生存期结束后自动收回；而动态内存分配的存储空间，必须由程序员通过语句显式地将其归还给系统。</p>
+<h2 id="new运算符">new运算符</h2>
+<p>new运算符用于在内存中动态分配一块存储空间。new运算符的使用形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">指针变量=new  &lt;类型标识符&gt;[长度]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">cBuffer</span><span class="o">=</span><span class="k">new</span> <span class="kt">char</span> <span class="p">[</span><span class="mi">256</span><span class="p">];</span> 			<span class="c1">//分配256个char型数据的存储空间
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：</p>
+<p>①如果分配的存储空间长度为1个单位，则可以省略new运算符格式中的中括号和中括号中的整数。
+如：int *pInt=new int; //等价于int *pInt=new int[1];</p>
+<p>②使用new运算符分配存储空间时，其空间长度可以是变量，也可以是数值表达式，但无论是什么，其类型必须是整型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">nSize</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span> <span class="kt">int</span> <span class="o">*</span><span class="n">pInt</span><span class="o">=</span><span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">nSize</span><span class="o">+</span><span class="mi">5</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>③由new所分配的存储空间是连续的，且通常将存储空间的首地址赋予一个指针变量，所以可以通过该指针的变化访问所分配存储空间的每一个元素。</p>
+<p>④如果当前内存无足够的存储空间可分配，则new运算符返回NULL。</p>
+<p>由new运算符分配的内存空间在使用完毕之后必须使用delete运算符释放。				
+delete运算符的使用有两种形式：				
+形式一：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">delete</span><span class="err">指针</span>	<span class="c1">//释放空间长度为1个单位（与指针类型有关）的内存空间
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>形式二：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">delete</span> <span class="p">[</span> <span class="p">]</span><span class="err">指针</span>	<span class="c1">//释放空间长度大于1的内存空间
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>delete后面的是使用new运算符分配内存空间时返回的指针	，也可以是NULL，若是NULL，则delete运算符什么也不做。		
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pInt</span><span class="o">=</span><span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="n">pInt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pManyInt</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="p">[]</span><span class="n">pManyInt</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：			
+①用new运算符获得的内存空间，只许使用一次delete，不允许多次对同一块空间进行多次释放，否则将会产生严重错误。						
+②delete只能用来释放由new运算符分配的动态内存空间，对于程序中的变量、数组的存储空间，不得使用delete运算符释放。</p>
+<p>复制字符串，依据源字符串的长度动态分配目的字符串的存储空间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">copy_string</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">to</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">from</span><span class="p">)</span><span class="c1">//复制字符串函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span> <span class="n">tt</span><span class="o">=</span><span class="n">to</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="o">*</span><span class="n">from</span><span class="o">!=</span><span class="err">&#39;\</span><span class="mi">0</span><span class="err">’</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">         <span class="o">*</span><span class="n">tt</span><span class="o">++=*</span><span class="n">from</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">tt</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="c1">//赋值字符串结束标识
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">char</span> <span class="n">pSource</span><span class="p">[]</span><span class="o">=</span><span class="s">&#34;I am a teacher.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">nSize</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">pSource</span><span class="p">[</span><span class="n">nSize</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">nSize</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//定义目的字符串并申请分配内存空间(源字符串长度并加1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="n">pDestination</span><span class="o">=</span><span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">nSize</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">pDestination</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">copy_string</span><span class="p">(</span><span class="n">pDestination</span><span class="p">,</span><span class="n">pSource</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pSource:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pSource</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;pDestination:&#34;</span><span class="o">&lt;&lt;</span><span class="n">pDestination</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;No memory space to copy operation!&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="p">[]</span><span class="n">pDestination</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针" data-hashtags="C&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210206/" data-hashtag="C&#43;&#43;"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210206/" data-title="C&#43;&#43;指针"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210202/" class="prev" rel="prev" title="C&#43;&#43;自定义数据类型"><i class="fas fa-angle-left fa-fw"></i>C&#43;&#43;自定义数据类型</a>
+            <a href="/20210308/" class="next" rel="next" title="C&#43;&#43;函数分文件编写(VScode2021配置教程)">C&#43;&#43;函数分文件编写(VScode2021配置教程)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

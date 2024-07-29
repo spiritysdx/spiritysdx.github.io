@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Appium自动化操作03(界面操作和adb命令) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:title" content="Appium自动化操作03(界面操作和adb命令)" />
+<meta property="og:description" content="前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.spiritysdx.top/20200525/" /><meta property="og:image" content="http://www.spiritysdx.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://www.spiritysdx.top/logo.png"/>
+
+<meta name="twitter:title" content="Appium自动化操作03(界面操作和adb命令)"/>
+<meta name="twitter:description" content="前言 最好有Selenium的Web自动化的实际经验 运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200525/" /><link rel="prev" href="http://www.spiritysdx.top/20200527/" /><link rel="next" href="http://www.spiritysdx.top/20200529/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Appium自动化操作03(界面操作和adb命令)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200525\/"
+        },"genre": "posts","keywords": "python, 爬虫","wordcount":  2104 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200525\/","datePublished": "2020-05-25T00:00:00+00:00","dateModified": "2020-05-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Appium自动化操作03(界面操作和adb命令)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-25">2020-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2104 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#click点击">click点击</a></li>
+        <li><a href="#tap点按">tap点按</a></li>
+        <li><a href="#输入">输入</a></li>
+        <li><a href="#获取界面文本信息">获取界面文本信息</a></li>
+        <li><a href="#滑动">滑动</a></li>
+        <li><a href="#按键">按键</a></li>
+        <li><a href="#长按双击移动">长按、双击、移动</a></li>
+        <li><a href="#打开通知栏">打开通知栏</a></li>
+        <li><a href="#收起通知栏">收起通知栏</a></li>
+        <li><a href="#adb-命令">adb 命令</a></li>
+        <li><a href="#shell">shell</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)</p>
+<p>所用apk包(wv.apk)链接：</p>
+<p><a href="https://spiritlhl.lanzous.com/icxhm7g" target="_blank" rel="noopener noreffer">https://spiritlhl.lanzous.com/icxhm7g</a></p>
+<hr>
+<h1 id="界面操作和adb命令">界面操作和adb命令</h1>
+<h3 id="click点击">click点击</h3>
+<p>最常见的操作之一，使用<code>WebElement</code>对象的<code>click</code>方法。</p>
+<hr>
+<h3 id="tap点按">tap点按</h3>
+<p><code>WebElement</code>对象的<code>tap</code>方法和<code>click</code>类似，都是点击界面。</p>
+<p>但是最大的区别是，<code>tap</code>是针对<code>坐标</code>而不是针对找到的<code>元素</code>。</p>
+<p>为了保证自动化代码在所有分辨率的手机上都能正常执行，我们通常应该使用click方法。</p>
+<p>但有的时候，我们难以用通常的方法定位元素，可以用这个<code>tap</code>方法，根据坐标来点击</p>
+<p>用<code>inspect</code>查看该元素的属性中，有一个<code>bounds</code>属性吗？</p>
+<p>它就是表示元素的<code>左上角</code>，<code>右下角</code>坐标的坐标。</p>
+<p>我们还可以使用<code>UIAutomatorviewer</code>直接十字光标移动，看右边的属性提示。</p>
+<p><code>tap</code>方法可以像这样进行调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">tap</span><span class="p">([(</span><span class="mi">1100</span><span class="p">,</span><span class="mi">1080</span><span class="p">),],</span><span class="mi">700</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它有两个参数：</p>
+<p>第一个参数是个<code>列表</code>，表示点击的坐标。</p>
+<p>注意最多可以有<code>5个元素</code>，代表5根手指点击5个坐标。所以是<code>list</code>类型。</p>
+<p>如果我们只要模拟一根手指点击屏幕，list中只要一个元素就可以了</p>
+<p>第二个参数表示<code>tap</code>点按屏幕后停留的时间（毫秒）。</p>
+<p>如果点按时间过长，就变成了长按操作了。</p>
+<hr>
+<h3 id="输入">输入</h3>
+<p>最常见的操作之一，使用<code>WebElement</code>对象的<code>send_keys</code>方法。</p>
+<hr>
+<h3 id="获取界面文本信息">获取界面文本信息</h3>
+<p>可以通过<code>WebElement</code>对象的<code>.text</code>属性获取该对象的文本信息。</p>
+<hr>
+<h3 id="滑动">滑动</h3>
+<p>做移动app测试的时候，经常需要滑动界面。</p>
+<p>这需要使用<code>WebDriver</code>对象的<code>swipe</code>方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">swipe</span><span class="p">(</span><span class="n">start_x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">start_y</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span> <span class="n">end_x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">end_y</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前面4个参数是<code>滑动起点</code>和<code>终点</code>的x、y坐标。</p>
+<p>第5个参数<code>duration</code>是滑动从起点到终点坐标所耗费的时间（毫秒）。</p>
+<p>注意这个时间非常重要，在屏幕上滑动同样的距离，如果时间设置的很短，就是快速的滑动。</p>
+<p>例如：一个翻动新闻的界面，快速的滑动，就会是扫动的动作，会导致内容随惯性滚动很多。</p>
+<hr>
+<h3 id="按键">按键</h3>
+<p>调用<code>press_keycode</code>方法，就能模拟<code>按键动作</code>，包括安卓手机的<code>实体</code>按键和<code>键盘</code>按钮。</p>
+<p>具体代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">appium.webdriver.extensions.android.nativekey</span> <span class="kn">import</span> <span class="n">AndroidKey</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入回车键，确定搜索</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">press_keycode</span><span class="p">(</span><span class="n">AndroidKey</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>按键的定义，可以参考这篇文档<a href="https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/nativekey.py" target="_blank" rel="noopener noreffer">https://github.com/appium/python-client/blob/master/appium/webdriver/extensions/android/nativekey.py</a></p>
+<hr>
+<h3 id="长按双击移动">长按、双击、移动</h3>
+<p>Appium的<code>TouchAction</code>类提供了更多的手机操作方法，如：长按、双击、移动</p>
+<p>参考源代码中的注释<a href="https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py" target="_blank" rel="noopener noreffer">https://github.com/appium/python-client/blob/master/appium/webdriver/common/touch_action.py</a></p>
+<p>下面有一个长按的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">appium.webdriver.common.touch_action</span> <span class="kn">import</span> <span class="n">TouchAction</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">actions</span> <span class="o">=</span> <span class="n">TouchAction</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">actions</span><span class="o">.</span><span class="n">long_press</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">actions</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="打开通知栏">打开通知栏</h3>
+<p>安卓手机，查看通知栏的动作可以是从屏幕顶端下滑来查看通知。</p>
+<p>也可以使用如下代码，直接打开通知栏</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">open_notifications</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通知栏里面的元素，自动化的方法和前面介绍的App界面元素自动化是一样的。</p>
+<hr>
+<h3 id="收起通知栏">收起通知栏</h3>
+<p>收起通知栏，可以使用前面介绍的模拟按键，发出<code>返回按键</code>的方法。</p>
+<hr>
+<h3 id="adb-命令">adb 命令</h3>
+<p><code>android sdk</code>里面有一个命令行工具<code>adb</code>。</p>
+<p><code>adb</code>全称<code>Android Debug Bridge</code>，这个<code>adb</code>使用非常广泛。</p>
+<p>它可以与<code>Android</code>手机设备进行通信，它可进行各种设备操作。</p>
+<p>如：安装应用和调试应用，传输文件，甚至登录到手机设备上shell的进行访问，就像远程登录一样</p>
+<p>这个<code>adb</code>在<code>sdk</code>的<code>platform-tools</code>目录下面，请大家确保路径在<code>Path环境变量</code>中。</p>
+<p>Appium对anroid的自动化非常依赖这个adb工具。执行自动化过程中，有很多内部操作，比如获取设备信息，传送文件到手机，安装apk，启动某些程序等，都是通常这个<code>adb</code>实现的。</p>
+<p><code>adb</code>命令既然是个命令，就可以使用<code>Python</code>的<code>os.system()</code>或者<code>subprocess</code>来自动化调用它，完成我们的各种自动化需求。</p>
+<p>而自动化过程中，可能需要截屏手机，并且下载到指定目录中，可以在Python程序中这样写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;adb shell screencap /sdcard/screen3.png &amp;&amp; adb pull /sdcard/screen3.png&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>特别的，还可以通过<code>adb</code>使用<code>am(activity manager)</code>和<code>pm(package manager)</code>两个工具，可以启动<code>Activity</code>、强行停止进程、广播<code>intent</code>、修改设备屏幕属性、列出应用、卸载应用等。</p>
+<p>adb命令的官方文档：<a href="https://developer.android.google.cn/studio/command-line/adb.html#devicestatus" target="_blank" rel="noopener noreffer">https://developer.android.google.cn/studio/command-line/adb.html#devicestatus</a></p>
+<p>一些常见的adb命令：</p>
+<p>查看连接的设备</p>
+<pre><code>adb devices -l
+</code></pre>
+<p>查看文件目录</p>
+<pre><code>adb shell ls /sdcard
+</code></pre>
+<p>上传文件</p>
+<pre><code>adb push wv.apk /sdcard/wv.apk
+</code></pre>
+<p>下载文件</p>
+<pre><code>adb pull /sdcard/new.txt
+</code></pre>
+<p>截屏</p>
+<pre><code>adb shell screencap /sdcard/screen.png
+</code></pre>
+<p>截屏后的文件存在手机上，可以使用<code>adb pull</code>下载下来</p>
+<hr>
+<h3 id="shell">shell</h3>
+<p>登录到手机设备上shell的进行访问，就像远程登录一样，可用来在连接的设备上运行各种命令。</p>
+<p>输入<code>adb shell</code>然后执行各种安卓支持的<code>Linux命令</code>，比如<code>ps</code>、<code>netstat</code>、<code>netstat -an|grep 4724</code>、<code>pwd</code>、<code>ls</code>、<code>cd</code>、<code>rm</code>等。</p>
+<p>执行<code>quit</code>退出<code>shell</code></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)" data-hashtags="python,爬虫"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200525/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200525/" data-title="Appium自动化操作03(界面操作和adb命令)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200527/" class="prev" rel="prev" title="Appium自动化操作02(元素定位及查看工具)"><i class="fas fa-angle-left fa-fw"></i>Appium自动化操作02(元素定位及查看工具)</a>
+            <a href="/20200529/" class="next" rel="next" title="MySQL数据库01(cmder基本运行指令)">MySQL数据库01(cmder基本运行指令)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">二叉树上的我</a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

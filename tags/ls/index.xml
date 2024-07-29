@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>LS - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/ls/</link>
+        <description>LS - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/ls/" rel="self" type="application/rss+xml" /><item>
+    <title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title>
+    <link>http://www.spiritysdx.top/20230808/</link>
+    <pubDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230808/</guid>
+    <description><![CDATA[前言 老板下指示复现两篇文章，这是其中一篇 https://arxiv.org/pdf/1810.10659.pdf 文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解 原始数据 Training Data]]></description>
+</item></channel>
+</rss>

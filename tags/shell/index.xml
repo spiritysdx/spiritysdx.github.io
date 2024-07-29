@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>shell - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/shell/</link>
+        <description>shell - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/shell/" rel="self" type="application/rss+xml" /><item>
+    <title>为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)</title>
+    <link>http://www.spiritysdx.top/20230829/</link>
+    <pubDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230829/</guid>
+    <description><![CDATA[前言 观望了全网的Docker启用IPV6的方法，要么是Docker版本更替法子不通了，要么是没说明一些前置条件的细节，导致方法也用不了，所以]]></description>
+</item><item>
+    <title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title>
+    <link>http://www.spiritysdx.top/20230506/</link>
+    <pubDate>Sat, 06 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230506/</guid>
+    <description><![CDATA[PVE 感谢 Proxmox VE 的免费订阅支持 原始仓库：https://github.com/spiritLHLS/pve 说明文档 国内(China)： virt.spiritlhl.net 国际(Gl]]></description>
+</item><item>
+    <title>为openvz或kvm架构的linux服务器增加swap分区</title>
+    <link>http://www.spiritysdx.top/20221206/</link>
+    <pubDate>Tue, 06 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221206/</guid>
+    <description><![CDATA[为openvz或kvm架构的linux服务器增加swap分区 addswap 更新时间：2022.12.05 为openvz或kvm架构的linux服务器增加]]></description>
+</item><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡) Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容]]></description>
+</item></channel>
+</rss>

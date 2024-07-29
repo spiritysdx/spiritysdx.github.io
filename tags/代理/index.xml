@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>代理 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E4%BB%A3%E7%90%86/</link>
+        <description>代理 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>spiritlhlbusiness@163.com (二叉树上的我)</managingEditor>
+            <webMaster>spiritlhlbusiness@163.com (二叉树上的我)</webMaster><lastBuildDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E4%BB%A3%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>在seleniumwire中解决Not Secure问题</title>
+    <link>http://www.spiritysdx.top/20221212/</link>
+    <pubDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221212/</guid>
+    <description><![CDATA[解决上一篇文章的一些问题 解决方法： https://github.com/wkeeling/selenium-wire/issues/622 下载证书 https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt 将该 ca.crt 添加到受信任的证书中 google浏览器打开chrome://settings/secur]]></description>
+</item><item>
+    <title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title>
+    <link>http://www.spiritysdx.top/20221211/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221211/</guid>
+    <description><![CDATA[前言 爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么]]></description>
+</item></channel>
+</rss>
