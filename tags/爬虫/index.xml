@@ -1,0 +1,253 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>爬虫 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%88%AC%E8%99%AB/</link>
+        <description>爬虫 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" /><item>
+    <title>Selenium的web自动化操作02(基本语法)</title>
+    <link>http://www.spiritysdx.top/20200516/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200516/</guid>
+    <description><![CDATA[<h2 id="前言"><strong>前言</strong></h2>
+<p>需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：</p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k3c" target="_blank" rel="noopener noreffer">Firefox</a></p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k0j" target="_blank" rel="noopener noreffer">Chrome</a></p>
+<p>其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。</p>]]></description>
+</item><item>
+    <title>创建新线程(通用)</title>
+    <link>http://www.spiritysdx.top/20200831/</link>
+    <pubDate>Mon, 31 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200831/</guid>
+    <description><![CDATA[<h3 id="创建并使用多线程">创建并使用多线程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;主线程执行代码&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 threading 库中导入Thread类</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义一个函数，作为新线程执行的入口函数</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">threadFunc</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span><span class="n">arg2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;子线程 开始&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;线程函数参数是：</span><span class="si">{</span><span class="n">arg1</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">arg2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;子线程 结束&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 Thread 类的实例对象， 并且指定新线程的入口函数，此时并没有执行</span>
+</span></span><span class="line"><span class="cl"><span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">threadFunc</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;参数1&#39;</span><span class="p">,</span> <span class="s1">&#39;参数2&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#target=threadFunc对应执行的函数threadFunc</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#args=(&#39;参数1&#39;, &#39;参数2&#39;)这样新进程添加参数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行start 方法，就会创建新线程，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 并且新线程会去执行入口函数里面的代码。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这时候这个进程有两个线程了。↓</span>
+</span></span><span class="line"><span class="cl"><span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 主线程的代码执行 子线程对象的join方法，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 就会等待子线程结束，才继续执行下面的代码</span>
+</span></span><span class="line"><span class="cl"><span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;主线程结束&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行该程序，解释器执行到下面代码时</p>]]></description>
+</item><item>
+    <title>Appium自动化操作03(界面操作和adb命令)</title>
+    <link>http://www.spiritysdx.top/20200525/</link>
+    <pubDate>Mon, 25 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200525/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)</p>]]></description>
+</item><item>
+    <title>Appium自动化操作02(元素定位及查看工具)</title>
+    <link>http://www.spiritysdx.top/20200527/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200527/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)</p>]]></description>
+</item><item>
+    <title>Appium自动化操作01(环境安装与初始结构)</title>
+    <link>http://www.spiritysdx.top/20200523/</link>
+    <pubDate>Sat, 23 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200523/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>本篇用到的相关软件链接：</p>
+<p>链接: <a href="https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA</a></p>
+<p>提取码: h9b2</p>
+<hr>
+<h1 id="appium-基础知识">Appium 基础知识</h1>
+<p><strong>Appium 用途和特点</strong></p>
+<p>Appium 是一个移动 App （手机应用）自动化工具。</p>]]></description>
+</item><item>
+    <title>Selenium的web自动化操作03(语法补充)</title>
+    <link>http://www.spiritysdx.top/20200517/</link>
+    <pubDate>Sun, 17 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200517/</guid>
+    <description><![CDATA[<h2 id="前言"><strong>前言</strong></h2>
+<p>需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：</p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k3c" target="_blank" rel="noopener noreffer">Firefox</a></p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k0j" target="_blank" rel="noopener noreffer">Chrome</a></p>
+<p>其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。</p>]]></description>
+</item><item>
+    <title>Selenium的web自动化操作01(环境布置与标准流程)</title>
+    <link>http://www.spiritysdx.top/20200510/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200510/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：</p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k3c" target="_blank" rel="noopener noreffer">Firefox</a></p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k0j" target="_blank" rel="noopener noreffer">Chrome</a></p>
+<p>其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。</p>]]></description>
+</item><item>
+    <title>爬虫流程及方法14(正则表达式篇)</title>
+    <link>http://www.spiritysdx.top/20200506/</link>
+    <pubDate>Tue, 05 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200506/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>re库的实用实例如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#创建一个文件夹，保存所有图片</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;./tupianLibs&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;./tupianLibs&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://www.pexels.com/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#使用通用爬虫对整张页面进行爬取</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page_text</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#使用聚焦爬虫将页面中所有的图片进行解析/提取</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#正则.*?表示一切内容</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#re.S单行匹配</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ex</span> <span class="o">=</span> <span class="s1">&#39;&lt;a class=&#34;js-photo-link photo-item__link&#34; style.*? &gt;.*?&lt;img srcset=&#34;(.*?)&#34; class.*?&gt;&lt;/div&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image_src_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">page_text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">src</span> <span class="ow">in</span> <span class="n">image_src_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;https:&#39;</span><span class="o">+</span> <span class="n">src</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#拼接出一个完整的图片url</span>
+</span></span><span class="line"><span class="cl">        <span class="n">image_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#请求到了图片的二进制数据</span>
+</span></span><span class="line"><span class="cl">        <span class="n">image_name</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#生成图片名称</span>
+</span></span><span class="line"><span class="cl">        <span class="n">imgPath</span> <span class="o">=</span> <span class="s1">&#39;./tupianlbs/&#39;</span> <span class="o">+</span> <span class="n">image_name</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#图片最终存储的路径</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">imgPath</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">image_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;下载成功&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="正则表达式详情">正则表达式详情</h3>
+<p></p>]]></description>
+</item><item>
+    <title>爬虫流程及方法13(xpath解析页面)</title>
+    <link>http://www.spiritysdx.top/20200504/</link>
+    <pubDate>Mon, 04 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200504/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>xpath解析原理:<br>
+1.实例化一个etree的对象，且需要将被解析的页面源码数据加载到该对象中。<br>
+2.调用et ree对象中的xpath方法结合着xpath表达式实现标签的定位和内容的捕获。</p>]]></description>
+</item><item>
+    <title>爬虫流程及方法12(高性能异步爬虫)</title>
+    <link>http://www.spiritysdx.top/20200501/</link>
+    <pubDate>Fri, 01 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200501/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>目的:在爬虫中使用异步实现高性能的数据爬取操作。<br>
+异步爬虫的方式:
+&ndash;多线程，多进程(不建议):
+好处:可以为相关阻塞的操作单独开启线程或者进程，阻塞操作就可以异步执行。<br>
+弊端:无法无限制的开启多线程或者多进程。</p>]]></description>
+</item></channel>
+</rss>

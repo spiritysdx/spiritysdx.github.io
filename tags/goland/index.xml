@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Goland - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/goland/</link>
+        <description>Goland - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 14 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/goland/" rel="self" type="application/rss+xml" /><item>
+    <title>jetbrains家的goland项目可用但老爆红</title>
+    <link>http://www.spiritysdx.top/20240714/</link>
+    <pubDate>Sun, 14 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240714/</guid>
+    <description><![CDATA[<h2 id="问题">问题</h2>
+<p>目前新的go项目默认都是<code>go module</code>模式，由于我需要使用私有仓库的package，清除了mod的缓存后Goland就识别不到我后续在命令行下执行</p>]]></description>
+</item></channel>
+</rss>

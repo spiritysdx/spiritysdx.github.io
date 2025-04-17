@@ -1,0 +1,124 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Jupyter - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/jupyter/</link>
+        <description>Jupyter - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/jupyter/" rel="self" type="application/rss+xml" /><item>
+    <title>基于docker的在线IDE制作(支持浏览器直接访问)</title>
+    <link>http://www.spiritysdx.top/20250305/</link>
+    <pubDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250305/</guid>
+    <description><![CDATA[<h2 id="仓库">仓库</h2>
+<p><a href="https://github.com/oneclickvirt/dockerfile-templates" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/dockerfile-templates</a></p>
+<p>适配境内环境，搭建带浏览器web查看NOVNC的在线IDE</p>
+<p>对应开发环境支持 AMD64 ARM64</p>
+<p>对应GPU/NPU的驱动支持</p>
+<p>对应平台的AI插件支持</p>
+<p>由于版权问题和镜像大小问题，tar包我就不传了</p>]]></description>
+</item><item>
+    <title>高效探索学习解决组合图分区问题(基于强化学习的优化算法)</title>
+    <link>http://www.spiritysdx.top/20230823/</link>
+    <pubDate>Wed, 23 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230823/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/2205.14105v1.pdf</a></p>
+<p>文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="er40ba40到er500ba500">ER40/BA40到ER500/BA500</h3>
+<p><a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer">https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579</a></p>
+<p><a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer">https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47</a></p>
+<p>分别命名为ER和BA数据集</p>]]></description>
+</item><item>
+    <title>图优化问题经常拿来比较的一些模型</title>
+    <link>http://www.spiritysdx.top/20230816/</link>
+    <pubDate>Wed, 16 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230816/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分</p>
+<p>由于两篇文章都涉及该方法的比较，所以重头戏是<code>DQN</code>以及其衍生的一些变体，还有部分别的模型，是需要提前了解的。</p>]]></description>
+</item><item>
+    <title>Python加速科学运算的一些小技巧</title>
+    <link>http://www.spiritysdx.top/20230812/</link>
+    <pubDate>Sat, 12 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230812/</guid>
+    <description><![CDATA[<h2 id="原地操作">原地操作</h2>
+<p>使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">+=</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 结果是2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而不是使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好处是内存不会复制扩展，只使用a和b的内存运算</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检测内存是否一致，在下面的例子中，用Python的id()函数演示了这一点， 它提供了内存中引用对象的确切地址。 运行<code>Y = Y + X</code>后，会发现id(Y)指向另一个位置。 这是因为Python首先计算Y + X，为结果分配新的内存，然后使Y指向内存中的这个新位置。</p>]]></description>
+</item><item>
+    <title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title>
+    <link>http://www.spiritysdx.top/20230808/</link>
+    <pubDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230808/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1810.10659.pdf</a></p>
+<p>文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="training-data">Training Data</h3>
+<p><a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer">https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html</a></p>
+<h3 id="testing-data">Testing Data</h3>
+<h4 id="sat-competition-2017">SAT Competition 2017</h4>
+<p><a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer">https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf</a></p>]]></description>
+</item><item>
+    <title>深度学习环境安装(李沐老师相关)</title>
+    <link>http://www.spiritysdx.top/20230727/</link>
+    <pubDate>Thu, 27 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230727/</guid>
+    <description><![CDATA[<p>由于之前有写过一键安装jupyter的shell脚本，所以这里只需要找一个服务器就够了</p>
+<p><a href="https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/one-click-installation-script/main/install_scripts/jupyter.sh -o jupyter.sh <span class="o">&amp;&amp;</span> chmod +x jupyter.sh <span class="o">&amp;&amp;</span> bash jupyter.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>又由于之前玩Linux积攒了很多机器，找了一台<a href="https://curl.qcloud.com/MNyiQAB1" target="_blank" rel="noopener noreffer">腾讯云</a>广州的4C3C80G和<a href="https://hosting.skrime.eu/a/server" target="_blank" rel="noopener noreffer">OVH</a>法国的4C2C25G的机器测试了一下</p>]]></description>
+</item></channel>
+</rss>

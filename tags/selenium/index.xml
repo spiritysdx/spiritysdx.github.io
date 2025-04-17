@@ -1,0 +1,49 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Selenium - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/selenium/</link>
+        <description>Selenium - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/selenium/" rel="self" type="application/rss+xml" /><item>
+    <title>在seleniumwire中解决Not Secure问题</title>
+    <link>http://www.spiritysdx.top/20221212/</link>
+    <pubDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221212/</guid>
+    <description><![CDATA[<h3 id="解决上一篇文章的一些问题">解决上一篇文章的一些问题</h3>
+<p>解决方法：</p>
+<p><a href="https://github.com/wkeeling/selenium-wire/issues/622" target="_blank" rel="noopener noreffer">https://github.com/wkeeling/selenium-wire/issues/622</a></p>
+<p>下载证书</p>
+<p><a href="https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt" target="_blank" rel="noopener noreffer">https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt</a></p>
+<p>将该 ca.crt 添加到受信任的证书中</p>
+<p>google浏览器打开<code>chrome://settings/security</code></p>
+<p>点击管理证书，选择<code>受信任的的根证书颁发机构</code>分区，选择导入</p>]]></description>
+</item><item>
+    <title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title>
+    <link>http://www.spiritysdx.top/20221211/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221211/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证</p>]]></description>
+</item><item>
+    <title>免费破解图片验证码(数字或中英混合)(附代码)(2022)</title>
+    <link>http://www.spiritysdx.top/20221103/</link>
+    <pubDate>Thu, 03 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221103/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>前面有破解谷歌验证码，现在来破解相对简单的图片验证码。(数字以及中英混合)</p>
+<h2 id="插件过验证码">插件过验证码</h2>
+<p>需要加载谷歌插件<a href="https://github.com/spiritLHL/Driver_sign/blob/master/AutoVerify.crx" target="_blank" rel="noopener noreffer">AutoVerify</a></p>
+<p>这种识别是为了过简单的文字+数字的验证图片用的方法。</p>]]></description>
+</item><item>
+    <title>Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)</title>
+    <link>http://www.spiritysdx.top/20221102/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221102/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。</p>
+<p>网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)</p>]]></description>
+</item></channel>
+</rss>

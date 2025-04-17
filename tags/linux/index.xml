@@ -1,0 +1,220 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/linux/</link>
+        <description>Linux - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 13 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>机房本地服务器自建Gitea并使用</title>
+    <link>http://www.spiritysdx.top/20240713/</link>
+    <pubDate>Sat, 13 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240713/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>由于Github在国内访问速度较慢，所以选择在本地服务器上自建Gitea，使用国内服务器内穿端口后访问速度较快，并且可以自己管理代码，更安全。</p>]]></description>
+</item><item>
+    <title>nvidia-smi被自动升级无法与GPU通信了怎么办</title>
+    <link>http://www.spiritysdx.top/20240712/</link>
+    <pubDate>Fri, 12 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240712/</guid>
+    <description><![CDATA[<h2 id="问题">问题</h2>
+<p>如题目所说，这里贴个报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nvidia-smi
+</span></span><span class="line"><span class="cl">Failed to initialize NVML: Driver/library version mismatch
+</span></span><span class="line"><span class="cl">NVML library version: 535.183
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原先的版本是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> NVIDIA-SMI 535.171.04             Driver Version: 535.171.04   CUDA Version: 12.2 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="修复方案">修复方案</h2>
+<h3 id="下载官方驱动">下载官方驱动</h3>
+<p>打开官方网站：<a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer">https://www.nvidia.cn/Download/Find.aspx?lang=cn</a></p>
+<p>按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致</p>]]></description>
+</item><item>
+    <title>conda使用GPU时的一些陷阱</title>
+    <link>http://www.spiritysdx.top/20240607/</link>
+    <pubDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240607/</guid>
+    <description><![CDATA[<h2 id="conda默认的python环境版本过高需要降级默认的python环境">conda默认的python环境版本过高，需要降级默认的Python环境</h2>
+<p>假设原始环境是Python12的环境</p>
+<p>直接使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda install python==3.11
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似上述方法指定python版本下载，注意这个命令要在conda的虚拟环境中执行才会替换当前python版本。</p>]]></description>
+</item><item>
+    <title>给机房的LXD容器配置跳板机进行连接</title>
+    <link>http://www.spiritysdx.top/20240515/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240515/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>由于机房的服务器(下称宿主机)都是没有公网IP的(只有NAT的IPV4网络)，所以需要通过跳板机进行连接。</p>
+<p>由于Pycharm的远程连接是通过SSH进行连接的，使用SFTP协议，所以仅使用22端口即可。</p>]]></description>
+</item><item>
+    <title>在Pycharm上连接远程虚拟环境进行使用</title>
+    <link>http://www.spiritysdx.top/20240514/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240514/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>相信通过前面教程，大部分问题都解决了，目前就剩一个Pycharm怎么连接远程的LXC容器运行Python项目的问题了。</p>
+<p>(为什么不用VSCODE？因为它没有官方支持的远程开发/SSH开发的功能，只有相关的第三方插件实现了类似的功能但并不好用，所以我选择了Pycharm)</p>]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04安装LXD共享GPU资源</title>
+    <link>http://www.spiritysdx.top/20240513/</link>
+    <pubDate>Mon, 13 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240513/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。</p>]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04的Linux进行内穿映射端口</title>
+    <link>http://www.spiritysdx.top/20240512/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240512/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>因为机房的机器没有公网IP，所以需要跳板机进行IP映射内穿，所以需要2样东西：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">服务器A - 服务端 - 一个有公网IPV4地址的云服务器，IPV4地址本教程假设为 x.x.x.x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">服务器B - 客户端 - 机房内的Ubuntu22.04系统的机器
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里选用<code>goproxy</code>进行IP内穿</p>]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04的Linux安装SSH的server</title>
+    <link>http://www.spiritysdx.top/20240511/</link>
+    <pubDate>Sat, 11 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240511/</guid>
+    <description><![CDATA[<h2 id="废话少说">废话少说</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sed -i &#39;s/.*precedence ::ffff:0:0\/96.*/precedence ::ffff:0:0\/96  100/g&#39; /etc/gai.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install openssh-server -y
+</span></span><span class="line"><span class="cl">systemctl enable --now ssh
+</span></span><span class="line"><span class="cl">systemctl status ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    sed -i &#39;s/^#\?Port.*/Port 22/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#ListenAddress ::/ListenAddress ::/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#AddressFamily any/AddressFamily any/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;/^#UsePAM\|UsePAM/c #UsePAM no&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PubkeyAuthentication.*/PubkeyAuthentication no/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;/^AuthorizedKeysFile/s/^/#/&#39; /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl restart sshd
+</span></span><span class="line"><span class="cl">systemctl restart ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果还是不行，使用</p>]]></description>
+</item><item>
+    <title>在root权限下使用守护进程自托管Github的Runners</title>
+    <link>http://www.spiritysdx.top/20240510/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240510/</guid>
+    <description><![CDATA[<h2 id="前置条件">前置条件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /root
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install curl sudo -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装">安装</h2>
+<p>执行下述命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">RUNNER_ALLOW_RUNASROOT</span><span class="o">=</span><span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后正常安装至于<code>./config</code>那一步，然后不要使用官方的启动方式，而是使用守护进程启动，做到runner开机自启以及日志记录</p>]]></description>
+</item><item>
+    <title>给机房的windows11系统安装Ubuntu22.04的Linux双系统</title>
+    <link>http://www.spiritysdx.top/20240509/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240509/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>前置条件以及一些碎碎念：</p>
+<p>至少两块硬盘，一块硬盘已安装Windows11，另一块硬盘用于安装<code>Ubuntu22.04</code>，两块硬盘保证系统不会互相影响出奇怪的问题</p>]]></description>
+</item></channel>
+</rss>

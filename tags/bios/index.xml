@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>BIOS - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/bios/</link>
+        <description>BIOS - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 09 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/bios/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的windows11系统安装Ubuntu22.04的Linux双系统</title>
+    <link>http://www.spiritysdx.top/20240509/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240509/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>前置条件以及一些碎碎念：</p>
+<p>至少两块硬盘，一块硬盘已安装Windows11，另一块硬盘用于安装<code>Ubuntu22.04</code>，两块硬盘保证系统不会互相影响出奇怪的问题</p>]]></description>
+</item></channel>
+</rss>

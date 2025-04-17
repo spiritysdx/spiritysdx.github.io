@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>某区域流体数据处理(只会写操作，不知道具体意义) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20210714/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="某区域流体数据处理(只会写操作，不知道具体意义)">
+  <meta property="og:description" content="前言 帮舍友整的，不知道具体实际意义。
+代码 1 2 3 4 5 import numpy as np import pandas as pd data = pd.read_excel(r&#39;C:\Users\祈LHL\Desktop\data.xlsx&#39;) 1 data.head() cellnumberx-coordinate y-coordinatez-coordinate density z-velocity relative-z-velocity x-coordinate.1 y-coordinate z-face-area boundary-cell-dist boundary-normal-dist 0 1 -12.597898 -2.404495 -6.320497 1.226 -22.205814 -22.205814 -12.597899 -2.404528 -0.006824 1 0.010276 1 2 -12.597898 -2.321485 -6.320487 1.226 -23.532957 -23.532957 -12.597899 -2.321584 -0.006824 1 0.020553 2 3 -12.515688 -2.404495 -6.320500 1.226 -23.167622 -23.167622 -12.515688 -2.404528 -0.006824 1 0.020636 3 4 -12.515688 -2.321485 -6.320500 1.226 -24.882029 -24.882029 -12.515688 -2.321584 -0.006824 1 0.051111 4 5 -12.433477 -2.404495 -6.320500 1.226 -23.488083 -23.488083 -12.433478 -2.404528 -0.006824 1 0.020719 1 y = data.sort_values(by=&#34;y-coordinate&#34; , ascending=False) 1 2 3 4 5 6 step = 4.892/6 i = 0 y_list = [] section = [] #y6 x3 1 2 3 4 5 6 7 8 9 10 11 12 13 #分y while i &lt; 6: step_y = float(&#34;%.8f&#34;%(i*step)) a_y = step_y-2.446 y_min = y.loc[y[&#39;y-coordinate&#39;] &gt;= a_y] i &#43;=1 step_y = float(&#34;%.8f&#34;%(i*step)) b_y = step_y-2.446 y_max = y_min.loc[y_min[&#39;y-coordinate&#39;] &lt; b_y] y_list.append(y_max) section_y = (a_y,b_y) section.append(section_y) #section[5] 1 2 3 4 5 j = 0 step = 1.562/3 x_list = [] section_x_list = [] section_y_list = [] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #在y中分x while j &lt;= 5: temp = y_list[j] m = 0 while m &lt;= 2: step_x = float(&#34;%.8f&#34;%(m*step)) a_x = step_x-12.639 x_min = temp.loc[temp[&#39;x-coordinate&#39;] &gt;= a_x] m &#43;=1 step_x = float(&#34;%.8f&#34;%(m*step)) b_x = step_x-12.639 x_max = x_min.loc[temp[&#39;x-coordinate&#39;] &lt; b_x] x_list.append(x_max) section_x = (a_x,b_x) section_x_list.append(section_x) section_y_list.append(section[j]) j &#43;= 1 #18个块 1 2 3 section_list = [] Q_list = [] i = 0 1 2 3 4 5 while i &lt;= 17: temp_l = x_list[i] Q = (temp_l[&#34;density&#34;]*temp_l[&#34;z-velocity&#34;]*temp_l[&#34;z-face-area&#34;]).sum() i &#43;=1 Q_list.append(Q) 1 section_x_list 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [(-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077)] 1 section_y_list 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [(-2.446, -1.63066667), (-2.446, -1.63066667), (-2.446, -1.63066667), (-1.63066667, -0.8153333300000001), (-1.63066667, -0.8153333300000001), (-1.63066667, -0.8153333300000001), (-0.8153333300000001, 0.0), (-0.8153333300000001, 0.0), (-0.8153333300000001, 0.0), (0.0, 0.8153333299999996), (0.0, 0.8153333299999996), (0.0, 0.8153333299999996), (0.8153333299999996, 1.6306666699999997), (0.8153333299999996, 1.6306666699999997), (0.8153333299999996, 1.6306666699999997), (1.6306666699999997, 2.446), (1.6306666699999997, 2.446), (1.6306666699999997, 2.446)] 1 2 3 4 5 6 index = [] i = 0 while i &lt;= 2: index.append(section_x_list[i]) i&#43;=1 index 1 2 3 [(-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077)] 1 2 3 4 5 6 cols = [] i = 0 while i &lt;= 17: cols.append(section_y_list[i]) i&#43;=3 cols 1 2 3 4 5 6 [(-2.446, -1.63066667), (-1.63066667, -0.8153333300000001), (-0.8153333300000001, 0.0), (0.0, 0.8153333299999996), (0.8153333299999996, 1.6306666699999997), (1.6306666699999997, 2.446)] 1 2 3 4 5 6 7 j = 0 data = {} while j &lt;=5: col = cols[j] data[col]= 1 j &#43;= 1 data 1 2 3 4 5 6 {(-2.446, -1.63066667): 1, (-1.63066667, -0.8153333300000001): 1, (-0.8153333300000001, 0.0): 1, (0.0, 0.8153333299999996): 1, (0.8153333299999996, 1.6306666699999997): 1, (1.6306666699999997, 2.446): 1} 1 2 3 4 5 6 7 8 9 10 temp_list = Q_list.copy() r = 0 l = 0 for i in data: content = [] for j in range(3): content.append(Q_list[l]) l&#43;=1 data[i] = content data 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 {(-2.446, -1.63066667): [12.427282344087539, 12.86438295520224, 8.104732674789329], (-1.63066667, -0.8153333300000001): [14.059159859218617, 14.0170078290342, 6.50613023081204], (-0.8153333300000001, 0.0): [13.851341644545903, 14.102576555137208, 6.549793869809068], (0.0, 0.8153333299999996): [13.873905539737082, 14.100577509379482, 6.539991338980014], (0.8153333299999996, 1.6306666699999997): [14.030126072372612, 13.966730831575635, 6.467075694188603], (1.6306666699999997, 2.446): [11.644887356127308, 12.004108151505823, 7.422577844039829]} 1 2 df = pd.DataFrame(data=data, index=index) df -2.446000-1.630667-0.8153330.0000000.8153331.630667-1.630667-0.8153330.0000000.8153331.6306672.446000(-12.639, -12.118333329999999)12.42728214.05916013.85134213.87390614.03012611.644887(-12.118333329999999, -11.597666669999999)12.86438314.01700814.10257714.10057813.96673112.004108(-11.597666669999999, -11.077)8.1047336.5061306.5497946.5399916.4670767.422578相关资料：数据集链接点此下载">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-07-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-07-14T00:00:00+00:00">
+    <meta property="article:tag" content="数学建模">
+    <meta property="article:tag" content="Python">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="某区域流体数据处理(只会写操作，不知道具体意义)">
+  <meta name="twitter:description" content="前言 帮舍友整的，不知道具体实际意义。
+代码 1 2 3 4 5 import numpy as np import pandas as pd data = pd.read_excel(r&#39;C:\Users\祈LHL\Desktop\data.xlsx&#39;) 1 data.head() cellnumberx-coordinate y-coordinatez-coordinate density z-velocity relative-z-velocity x-coordinate.1 y-coordinate z-face-area boundary-cell-dist boundary-normal-dist 0 1 -12.597898 -2.404495 -6.320497 1.226 -22.205814 -22.205814 -12.597899 -2.404528 -0.006824 1 0.010276 1 2 -12.597898 -2.321485 -6.320487 1.226 -23.532957 -23.532957 -12.597899 -2.321584 -0.006824 1 0.020553 2 3 -12.515688 -2.404495 -6.320500 1.226 -23.167622 -23.167622 -12.515688 -2.404528 -0.006824 1 0.020636 3 4 -12.515688 -2.321485 -6.320500 1.226 -24.882029 -24.882029 -12.515688 -2.321584 -0.006824 1 0.051111 4 5 -12.433477 -2.404495 -6.320500 1.226 -23.488083 -23.488083 -12.433478 -2.404528 -0.006824 1 0.020719 1 y = data.sort_values(by=&#34;y-coordinate&#34; , ascending=False) 1 2 3 4 5 6 step = 4.892/6 i = 0 y_list = [] section = [] #y6 x3 1 2 3 4 5 6 7 8 9 10 11 12 13 #分y while i &lt; 6: step_y = float(&#34;%.8f&#34;%(i*step)) a_y = step_y-2.446 y_min = y.loc[y[&#39;y-coordinate&#39;] &gt;= a_y] i &#43;=1 step_y = float(&#34;%.8f&#34;%(i*step)) b_y = step_y-2.446 y_max = y_min.loc[y_min[&#39;y-coordinate&#39;] &lt; b_y] y_list.append(y_max) section_y = (a_y,b_y) section.append(section_y) #section[5] 1 2 3 4 5 j = 0 step = 1.562/3 x_list = [] section_x_list = [] section_y_list = [] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 #在y中分x while j &lt;= 5: temp = y_list[j] m = 0 while m &lt;= 2: step_x = float(&#34;%.8f&#34;%(m*step)) a_x = step_x-12.639 x_min = temp.loc[temp[&#39;x-coordinate&#39;] &gt;= a_x] m &#43;=1 step_x = float(&#34;%.8f&#34;%(m*step)) b_x = step_x-12.639 x_max = x_min.loc[temp[&#39;x-coordinate&#39;] &lt; b_x] x_list.append(x_max) section_x = (a_x,b_x) section_x_list.append(section_x) section_y_list.append(section[j]) j &#43;= 1 #18个块 1 2 3 section_list = [] Q_list = [] i = 0 1 2 3 4 5 while i &lt;= 17: temp_l = x_list[i] Q = (temp_l[&#34;density&#34;]*temp_l[&#34;z-velocity&#34;]*temp_l[&#34;z-face-area&#34;]).sum() i &#43;=1 Q_list.append(Q) 1 section_x_list 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [(-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077), (-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077)] 1 section_y_list 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [(-2.446, -1.63066667), (-2.446, -1.63066667), (-2.446, -1.63066667), (-1.63066667, -0.8153333300000001), (-1.63066667, -0.8153333300000001), (-1.63066667, -0.8153333300000001), (-0.8153333300000001, 0.0), (-0.8153333300000001, 0.0), (-0.8153333300000001, 0.0), (0.0, 0.8153333299999996), (0.0, 0.8153333299999996), (0.0, 0.8153333299999996), (0.8153333299999996, 1.6306666699999997), (0.8153333299999996, 1.6306666699999997), (0.8153333299999996, 1.6306666699999997), (1.6306666699999997, 2.446), (1.6306666699999997, 2.446), (1.6306666699999997, 2.446)] 1 2 3 4 5 6 index = [] i = 0 while i &lt;= 2: index.append(section_x_list[i]) i&#43;=1 index 1 2 3 [(-12.639, -12.118333329999999), (-12.118333329999999, -11.597666669999999), (-11.597666669999999, -11.077)] 1 2 3 4 5 6 cols = [] i = 0 while i &lt;= 17: cols.append(section_y_list[i]) i&#43;=3 cols 1 2 3 4 5 6 [(-2.446, -1.63066667), (-1.63066667, -0.8153333300000001), (-0.8153333300000001, 0.0), (0.0, 0.8153333299999996), (0.8153333299999996, 1.6306666699999997), (1.6306666699999997, 2.446)] 1 2 3 4 5 6 7 j = 0 data = {} while j &lt;=5: col = cols[j] data[col]= 1 j &#43;= 1 data 1 2 3 4 5 6 {(-2.446, -1.63066667): 1, (-1.63066667, -0.8153333300000001): 1, (-0.8153333300000001, 0.0): 1, (0.0, 0.8153333299999996): 1, (0.8153333299999996, 1.6306666699999997): 1, (1.6306666699999997, 2.446): 1} 1 2 3 4 5 6 7 8 9 10 temp_list = Q_list.copy() r = 0 l = 0 for i in data: content = [] for j in range(3): content.append(Q_list[l]) l&#43;=1 data[i] = content data 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 {(-2.446, -1.63066667): [12.427282344087539, 12.86438295520224, 8.104732674789329], (-1.63066667, -0.8153333300000001): [14.059159859218617, 14.0170078290342, 6.50613023081204], (-0.8153333300000001, 0.0): [13.851341644545903, 14.102576555137208, 6.549793869809068], (0.0, 0.8153333299999996): [13.873905539737082, 14.100577509379482, 6.539991338980014], (0.8153333299999996, 1.6306666699999997): [14.030126072372612, 13.966730831575635, 6.467075694188603], (1.6306666699999997, 2.446): [11.644887356127308, 12.004108151505823, 7.422577844039829]} 1 2 df = pd.DataFrame(data=data, index=index) df -2.446000-1.630667-0.8153330.0000000.8153331.630667-1.630667-0.8153330.0000000.8153331.6306672.446000(-12.639, -12.118333329999999)12.42728214.05916013.85134213.87390614.03012611.644887(-12.118333329999999, -11.597666669999999)12.86438314.01700814.10257714.10057813.96673112.004108(-11.597666669999999, -11.077)8.1047336.5061306.5497946.5399916.4670767.422578相关资料：数据集链接点此下载">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210714/" /><link rel="prev" href="http://www.spiritysdx.top/20210713/" /><link rel="next" href="http://www.spiritysdx.top/20210715/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "某区域流体数据处理(只会写操作，不知道具体意义)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210714\/"
+        },"genre": "posts","keywords": "数学建模, python","wordcount":  740 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210714\/","datePublished": "2021-07-14T00:00:00+00:00","dateModified": "2021-07-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">某区域流体数据处理(只会写操作，不知道具体意义)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-14">2021-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 740 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#代码">代码</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>帮舍友整的，不知道具体实际意义。</p>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import numpy as np
+</span></span><span class="line"><span class="cl">import pandas as pd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data = pd.read_excel(r&#39;C:\Users\祈LHL\Desktop\data.xlsx&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">data.head()
+</span></span></code></pre></td></tr></table>
+</div>
+</div> <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {   ,
+                vertical-align: middle;   ,
+            }   ,
+           ,
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+           ,
+            .dataframe thead th {
+                text-align: right;
+            }   ,
+        </style>
+        <table border=\ 1\  class=\ dataframe\ >
+          <thead>
+            <tr style=\ text-align: right;\ >
+              <th></th>
+              <th>cellnumber</th>
+              <th>x-coordinate</th> 
+              <th>y-coordinate</th>
+              <th>z-coordinate</th>   
+              <th>density</th>   
+              <th>z-velocity</th>   
+              <th>relative-z-velocity</th>   
+              <th>x-coordinate.1</th>   
+              <th>y-coordinate</th>   
+              <th>z-face-area</th>   
+              <th>boundary-cell-dist</th>   
+              <th>boundary-normal-dist</th>   
+            </tr>   
+          </thead>   
+          <tbody>  
+            <tr>   
+              <th>0</th>   
+              <td>1</td>   
+              <td>-12.597898</td>   
+              <td>-2.404495</td>   
+              <td>-6.320497</td>   
+              <td>1.226</td>   
+              <td>-22.205814</td>   
+              <td>-22.205814</td>   
+              <td>-12.597899</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.010276</td>   
+            </tr>   
+            <tr>   
+              <th>1</th>   
+              <td>2</td>   
+              <td>-12.597898</td>   
+              <td>-2.321485</td>   
+              <td>-6.320487</td>   
+              <td>1.226</td>   
+              <td>-23.532957</td>   
+              <td>-23.532957</td>   
+              <td>-12.597899</td>   
+              <td>-2.321584</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020553</td>   
+            </tr>   
+            <tr>   
+              <th>2</th>   
+              <td>3</td>   
+              <td>-12.515688</td>   
+              <td>-2.404495</td>   
+              <td>-6.320500</td>  
+              <td>1.226</td>   
+              <td>-23.167622</td>   
+              <td>-23.167622</td>   
+              <td>-12.515688</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020636</td>   
+            </tr>   
+            <tr>   
+              <th>3</th>   
+              <td>4</td>   
+              <td>-12.515688</td>   
+              <td>-2.321485</td>   
+              <td>-6.320500</td>   
+              <td>1.226</td>   
+              <td>-24.882029</td>   
+              <td>-24.882029</td>   
+              <td>-12.515688</td>   
+              <td>-2.321584</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.051111</td>   
+            </tr>   
+            <tr>   
+              <th>4</th>   
+              <td>5</td>   
+              <td>-12.433477</td>   
+              <td>-2.404495</td>   
+              <td>-6.320500</td>   
+              <td>1.226</td>   
+              <td>-23.488083</td>   
+              <td>-23.488083</td>   
+              <td>-12.433478</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020719</td>   
+            </tr>   
+          </tbody>   
+    </table>
+</div> 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;y-coordinate&#34;</span> <span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">step</span> <span class="o">=</span> <span class="mf">4.892</span><span class="o">/</span><span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#y6  x3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#分y</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a_y</span> <span class="o">=</span> <span class="n">step_y</span><span class="o">-</span><span class="mf">2.446</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_min</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;y-coordinate&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b_y</span> <span class="o">=</span> <span class="n">step_y</span><span class="o">-</span><span class="mf">2.446</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_max</span> <span class="o">=</span> <span class="n">y_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_min</span><span class="p">[</span><span class="s1">&#39;y-coordinate&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">section_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_y</span><span class="p">,</span><span class="n">b_y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#section[5]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">step</span> <span class="o">=</span> <span class="mf">1.562</span><span class="o">/</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section_x_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section_y_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#在y中分x</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">y_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_x</span> <span class="o">=</span> <span class="n">step_x</span><span class="o">-</span><span class="mf">12.639</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_min</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;x-coordinate&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a_x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b_x</span> <span class="o">=</span> <span class="n">step_x</span><span class="o">-</span><span class="mf">12.639</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_max</span> <span class="o">=</span> <span class="n">x_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;x-coordinate&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b_x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_x</span><span class="p">,</span><span class="n">b_x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#18个块</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">section_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Q_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp_l</span> <span class="o">=</span> <span class="n">x_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Q</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;density&#34;</span><span class="p">]</span><span class="o">*</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;z-velocity&#34;</span><span class="p">]</span><span class="o">*</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;z-face-area&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Q_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">section_x_list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">section_y_list</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_x_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_y_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">+=</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">cols</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span><span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{(-2.446, -1.63066667): 1,
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001): 1,
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0): 1,
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996): 1,
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997): 1,
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446): 1}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">temp_list</span> <span class="o">=</span> <span class="n">Q_list</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Q_list</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span><span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">content</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{(-2.446, -1.63066667): [12.427282344087539,
+</span></span><span class="line"><span class="cl">  12.86438295520224,
+</span></span><span class="line"><span class="cl">  8.104732674789329],
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001): [14.059159859218617,
+</span></span><span class="line"><span class="cl">  14.0170078290342,
+</span></span><span class="line"><span class="cl">  6.50613023081204],
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0): [13.851341644545903,
+</span></span><span class="line"><span class="cl">  14.102576555137208,
+</span></span><span class="line"><span class="cl">  6.549793869809068],
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996): [13.873905539737082,
+</span></span><span class="line"><span class="cl">  14.100577509379482,
+</span></span><span class="line"><span class="cl">  6.539991338980014],
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997): [14.030126072372612,
+</span></span><span class="line"><span class="cl">  13.966730831575635,
+</span></span><span class="line"><span class="cl">  6.467075694188603],
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446): [11.644887356127308,
+</span></span><span class="line"><span class="cl">  12.004108151505823,
+</span></span><span class="line"><span class="cl">  7.422577844039829]}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+    <style scoped>
+           .dataframe tbody tr th:only-of-type {
+               vertical-align: middle;
+           }
+           .dataframe tbody tr th {
+               vertical-align: top;,
+           }
+           .dataframe thead tr th {
+               text-align: left;
+           }
+       </style>
+       <table border=\1\ class=\dataframe\>
+         <thead>
+           <tr>
+             <th></th>
+             <th>-2.446000</th>
+             <th>-1.630667</th>
+             <th>-0.815333</th>
+             <th>0.000000</th>
+             <th>0.815333</th>
+             <th>1.630667</th>
+           </tr>
+           <tr>
+             <th></th>
+             <th>-1.630667</th>
+             <th>-0.815333</th>
+             <th>0.000000</th>
+             <th>0.815333</th>
+             <th>1.630667</th>
+             <th>2.446000</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th>(-12.639, -12.118333329999999)</th>
+             <td>12.427282</td>
+             <td>14.059160</td>
+             <td>13.851342</td>
+             <td>13.873906</td>
+             <td>14.030126</td>
+             <td>11.644887</td>
+           </tr>
+           <tr>
+             <th>(-12.118333329999999, -11.597666669999999)</th>
+             <td>12.864383</td>
+             <td>14.017008</td>
+             <td>14.102577</td>
+             <td>14.100578</td>
+             <td>13.966731</td>
+             <td>12.004108</td>
+           </tr>
+           <tr>
+             <th>(-11.597666669999999, -11.077)</th>
+             <td>8.104733</td>
+             <td>6.506130</td>
+             <td>6.549794</td>
+             <td>6.539991</td>
+             <td>6.467076</td>
+             <td>7.422578</td>
+           </tr>
+         </tbody>
+    </table>
+</div>
+<p>相关资料：<a href="https://spiritlhl.lanzoui.com/ixgxro6hwba" target="_blank" rel="noopener noreffer">数据集链接点此下载</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)" data-hashtags="数学建模,python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210714/" data-hashtag="数学建模"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210714/" data-title="某区域流体数据处理(只会写操作，不知道具体意义)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>,&nbsp;<a href="/tags/python/">Python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210713/" class="prev" rel="prev" title="多元回归和熵值评价法及多目标遗传优化算法"><i class="fas fa-angle-left fa-fw"></i>多元回归和熵值评价法及多目标遗传优化算法</a>
+            <a href="/20210715/" class="next" rel="next" title="2020新型冠状病毒（COVID-19/2019-nCoV）疫情分析(补档)">2020新型冠状病毒（COVID-19/2019-nCoV）疫情分析(补档)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

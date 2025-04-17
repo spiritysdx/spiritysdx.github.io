@@ -1,0 +1,739 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数值逼近 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/</link>
+        <description>数值逼近 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 20 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/" rel="self" type="application/rss+xml" /><item>
+    <title>几种数值算法的简单分析</title>
+    <link>http://www.spiritysdx.top/20210620/</link>
+    <pubDate>Sun, 20 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210620/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>感谢组员的共同协作。</p>
+<h2 id="四阶龙格-库塔公式计算微分方程数值解">四阶龙格-库塔公式计算微分方程数值解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iomanip&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">f</span><span class="p">(</span><span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">dx</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">dx</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">g</span><span class="p">(</span><span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">dy</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">dy</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">dy</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LG</span><span class="p">(</span><span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="n">g</span><span class="p">)(</span><span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">        <span class="kt">double</span> <span class="n">cz</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="kt">double</span> <span class="n">rs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">,</span> <span class="n">f4</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">g3</span><span class="p">,</span> <span class="n">g4</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t0</span> <span class="o">=</span> <span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">x0</span> <span class="o">=</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">y0</span> <span class="o">=</span> <span class="n">cz</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f3</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g3</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f4</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f3</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g4</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">f3</span><span class="p">,</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">g3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">f1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g3</span> <span class="o">+</span> <span class="n">g4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y1</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">g1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">g3</span> <span class="o">+</span> <span class="n">g4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span> <span class="n">rs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">;</span> <span class="n">rs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">y1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">cz</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">rs</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">S</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">t</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入微分方程的初值:&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入所求微分方程组的微分区间[a,b]:&#34;</span><span class="p">;</span>  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;输入所求微分方程组所分解子区间的个数:&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">step</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">cz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">step</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">LG</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">cz</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">S</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">rs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">rs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">rs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">rs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">rs</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">cz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">rs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="龙贝格公式计算积分值">龙贝格公式计算积分值</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;math.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define N 20             </span><span class="c1">//区间等分份数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define MAX 10 
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define a 0
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define b 1
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define f(x) (sin(x))    </span><span class="c1">//函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define epsilon 0.0001    </span><span class="c1">//有效数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">Romberg</span><span class="p">(</span><span class="kt">double</span> <span class="n">aa</span><span class="p">,</span><span class="kt">double</span> <span class="n">bb</span><span class="p">,</span><span class="kt">long</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">sum</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="p">(</span><span class="n">bb</span><span class="o">-</span><span class="n">aa</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">=</span><span class="n">sum</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">aa</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">h</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">bb</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">MAX</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">Romberg</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">m</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">m</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">T</span> <span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">Romberg</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">pow</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">m</span><span class="p">])</span> <span class="o">&lt;</span><span class="n">epsilon</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;T=&#34;</span><span class="o">&lt;&lt;</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="利用二分法寻找函数">利用二分法寻找函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;math.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define eps 0.001
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">dichotomy</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">fun</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="p">(</span><span class="n">fabs</span><span class="p">((</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="p">(</span><span class="n">fabs</span><span class="p">((</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;你输入的a和b不正确&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dichotomy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;求解的结果是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">system</span> <span class="p">(</span> <span class="s">&#34;pause &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="定期年金方程问题求解">定期年金方程问题求解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="kt">double</span> <span class="n">p</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">f1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;输入初值p0=&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="mf">500.0</span> <span class="o">-</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">p1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">/</span><span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p=&#34;</span><span class="o">&lt;&lt;</span><span class="n">f</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f1</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mf">20.0</span><span class="o">*</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">p1</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span><span class="o">-</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">p1</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">p1</span><span class="o">*</span><span class="n">p1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p=&#34;</span><span class="o">&lt;&lt;</span><span class="n">f1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">=</span><span class="n">p1</span><span class="o">-</span><span class="n">f</span><span class="o">/</span><span class="n">f1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">p1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p1</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;p=&#34;</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;k=&#34;</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>完整文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-数值逼近课设文件</a></strong></p>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-迭代法Aikten法以及牛顿法求解线性方程根通用程序</title>
+    <link>http://www.spiritysdx.top/20210515/</link>
+    <pubDate>Sat, 15 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210515/</guid>
+    <description><![CDATA[<h1 id="数值逼近">数值逼近</h1>
+<p>公元 1225 年，比萨的数学家 Leonardo（即 Fibonacci（斐波那契）），1170-1250）研究了方程</p>
+<p><code>x^3+2*x^2+10*x-20=0</code></p>
+<p>得到一个根 x* = 1.368 808 107，没有人知道他用什么方法得到这个值。对于这个方程，分别用下列方法：
+（1）迭代法式1 ；
+（2）迭代法式2 ；
+（3）对（1）的 Aitken 加速方法；
+（4）对（2）的 Aitken 加速方法；
+（5）Newton 法 。
+求方程的根（可取 x0 = 1 ），计算到 Leonardo 所得到的准确度。</p>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-迭代法求非线性方程的根</title>
+    <link>http://www.spiritysdx.top/20210426/</link>
+    <pubDate>Mon, 26 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210426/</guid>
+    <description><![CDATA[<h1 id="数值逼近">数值逼近</h1>
+<p>用迭代法求非线性方程<code>(x+1)^2-sinx-3=0</code>的根。
+取迭代函数<code>0.5*(3+sin((x))-1-(x)*(x))</code>，精度要求为<code>1*10^-2</code>，最多迭代 100 次。</p>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-Euler方法、改进Euler方法和经典四阶Runge-Kutta方法求解初值问题</title>
+    <link>http://www.spiritysdx.top/20210425/</link>
+    <pubDate>Sun, 25 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210425/</guid>
+    <description><![CDATA[<h1 id="数值积分">数值积分</h1>
+<p>取步长 h = 0.1 ，分别用 Euler 方法、改进 Euler 方法和经典四阶 Runge-Kutta 方法求解初值问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">f(x,y) =  ((y)-2*(x)/(y))
+</span></span><span class="line"><span class="cl">f(0)  =   0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>并将计算结果与<code>sqrt(1+2*(x))</code>精确解相比较。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;math.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="c1">//用于函数SetConsoleOutputCP(65001);更改cmd编码为utf8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define f(x,y)  ((y)-2*(x)/(y))
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define y(x)    sqrt(1+2*(x))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">65001</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mf">0.1f</span><span class="p">,</span><span class="n">y0</span><span class="o">=</span><span class="mf">1.0f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ye</span><span class="p">,</span><span class="n">yp</span><span class="p">,</span><span class="n">ym</span><span class="p">,</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">,</span><span class="n">yr</span><span class="p">,</span><span class="n">yx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">    精确解            Euler方法&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;          改进Euler方法     4阶Runge-Kutta方法&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> x       y      ye[k]    |ye[k]-y|   &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;ym[k]   |ym[k]-y|   yr[k]   |yr[k]-y|</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%3.1f  %8.6f  %8.6f  %8.6f  &#34;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%8.6f  %8.6f  %8.6f  %8.6f  </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ye</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//Euler方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ym</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//改进的Euler方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">yr</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//4阶Runge-Kutta方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ye</span> <span class="o">=</span> <span class="n">ye</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ye</span><span class="p">);</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">yp</span> <span class="o">=</span> <span class="n">ym</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ym</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ym</span> <span class="o">=</span> <span class="n">ym</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ym</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">yp</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">k1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">yr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">k1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k3</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k4</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">*</span><span class="n">k3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yr</span> <span class="o">=</span> <span class="n">yr</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="o">+</span><span class="n">k4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yx</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%3.1f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">yx</span><span class="p">,</span><span class="n">ye</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">ye</span><span class="o">-</span><span class="n">yx</span><span class="p">),</span><span class="n">ym</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">ym</span><span class="o">-</span><span class="n">yx</span><span class="p">),</span><span class="n">yr</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yx</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-复化梯形公式和复化 Simpson 公式计算定积分的近似值</title>
+    <link>http://www.spiritysdx.top/20210424/</link>
+    <pubDate>Sat, 24 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210424/</guid>
+    <description><![CDATA[<h1 id="数值逼近">数值逼近</h1>
+<p>将区间<code>[0,1]</code>四等分，分别用复化梯形公式和复化 Simpson 公式计算定积分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">f(x)  4.0 / (1 + (x) * (x))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>的近似值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="c1">//用于函数SetConsoleOutputCP(65001);更改cmd编码为utf8 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define  f(x)  4.0 / (1 + (x) * (x))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">yk</span><span class="p">,</span> <span class="n">xkh</span><span class="p">,</span> <span class="n">ykh</span><span class="p">,</span> <span class="n">xk1</span><span class="p">,</span> <span class="n">yk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">xk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">xk</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;复化梯形公式计算的结果：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">yk</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xkh</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ykh</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xkh</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk1</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yk1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xk1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">yk</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">ykh</span> <span class="o">+</span> <span class="n">yk1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk</span> <span class="o">=</span> <span class="n">xk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yk</span> <span class="o">=</span> <span class="n">yk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;复化 Simpson 公式计算的结果：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">65001</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-Newton插值法</title>
+    <link>http://www.spiritysdx.top/20210423/</link>
+    <pubDate>Fri, 23 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210423/</guid>
+    <description><![CDATA[<h1 id="数值逼近">数值逼近</h1>
+<p>天安门广场升旗的时间是日出的时刻，而降旗的时间是日落时分。根据天安门广场管理委员会的公告，某年 10 月份升降旗的时间如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">日期     1                  15                22
+</span></span><span class="line"><span class="cl">升旗   6:09                6:23               6:31
+</span></span><span class="line"><span class="cl">降旗   17:58               17:36              17:26
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>请根据上述数据构造 Newton 插值多项式，并计算当年 10 月 8 日北京市的日照时长。</p>]]></description>
+</item><item>
+    <title>C&#43;&#43;数值逼近-Hermite插值法通用程序</title>
+    <link>http://www.spiritysdx.top/20210422/</link>
+    <pubDate>Thu, 22 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210422/</guid>
+    <description><![CDATA[<h1 id="数值逼近">数值逼近</h1>
+<p>参考matlab程序：https://www.ilovematlab.cn/thread-450391-1-1.html</p>
+<p>个人编写的c++版本如下</p>]]></description>
+</item></channel>
+</rss>

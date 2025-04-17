@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Slaac - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/slaac/</link>
+        <description>Slaac - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/slaac/" rel="self" type="application/rss+xml" /><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。</p>
+<h2 id="pve">pve</h2>
+<p>proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方面还是一塌糊涂</p>]]></description>
+</item></channel>
+</rss>

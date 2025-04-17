@@ -1,0 +1,1392 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数学建模 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/</link>
+        <description>数学建模 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" rel="self" type="application/rss+xml" /><item>
+    <title>预处理3-连续值与特征选取</title>
+    <link>http://www.spiritysdx.top/20210724/</link>
+    <pubDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210724/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>使用的相关数据链接如下：</p>
+<p><a href="https://gitee.com/spiritlhl/za/releases/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">点我跳转</a></p>
+<h1 id="代码">代码</h1>
+<h2 id="连续值预处理">连续值预处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;Narrativedata.csv&#34;</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">)</span><span class="c1">#index_col=0将第0列作为索引，不写则认为第0列为特征</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#将年龄二值化 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 891 entries, 0 to 890
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Age       891 non-null    float64
+ 1   Sex       891 non-null    object 
+ 2   Embarked  889 non-null    object 
+ 3   Survived  891 non-null    object 
+dtypes: float64(1), object(3)
+memory usage: 34.8+ KB
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Binarizer</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>               <span class="c1">#类为特征专用，所以不能使用一维数组</span>
+</span></span><span class="line"><span class="cl"><span class="n">transformer</span> <span class="o">=</span> <span class="n">Binarizer</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1">#阈值threshold=n, 小于等于n的数值转为0, 大于n的数值转为1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformer</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>预处理2-随机森林填补缺失值</title>
+    <link>http://www.spiritysdx.top/20210723/</link>
+    <pubDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210723/</guid>
+    <description><![CDATA[<h2 id="随机森林填补缺失值实测回归比较好">随机森林填补缺失值(实测回归比较好)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="c1">#随机森林分类树</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">wine</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'data': array([[1.423e+01, 1.710e+00, 2.430e+00, ..., 1.040e+00, 3.920e+00,
+         1.065e+03],
+        [1.320e+01, 1.780e+00, 2.140e+00, ..., 1.050e+00, 3.400e+00,
+         1.050e+03],
+        [1.316e+01, 2.360e+00, 2.670e+00, ..., 1.030e+00, 3.170e+00,
+         1.185e+03],
+        ...,
+        [1.327e+01, 4.280e+00, 2.260e+00, ..., 5.900e-01, 1.560e+00,
+         8.350e+02],
+        [1.317e+01, 2.590e+00, 2.370e+00, ..., 6.000e-01, 1.620e+00,
+         8.400e+02],
+        [1.413e+01, 4.100e+00, 2.740e+00, ..., 6.100e-01, 1.600e+00,
+         5.600e+02]]),
+ 'target': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2]),
+ 'frame': None,
+ 'target_names': array(['class_0', 'class_1', 'class_2'], dtype='&lt;U7'),
+ 'DESCR': '.. _wine_dataset:\n\nWine recognition dataset\n------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 178 (50 in each of three classes)\n    :Number of Attributes: 13 numeric, predictive attributes and the class\n    :Attribute Information:\n \t\t- Alcohol\n \t\t- Malic acid\n \t\t- Ash\n\t\t- Alcalinity of ash  \n \t\t- Magnesium\n\t\t- Total phenols\n \t\t- Flavanoids\n \t\t- Nonflavanoid phenols\n \t\t- Proanthocyanins\n\t\t- Color intensity\n \t\t- Hue\n \t\t- OD280/OD315 of diluted wines\n \t\t- Proline\n\n    - class:\n            - class_0\n            - class_1\n            - class_2\n\t\t\n    :Summary Statistics:\n    \n    ============================= ==== ===== ======= =====\n                                   Min   Max   Mean     SD\n    ============================= ==== ===== ======= =====\n    Alcohol:                      11.0  14.8    13.0   0.8\n    Malic Acid:                   0.74  5.80    2.34  1.12\n    Ash:                          1.36  3.23    2.36  0.27\n    Alcalinity of Ash:            10.6  30.0    19.5   3.3\n    Magnesium:                    70.0 162.0    99.7  14.3\n    Total Phenols:                0.98  3.88    2.29  0.63\n    Flavanoids:                   0.34  5.08    2.03  1.00\n    Nonflavanoid Phenols:         0.13  0.66    0.36  0.12\n    Proanthocyanins:              0.41  3.58    1.59  0.57\n    Colour Intensity:              1.3  13.0     5.1   2.3\n    Hue:                          0.48  1.71    0.96  0.23\n    OD280/OD315 of diluted wines: 1.27  4.00    2.61  0.71\n    Proline:                       278  1680     746   315\n    ============================= ==== ===== ======= =====\n\n    :Missing Attribute Values: None\n    :Class Distribution: class_0 (59), class_1 (71), class_2 (48)\n    :Creator: R.A. Fisher\n    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n    :Date: July, 1988\n\nThis is a copy of UCI ML Wine recognition datasets.\nhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\n\nThe data is the results of a chemical analysis of wines grown in the same\nregion in Italy by three different cultivators. There are thirteen different\nmeasurements taken for different constituents found in the three types of\nwine.\n\nOriginal Owners: \n\nForina, M. et al, PARVUS - \nAn Extendible Package for Data Exploration, Classification and Correlation. \nInstitute of Pharmaceutical and Food Analysis and Technologies,\nVia Brigata Salerno, 16147 Genoa, Italy.\n\nCitation:\n\nLichman, M. (2013). UCI Machine Learning Repository\n[https://archive.ics.uci.edu/ml]. Irvine, CA: University of California,\nSchool of Information and Computer Science. \n\n.. topic:: References\n\n  (1) S. Aeberhard, D. Coomans and O. de Vel, \n  Comparison of Classifiers in High Dimensional Settings, \n  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Technometrics). \n\n  The data was used with many others for comparing various \n  classifiers. The classes are separable, though only RDA \n  has achieved 100% correct classification. \n  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) \n  (All results using the leave-one-out technique) \n\n  (2) S. Aeberhard, D. Coomans and O. de Vel, \n  &quot;THE CLASSIFICATION PERFORMANCE OF RDA&quot; \n  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Journal of Chemometrics).\n',
+ 'feature_names': ['alcohol',
+  'malic_acid',
+  'ash',
+  'alcalinity_of_ash',
+  'magnesium',
+  'total_phenols',
+  'flavanoids',
+  'nonflavanoid_phenols',
+  'proanthocyanins',
+  'color_intensity',
+  'hue',
+  'od280/od315_of_diluted_wines',
+  'proline']}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="c1">#特征矩阵</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178, 13)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="c1">#标签，以数的形式呈现</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#实例化</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">xtrain</span><span class="p">,</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytrain</span><span class="p">,</span><span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#数据和特征分开导入</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#打分</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_c</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_r</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Single Tree:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">,</span><span class="s2">&#34;Random Forest:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_r</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Single Tree:0.8703703703703703 Random Forest:0.9629629629629629
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 交叉验证</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rfc</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">rfc_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;RandomForest&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">clf_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;DecisionTree&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p></p>]]></description>
+</item><item>
+    <title>预处理1-分类数据</title>
+    <link>http://www.spiritysdx.top/20210722/</link>
+    <pubDate>Thu, 22 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210722/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>使用的相关数据链接如下：</p>
+<p><a href="https://gitee.com/spiritlhl/za/releases/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">点我跳转</a></p>
+<h2 id="数据预处理">数据预处理</h2>
+<p>无量纲化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#归一化 收到0~1之间</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#正则化不是归一化 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#不太熟悉numpy的小伙伴，能够判断data的结构吗？</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如果换成表是什么样子？</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>决策树3-泰坦尼克号实例(网格搜索,超参数调参)</title>
+    <link>http://www.spiritysdx.top/20210721/</link>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210721/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>数据集来自kaggle</p>
+<p>链接：https://www.kaggle.com/c/titanic/data</p>
+<p>里面的test和train的csv数据集为所需数据集。</p>]]></description>
+</item><item>
+    <title>决策树2-简单调参</title>
+    <link>http://www.spiritysdx.top/20210720/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210720/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178, 13)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">),</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">)],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>决策树1-分类器</title>
+    <link>http://www.spiritysdx.top/20210719/</link>
+    <pubDate>Mon, 19 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210719/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>     <span class="c1">#分割训练集和测试集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>       <span class="c1">#K近邻</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="简单案例">简单案例</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris_X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris_y</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris_X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:]</span><span class="c1">#四个属性两朵花</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[5.1, 3.5, 1.4, 0.2],
+       [4.9, 3. , 1.4, 0.2]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris_y</span><span class="c1">#三类花</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#分割训练集和测试集</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">iris_X</span><span class="p">,</span><span class="n">iris_y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#测试占30%</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train</span><span class="c1">#顺便打乱了数据</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 2, 1, 0, 0, 2, 0, 0, 2, 0, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1,
+       1, 0, 0, 2, 1, 1, 2, 1, 2, 1, 0, 2, 2, 0, 1, 1, 1, 0, 2, 0, 1, 0,
+       1, 2, 2, 1, 0, 1, 2, 1, 2, 0, 2, 1, 2, 1, 1, 0, 0, 2, 2, 0, 1, 2,
+       1, 0, 0, 0, 2, 0, 0, 1, 2, 2, 2, 1, 2, 1, 0, 1, 1, 0, 1, 2, 0, 2,
+       1, 2, 0, 1, 0, 0, 0, 1, 1, 0, 0, 2, 2, 2, 0, 2, 0])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span> <span class="c1">#使用K近邻分类</span>
+</span></span><span class="line"><span class="cl"><span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>     <span class="c1">#输入测试集</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>KNeighborsClassifier()
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="c1">#预测</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([2, 2, 2, 1, 0, 2, 0, 2, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0, 1, 1, 0, 2,
+       2, 1, 1, 1, 0, 1, 0, 2, 2, 2, 2, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 1,
+       1])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([2, 2, 2, 1, 0, 1, 0, 2, 2, 0, 0, 0, 2, 0, 0, 2, 1, 0, 1, 1, 0, 2,
+       2, 1, 1, 1, 0, 1, 0, 2, 1, 2, 2, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 1,
+       1])
+</code></pre>
+<h1 id="模型导入训练">模型导入训练</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span> <span class="c1">#导入基础数据</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>  <span class="c1">#导入模型</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">loaded_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_X</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_y</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#定义模型并训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="c1">#线性模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_X</span><span class="p">,</span><span class="n">data_y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>LinearRegression()
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#预测</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_X</span><span class="p">[:</span><span class="mi">4</span><span class="p">,:])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([30.00384338, 25.02556238, 30.56759672, 28.60703649])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data_y</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([24. , 21.6, 34.7, 33.4])
+</code></pre>
+<p>import matplotlib.pyplot as plt</p>]]></description>
+</item><item>
+    <title>决策树线性回归</title>
+    <link>http://www.spiritysdx.top/20210718/</link>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210718/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span> <span class="c1">#回归树</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#生成噪声曲线</span>
+</span></span><span class="line"><span class="cl"><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="c1">#生成区分行列的二维数据，一维数据不分行列，生成0~1之间的数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[4.17022005e-01, 7.20324493e-01, 1.14374817e-04],
+       [3.02332573e-01, 1.46755891e-01, 9.23385948e-02]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="c1">#导入二维数据，ravel降维y，可将任意维度降维为一维</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x7f87d52f56a0&gt;
+</code></pre>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span><span class="c1">#每5个数字加随机+-0.5之间的数当成噪声</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x7f87d5113e50&gt;
+</code></pre>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#设定参数的模型导入并训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_1</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>DecisionTreeRegressor(max_depth=5)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#取0~5以0.01为步长的有顺序点，后面将1维升维2，跟reshape（-1，1）作用一致</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_1</span> <span class="o">=</span> <span class="n">regr_1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_2</span> <span class="o">=</span> <span class="n">regr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span><span class="c1">#边框，点，图例名称</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;cornflowerblue&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;max_depth=2&#34;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;yellowgreen&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;max_depth=5&#34;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;target&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Decision Tree Regression&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="c1">#显示图例</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p></p>]]></description>
+</item><item>
+    <title>2020新型冠状病毒（COVID-19/2019-nCoV）疫情分析(补档)</title>
+    <link>http://www.spiritysdx.top/20210715/</link>
+    <pubDate>Thu, 15 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210715/</guid>
+    <description><![CDATA[<h1 id="新型冠状病毒covid-192019-ncov疫情分析">新型冠状病毒（COVID-19/2019-nCoV）疫情分析</h1>
+<p><strong>源文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-新冠疫情数据分析文件</a></strong></p>
+<h2 id="font-colorred重要说明font"><font color='red'>重要说明</font></h2>
+<p>分析文档：完成度：代码质量 3:5:2</p>
+<p>其中分析文档是指你数据分析的过程中，对各问题分析的思路、对结果的解释、说明(要求言简意赅，不要为写而写)</p>]]></description>
+</item><item>
+    <title>某区域流体数据处理(只会写操作，不知道具体意义)</title>
+    <link>http://www.spiritysdx.top/20210714/</link>
+    <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210714/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>帮舍友整的，不知道具体实际意义。</p>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import numpy as np
+</span></span><span class="line"><span class="cl">import pandas as pd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data = pd.read_excel(r&#39;C:\Users\祈LHL\Desktop\data.xlsx&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">data.head()
+</span></span></code></pre></td></tr></table>
+</div>
+</div> <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {   ,
+                vertical-align: middle;   ,
+            }   ,
+           ,
+            .dataframe tbody tr th {
+                vertical-align: top;
+            }
+           ,
+            .dataframe thead th {
+                text-align: right;
+            }   ,
+        </style>
+        <table border=\ 1\  class=\ dataframe\ >
+          <thead>
+            <tr style=\ text-align: right;\ >
+              <th></th>
+              <th>cellnumber</th>
+              <th>x-coordinate</th> 
+              <th>y-coordinate</th>
+              <th>z-coordinate</th>   
+              <th>density</th>   
+              <th>z-velocity</th>   
+              <th>relative-z-velocity</th>   
+              <th>x-coordinate.1</th>   
+              <th>y-coordinate</th>   
+              <th>z-face-area</th>   
+              <th>boundary-cell-dist</th>   
+              <th>boundary-normal-dist</th>   
+            </tr>   
+          </thead>   
+          <tbody>  
+            <tr>   
+              <th>0</th>   
+              <td>1</td>   
+              <td>-12.597898</td>   
+              <td>-2.404495</td>   
+              <td>-6.320497</td>   
+              <td>1.226</td>   
+              <td>-22.205814</td>   
+              <td>-22.205814</td>   
+              <td>-12.597899</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.010276</td>   
+            </tr>   
+            <tr>   
+              <th>1</th>   
+              <td>2</td>   
+              <td>-12.597898</td>   
+              <td>-2.321485</td>   
+              <td>-6.320487</td>   
+              <td>1.226</td>   
+              <td>-23.532957</td>   
+              <td>-23.532957</td>   
+              <td>-12.597899</td>   
+              <td>-2.321584</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020553</td>   
+            </tr>   
+            <tr>   
+              <th>2</th>   
+              <td>3</td>   
+              <td>-12.515688</td>   
+              <td>-2.404495</td>   
+              <td>-6.320500</td>  
+              <td>1.226</td>   
+              <td>-23.167622</td>   
+              <td>-23.167622</td>   
+              <td>-12.515688</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020636</td>   
+            </tr>   
+            <tr>   
+              <th>3</th>   
+              <td>4</td>   
+              <td>-12.515688</td>   
+              <td>-2.321485</td>   
+              <td>-6.320500</td>   
+              <td>1.226</td>   
+              <td>-24.882029</td>   
+              <td>-24.882029</td>   
+              <td>-12.515688</td>   
+              <td>-2.321584</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.051111</td>   
+            </tr>   
+            <tr>   
+              <th>4</th>   
+              <td>5</td>   
+              <td>-12.433477</td>   
+              <td>-2.404495</td>   
+              <td>-6.320500</td>   
+              <td>1.226</td>   
+              <td>-23.488083</td>   
+              <td>-23.488083</td>   
+              <td>-12.433478</td>   
+              <td>-2.404528</td>   
+              <td>-0.006824</td>   
+              <td>1</td>   
+              <td>0.020719</td>   
+            </tr>   
+          </tbody>   
+    </table>
+</div> 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&#34;y-coordinate&#34;</span> <span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">step</span> <span class="o">=</span> <span class="mf">4.892</span><span class="o">/</span><span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#y6  x3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#分y</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a_y</span> <span class="o">=</span> <span class="n">step_y</span><span class="o">-</span><span class="mf">2.446</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_min</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;y-coordinate&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">step_y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b_y</span> <span class="o">=</span> <span class="n">step_y</span><span class="o">-</span><span class="mf">2.446</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_max</span> <span class="o">=</span> <span class="n">y_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y_min</span><span class="p">[</span><span class="s1">&#39;y-coordinate&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b_y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">section_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_y</span><span class="p">,</span><span class="n">b_y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">section</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#section[5]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">step</span> <span class="o">=</span> <span class="mf">1.562</span><span class="o">/</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section_x_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">section_y_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#在y中分x</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">y_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_x</span> <span class="o">=</span> <span class="n">step_x</span><span class="o">-</span><span class="mf">12.639</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_min</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;x-coordinate&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a_x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">step_x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%.8f</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">step</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b_x</span> <span class="o">=</span> <span class="n">step_x</span><span class="o">-</span><span class="mf">12.639</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_max</span> <span class="o">=</span> <span class="n">x_min</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;x-coordinate&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b_x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_x</span><span class="p">,</span><span class="n">b_x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">section_y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#18个块</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">section_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Q_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp_l</span> <span class="o">=</span> <span class="n">x_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Q</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;density&#34;</span><span class="p">]</span><span class="o">*</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;z-velocity&#34;</span><span class="p">]</span><span class="o">*</span><span class="n">temp_l</span><span class="p">[</span><span class="s2">&#34;z-face-area&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Q_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">section_x_list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077),
+</span></span><span class="line"><span class="cl"> (-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">section_y_list</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_x_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">index</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-12.639, -12.118333329999999),
+</span></span><span class="line"><span class="cl"> (-12.118333329999999, -11.597666669999999),
+</span></span><span class="line"><span class="cl"> (-11.597666669999999, -11.077)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">section_y_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">+=</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">cols</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[(-2.446, -1.63066667),
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001),
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0),
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996),
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997),
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span><span class="mi">5</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{(-2.446, -1.63066667): 1,
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001): 1,
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0): 1,
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996): 1,
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997): 1,
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446): 1}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">temp_list</span> <span class="o">=</span> <span class="n">Q_list</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Q_list</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span><span class="o">+=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">content</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{(-2.446, -1.63066667): [12.427282344087539,
+</span></span><span class="line"><span class="cl">  12.86438295520224,
+</span></span><span class="line"><span class="cl">  8.104732674789329],
+</span></span><span class="line"><span class="cl"> (-1.63066667, -0.8153333300000001): [14.059159859218617,
+</span></span><span class="line"><span class="cl">  14.0170078290342,
+</span></span><span class="line"><span class="cl">  6.50613023081204],
+</span></span><span class="line"><span class="cl"> (-0.8153333300000001, 0.0): [13.851341644545903,
+</span></span><span class="line"><span class="cl">  14.102576555137208,
+</span></span><span class="line"><span class="cl">  6.549793869809068],
+</span></span><span class="line"><span class="cl"> (0.0, 0.8153333299999996): [13.873905539737082,
+</span></span><span class="line"><span class="cl">  14.100577509379482,
+</span></span><span class="line"><span class="cl">  6.539991338980014],
+</span></span><span class="line"><span class="cl"> (0.8153333299999996, 1.6306666699999997): [14.030126072372612,
+</span></span><span class="line"><span class="cl">  13.966730831575635,
+</span></span><span class="line"><span class="cl">  6.467075694188603],
+</span></span><span class="line"><span class="cl"> (1.6306666699999997, 2.446): [11.644887356127308,
+</span></span><span class="line"><span class="cl">  12.004108151505823,
+</span></span><span class="line"><span class="cl">  7.422577844039829]}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+    <style scoped>
+           .dataframe tbody tr th:only-of-type {
+               vertical-align: middle;
+           }
+           .dataframe tbody tr th {
+               vertical-align: top;,
+           }
+           .dataframe thead tr th {
+               text-align: left;
+           }
+       </style>
+       <table border=\1\ class=\dataframe\>
+         <thead>
+           <tr>
+             <th></th>
+             <th>-2.446000</th>
+             <th>-1.630667</th>
+             <th>-0.815333</th>
+             <th>0.000000</th>
+             <th>0.815333</th>
+             <th>1.630667</th>
+           </tr>
+           <tr>
+             <th></th>
+             <th>-1.630667</th>
+             <th>-0.815333</th>
+             <th>0.000000</th>
+             <th>0.815333</th>
+             <th>1.630667</th>
+             <th>2.446000</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <th>(-12.639, -12.118333329999999)</th>
+             <td>12.427282</td>
+             <td>14.059160</td>
+             <td>13.851342</td>
+             <td>13.873906</td>
+             <td>14.030126</td>
+             <td>11.644887</td>
+           </tr>
+           <tr>
+             <th>(-12.118333329999999, -11.597666669999999)</th>
+             <td>12.864383</td>
+             <td>14.017008</td>
+             <td>14.102577</td>
+             <td>14.100578</td>
+             <td>13.966731</td>
+             <td>12.004108</td>
+           </tr>
+           <tr>
+             <th>(-11.597666669999999, -11.077)</th>
+             <td>8.104733</td>
+             <td>6.506130</td>
+             <td>6.549794</td>
+             <td>6.539991</td>
+             <td>6.467076</td>
+             <td>7.422578</td>
+           </tr>
+         </tbody>
+    </table>
+</div>
+<p>相关资料：<a href="https://spiritlhl.lanzoui.com/ixgxro6hwba" target="_blank" rel="noopener noreffer">数据集链接点此下载</a></p>]]></description>
+</item><item>
+    <title>多元回归和熵值评价法及多目标遗传优化算法</title>
+    <link>http://www.spiritysdx.top/20210713/</link>
+    <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210713/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。</p>
+<h2 id="第一届长三角数学建模">第一届长三角数学建模</h2>
+<h2 id="b题--锅炉水冷壁温度曲线">B题  锅炉水冷壁温度曲线</h2>
+<h2 id="1stopt多元拟合">1Stopt多元拟合</h2>
+<p>个人体会：</p>
+<p>只能确定2个自变量1个因变量的拟合函数形式，更高维的无法寻找公式进行拟合。</p>]]></description>
+</item></channel>
+</rss>

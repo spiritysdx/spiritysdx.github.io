@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>图缩减 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E5%9B%BE%E7%BC%A9%E5%87%8F/</link>
+        <description>图缩减 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 25 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E5%9B%BE%E7%BC%A9%E5%87%8F/" rel="self" type="application/rss+xml" /><item>
+    <title>用图卷积和树搜索解决组合优化问题(含笔记)</title>
+    <link>http://www.spiritysdx.top/20230925/</link>
+    <pubDate>Mon, 25 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230925/</guid>
+    <description><![CDATA[<h2 id="基于原文作的个人笔记在此展出">基于原文作的个人笔记，在此展出</h2>
+<p>建议按住ctrl然后滑动鼠标滑轮放大查看，笔记做的很小，图片分辨率很高，放大也不会糊</p>
+<p>原文：Combinatorial Optimization with Graph Convolutional Networks and Guided Tree Search</p>
+<p>原文链接：<a href="https://arxiv.org/abs/1810.10659" target="_blank" rel="noopener noreffer">https://arxiv.org/abs/1810.10659</a></p>]]></description>
+</item></channel>
+</rss>

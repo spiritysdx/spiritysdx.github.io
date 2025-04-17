@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Sftp - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/sftp/</link>
+        <description>Sftp - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/sftp/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的LXD容器配置跳板机进行连接</title>
+    <link>http://www.spiritysdx.top/20240515/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240515/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>由于机房的服务器(下称宿主机)都是没有公网IP的(只有NAT的IPV4网络)，所以需要通过跳板机进行连接。</p>
+<p>由于Pycharm的远程连接是通过SSH进行连接的，使用SFTP协议，所以仅使用22端口即可。</p>]]></description>
+</item><item>
+    <title>在Pycharm上连接远程虚拟环境进行使用</title>
+    <link>http://www.spiritysdx.top/20240514/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240514/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>相信通过前面教程，大部分问题都解决了，目前就剩一个Pycharm怎么连接远程的LXC容器运行Python项目的问题了。</p>
+<p>(为什么不用VSCODE？因为它没有官方支持的远程开发/SSH开发的功能，只有相关的第三方插件实现了类似的功能但并不好用，所以我选择了Pycharm)</p>]]></description>
+</item></channel>
+</rss>

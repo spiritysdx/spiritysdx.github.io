@@ -1,0 +1,40 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Goproxy - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/goproxy/</link>
+        <description>Goproxy - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/goproxy/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的Ubuntu22.04的Linux进行内穿映射端口</title>
+    <link>http://www.spiritysdx.top/20240512/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240512/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>因为机房的机器没有公网IP，所以需要跳板机进行IP映射内穿，所以需要2样东西：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">服务器A - 服务端 - 一个有公网IPV4地址的云服务器，IPV4地址本教程假设为 x.x.x.x
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">服务器B - 客户端 - 机房内的Ubuntu22.04系统的机器
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里选用<code>goproxy</code>进行IP内穿</p>]]></description>
+</item><item>
+    <title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title>
+    <link>http://www.spiritysdx.top/20221211/</link>
+    <pubDate>Fri, 09 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221211/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>RandomWalk - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/randomwalk/</link>
+        <description>RandomWalk - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/randomwalk/" rel="self" type="application/rss+xml" /><item>
+    <title>Random Walk &amp; Node2vec - 图表示学习起始</title>
+    <link>http://www.spiritysdx.top/20230919/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230919/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>本文讲述映射成D维向量的基于随机游走方法。</p>
+<p></p>
+<p>学习路径：</p>
+<p></p>
+<h2 id="图嵌入---node-embedding">图嵌入 - Node Embedding</h2>
+<p>把节点映射为一个D维向量。</p>
+<p></p>
+<p></p>]]></description>
+</item></channel>
+</rss>

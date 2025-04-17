@@ -1,0 +1,101 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Server - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/server/</link>
+        <description>Server - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/server/" rel="self" type="application/rss+xml" /><item>
+    <title>给机房的Ubuntu22.04的Linux安装SSH的server</title>
+    <link>http://www.spiritysdx.top/20240511/</link>
+    <pubDate>Sat, 11 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240511/</guid>
+    <description><![CDATA[<h2 id="废话少说">废话少说</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sed -i &#39;s/.*precedence ::ffff:0:0\/96.*/precedence ::ffff:0:0\/96  100/g&#39; /etc/gai.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install openssh-server -y
+</span></span><span class="line"><span class="cl">systemctl enable --now ssh
+</span></span><span class="line"><span class="cl">systemctl status ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    sed -i &#39;s/^#\?Port.*/Port 22/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#ListenAddress ::/ListenAddress ::/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/#AddressFamily any/AddressFamily any/&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;/^#UsePAM\|UsePAM/c #UsePAM no&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;s/^#\?PubkeyAuthentication.*/PubkeyAuthentication no/g&#39; /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">    sed -i &#39;/^AuthorizedKeysFile/s/^/#/&#39; /etc/ssh/sshd_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl restart sshd
+</span></span><span class="line"><span class="cl">systemctl restart ssh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果还是不行，使用</p>]]></description>
+</item><item>
+    <title>为openvz或kvm架构的linux服务器增加swap分区</title>
+    <link>http://www.spiritysdx.top/20221206/</link>
+    <pubDate>Tue, 06 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221206/</guid>
+    <description><![CDATA[<h3 id="为openvz或kvm架构的linux服务器增加swap分区">为openvz或kvm架构的linux服务器增加swap分区</h3>
+<h4 id="addswap">addswap</h4>
+<p>更新时间：2022.12.05</p>
+<p>为openvz或kvm架构的linux服务器增加swap分区，请确保在root权限下使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -i 
+</span></span><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh -o addswap.sh <span class="o">&amp;&amp;</span> chmod +x addswap.sh <span class="o">&amp;&amp;</span> bash addswap.sh 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>已增加openvz架构重启swap自动添加。</p>]]></description>
+</item><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[<h3 id="使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</h3>
+<p>Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容器，一键多开NAT小鸡，一键多开NAT服务器</p>
+<p>上述需求都得到了解决</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>C&#43;&#43;自定义数据类型 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20210202/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="C&#43;&#43;自定义数据类型">
+  <meta property="og:description" content="结构体 C&#43;&#43;里数组是由相同数据类型的一组元素构成的集合，但实际问题中，经常会遇到由相互关联的，但类型不同的数据组成的数据结构。比如：描述一个学生的数据实体应该包括其学号、姓名、性别、年龄、成绩等数据。如果用多个独立的简单数据类型表示的话，就无法体现其整体性，也不便于数据的整体操作。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-02-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-02-02T00:00:00+00:00">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="C&#43;&#43;自定义数据类型">
+  <meta name="twitter:description" content="结构体 C&#43;&#43;里数组是由相同数据类型的一组元素构成的集合，但实际问题中，经常会遇到由相互关联的，但类型不同的数据组成的数据结构。比如：描述一个学生的数据实体应该包括其学号、姓名、性别、年龄、成绩等数据。如果用多个独立的简单数据类型表示的话，就无法体现其整体性，也不便于数据的整体操作。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210202/" /><link rel="prev" href="http://www.spiritysdx.top/20210201/" /><link rel="next" href="http://www.spiritysdx.top/20210206/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++自定义数据类型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210202\/"
+        },"genre": "posts","keywords": "C\u002b\u002b","wordcount":  5567 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210202\/","datePublished": "2021-02-02T00:00:00+00:00","dateModified": "2021-02-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">C&#43;&#43;自定义数据类型</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-02">2021-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5567 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#结构体">结构体</a></li>
+    <li><a href="#声明结构体变量">声明结构体变量</a></li>
+    <li><a href="#结构体长度">结构体长度</a></li>
+    <li><a href="#结构体变量的初始化">结构体变量的初始化</a></li>
+    <li><a href="#结构体变量引用其成员的形式">结构体变量引用其成员的形式</a></li>
+    <li><a href="#结构体数组">结构体数组</a></li>
+    <li><a href="#共用体">共用体</a>
+      <ul>
+        <li><a href="#共用体类型的定义和结构体类型定义很相似不同之处在于结构体中的成员所占有的存储空间是各自分开且整体连续的而共用体的成员所占用的空间是共享的即共用体的各个成员拥有同样的起始地址因此对共用体中一个成员的赋值会影响到其他所有成员且共用体所占空间的长度由其中所占空间的长度最长的成员决定">共用体类型的定义和结构体类型定义很相似，不同之处在于结构体中的成员所占有的存储空间是各自分开，且整体连续的，而共用体的成员所占用的空间是共享的，即共用体的各个成员拥有同样的起始地址。因此对共用体中一个成员的赋值会影响到其他所有成员，且共用体所占空间的长度由其中所占空间的长度最长的成员决定。</a></li>
+      </ul>
+    </li>
+    <li><a href="#共用体与结构体的区别">共用体与结构体的区别</a></li>
+    <li><a href="#枚举类型">枚举类型</a></li>
+    <li><a href="#实例">实例</a></li>
+    <li><a href="#类型自定义语句">类型自定义语句</a></li>
+    <li><a href="#类和对象">类和对象</a></li>
+    <li><a href="#类的定义">类的定义</a></li>
+    <li><a href="#对象的使用">对象的使用</a></li>
+    <li><a href="#构造函数与析构函数">构造函数与析构函数</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#最后一个实例">最后一个实例</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="结构体">结构体</h2>
+<p>C++里数组是由相同数据类型的一组元素构成的集合，但实际问题中，经常会遇到由相互关联的，但类型不同的数据组成的数据结构。比如：描述一个学生的数据实体应该包括其学号、姓名、性别、年龄、成绩等数据。如果用多个独立的简单数据类型表示的话，就无法体现其整体性，也不便于数据的整体操作。</p>
+<p>C++语言提供了结构体类型对这样的数据结构进行描述。</p>
+<p>这里类似Python中的字典嵌套其他类型的键值对。</p>
+<p>形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">struct  &lt;结构体类型名&gt;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名l;
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名2;
+</span></span><span class="line"><span class="cl">…………
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名n;
+</span></span><span class="line"><span class="cl">};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Student</span>			<span class="c1">//定义学生结构体类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">no</span><span class="p">;</span>		<span class="c1">//学号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>   		<span class="c1">//姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">bool</span> <span class="n">sex</span><span class="p">;</span>			<span class="c1">//性别
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">math</span><span class="p">;</span>			<span class="c1">//高数成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">english</span><span class="p">;</span> 		<span class="c1">//英语成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">computer</span><span class="p">;</span> 		<span class="c1">//计算机成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">float</span> <span class="n">aver</span><span class="p">;</span> 			<span class="c1">//平均成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：   <br>
+1.结构体定义时，使用关键字struct,结构体类型的命名应符合C++标识符命名的规则，之后就可以用定义好的结构体类型的名字，与C++中的基本数据类型一样，也可以用来申明该结构体类型的变量。  <br>
+2.花括号内是对该结构体各个成员的类型声明，成员声明的形式与变量定义的形式类似，成员可以是基本数据类型，也可以是另一个诸如结构体这样的复杂数据类型；   <br>
+3.C++语言规定，结构体类型成员列表中不能包含自身,即不能递归定义，但可以包括其他结构体类型，或者是同类型的结构体指针。     <br>
+4.结尾处的分号不能省略。      <br>
+5.若同一个结构体类型要被多个源文件使用，则通常将这些结构体类型的定义集中存放在一个头文件中，使用该结构体的源文件只要用#include命令包含此头文件即可，不必再每个源文件中重复同样的结构体定义。     <br>
+6.结构体类型定义只是说明了一个数据结构的模型，并没有定义实例，也不要求分配实际的存储空间。只有在定义结构体变量时，C++才为其分配内存。</p>
+<h2 id="声明结构体变量">声明结构体变量</h2>
+<p>通常使用形式一，形式二是C语言形式。</p>
+<p>形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">形式一：&lt;结构体类型名&gt;  变量名
+</span></span><span class="line"><span class="cl">形式二：struct  &lt;结构体类型名&gt;  变量名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>声明结构体变量也可在定义结构体类型的同时进行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">struct 结构体类型名
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名l;
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名2;
+</span></span><span class="line"><span class="cl">…………
+</span></span><span class="line"><span class="cl">&lt;类型标识符&gt;  成员名n;
+</span></span><span class="line"><span class="cl">}变量1,变量2,…… ,变量n;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">date</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">date</span> <span class="n">d3</span><span class="p">,</span><span class="n">d4</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若省略结构体类型名，即成为无名结构体类型,无法再次使用该无名结构体类型再定义新的变量。</p>
+<h2 id="结构体长度">结构体长度</h2>
+<p>结构体的长度是各个成员在内存中所占字节数之和。例如：
+Student stu;
+则stu将在内存中占用41个字节，其中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">no</span><span class="p">;</span>		<span class="c1">//4个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>   		<span class="c1">//20个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="n">sex</span><span class="p">;</span>			<span class="c1">//1个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">math</span><span class="p">;</span> 			<span class="c1">//4个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">english</span><span class="p">;</span> 			<span class="c1">//4个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">computer</span><span class="p">;</span> 			<span class="c1">//4个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">aver</span><span class="p">;</span> 			<span class="c1">//4个字节
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="结构体变量的初始化">结构体变量的初始化</h2>
+<p>结构体变量的初始化形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;结构体类型&gt;  变量名={表达式1,表达式2,…,表达式n}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：         <br>
+1.表达式各类型要与结构体成员的类型对应一致。      <br>
+2.只可在声明结构体变量时对其进行初始化，不可在定义结构体类型时，对结构体变量初始化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//错误写法如下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">date</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span><span class="n">d1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">=</span><span class="p">{</span><span class="mi">2000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//结构体的变量定义和初始化也不能分开
+</span></span></span><span class="line"><span class="cl"><span class="c1">//错误写法如下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">date</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="结构体变量引用其成员的形式">结构体变量引用其成员的形式</h2>
+<p>访问一个结构体变量的成员的形式是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;结构体变量名&gt;.&lt;成员名&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>“.”称为成员运算符</code>，它的优先级高于所有的算术运算符、条件运算符和逻辑运算符。</p>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Student</span> <span class="n">stu</span><span class="o">=</span><span class="p">{</span><span class="mi">20130101</span><span class="p">,</span><span class="err">”</span><span class="n">XuXin</span><span class="err">”</span><span class="p">,</span><span class="nb">false</span><span class="p">,</span><span class="mi">86</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">98</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">stu</span><span class="p">.</span><span class="n">ave</span><span class="o">=</span><span class="p">(</span><span class="n">stu</span><span class="p">.</span><span class="n">math</span><span class="o">+</span><span class="n">stu</span><span class="p">.</span><span class="n">english</span><span class="o">+</span><span class="n">stu</span><span class="p">.</span><span class="n">computer</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果一个结构体中包含另一个结构体作为其成员，则访问该成员中的成员时，要使用如下形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;结构体变量名&gt;.&lt;结构体成员名&gt;.&lt;成员名&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如在学生结构体Student中有一个成员表示学生的出生日期birthday，其类型是如下Date结构体:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Date</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Student</span>			<span class="c1">//定义新的学生结构体类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">no</span><span class="p">;</span>		<span class="c1">//学号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>   		<span class="c1">//姓名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">bool</span> <span class="n">sex</span><span class="p">;</span>			<span class="c1">//性别
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Date</span> <span class="n">birthday</span><span class="p">;</span> <span class="c1">//出生日期
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">math</span><span class="p">;</span>			<span class="c1">//高数成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">english</span><span class="p">;</span> 		<span class="c1">//英语成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">computer</span><span class="p">;</span> 		<span class="c1">//计算机成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">float</span> <span class="n">aver</span><span class="p">;</span> 			<span class="c1">//平均成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">stu1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结构体变量本身不代表一个特定的值，因此无法直接对结构体变量进行算术运算、比较运算和逻辑运算，但作为一个整体结构体可以作为函数参数，同类型的结构体之间也可以相互赋值，其赋值规则是按成员依次进行赋值，如：
+<code>date d1,d2={2001,1,15}; d1 = d2;</code></p>
+<h2 id="结构体数组">结构体数组</h2>
+<p>多个同一类型的结构体变量也可以用数组的形式来处理，称为结构体数组。</p>
+<h2 id="共用体">共用体</h2>
+<p>C++允许同一段内存空间中存储不同类型的数据，用于节省内存空间或数据共享。这就需要使用共用体类型。</p>
+<p>共用体在同一段内存空间存储不同类型的数据。共用体类型的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">union  [共用体类型名]
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	&lt;类型标识符&gt; 成员名1；
+</span></span><span class="line"><span class="cl">	&lt;类型标识符&gt; 成员名2；
+</span></span><span class="line"><span class="cl">	…………
+</span></span><span class="line"><span class="cl">	&lt;类型标识符&gt; 成员名n；
+</span></span><span class="line"><span class="cl">}[变量1,变量2,……,变量n];
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">union UnionDate
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	int nIntData;
+</span></span><span class="line"><span class="cl">	char cCharData;
+</span></span><span class="line"><span class="cl">	float fRealData;
+</span></span><span class="line"><span class="cl">};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="共用体类型的定义和结构体类型定义很相似不同之处在于结构体中的成员所占有的存储空间是各自分开且整体连续的而共用体的成员所占用的空间是共享的即共用体的各个成员拥有同样的起始地址因此对共用体中一个成员的赋值会影响到其他所有成员且共用体所占空间的长度由其中所占空间的长度最长的成员决定">共用体类型的定义和结构体类型定义很相似，不同之处在于结构体中的成员所占有的存储空间是各自分开，且整体连续的，而共用体的成员所占用的空间是共享的，即共用体的各个成员拥有同样的起始地址。因此对共用体中一个成员的赋值会影响到其他所有成员，且共用体所占空间的长度由其中所占空间的长度最长的成员决定。</h3>
+<p>声明共用体变量的形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;共用体类型名&gt;  变量名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：共用体变量不允许赋初始值。</p>
+<p>共用体变量中成员的访问形式为：</p>
+<p><code>&lt;共用体变量名&gt;.&lt;成员名&gt;</code></p>
+<h2 id="共用体与结构体的区别">共用体与结构体的区别</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">no</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">15</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">score</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">aver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">stu</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">union</span> <span class="nc">Utest</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">[</span><span class="mi">15</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">uni</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;结构体变量stu的长度：&#34;</span><span class="o">&lt;&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;共用体变量uni的长度：&#34;</span><span class="o">&lt;&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">uni</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：由于cpu的对界问题，sizeof返回的和实际长度不一致。这里采用4对齐。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">S</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">union</span> <span class="nc">U</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>   <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>	   <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S</span>     <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">U</span> <span class="n">g</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  <span class="n">g</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">g</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">g</span><span class="p">.</span><span class="n">a</span><span class="o">+</span><span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">g</span><span class="p">.</span><span class="n">d</span><span class="p">.</span><span class="n">c1</span><span class="o">=</span><span class="n">g</span><span class="p">.</span><span class="n">a</span><span class="o">+</span><span class="n">g</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">g</span><span class="p">.</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34;, &#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;&lt;</span><span class="n">g</span><span class="p">.</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="s">&#34;, &#34;</span><span class="o">&lt;&lt;</span><span class="n">g</span><span class="p">.</span><span class="n">d</span><span class="p">.</span><span class="n">c1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> 	
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明：	
+结构体类型S的长度为4+4=8字节，又由于结构体变量d是共用体类型U中占空间最长的成员，所以共用体变量g的长度为8个字节。其中a、b以及结构体变量d的成员c1占据同一段内存空间。因此：当g的成员b被赋值10后，g的成员a和d的成员c1也均为10，所以经过运算后，g.a、g.b、g.d.c1均为60.</p>
+<h2 id="枚举类型">枚举类型</h2>
+<p>枚举类型是一系列有标识名的整型常量的集合。枚举类型也是唯一允许用符号代表数据的数据类型，定义形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">enum</span>  <span class="o">&lt;</span><span class="err">枚举类型名</span><span class="o">&gt;</span><span class="p">{</span><span class="err">〈枚举常量表〉</span><span class="p">}[</span><span class="err">枚举变量</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">Days</span><span class="p">{</span><span class="n">Sun</span> <span class="p">,</span><span class="n">Mon</span><span class="p">,</span><span class="n">Tue</span><span class="p">,</span><span class="n">Wed</span><span class="p">,</span><span class="n">Thu</span><span class="p">,</span><span class="n">Fri</span><span class="p">,</span><span class="n">Sat</span><span class="p">}</span> <span class="n">today</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明：缺省时，系统为每一个枚举常量都对应一个整数，并从0开始，逐个增1，这些缺省的值也可重新指定，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">Days</span><span class="p">{</span><span class="n">Sun</span> <span class="p">,</span><span class="n">Mon</span><span class="p">,</span><span class="n">Tue</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">Wed</span><span class="p">,</span><span class="n">Thu</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">Fri</span><span class="p">,</span><span class="n">Sat</span><span class="p">}</span><span class="n">today</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则各枚举常量对应的整数依次为0,1,4,5,8,9,10。</p>
+<p>注意：枚举变量的取值只能是枚举常量表中的某个枚举常量，而不能用一个整型数据或其它类型数据直接赋值。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="n">today</span><span class="o">=</span><span class="n">Mon</span><span class="p">;</span>		<span class="c1">//合法，值为1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">today</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>		<span class="c1">//不合法，不能直接赋值,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">today</span><span class="o">=</span><span class="p">(</span><span class="k">enum</span> <span class="nc">Days</span><span class="p">)</span><span class="mi">3</span><span class="p">;</span><span class="c1">//可以,也可以today=(Days)3;即强制类型转换！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">today</span><span class="p">;</span> 	<span class="c1">// 枚举变量直接赋值给整型变量，合法，值为3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：不要在定义枚举类型的同时，再对枚举常量、枚举变量或枚举类型名重新定义，例如下列定义均<code>不合法</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">today</span><span class="p">;</span> <span class="kt">int</span> <span class="n">Sun</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实例">实例</h2>
+<p>五色球中取三种不同颜色球的组合</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">color</span><span class="p">{</span><span class="n">red</span><span class="p">,</span><span class="n">yellow</span><span class="p">,</span><span class="n">blue</span><span class="p">,</span><span class="n">white</span><span class="p">,</span><span class="n">black</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">red</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">blue</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">white</span><span class="p">;</span><span class="o">++</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">   		 <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">black</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">       			<span class="o">++</span><span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="o">++</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">switch</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>					<span class="n">temp</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>					<span class="n">temp</span><span class="o">=</span><span class="n">j</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>					<span class="n">temp</span><span class="o">=</span><span class="n">k</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">					<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Impossible</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">switch</span><span class="p">((</span><span class="k">enum</span> <span class="nc">color</span><span class="p">)</span><span class="n">temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="nl">red</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;red</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="nl">yellow</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;yellow</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="nl">blue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;blue</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="nl">white</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;white</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">case</span> <span class="nl">black</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;black</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Impossible</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">  			<span class="p">}</span><span class="c1">//for t
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 		<span class="p">}</span> <span class="c1">//for k
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span> <span class="c1">//for j
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;共有&#34;</span><span class="o">&lt;&lt;</span><span class="n">count</span><span class="o">&lt;&lt;</span><span class="s">&#34;种组合</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="类型自定义语句">类型自定义语句</h2>
+<p>用户使用typedef语句可以将一个标识符定义为数据类型标识符。typedef语句的形式是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef&lt;已有的类型名&gt;&lt;类型别名&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：typedef语句只可以将一个已有的类型名用一个新的类型名来代替；
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">typedef float FLOAT;
+</span></span><span class="line"><span class="cl">typedef char CH10[10]; //注意写法，不能用typedef char[10] CH10; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则可以：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FLOAT x,y;
+</span></span><span class="line"><span class="cl">CH10 str;			//str是具有10个元素的字符型数组
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它们等价于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">float x,y; char[10] str;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>又例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">complex</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">real</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">imag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="n">complex</span> <span class="n">comp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">comp</span> <span class="n">cc</span> <span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">complex</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">real</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">imag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span><span class="n">comp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">comp</span> <span class="n">cc</span> <span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="类和对象">类和对象</h2>
+<p>类是面向对象程序设计的基础和核心，也是实现数据抽象的工具。</p>
+<p>类实际上是一种特殊的用户自定义数据类型，但与一般的数据类型不同的是，类中不仅包含有一组数据，还有一组函数。</p>
+<p>定义好的类，就可以用来声明变量，类的变量习惯称之为类的对象。</p>
+<h2 id="类的定义">类的定义</h2>
+<p>类定义的一般形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class  &lt;类名&gt;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	Private:		&lt;私有成员函数和数据成员的声明&gt;
+</span></span><span class="line"><span class="cl">	Public:		&lt;公有成员函数和数据成员的声明&gt;
+</span></span><span class="line"><span class="cl">};
+</span></span><span class="line"><span class="cl">&lt;各个成员函数的定义&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一般类中成员函数的原型声明写在类定义体内，而成员函数的定义一般写在类定义之外。通常采用下面的形式定义成员函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;类型标识符&gt;&lt;类名&gt;::&lt;成员函数名&gt;(形参表)
+</span></span><span class="line"><span class="cl">	{		 &lt;函数体&gt; 	}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>作用域运算符（::）指出该成员函数所属的类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span>  <span class="nc">CRectangle</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span>  <span class="n">length</span><span class="p">,</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span>	<span class="p">{</span>	<span class="n">length</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">;</span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">get_area</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">CRectangle</span><span class="o">::</span><span class="n">get_area</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>  <span class="n">length</span><span class="o">*</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明：	
+C++定义类时，可以将类的各个成员划分为不同的访问级别，即可以设置三种访问控制属性：public表示成员是公有的；private表示成员是私有的；protected表示成员是受保护的；		
+公有成员可以在程序中任何地方访问；而私有成员和保护成员都只有在类的内部能够访问（提高数据的安全性！）
+设置三种访问控制属性的关键字： public,private,protected在类内出现的先后次序无关，并可以多次出现，但一个成员只能有一种访问控制属性。</p>
+<h2 id="对象的使用">对象的使用</h2>
+<p>类与对象的关系，相当于普通数据类型与其变量的关系。类是一种抽象概念，一个类只是定义了一种新的数据类型，而只有申明对象时才真正创建了这种数据类型的物理实体。如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"> <span class="k">class</span> <span class="nc">CRectangle</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">//错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对象声明的一般形式为：<code>&lt;类名&gt;  &lt;对象名&gt;(实参表)</code>		
+如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">CRectangle</span> <span class="nf">c1</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以用成员访问运算符“.”来引用类的成员，其一般形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;对象名&gt;.&lt;数据成员名&gt;  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">或：	
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;对象名&gt;.&lt;成员函数名(实参表)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">c1</span><span class="p">.</span><span class="n">get_area</span><span class="p">();</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：一般只有类的公有成员才能使用类成员访问运算符“.”，类的保护或私有成员不允许在类的外部被直接访问，只能通过类的公有成员函数来间接访问它们。</p>
+<p>get、set函数</p>
+<p>也可以通过设置友元（friend）,在类中为友元函数或友元类设置后门，允许它们访问类的保护或私有成员。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//通过长方形类的成员函数求长方形的面积。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">class</span>  <span class="nc">CRectangle</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span>  <span class="n">length</span><span class="p">,</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//直接定义在类主体中的成员函数将自动成为内联函数（Inline Function）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">CRectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span>		<span class="p">{</span>	<span class="n">length</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">;</span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="nf">get_area</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">CRectangle</span><span class="o">::</span><span class="n">get_area</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>  <span class="n">length</span><span class="o">*</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">CRectangle</span> <span class="n">c1</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;The area of rectangle:&#34;</span><span class="o">&lt;&lt;</span><span class="n">c1</span><span class="p">.</span><span class="n">get_area</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="构造函数与析构函数">构造函数与析构函数</h2>
+<p>1.构造函数</p>
+<p>构造函数的作用是在对象创建时使用特定的值构造对象，将对象初始化为一个特定的状态。构造函数的名字与它所属的类名相同，被声明为公有函数，且没有任何类型的返回值，在创建对象时被自动调用。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="n">CRectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span>	<span class="p">{</span>	<span class="n">length</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">;</span>	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个类都必须有构造函数，若类定义时没有定义任何构造函数，编译器也会自动生成一个不带参数的缺省构造函数。当创建一个对象时，系统将自动调用该缺省构造函数来初始化对象，缺省的构造函数将对象的所有数据成员分配内存空间，但不进行初始化(数据成员的值为内存的随机值，所以必须提供公有set函数，设置私有数据的值）。</p>
+<h1 id="不建议这样使用">不建议这样使用！</h1>
+<p>构造函数可以有默认的参数值,如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">CRectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="p">){</span><span class="n">length</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CRectangle</span> <span class="n">c1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">c1</span><span class="p">.</span><span class="n">length</span><span class="o">=</span><span class="n">c1</span><span class="p">.</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造函数可以有多个重载版本,例如：</p>
+<p>若已经在类外定义了结构体：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">rect</span><span class="p">{</span><span class="kt">int</span> <span class="n">ll</span><span class="p">;</span><span class="kt">int</span> <span class="n">ww</span><span class="p">;};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则可以：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">CRectangle</span><span class="p">(</span><span class="n">rect</span> <span class="n">rc</span><span class="p">)</span> <span class="p">{</span><span class="n">length</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">ll</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">ww</span><span class="p">;}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拷贝构造函数是构造函数的特例，它的作用是自动用一个已经存在的同类对象，去初始化另一个新的对象。	
+语法形式为：<code>类名(类名 &amp;对象名);</code>
+拷贝构造函数是构造函数的重载形式，它的形参是本类对象的一个引用，实参为一个已存在的本类对象。		
+C++自动为每个类提供一个缺省的拷贝构造函数；	
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">CRectangle</span> <span class="nf">c1</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">c2</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.析构函数</p>
+<p>析构函数的功能是用来释放一个对象的，析构函数本身并不删除对象，而是进行系统放弃对象之前的清理工作，它与构造函数的功能正好相反。</p>
+<p>注意：</p>
+<p>析构函数的名字是在类名前加字符“～”。</p>
+<p>析构函数没有参数，也没有返回值。	
+析构函数不能重载，也就是说，一个类中只可能定义一个析构函数。		
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="o">~</span><span class="n">CRectangle</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="最后一个实例">最后一个实例</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//CRectangle类的完整代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">rect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ll</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ww</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span>  <span class="nc">CRectangle</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span>  <span class="n">length</span><span class="p">,</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="p">){</span><span class="n">length</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span><span class="p">(</span><span class="n">rect</span> <span class="n">rc</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span><span class="p">(</span><span class="n">CRectangle</span> <span class="o">&amp;</span><span class="n">rc</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">CRectangle</span><span class="p">(){</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">get_area</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">CRectangle</span><span class="o">::</span><span class="n">CRectangle</span><span class="p">(</span><span class="n">rect</span> <span class="n">rc</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">length</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">ll</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">width</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">ww</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CRectangle</span><span class="o">::</span><span class="n">CRectangle</span><span class="p">(</span><span class="n">CRectangle</span> <span class="o">&amp;</span><span class="n">rc</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">length</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">width</span><span class="o">=</span><span class="n">rc</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">CRectangle</span><span class="o">::</span><span class="n">get_area</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>  <span class="n">length</span><span class="o">*</span><span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CRectangle</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="n">length</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">width</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">CRectangle</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="n">l</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">w</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">rect</span> <span class="n">rr</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span> <span class="n">c2</span><span class="p">(</span><span class="n">rr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">CRectangle</span> <span class="n">c1</span><span class="p">(</span><span class="n">c2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//c1.length=2; //无法存取类中的私有数据成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//c1.width=3;  //无法存取类中的私有数据成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">c1</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;The area of rectangle:&#34;</span><span class="o">&lt;&lt;</span><span class="n">c1</span><span class="p">.</span><span class="n">get_area</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">ll</span><span class="p">,</span><span class="n">ww</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">c1</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span><span class="n">ww</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;length=&#34;</span><span class="o">&lt;&lt;</span><span class="n">ll</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="s">&#34;&lt;&lt;ww&lt;&lt;endl;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//cout&lt;&lt;c1.length&lt;&lt;endl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//无法存取类中的私有数据成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型" data-hashtags="C&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210202/" data-hashtag="C&#43;&#43;"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210202/" data-title="C&#43;&#43;自定义数据类型"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210201/" class="prev" rel="prev" title="小额贷款的划算问题(matlab数学建模)"><i class="fas fa-angle-left fa-fw"></i>小额贷款的划算问题(matlab数学建模)</a>
+            <a href="/20210206/" class="next" rel="next" title="C&#43;&#43;指针">C&#43;&#43;指针<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

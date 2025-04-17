@@ -1,0 +1,33 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MPNN - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/mpnn/</link>
+        <description>MPNN - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/mpnn/" rel="self" type="application/rss+xml" /><item>
+    <title>GAT 详解</title>
+    <link>http://www.spiritysdx.top/20231024/</link>
+    <pubDate>Tue, 24 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231024/</guid>
+    <description><![CDATA[<h2 id="gat">GAT</h2>
+<p>原文：</p>
+<p></p>
+<h2 id="流程">流程</h2>
+<p></p>
+<p></p>
+<p>上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.</p>]]></description>
+</item><item>
+    <title>GraphSAGE 详解</title>
+    <link>http://www.spiritysdx.top/20231023/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231023/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p></p>
+<p>空域提出 &ndash;&gt; 频域提出 &ndash;&gt; 图神经网络提出 &ndash;&gt; 主要回到空域发展</p>
+<p>图表示学习 和 图神经网络 平行的两个方向，互补的方向。</p>
+<h2 id="mpnn">MPNN</h2>
+<p></p>
+<p>后面两个图神经网络都是基于 MPNN 进行改进的。</p>]]></description>
+</item></channel>
+</rss>

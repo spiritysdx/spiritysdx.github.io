@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Appium自动化操作01(环境安装与初始结构) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200523/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="Appium自动化操作01(环境安装与初始结构)">
+  <meta property="og:description" content="前言 最好有Selenium的Web自动化的实际经验
+本篇用到的相关软件链接：
+链接: https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA
+提取码: h9b2
+Appium 基础知识 Appium 用途和特点
+Appium 是一个移动 App （手机应用）自动化工具。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-23T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="爬虫">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="Appium自动化操作01(环境安装与初始结构)">
+  <meta name="twitter:description" content="前言 最好有Selenium的Web自动化的实际经验
+本篇用到的相关软件链接：
+链接: https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA
+提取码: h9b2
+Appium 基础知识 Appium 用途和特点
+Appium 是一个移动 App （手机应用）自动化工具。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200523/" /><link rel="prev" href="http://www.spiritysdx.top/20200522/" /><link rel="next" href="http://www.spiritysdx.top/20200527/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Appium自动化操作01(环境安装与初始结构)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200523\/"
+        },"genre": "posts","keywords": "python, 爬虫","wordcount":  3377 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200523\/","datePublished": "2020-05-23T00:00:00+00:00","dateModified": "2020-05-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Appium自动化操作01(环境安装与初始结构)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-23">2020-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3377 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>本篇用到的相关软件链接：</p>
+<p>链接: <a href="https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/126x-AgLKvM7qSJqdOzAAHA</a></p>
+<p>提取码: h9b2</p>
+<hr>
+<h1 id="appium-基础知识">Appium 基础知识</h1>
+<p><strong>Appium 用途和特点</strong></p>
+<p>Appium 是一个移动 App （手机应用）自动化工具。</p>
+<p>手机APP自动化有什么用？</p>
+<pre><code>自动化完成一些重复性的任务
+</code></pre>
+<p>比如</p>
+<pre><code>微信客服机器人
+
+爬虫
+
+自动化测试
+</code></pre>
+<p>爬虫就是通过手机自动化爬取信息。</p>
+<p>为什么不通过网页、HTTP 爬取呢？</p>
+<pre><code>有的系统没有网页，也不方便通过HTTP爬取
+</code></pre>
+<p>自动化测试</p>
+<pre><code>很多软件开发里面有这样的需求
+</code></pre>
+<p>Appium 自动化方案的特点：</p>
+<pre><code>开源免费
+
+支持多个平台
+
+iOS （苹果）、安卓 App 的自动化都支持。
+
+支持多种类型的自动化
+
+支持 苹果、安卓 应用 原生界面 的自动化
+
+支持 应用 内嵌 WebView 的自动化
+
+支持 手机浏览器 中的 web网站自动化
+
+支持 flutter 应用的自动化
+
+支持多种编程语言
+</code></pre>
+<p>像 Selenium 一样，Appium可以用多种编程语言调用它开发自动化程序。</p>
+<hr>
+<h1 id="自动化原理">自动化原理</h1>
+<p>Appium自动化的原理图:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/23/c90f8b49b6e01.jpg"
+        data-srcset="https://pic./2020/05/23/c90f8b49b6e01.jpg, https://pic./2020/05/23/c90f8b49b6e01.jpg 1.5x, https://pic./2020/05/23/c90f8b49b6e01.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/23/c90f8b49b6e01.jpg"
+        title="https://pic./2020/05/23/c90f8b49b6e01.jpg" /></p>
+<p>它和Selenium原理图很像。因为Appium自动化架构借鉴了Selenium。</p>
+<p>它包含了3个主体部分：自动化程序、Appium Server、移动设备</p>
+<hr>
+<p><strong>自动化程序</strong></p>
+<p>自动化程序是由我们来开发的，实现具体的手机自动化功能。</p>
+<p>要发出具体的指令控制手机，也需要使用客户端库。</p>
+<p>和Selenium一样，Appium 组织也提供了多种编程语言的客户端库，包括 java，python，js， ruby等，方便不同编程语言的开发者使用。</p>
+<p>首先需要安装好客户端库，调用这些库，就可以发出自动化指令给手机。</p>
+<hr>
+<p><strong>Appium Server</strong></p>
+<p>Appium Server 是 Appium 组织开发的程序，它负责管理手机自动化环境，并且转发自动化程序的控制指令给手机，并且转发手机给自动化程序的响应消息。</p>
+<hr>
+<p><strong>手机设备</strong></p>
+<p>这里说的手机设备，其实不仅仅是手机，包括所有苹果、安卓的移动设备，比如：手机、平板、智能手表等。</p>
+<p>为了直观方便的讲解，这里我们简称：手机</p>
+<p>当然手机上也包含了我们要自动化控制的手机应用APP。</p>
+<p>手机设备为什么能接收并且处理自动化指令呢？</p>
+<p>因为，Appium Server 会在手机上安装一个自动化代理程序，代理程序会等待自动化指令，并且执行自动化指令</p>
+<p>PS:这里使用手机端的自动化代理后你的键盘会无法弹出，只能接受电脑控制输入，手机键盘输入与电脑输入不能并存</p>
+<p>比如：要模拟用户点击界面按钮，Appium自动化系统的流程是这样的：</p>
+<p><code>自动化程序</code>调用客户端库相应的函数，发送<code>点击元素</code>的指令（封装在HTTP消息里）给<code>Appium Server</code></p>
+<p><code>Appium Server</code>再转发这个指令给<code>手机上的自动化代理</code></p>
+<p><code>手机上的自动化代理</code>接收到<code>指令</code>后，调用手机平台的自动化库，执行点击操作，返回点击成功的结果给 <code>Appium Server</code></p>
+<p><code>Appium Server</code>转发给<code>自动化程序</code></p>
+<p><code>自动化程序</code>了解到本操作成功后，继续后面的自动化流程</p>
+<p>其中，自动化代理控制，使用的什么库来实现自动化的呢？</p>
+<p>如果测试的是苹果手机， 用的是苹果的 XCUITest 框架 （IOS9.3版本以后）</p>
+<p>如果测试的是安卓手机，用的是安卓的 UIAutomator 框架 (Android4.2以后)</p>
+<p>这些自动化框架提供了在手机设备上运行的库，可以让程序调用这些库，像人一样自动化操控设备和APP，比如：点击、滑动，模拟各种按键消息等。</p>
+<hr>
+<h1 id="自动化环境搭建">自动化环境搭建</h1>
+<p>这里以安卓APP的自动化为例。</p>
+<p>环境搭建需要下载安装不少软件，而且还有不少是国外网站下载的。</p>
+<p>这些软件<code>安装包</code>都放在<code>前言</code>的百度网盘链接中了，请自行下载。</p>
+<hr>
+<p>1.安装client第三方库</p>
+<p>首先需要在开发环境下下载appium-python-client库，也可以用pip安装，如下(pip默认下载最新库，要指定特殊版本，要在后面加上==特殊版本名)</p>
+<p>PS:这里的appium-python-client库有特殊版本要求，需要安装的是<code>0.52</code>版本，不是<code>1.0</code>版本以上，否则会报错，建议使用Pycharm环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pip install appium-python-client==0.52
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>2.安装Appium Server</p>
+<p>Appium Server 是用 nodejs 运行的，基于js开发出来的。</p>
+<p>Appium组织为了方便软件安装使用，制作了一个可执行程序 Appium Desktop，把nodejs 运行环境、Appium Server 和一些工具打包在里面了，只需要简单的下载安装就可以了。</p>
+<p>可以从<code>前言</code>给出的百度网盘里下载安装：</p>
+<p>Appium-windows-1.15.1.exe</p>
+<p>Appium Desktop官方下载链接：</p>
+<p><a href="https://github.com/appium/appium-desktop/releases/tag/v1.15.1" target="_blank" rel="noopener noreffer">https://github.com/appium/appium-desktop/releases/tag/v1.15.1</a></p>
+<hr>
+<p>3.安装JDK</p>
+<p>安卓APP的自动化，必须要安装安卓SDK(后面会提到)，而安卓SDK需要JDK环境。</p>
+<p>可以从<code>前言</code>给出的百度网盘里下载安装：</p>
+<p>jdk-8u211-windows-x64.exe</p>
+<p>安装好之后，还需要添加一个环境变量<code>JAVA_HOME</code>，指定值为<code>jdk安装目录</code>，比如</p>
+<p>JAVA_HOME   D:\Javajdk</p>
+<p>实际情况如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/23/b00d24eaac905.png"
+        data-srcset="https://pic./2020/05/23/b00d24eaac905.png, https://pic./2020/05/23/b00d24eaac905.png 1.5x, https://pic./2020/05/23/b00d24eaac905.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/23/b00d24eaac905.png"
+        title="https://pic./2020/05/23/b00d24eaac905.png" /></p>
+<hr>
+<p>4.安装Android SDK</p>
+<p>对于安卓APP的自动化，Appium Server是需要Android SDK的。</p>
+<p>因为要用到里面的一些工具，比如要执行命令设置手机、传送文件、安装应用、查看手机界面等。</p>
+<p>可以从<code>前言</code>给出的百度网盘里下载Android SDK文件包： <code>androidsdk.zip</code>，并且解压，即可。</p>
+<p>解压完成后，需要配置一下添加一个环境变量 <code>ANDROID_HOME</code>，设置值为sdk包解压目录，比如 <code>D:\androidsdk</code>添加步骤参照第三步的图</p>
+<p>另外，还推荐大家配置环境变量<code>PATH</code>，加入<code>adb</code>所在目录， <code>D:\安卓dk\androidsdk\androidsdk\platform-tools\</code></p>
+<p>实际情况如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/23/e0f7ebf71e4d7.png"
+        data-srcset="https://pic./2020/05/23/e0f7ebf71e4d7.png, https://pic./2020/05/23/e0f7ebf71e4d7.png 1.5x, https://pic./2020/05/23/e0f7ebf71e4d7.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/23/e0f7ebf71e4d7.png"
+        title="https://pic./2020/05/23/e0f7ebf71e4d7.png" /></p>
+<p>注意：是<code>添加</code>该目录到环境变量PATH中，不是替换!否则会导致系统命令都找不到的严重后果，<code>双击2处使用新建添加！</code>。</p>
+<hr>
+<p>5.连接手机</p>
+<p>上述的软件环境都准备好以后，要自动化手机APP，需要：</p>
+<p>在你运行程序的电脑上用<code>USB线</code>连接上你的安卓手机</p>
+<p>进入手机设置 -&gt; 关于手机，不断点击<code>版本号</code>菜单（大概7次以上）进入开发者模式</p>
+<p>退出到上级菜单，在设置首页里点系统与更新，在系统与更新的开发者模式中，启动USB调试</p>
+<p>如果手机连接USB线后，手机界面弹出是否选择允许USB调试，请选择是。</p>
+<p>注意：</p>
+<p>有的手机系统，可能需要一些额外的选项需要设置好。</p>
+<p>比如，有的手机，开发者选项里需要打开允许通过USB安装应用等。</p>
+<p>总之，给USB开发调试尽可能方便的控制手机。</p>
+<p>连接好以后，打开命令行窗口，执行<code>adb devices -l</code>命令来列出连接在电脑上的安卓设备。</p>
+<p>如果输出类似如下的内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">List of devices attached
+</span></span><span class="line"><span class="cl">MGFNW19731015276       device product:HLK-AL00 model:HLK_AL00 device:HWHLK-H transport_id:1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示电脑上可以查看到连接的设备，就可以运行自动化程序了。</p>
+<hr>
+<h1 id="第一个例子">第一个例子</h1>
+<p>运行代码前，首先得运行<code>Appium Desktop</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">appium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">appium.webdriver.extensions.android.nativekey</span> <span class="kn">import</span> <span class="n">AndroidKey</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">desired_caps</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;platformName&#39;</span><span class="p">:</span> <span class="s1">&#39;Android&#39;</span><span class="p">,</span> <span class="c1"># 被测手机是安卓</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;platformVersion&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="c1"># 手机安卓版本，这个需要在设置里的关于手机里查找，注意是Android版本，不是MIUI等系统版本</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;deviceName&#39;</span><span class="p">:</span> <span class="s1">&#39;HLK-AL00&#39;</span><span class="p">,</span> <span class="c1"># 设备名，安卓手机可以随意填写</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;appPackage&#39;</span><span class="p">:</span> <span class="s1">&#39;tv.danmaku.bili&#39;</span><span class="p">,</span> <span class="c1"># 启动APP Package名称</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;appActivity&#39;</span><span class="p">:</span> <span class="s1">&#39;.ui.splash.SplashActivity&#39;</span><span class="p">,</span> <span class="c1"># 启动Activity名称</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;unicodeKeyboard&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># 使用自带输入法，输入中文时填True</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;resetKeyboard&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># 执行完程序恢复原来输入法</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;noReset&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>       <span class="c1"># 不要重置App</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;newCommandTimeout&#39;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span> <span class="c1">#服务自动断开时间</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;automationName&#39;</span> <span class="p">:</span> <span class="s1">&#39;UiAutomator2&#39;</span><span class="c1">#服务协议</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接Appium Server，初始化自动化环境</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="s1">&#39;http://localhost:4723/wd/hub&#39;</span><span class="p">,</span> <span class="n">desired_caps</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置等待时间</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果有`青少年保护`界面，点击`我知道了`</span>
+</span></span><span class="line"><span class="cl"><span class="n">iknow</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_id</span><span class="p">(</span><span class="s2">&#34;text3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">iknow</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iknow</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据id定位搜索位置框，点击</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&#34;expand_search&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据id定位搜索输入框，点击</span>
+</span></span><span class="line"><span class="cl"><span class="n">sbox</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;search_src_text&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">sbox</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;祈LHL&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入回车键，确定搜索</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">press_keycode</span><span class="p">(</span><span class="n">AndroidKey</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择（定位）所有视频标题</span>
+</span></span><span class="line"><span class="cl"><span class="n">eles</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_id</span><span class="p">(</span><span class="s2">&#34;title&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">eles</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 打印标题</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">ele</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;**** Press to quit..&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="查找应用package和activity">查找应用<code>Package</code>和<code>Activity</code></h1>
+<p>1.应用已安装</p>
+<p>如果应用已经安装在手机上了，可以直接打开手机上该应用，进入到你要操作的界面</p>
+<p>然后在cmd执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">adb shell dumpsys activity recents | find &#34;intent={&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会显示如下，最近的几个<code>activity</code>信息，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=tv.danmaku.bili/.ui.splash.SplashActivity}
+</span></span><span class="line"><span class="cl">    intent={act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10010000 pkg=com.huawei.android.launcher cmp=com.huawei.android.launcher/.unihome.UniHomeLauncher}
+</span></span><span class="line"><span class="cl">    intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.android.settings/.HWSettings}
+</span></span><span class="line"><span class="cl">    intent={act=android.intent.action.MAIN flg=0x10840000 hwFlg=0x4100 cmp=com.android.incallui/.InCallActivity}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中第一行就是当前的应用，我们特别关注最后</p>
+<p>cmp=tv.danmaku.bili/.ui.splash.SplashActivity
+应用的package名称就是 tv.danmaku.bili</p>
+<p>应用的启动Activity就是 .ui.splash.SplashActivity</p>
+<p>2.有apk但是没有安装到手机端</p>
+<p>如果你已经获取到了<code>apk</code>，在cmd命令行窗口执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">D</span><span class="p">:</span>\<span class="err">安卓</span><span class="n">dk</span>\<span class="n">androidsdk</span>\<span class="n">build</span><span class="o">-</span><span class="n">tools</span>\<span class="mf">29.0</span><span class="o">.</span><span class="mi">3</span>\<span class="n">aapt</span><span class="o">.</span><span class="n">exe</span> <span class="n">dump</span> <span class="n">badging</span> <span class="n">D</span><span class="p">:</span>\<span class="n">apk</span>\<span class="n">bili</span><span class="o">.</span><span class="n">apk</span> <span class="o">|</span> <span class="n">find</span> <span class="s2">&#34;package: name=&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出信息中，就有应用的package名称</p>
+<p>PS:第一串链接里的<code>D:\安卓dk</code>是我解压<code>androidsdk.zip</code>压缩包的地址；第二串链接里的<code>D:\apk\bili.apk</code>是指的是我D盘的apk文件夹下有一个<code>bili.apk</code>的apk文件</p>
+<p>输出结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">package: name=&#39;tv.danmaku.bili&#39; versionCode=&#39;5531000&#39; versionName=&#39;5.53.1&#39; platformBuildVersionName=&#39;5.53.1&#39; compileSdkVersion=&#39;28&#39; compileSdkVersionCodename=&#39;9&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在命令行窗口执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">D</span><span class="p">:</span>\<span class="err">安卓</span><span class="n">dk</span>\<span class="n">androidsdk</span>\<span class="n">build</span><span class="o">-</span><span class="n">tools</span>\<span class="mf">29.0</span><span class="o">.</span><span class="mi">3</span>\<span class="n">aapt</span><span class="o">.</span><span class="n">exe</span> <span class="n">dump</span> <span class="n">badging</span> <span class="n">d</span><span class="p">:</span>\<span class="n">tools</span>\<span class="n">apk</span>\<span class="n">bili</span><span class="o">.</span><span class="n">apk</span> <span class="o">|</span> <span class="n">find</span> <span class="s2">&#34;launchable-activity&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出信息中，就有应用的启动Activity</p>
+<p>输出结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">launchable-activity: name=&#39;tv.danmaku.bili.ui.splash.SplashActivity&#39;  label=&#39;&#39; icon=&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)" data-hashtags="python,爬虫"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200523/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200523/" data-title="Appium自动化操作01(环境安装与初始结构)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200522/" class="prev" rel="prev" title="NumPy (下)"><i class="fas fa-angle-left fa-fw"></i>NumPy (下)</a>
+            <a href="/20200527/" class="next" rel="next" title="Appium自动化操作02(元素定位及查看工具)">Appium自动化操作02(元素定位及查看工具)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

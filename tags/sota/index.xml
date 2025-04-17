@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SOTA - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/sota/</link>
+        <description>SOTA - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 16 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/sota/" rel="self" type="application/rss+xml" /><item>
+    <title>图优化问题经常拿来比较的一些模型</title>
+    <link>http://www.spiritysdx.top/20230816/</link>
+    <pubDate>Wed, 16 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230816/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分</p>
+<p>由于两篇文章都涉及该方法的比较，所以重头戏是<code>DQN</code>以及其衍生的一些变体，还有部分别的模型，是需要提前了解的。</p>]]></description>
+</item></channel>
+</rss>

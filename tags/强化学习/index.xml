@@ -1,0 +1,66 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>强化学习 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+        <description>强化学习 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="self" type="application/rss+xml" /><item>
+    <title>Python相关的深度学习的学习路径</title>
+    <link>http://www.spiritysdx.top/20230909/</link>
+    <pubDate>Sat, 09 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230909/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>所有资源均免费，遇到付费推荐勿要付费</p>
+<p>方向是 图神经网络 和 强化学习 的学习路径</p>
+<h2 id="基础知识">基础知识</h2>
+<p>白月黑羽的网站：</p>
+<p><a href="https://www.byhy.net/" target="_blank" rel="noopener noreffer">https://www.byhy.net/</a></p>
+<p>适合学习Python基础知识，有对应的B站讲解视频</p>
+<p>他的自动化方面课程讲的也很好，爬虫中的selenium，以及Python的自动化测试，都算是他很好的课程了。(属于题外话了，这些东西在深度学习中用不到，没时间的别浪费时间看)</p>]]></description>
+</item><item>
+    <title>Actor-Critic Methods</title>
+    <link>http://www.spiritysdx.top/20230908/</link>
+    <pubDate>Fri, 08 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230908/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p></p>
+<p>Actor-Critic Methods 结合了价值学习和策略学习，同时训练了两个神经网络。</p>
+<p>Actor 网络用于产生策略，Critic 网络用于评估策略。</p>
+<p></p>
+<h2 id="目标">目标</h2>
+<p>① 更新策略网络Π的参数，是为了增大状态价值V的值，要用价值网络q进行打分来训练。</p>]]></description>
+</item><item>
+    <title>Policy-Based learning</title>
+    <link>http://www.spiritysdx.top/20230907/</link>
+    <pubDate>Thu, 07 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230907/</guid>
+    <description><![CDATA[<h2 id="用策略函数指导动作">用策略函数指导动作</h2>
+<p>使用策略函数随机抽样得到动作。</p>
+<h2 id="近似策略函数">近似策略函数</h2>
+<p>由于实际的策略函数无法得到，需要用各种方式去近似策略函数，所以这里可以使用神经网络去近似实际的策略函数，记作<code>policy network</code>。</p>]]></description>
+</item><item>
+    <title>Deep Q-Network (DQN) (Value-Based learning)</title>
+    <link>http://www.spiritysdx.top/20230906/</link>
+    <pubDate>Wed, 06 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230906/</guid>
+    <description><![CDATA[<h2 id="寻找最佳的q值函数">寻找最佳的Q值函数</h2>
+<p>实际并不知道最佳的Q值函数，需要使用神经网络 Q(s,a;w) 来近似最佳的Q值函数。</p>
+<p>实际流程大致为当前状态转换为矩阵后，通过卷积层提取特征向量，再通过全连接层得到Q值向量，此时的Q值向量每一个元素代表某一个动作的得分。</p>]]></description>
+</item><item>
+    <title>强化学习术语翻译</title>
+    <link>http://www.spiritysdx.top/20230905/</link>
+    <pubDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230905/</guid>
+    <description><![CDATA[<h2 id="state">State</h2>
+<p>状态，即状态空间，表示环境中的当前状态。</p>
+<h2 id="action--agent">Action &amp;&amp; Agent</h2>
+<p>动作，即动作空间，表示在当前状态下，执行的动作。</p>
+<p>动作由谁做的就是<code>Agent</code>，即智能体。</p>
+<h2 id="policy-π">Policy Π</h2>
+<p>策略，即策略空间，表示在当前状态下，智能体可以采取的动作。</p>]]></description>
+</item></channel>
+</rss>

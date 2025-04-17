@@ -1,0 +1,203 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>机器学习 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+        <description>机器学习 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="self" type="application/rss+xml" /><item>
+    <title>conda使用GPU时的一些陷阱</title>
+    <link>http://www.spiritysdx.top/20240607/</link>
+    <pubDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240607/</guid>
+    <description><![CDATA[<h2 id="conda默认的python环境版本过高需要降级默认的python环境">conda默认的python环境版本过高，需要降级默认的Python环境</h2>
+<p>假设原始环境是Python12的环境</p>
+<p>直接使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda install python==3.11
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似上述方法指定python版本下载，注意这个命令要在conda的虚拟环境中执行才会替换当前python版本。</p>]]></description>
+</item><item>
+    <title>神经网络(GNN)的表达能力</title>
+    <link>http://www.spiritysdx.top/20231101/</link>
+    <pubDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231101/</guid>
+    <description><![CDATA[<h2 id="gnn">GNN</h2>
+<p>
+
+
+
+
+
+
+
+
+</p>]]></description>
+</item><item>
+    <title>GAT 详解</title>
+    <link>http://www.spiritysdx.top/20231024/</link>
+    <pubDate>Tue, 24 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231024/</guid>
+    <description><![CDATA[<h2 id="gat">GAT</h2>
+<p>原文：</p>
+<p></p>
+<h2 id="流程">流程</h2>
+<p></p>
+<p></p>
+<p>上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.</p>]]></description>
+</item><item>
+    <title>GraphSAGE 详解</title>
+    <link>http://www.spiritysdx.top/20231023/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231023/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p></p>
+<p>空域提出 &ndash;&gt; 频域提出 &ndash;&gt; 图神经网络提出 &ndash;&gt; 主要回到空域发展</p>
+<p>图表示学习 和 图神经网络 平行的两个方向，互补的方向。</p>
+<h2 id="mpnn">MPNN</h2>
+<p></p>
+<p>后面两个图神经网络都是基于 MPNN 进行改进的。</p>]]></description>
+</item><item>
+    <title>GCN 详解</title>
+    <link>http://www.spiritysdx.top/20231022/</link>
+    <pubDate>Sun, 22 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231022/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>GCN 可以说是一个函数拟合器。</p>
+<p></p>
+<p></p>
+<p>每个计算图就是一个样本</p>
+<p></p>
+<p>感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则后续层数感受野会越来越相似。</p>]]></description>
+</item><item>
+    <title>图神经网络的前情提要</title>
+    <link>http://www.spiritysdx.top/20231021/</link>
+    <pubDate>Sat, 21 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231021/</guid>
+    <description><![CDATA[<p>
+
+
+
+
+
+
+</p>]]></description>
+</item><item>
+    <title>深度学习前情提要</title>
+    <link>http://www.spiritysdx.top/20231020/</link>
+    <pubDate>Fri, 20 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231020/</guid>
+    <description><![CDATA[<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p>]]></description>
+</item><item>
+    <title>半监督节点分类</title>
+    <link>http://www.spiritysdx.top/20230928/</link>
+    <pubDate>Thu, 28 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230928/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>]]></description>
+</item><item>
+    <title>PageRank实战-西游记人物节点重要程度</title>
+    <link>http://www.spiritysdx.top/20230927/</link>
+    <pubDate>Wed, 27 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230927/</guid>
+    <description><![CDATA[<h1 id="pagerank节点重要度">PageRank节点重要度</h1>
+<p>在NetworkX中，计算有向图节点的PageRank节点重要度。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>networkx官方教程：<a href="https://networkx.org/documentation/stable/tutorial.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html</a></p>
+<p>nx.Graph <a href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph</a></p>
+<p>给图、节点、连接添加属性：<a href="https://networkx.org/documentation/stable/tutorial.html#attributes" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html#attributes</a></p>
+<p>读写图：<a href="https://networkx.org/documentation/stable/reference/readwrite/index.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/readwrite/index.html</a></p>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span> <span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># 数据分析</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># 随机数</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">star_graph</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="计算pagerank节点重要度">计算PageRank节点重要度</h2>
+<p>数据下载地址：http://www.openkg.cn/dataset/ch4masterpieces</p>]]></description>
+</item><item>
+    <title>PageRank</title>
+    <link>http://www.spiritysdx.top/20230926/</link>
+    <pubDate>Tue, 26 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230926/</guid>
+    <description><![CDATA[<h2 id="links-as-votes">Links as votes</h2>
+<p>使用In-coming links作为投票，也就是别人引用了我，即一个节点被多少其他节点指向，那么这个节点被多少用户点击的概率就越大。</p>
+<p>pagerank假设 In-Links 之间也是不一样，重要网站引用我和无名小将引用我肯定前者更重要。</p>]]></description>
+</item></channel>
+</rss>

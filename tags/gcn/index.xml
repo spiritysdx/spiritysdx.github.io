@@ -1,0 +1,51 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>GCN - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/gcn/</link>
+        <description>GCN - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 22 Oct 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/gcn/" rel="self" type="application/rss+xml" /><item>
+    <title>GCN 详解</title>
+    <link>http://www.spiritysdx.top/20231022/</link>
+    <pubDate>Sun, 22 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20231022/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>GCN 可以说是一个函数拟合器。</p>
+<p></p>
+<p></p>
+<p>每个计算图就是一个样本</p>
+<p></p>
+<p>感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则后续层数感受野会越来越相似。</p>]]></description>
+</item><item>
+    <title>高效探索学习解决组合图分区问题(基于强化学习的优化算法)</title>
+    <link>http://www.spiritysdx.top/20230823/</link>
+    <pubDate>Wed, 23 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230823/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/2205.14105v1.pdf</a></p>
+<p>文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="er40ba40到er500ba500">ER40/BA40到ER500/BA500</h3>
+<p><a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer">https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579</a></p>
+<p><a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer">https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47</a></p>
+<p>分别命名为ER和BA数据集</p>]]></description>
+</item><item>
+    <title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title>
+    <link>http://www.spiritysdx.top/20230808/</link>
+    <pubDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230808/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1810.10659.pdf</a></p>
+<p>文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="training-data">Training Data</h3>
+<p><a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer">https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html</a></p>
+<h3 id="testing-data">Testing Data</h3>
+<h4 id="sat-competition-2017">SAT Competition 2017</h4>
+<p><a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer">https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf</a></p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,93 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Hugo - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/hugo/</link>
+        <description>Hugo - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 03 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo的Lovelt主题配置</title>
+    <link>http://www.spiritysdx.top/20210703/</link>
+    <pubDate>Sat, 03 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210703/</guid>
+    <description><![CDATA[<p>鸣谢：</p>
+<p><a href="https://hugoloveit.com/zh-cn/" target="_blank" rel="noopener noreffer">中文主题配置</a></p>
+<h2 id="主题文档---基本概念">主题文档 - 基本概念</h2>
+<p>探索 Hugo - <strong>LoveIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
+</item><item>
+    <title>撰写hugo博客的markdown格式</title>
+    <link>http://www.spiritysdx.top/20200425/</link>
+    <pubDate>Sat, 25 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200425/</guid>
+    <description><![CDATA[<h2 id="1-前言">1. 前言</h2>
+<p>本markdown文档初版下载链接：<br>
+(建议看初版文档理解书写格式，书写标准以本网站本页面为主)
+<a href="https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ
+</a><br>
+提取码：0a83</p>
+<p>本篇鸣谢胡国磊学长整理，由我进行加工发布</p>]]></description>
+</item><item>
+    <title>hugo博客部署码云</title>
+    <link>http://www.spiritysdx.top/20200411/</link>
+    <pubDate>Sat, 11 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200411/</guid>
+    <description><![CDATA[<h4 id="font-colorcyanfont本地搭建博客"><font color=cyan></font>本地搭建博客</h4>
+<p>创建新文章<br>
+hugo new 你的文档名/你的文章名.md</p>
+<h3 id="font-colorcyanfont在码云中创建库"><font color=cyan></font>在码云中创建库</h3>
+<p>1.链接一定是：/(填你的用户名)<br>
+2.选择公开/私有都行<br>
+3.注意不要初始化库(三个选项都不要选)<br>
+4.创建库<br>
+5.复制库链接(https类型)</p>]]></description>
+</item><item>
+    <title>hugo博客在GitHub上进行部署</title>
+    <link>http://www.spiritysdx.top/20200404/</link>
+    <pubDate>Sat, 04 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200404/</guid>
+    <description><![CDATA[<h4 id="font-colorcyan本地搭建博客font"><font color=cyan>本地搭建博客</font></h4>
+<p>创建新文章<br>
+hugo new 你的文档名/你的文章名.md</p>
+<h4 id="font-colorcyan创建库font"><font color=cyan>创建库</font></h4>
+<p>1.名称一定是：你的用户名.github.io<br>
+2.选择本地存储复制</p>]]></description>
+</item><item>
+    <title>关于本站</title>
+    <link>http://www.spiritysdx.top/about/about/</link>
+    <pubDate>Sat, 01 Feb 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/about/about/</guid>
+    <description><![CDATA[<p>更多学习资料欢迎访问<a href="https://www.52pojie.cn/" target="_blank" rel="noopener noreffer">吾爱破解论坛</a>，<a href="https://github.com/spiritysdx?tab=stars" target="_blank" rel="noopener noreffer">本人工作向GitHub账户</a>，<a href="https://github.com/spiritLHLS" target="_blank" rel="noopener noreffer">本人娱乐向Github账户</a>获取。</p>]]></description>
+</item><item>
+    <title>本主题使用小技巧</title>
+    <link>http://www.spiritysdx.top/20190101/</link>
+    <pubDate>Tue, 01 Jan 2019 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20190101/</guid>
+    <description><![CDATA[<p>创建新文档</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo new posts/名字.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>引用B站视频</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"><div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1Ep4y1v7Sg&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1Ep4y1v7Sg&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+<p>注意</p>
+<p>如果要绑定第三方域名给github-pages，每次更新博客都需要重新绑定！</p>]]></description>
+</item></channel>
+</rss>

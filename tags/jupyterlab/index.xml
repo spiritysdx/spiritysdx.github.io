@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Jupyterlab - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/jupyterlab/</link>
+        <description>Jupyterlab - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 27 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/jupyterlab/" rel="self" type="application/rss+xml" /><item>
+    <title>深度学习环境安装(李沐老师相关)</title>
+    <link>http://www.spiritysdx.top/20230727/</link>
+    <pubDate>Thu, 27 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230727/</guid>
+    <description><![CDATA[<p>由于之前有写过一键安装jupyter的shell脚本，所以这里只需要找一个服务器就够了</p>
+<p><a href="https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/one-click-installation-script/main/install_scripts/jupyter.sh -o jupyter.sh <span class="o">&amp;&amp;</span> chmod +x jupyter.sh <span class="o">&amp;&amp;</span> bash jupyter.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>又由于之前玩Linux积攒了很多机器，找了一台<a href="https://curl.qcloud.com/MNyiQAB1" target="_blank" rel="noopener noreffer">腾讯云</a>广州的4C3C80G和<a href="https://hosting.skrime.eu/a/server" target="_blank" rel="noopener noreffer">OVH</a>法国的4C2C25G的机器测试了一下</p>]]></description>
+</item></channel>
+</rss>

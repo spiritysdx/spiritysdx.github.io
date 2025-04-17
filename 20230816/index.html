@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>图优化问题经常拿来比较的一些模型 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20230816/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="图优化问题经常拿来比较的一些模型">
+  <meta property="og:description" content="前言 两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分
+由于两篇文章都涉及该方法的比较，所以重头戏是DQN以及其衍生的一些变体，还有部分别的模型，是需要提前了解的。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-16T00:00:00+00:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Jupyter">
+    <meta property="article:tag" content="DQN">
+    <meta property="article:tag" content="RL-GNN">
+    <meta property="article:tag" content="SOTA">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="图优化问题经常拿来比较的一些模型">
+  <meta name="twitter:description" content="前言 两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分
+由于两篇文章都涉及该方法的比较，所以重头戏是DQN以及其衍生的一些变体，还有部分别的模型，是需要提前了解的。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230816/" /><link rel="prev" href="http://www.spiritysdx.top/20230812/" /><link rel="next" href="http://www.spiritysdx.top/20230823/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "图优化问题经常拿来比较的一些模型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230816\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, jupyter, DQN, RL-GNN, SOTA","wordcount":  968 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230816\/","datePublished": "2023-08-16T00:00:00+00:00","dateModified": "2023-08-16T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">图优化问题经常拿来比较的一些模型</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-16">2023-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 968 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#rl-gnn">RL-GNN</a>
+      <ul>
+        <li><a href="#dqn">DQN</a></li>
+        <li><a href="#s2v-dqn">S2V-DQN</a></li>
+        <li><a href="#eco-dqn">ECO-DQN</a></li>
+        <li><a href="#m-dqn">M-DQN</a></li>
+      </ul>
+    </li>
+    <li><a href="#redumis">ReduMIS</a></li>
+    <li><a href="#classic">Classic</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>两篇文章的主体解析没有涉及作者进行模型比较的部分，这里主要解决一下该部分</p>
+<p>由于两篇文章都涉及该方法的比较，所以重头戏是<code>DQN</code>以及其衍生的一些变体，还有部分别的模型，是需要提前了解的。</p>
+<p>大致的模型解决思路图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp"
+        data-srcset="https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp, https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp 1.5x, https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp 2x"
+        data-sizes="auto"
+        alt="https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp"
+        title="https://pic1.zhimg.com/80/v2-6eaafed73d5507e3c462aa54ae270990_720w.webp" /></p>
+<h2 id="rl-gnn">RL-GNN</h2>
+<h3 id="dqn">DQN</h3>
+<p>Human-level control through deep reinforcement learning</p>
+<p><a href="https://www.nature.com/articles/nature14236" target="_blank" rel="noopener noreffer">https://www.nature.com/articles/nature14236</a></p>
+<p>使用<code>CNN</code>提取状态特征，状态表示的预处理</p>
+<p>使用神经网络作为函数逼近器学习价值网络，得到高维空间下的近似Q值函数</p>
+<p>使用<code>off-policy</code>框架，并把过去的经验<code>transition</code>保存下来重用</p>
+<h3 id="s2v-dqn">S2V-DQN</h3>
+<p>Learning Combinatorial Optimization Algorithms over Graphs</p>
+<p><a href="https://proceedings.neurips.cc/paper_files/paper/2017/file/d9896106ca98d3d05b8cbdf4fd8b13a1-Paper.pdf" target="_blank" rel="noopener noreffer">https://proceedings.neurips.cc/paper_files/paper/2017/file/d9896106ca98d3d05b8cbdf4fd8b13a1-Paper.pdf</a></p>
+<p><code>S2V-DQN</code>是<code>DQN</code>的一个变体。</p>
+<p>该方法利用元算法（贪心算法），逐步构建问题的解决方案。</p>
+<p>在每个贪心步骤中，利用图嵌入技术（<code>structure2vec</code>，即<code>S2V</code>）来将图中的节点编码为向量表示，这种编码方式在每一步中都会得到更新，以反映当前状态下的局部信息。这种图嵌入方法有助于捕捉图中节点的特征。</p>
+<p>在每个贪心步骤中，通过结合部分解来更新图嵌入，以将新的收益信息反映到最终的目标值中。为了实现这种延迟回报的学习，采用强化学习中的<code>n-step Q-learning</code>方法，以调整图嵌入网络的参数。</p>
+<h3 id="eco-dqn">ECO-DQN</h3>
+<p>Exploratory combinatorial optimization with reinforcement learning</p>
+<p><a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer">https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579</a></p>
+<p>基于<code>DQN</code>，修改<code>action</code>改为可以移除某一个点，</p>
+<p><code>reward</code>改为<code>normalized incremental reward</code>，具体来说，在一个<code>episode</code>中，每次找到更低的局部最小值，就会获得一个小的<code>reward</code>。</p>
+<p>允许<code>agent</code>在测试时通过探索解空间来不断改进解决方案，可以在解决方案子集中添加或删除顶点，并在测试时寻找不断改进的解决方案。</p>
+<h3 id="m-dqn">M-DQN</h3>
+<p>Munchausen Reinforcement Learning</p>
+<p><a href="https://proceedings.neurips.cc//paper/2020/file/2c6a0bae0f071cbbf0bb3d5b11d90a82-Paper.pdf" target="_blank" rel="noopener noreffer">https://proceedings.neurips.cc//paper/2020/file/2c6a0bae0f071cbbf0bb3d5b11d90a82-Paper.pdf</a></p>
+<p>利用当前策略去引导<code>bootstrapping</code>，因为当前策略能够影响下一步做的决策。</p>
+<p>其实质就是在任何时间差异算法中(文章列举了DQN和IQN的修改)，将缩放的对数策略添加到即时奖励中。</p>
+<h2 id="redumis">ReduMIS</h2>
+<p>Finding Near-Optimal Independent Sets at Scale</p>
+<p><a href="https://www.researchgate.net/publication/281487239_Finding_Near-Optimal_Independent_Sets_at_Scale" target="_blank" rel="noopener noreffer">https://www.researchgate.net/publication/281487239_Finding_Near-Optimal_Independent_Sets_at_Scale</a></p>
+<p>使用约简规则来提高进化算法的性能，并选择可能在大型独立集中的顶点以实现进一步的约简。</p>
+<p>这个过程递归地重复进行，从而发现大型独立集。</p>
+<p>该算法属于进化算法，结合核化技术，在巨大稀疏网络中计算大规模独立集。通过递归选择可能属于大规模独立集的顶点，并进一步核化图形，比现有的局部搜索算法更快，并且能够在比以前文献报道的更大实例上计算高质量的独立集。</p>
+<h2 id="classic">Classic</h2>
+<p>Combinatorial Optimization: Algorithms and Complexity</p>
+<p><a href="https://www.researchgate.net/publication/220695898_Combinatorial_Optimization_Algorithms_and_Complexity" target="_blank" rel="noopener noreffer">https://www.researchgate.net/publication/220695898_Combinatorial_Optimization_Algorithms_and_Complexity</a></p>
+<p>经典强化学习方法包括动态规划、蒙特卡洛方法和时序差分学习等，但目前好像没看到直接用来解决问题的，大多数是嵌入到某些模型中，优化某一个步奏。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型" data-hashtags="机器学习,深度学习,jupyter,DQN,RL-GNN,SOTA"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230816/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230816/" data-title="图优化问题经常拿来比较的一些模型"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/jupyter/">Jupyter</a>,&nbsp;<a href="/tags/dqn/">DQN</a>,&nbsp;<a href="/tags/rl-gnn/">RL-GNN</a>,&nbsp;<a href="/tags/sota/">SOTA</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230812/" class="prev" rel="prev" title="Python加速科学运算的一些小技巧"><i class="fas fa-angle-left fa-fw"></i>Python加速科学运算的一些小技巧</a>
+            <a href="/20230823/" class="next" rel="next" title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)">高效探索学习解决组合图分区问题(基于强化学习的优化算法)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

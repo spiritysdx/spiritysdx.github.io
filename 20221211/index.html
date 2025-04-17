@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>解决selenium爬虫加密代理问题(含socks5等一切代理) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20221211/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="解决selenium爬虫加密代理问题(含socks5等一切代理)">
+  <meta property="og:description" content="前言 爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-12-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-12-09T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Selenium">
+    <meta property="article:tag" content="Hcaptcha">
+    <meta property="article:tag" content="Recaptcha">
+    <meta property="article:tag" content="Captcha">
+    <meta property="article:tag" content="验证码">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="解决selenium爬虫加密代理问题(含socks5等一切代理)">
+  <meta name="twitter:description" content="前言 爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20221211/" /><link rel="prev" href="http://www.spiritysdx.top/20221206/" /><link rel="next" href="http://www.spiritysdx.top/20200516/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "解决selenium爬虫加密代理问题(含socks5等一切代理)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20221211\/"
+        },"genre": "posts","keywords": "python, selenium, hcaptcha, recaptcha, captcha, 验证码, chromedriver, geckodriver, edgedriver, socks5, 中间件, seleniumwire, selenium-wire, python-proxy, pproxy, goproxy, 代理","wordcount":  1348 ,
+        "url": "http:\/\/www.spiritysdx.top\/20221211\/","datePublished": "2022-12-09T00:00:00+00:00","dateModified": "2022-12-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">解决selenium爬虫加密代理问题(含socks5等一切代理)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-12-09">2022-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1348 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#四种解决方法">四种解决方法</a>
+      <ul>
+        <li><a href="#原生支持解决">原生支持解决</a></li>
+        <li><a href="#使用中间件">使用中间件</a></li>
+        <li><a href="#使用selenium的扩展模块">使用selenium的扩展模块</a></li>
+        <li><a href="#使用全局代理">使用全局代理</a></li>
+      </ul>
+    </li>
+    <li><a href="#后言">后言</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证</p>
+<p>cloudflare的风险得分查询(详见我项目的对应函数)</p>
+<p><a href="https://github.com/spiritLHLS/ecs/blob/main/qzcheck.py#L32" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/ecs/blob/main/qzcheck.py#L32</a></p>
+<p>Recaptcha的风险得分查询</p>
+<p><a href="https://antcpt.com/score_detector/" target="_blank" rel="noopener noreffer">https://antcpt.com/score_detector/</a></p>
+<h2 id="四种解决方法">四种解决方法</h2>
+<p>仅以chromedriver做例子，至于geckodriver，edgedriver可以类比使用</p>
+<h3 id="原生支持解决">原生支持解决</h3>
+<p>chromedriver的有头模式下，使用透明代理(无用户和密码)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">input_dependence</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span> <span class="o">=</span> <span class="n">ChromeOptions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">headless</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--proxy-server=socks5://ip:port&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;./chromedriver&#34;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">driver</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>chromedriver的有头模式下，使用透明代理(有用户和密码，带身份验证)</p>
+<p>自定义插件，加载插件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_proxy_auth_extension</span><span class="p">(</span><span class="n">proxy_host</span><span class="p">,</span> <span class="n">proxy_port</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">proxy_username</span><span class="p">,</span> <span class="n">proxy_password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">plugin_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">plugin_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plugin_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./</span><span class="si">{}</span><span class="s1">.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">proxy_host</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">manifest_json</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        {
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;version&#34;: &#34;1.0.0&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;manifest_version&#34;: 2,
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;name&#34;: &#34;Chrome Proxy&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;permissions&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;proxy&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;tabs&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;unlimitedStorage&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;storage&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;webRequest&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;webRequestBlocking&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">            ],
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;background&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s2">                &#34;scripts&#34;: [&#34;background.js&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s2">            },
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;minimum_chrome_version&#34;:&#34;22.0.0&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        }
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">background_js</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        var config = {
+</span></span></span><span class="line"><span class="cl"><span class="s2">            mode: &#34;fixed_servers&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">            rules: {
+</span></span></span><span class="line"><span class="cl"><span class="s2">                singleProxy: {
+</span></span></span><span class="line"><span class="cl"><span class="s2">                    scheme: &#34;$</span><span class="si">{scheme}</span><span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                    host: &#34;$</span><span class="si">{host}</span><span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                    port: parseInt($</span><span class="si">{port}</span><span class="s2">)
+</span></span></span><span class="line"><span class="cl"><span class="s2">                },
+</span></span></span><span class="line"><span class="cl"><span class="s2">                bypassList: [&#34;foobar.com&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s2">            }
+</span></span></span><span class="line"><span class="cl"><span class="s2">          };
+</span></span></span><span class="line"><span class="cl"><span class="s2">        chrome.proxy.settings.set({value: config, scope: &#34;regular&#34;}, function() </span><span class="si">{}</span><span class="s2">);
+</span></span></span><span class="line"><span class="cl"><span class="s2">        function callbackFn(details) {
+</span></span></span><span class="line"><span class="cl"><span class="s2">            return {
+</span></span></span><span class="line"><span class="cl"><span class="s2">                authCredentials: {
+</span></span></span><span class="line"><span class="cl"><span class="s2">                    username: &#34;$</span><span class="si">{username}</span><span class="s2">&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">                    password: &#34;$</span><span class="si">{password}</span><span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">                }
+</span></span></span><span class="line"><span class="cl"><span class="s2">            };
+</span></span></span><span class="line"><span class="cl"><span class="s2">        }
+</span></span></span><span class="line"><span class="cl"><span class="s2">        chrome.webRequest.onAuthRequired.addListener(
+</span></span></span><span class="line"><span class="cl"><span class="s2">            callbackFn,
+</span></span></span><span class="line"><span class="cl"><span class="s2">            {urls: [&#34;&#34;]},
+</span></span></span><span class="line"><span class="cl"><span class="s2">            [&#39;blocking&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="s2">        );
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">host</span><span class="o">=</span><span class="n">proxy_host</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">port</span><span class="o">=</span><span class="n">proxy_port</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">username</span><span class="o">=</span><span class="n">proxy_username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">password</span><span class="o">=</span><span class="n">proxy_password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">plugin_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zp</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="s2">&#34;manifest.json&#34;</span><span class="p">,</span> <span class="n">manifest_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zp</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="s2">&#34;background.js&#34;</span><span class="p">,</span> <span class="n">background_js</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">plugin_path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 传入的i为socks5://user:password@ip:port</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">input_dependence</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">driver</span><span class="p">,</span> <span class="n">proxy_auth_plugin_path</span><span class="p">,</span> <span class="n">status_p</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 启动浏览器内核</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span> <span class="o">=</span> <span class="n">ChromeOptions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">headless</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ipp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s2">&#34;@&#34;</span> <span class="ow">in</span> <span class="n">ipp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="o">=</span> <span class="n">ipp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">port</span> <span class="o">=</span> <span class="n">ipp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">username</span> <span class="o">=</span> <span class="n">ipp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">passwd</span> <span class="o">=</span> <span class="n">ipp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;@&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">proxy_auth_plugin_path</span> <span class="o">=</span> <span class="n">create_proxy_auth_extension</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">proxy_host</span><span class="o">=</span><span class="n">ip</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">proxy_port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">proxy_username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">proxy_password</span><span class="o">=</span><span class="n">passwd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如报错 chrome-extensions</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#opt.add_argument(&#34;--disable-extensions&#34;)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">opt</span><span class="o">.</span><span class="n">add_extension</span><span class="p">(</span><span class="n">proxy_auth_plugin_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;./chromedriver&#34;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上加载插件的方式是需要有头模式下运行，linux下使用xvfb模拟有头环境使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xvfb-run python3 test.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用中间件">使用中间件</h3>
+<p>本地架设通道转发有身份验证的代理为无身份验证的代理</p>
+<p>推荐项目：</p>
+<p><a href="https://github.com/qwj/python-proxy" target="_blank" rel="noopener noreffer">https://github.com/qwj/python-proxy</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install pproxy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/snail007/goproxy" target="_blank" rel="noopener noreffer">https://github.com/snail007/goproxy</a></p>
+<p>使用中间件在本地架设代理转发，需要注意本地使用<code>127.0.0.1</code>而服务器使用<code>0.0.0.0</code>，且保证本机的端口是开放的</p>
+<p>另一个优点是代理不再局限于socks5一种代理方式，涵盖vmess，ss，trojan等等你只要找得到的对应中间件，那么代理都能使用</p>
+<p>当然，这种代理也保证了有头与无头模式下皆可使用，无需使用xvfb之类的工具</p>
+<p>转发代理至于本地:8080后，可使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">input_dependence</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span> <span class="o">=</span> <span class="n">ChromeOptions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">headless</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--proxy-server=socks5://127.0.0.1:8080&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;./chromedriver&#34;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">driver</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>简单的说代理的范围取决于使用了什么中间件，只要中间件支持协议，那么代理就能用</p>
+<h3 id="使用selenium的扩展模块">使用selenium的扩展模块</h3>
+<p>项目：</p>
+<p><a href="https://github.com/wkeeling/selenium-wire" target="_blank" rel="noopener noreffer">https://github.com/wkeeling/selenium-wire</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install selenium-wire
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用这种方法可以在无头和有头模式下使用代理，且无需本地架设中间件程序，只需要替换原有的selenium为seleniumwire即可</p>
+<p>缺点是只能使用socks5的有身份验证的代理，无法支持更多代理方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">seleniumwire</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="s1">&#39;proxy&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;http&#39;</span><span class="p">:</span> <span class="s1">&#39;socks5://user:password@ip:port&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;https&#39;</span><span class="p">:</span> <span class="s1">&#39;socks5://user:password@ip:port&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;no_proxy&#39;</span><span class="p">:</span> <span class="s1">&#39;localhost,127.0.0.1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">seleniumwire_options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述方法即可简单的使用含用户名和密码的s5代理了</p>
+<p>值得注意的是seleniumwire只是修补了webdriver下的包，其他selenium包以及webdriver的子包仍然使用selenium导入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Sub-packages of webdriver must still be imported from `selenium` itself</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">seleniumwire.webdriver</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>替换</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>区别就在这里</p>
+<h3 id="使用全局代理">使用全局代理</h3>
+<p>非常方便的傻瓜式方法，缺点是需要保证代理使用过程中，python程序可以正常运行</p>
+<h2 id="后言">后言</h2>
+<p>使用代理过程中可能会出现各种个月的bug以及爆错，还是建议多看看仓库说明仓库的issues，实在不行上google查询，一般都能解决</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-12-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)" data-hashtags="python,selenium,hcaptcha,recaptcha,captcha,验证码,chromedriver,geckodriver,edgedriver,socks5,中间件,seleniumwire,selenium-wire,python-proxy,pproxy,goproxy,代理"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20221211/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20221211/" data-title="解决selenium爬虫加密代理问题(含socks5等一切代理)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/selenium/">Selenium</a>,&nbsp;<a href="/tags/hcaptcha/">Hcaptcha</a>,&nbsp;<a href="/tags/recaptcha/">Recaptcha</a>,&nbsp;<a href="/tags/captcha/">Captcha</a>,&nbsp;<a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a>,&nbsp;<a href="/tags/chromedriver/">Chromedriver</a>,&nbsp;<a href="/tags/geckodriver/">Geckodriver</a>,&nbsp;<a href="/tags/edgedriver/">Edgedriver</a>,&nbsp;<a href="/tags/socks5/">Socks5</a>,&nbsp;<a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>,&nbsp;<a href="/tags/seleniumwire/">Seleniumwire</a>,&nbsp;<a href="/tags/selenium-wire/">Selenium-Wire</a>,&nbsp;<a href="/tags/python-proxy/">Python-Proxy</a>,&nbsp;<a href="/tags/pproxy/">Pproxy</a>,&nbsp;<a href="/tags/goproxy/">Goproxy</a>,&nbsp;<a href="/tags/%E4%BB%A3%E7%90%86/">代理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20221206/" class="prev" rel="prev" title="为openvz或kvm架构的linux服务器增加swap分区"><i class="fas fa-angle-left fa-fw"></i>为openvz或kvm架构的linux服务器增加swap分区</a>
+            <a href="/20200516/" class="next" rel="next" title="Selenium的web自动化操作02(基本语法)">Selenium的web自动化操作02(基本语法)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

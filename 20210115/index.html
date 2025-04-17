@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>C&#43;&#43;简单程序 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20210115/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="C&#43;&#43;简单程序">
+  <meta property="og:description" content="赋值表达式 常规类似python，同样有赋值运算的简写形式，如
+1 2 3 b &#43;= 2 //b = b &#43; 2 x *= y &#43; 3 //x = x*(y&#43;3) x &#43;= x -= x*x //x = x &#43; (x = x - x*x) 逗号表达式 在C&#43;&#43;中，逗号也是一个运算符，使用形式为
+&lt;表达式1&gt;,&lt;表达式2&gt;,……,&lt;表达式n&gt;">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-01-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-01-15T00:00:00+00:00">
+    <meta property="article:tag" content="C&#43;&#43;">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="C&#43;&#43;简单程序">
+  <meta name="twitter:description" content="赋值表达式 常规类似python，同样有赋值运算的简写形式，如
+1 2 3 b &#43;= 2 //b = b &#43; 2 x *= y &#43; 3 //x = x*(y&#43;3) x &#43;= x -= x*x //x = x &#43; (x = x - x*x) 逗号表达式 在C&#43;&#43;中，逗号也是一个运算符，使用形式为
+&lt;表达式1&gt;,&lt;表达式2&gt;,……,&lt;表达式n&gt;">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20210115/" /><link rel="prev" href="http://www.spiritysdx.top/20210110/" /><link rel="next" href="http://www.spiritysdx.top/20210118/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++简单程序",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20210115\/"
+        },"genre": "posts","keywords": "C\u002b\u002b","wordcount":  3300 ,
+        "url": "http:\/\/www.spiritysdx.top\/20210115\/","datePublished": "2021-01-15T00:00:00+00:00","dateModified": "2021-01-15T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">C&#43;&#43;简单程序</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3300 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#赋值表达式">赋值表达式</a></li>
+    <li><a href="#逗号表达式">逗号表达式</a></li>
+    <li><a href="#关系表达式比较运算符">关系表达式&amp;比较运算符</a></li>
+    <li><a href="#逻辑表达式">逻辑表达式</a></li>
+    <li><a href="#条件表达式">条件表达式</a></li>
+    <li><a href="#sizeof运算符">sizeof运算符</a></li>
+    <li><a href="#位运算">位运算</a></li>
+    <li><a href="#数据类型转换">数据类型转换</a></li>
+    <li><a href="#表达式的隐含转换">表达式的隐含转换</a></li>
+    <li><a href="#强制类型转换显式转换">强制类型转换&amp;显式转换</a></li>
+    <li><a href="#输入与输出">输入与输出</a></li>
+    <li><a href="#io流控制符">I/O流控制符</a></li>
+    <li><a href="#插入部分c语言控制符和函数">插入部分C语言控制符和函数</a></li>
+    <li><a href="#数据溢出">数据溢出</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="赋值表达式">赋值表达式</h2>
+<p>常规类似python，同样有赋值运算的简写形式，如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">b</span> <span class="o">+=</span> <span class="mi">2</span>          <span class="c1">//b = b + 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span> <span class="o">*=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span>      <span class="c1">//x = x*(y+3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">x</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">-=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>   <span class="c1">//x = x + (x = x - x*x) 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="逗号表达式">逗号表达式</h2>
+<p>在C++中，逗号也是一个运算符，使用形式为</p>
+<p>&lt;表达式1&gt;,&lt;表达式2&gt;,……,&lt;表达式n&gt;</p>
+<p>上述表达式的求解顺序为先求解表达式1，再求解表达式2，……，逗号表达式的最终结果为表达式n的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//    n=2-a = 3     //错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">n</span> <span class="o">+=</span> <span class="n">m</span> <span class="o">-=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;c+2=&#34;</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">+</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//  cout&lt;&lt;n = m = a&lt;&lt;endl;   //错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>     <span class="c1">//a=2,注意c+5并没给c赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// cout&lt;&lt;a=(c=5,c+5,c/5)&lt;&lt;endl;     //错误
+</span></span></span><span class="line"><span class="cl"><span class="c1">// cout&lt;&lt;a-c+5&lt;&lt;endl;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+</span> <span class="o">=</span> <span class="n">i</span>  <span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;i=&#34;</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;n=&#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="s">&#34;,=&#34;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序运行情况:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">C</span><span class="o">+</span><span class="mi">2</span><span class="o">=</span><span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="关系表达式比较运算符">关系表达式&amp;比较运算符</h2>
+<p>记住下面这段东西：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// 优先级相同(较高)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="p">,</span><span class="o">&lt;=</span><span class="p">,</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&gt;=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//优先级相同(较低)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">==</span><span class="p">,</span><span class="o">!=</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//以上运算符与Python一样
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：==是两个等于号，表示判断左边是否等于右边，返回值是true或者false。这里与Python中的判断语句一样。</p>
+<h2 id="逻辑表达式">逻辑表达式</h2>
+<p>!(非)      &amp;&amp;(与)     ||(或)</p>
+<p>优先级为前高后低</p>
+<p>!是一元运算符，作用是操作数取反</p>
+<p>&amp;&amp;和||是二元运算符，作用是判断返回值为true或false。</p>
+<h2 id="条件表达式">条件表达式</h2>
+<p>条件运算符<code>?:</code>是C++中唯一的三元运算符，作用是实现简单的选择功能，形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;测试表达式&gt;?&lt;表达式1&gt;:&lt;表达式2&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，测试表达式通常是bool类型，表达式1和表达式2可以是任何类型。</p>
+<p>执行顺序： <br>
+1.求解测试表达式，求解出值; <br>
+2.若值为true，执行表达式1，表达式1的结果就是该条件表达式结果; <br>
+3.若值为false，执行表达式2，表达式2的结果就是该条件表达式结果;</p>
+<p>注意： <br>
+条件运算符的优先级高于赋值运算符，低于逻辑运算符，结合方向自右向左。</p>
+<p>eg:将a与b中的最大值赋值给max</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">max</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span><span class="o">?</span><span class="nl">a</span><span class="p">:</span><span class="n">b</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sizeof运算符">sizeof运算符</h2>
+<p>计算某种数据类型在内存中所占字节数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//XXX是类型名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">sizeof</span><span class="p">(</span><span class="n">XXX</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//或者XXX是表达式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">sizeof</span><span class="p">(</span><span class="n">XXX</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//注意，这里的表达式并不会求解，只会返回表达式结果的类型所占的字节数
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="位运算">位运算</h2>
+<p>这是Python中所没有的，高级语言处理数据最小单位只能是字节，C++可以对数据按二进制位进行操作。</p>
+<p>C++中有6个位运算符，只能对整型数据进行操作。</p>
+<p>1.按位与(&amp;)</p>
+<p>将两个操作数对应每一位分别进行逻辑与操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3       00000011
+</span></span><span class="line"><span class="cl">5(&amp;)    00000101
+</span></span><span class="line"><span class="cl">------------------
+</span></span><span class="line"><span class="cl">3&amp;5     00000001
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里与0相与，清零该位；与1相与，维持不变。</p>
+<p>最常用的使用方法是将操作数中的若干位清零，或者取操作数中的若干指定位。</p>
+<p>(1)将char型变量a的最低位清零：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="o">&amp;</span><span class="mh">0xfe</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(2)设变量c是char型变量，变量a是int变量，下列语句可取出a的低字节，并放置于c中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">&amp;</span><span class="mo">0337</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.按位或(|)</p>
+<p>将两个操作数的对应每一位分别进行逻辑或操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3       00000011
+</span></span><span class="line"><span class="cl">5(|)    00000101
+</span></span><span class="line"><span class="cl">------------------
+</span></span><span class="line"><span class="cl">3|5     00000111
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常用于将操作数中若嘎巴位的值置为1(其他位保持不变)。</p>
+<p>将int型变量a的低字节置为1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="o">|</span><span class="mh">0xff</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.按位异或(^)</p>
+<p>将两个操作数对应每一位进行异或操作(对应位相同为0，不同为1)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">071         00111001
+</span></span><span class="line"><span class="cl">051(^)      00101010
+</span></span><span class="line"><span class="cl">------------------------
+</span></span><span class="line"><span class="cl">071^051     00010011
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常用于将操作数中的若干指定位取反。</p>
+<p>与0异或，结果是该位原值；与1异或，结果是该位值取反。</p>
+<p>4.按位取反(~)</p>
+<p>按位取反是一个单目运算符，作用是对一个二进制数的每一位取反。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">025         00010101
+</span></span><span class="line"><span class="cl">~025        11101010
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.移位</p>
+<p>C++中有两个移位运算符：左移位运算符(&laquo;)，右移位运算符(&raquo;)。它们都是二元运算符。</p>
+<p>移位运算符左边是操作数，右边是需要移动的位数。</p>
+<p>移位规则：  <br>
+左移，低位补0，移出的高位舍弃。   <br>
+右移，低位舍弃，无符号数高位补0，有符号数高位补符号位。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设 short a = 65 ，则a&gt;&gt;1的操作过程如下              
+</span></span><span class="line"><span class="cl">移位前：   0  0 0 0 0 0 0 0 0 1 0 0 0 0 0 1        
+</span></span><span class="line"><span class="cl">移位后：  (0) 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 (1)    
+</span></span><span class="line"><span class="cl">        补1位0                            舍弃低1位 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设 2&lt;&lt;4的值为32 ，则2&lt;&lt;4的操作过程如下              
+</span></span><span class="line"><span class="cl">移位前：            0 0 0 0 0 0 0 0 0 0 0  0 0 0 1        
+</span></span><span class="line"><span class="cl">移位后：  (0 0 0 0) 0 0 0 0 0 0 0 0 0 0 1 (0 0 0 0)    
+</span></span><span class="line"><span class="cl">          舍弃高4位                         补4位0 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：移位运算的结果是位运算表达式的值。移位后，左边的值不变，即a&raquo;1后，a还是原值65。</p>
+<h2 id="数据类型转换">数据类型转换</h2>
+<p>1.将一种类型值赋值给另一种类型的变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//整型和实型的赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mf">3.56</span><span class="p">;</span>              <span class="c1">//i赋值为3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mf">1.8E12</span><span class="p">;</span>            <span class="c1">//数值超出类型取值范围，j不能被正确赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>               <span class="c1">//n被赋值为5.0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; int i = &#34;</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; int j = &#34;</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; float n = &#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="s">&#34; , n/2 =&#34;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//bool类型的赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">bool</span> <span class="n">t1</span> <span class="o">=</span> <span class="mi">19</span><span class="p">,</span><span class="n">t2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="c1">//t1被赋值为true，t2被赋值为false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; bool t1 = &#34;</span><span class="o">&lt;&lt;</span><span class="n">t1</span><span class="o">&lt;&lt;</span><span class="s">&#34; , bool t2 = &#34;</span><span class="o">&lt;&lt;</span><span class="n">t2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//取值范围不同类型的赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">short</span> <span class="n">s1</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; short s1 = &#34;</span><span class="o">&lt;&lt;</span><span class="n">s1</span><span class="o">&lt;&lt;</span><span class="s">&#34; , long l1 =&#34;</span><span class="o">&lt;&lt;</span><span class="n">l1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">l2</span> <span class="o">=</span> <span class="mi">3500</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">short</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>             <span class="c1">//数值超过类型取值范围，s2不能被正确赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; long l2 = &#34;</span><span class="o">&lt;&lt;</span><span class="n">l2</span><span class="o">&lt;&lt;</span><span class="s">&#34; , short s2 =&#34;</span><span class="o">&lt;&lt;</span><span class="n">s2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">3.4E50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">f</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>               <span class="c1">//数值超出类型取值范围，f不能正确赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; double d = &#34;</span><span class="o">&lt;&lt;</span><span class="n">d</span><span class="o">&lt;&lt;</span><span class="s">&#34; , float f =&#34;</span><span class="o">&lt;&lt;</span><span class="n">f</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序运行结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int i = 3
+</span></span><span class="line"><span class="cl">int j = 408702976
+</span></span><span class="line"><span class="cl">float n = 5,n/2 = 2.5
+</span></span><span class="line"><span class="cl">bool t1 = 1,bool t2 = 0
+</span></span><span class="line"><span class="cl">short s1 = 50,long l1 = 50
+</span></span><span class="line"><span class="cl">long l2 = 3500,short s2 = -30536
+</span></span><span class="line"><span class="cl">double d = 3.4e+050,float = 1.#INF
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>小范围值可以赋值给大范围值，大范围值无法赋值给小范围值，此时会显示#INF表示不能正确赋值。</p>
+<p>赋值运算要求左值与右值的类型相同，不同会自动进行类型转换，其转换的规则是将右值类型转换为左值的类型。</p>
+<p>bool值赋值时，非0则赋值为true，0赋值为false。</p>
+<h2 id="表达式的隐含转换">表达式的隐含转换</h2>
+<p>混合运算中二元运算符要求两边类型一致，若不一致，自动进行转换，由低到高。</p>
+<p>大小关系如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char    short    int    unsigned    long     unsigned-long     float      double
+</span></span><span class="line"><span class="cl">---------------------------------------------------------------------------------
+</span></span><span class="line"><span class="cl">低                                                                          高
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="强制类型转换显式转换">强制类型转换&amp;显式转换</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;类型标识符&gt;(表达式)
+</span></span><span class="line"><span class="cl">或
+</span></span><span class="line"><span class="cl">(类型标识符)&lt;表达式&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里类似Python。</p>
+<h2 id="输入与输出">输入与输出</h2>
+<p>1.cout</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\&#34;</span><span class="s">This is a simple.</span><span class="se">\&#34;</span><span class="s">,he said.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出结果为：</p>
+<p>&ldquo;This is a simple.&quot;,he said.</p>
+<p>2.cin</p>
+<p>程序需要键盘输入时，用提取操作符(&raquo;)从cin输入流中抽取字符，格式如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cin&gt;&gt;变量名&gt;&gt;……
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>cin是预定义的流类对象，&raquo;是预定义的提取符，cin能自动识别输入的数据类型。</p>
+<h2 id="io流控制符">I/O流控制符</h2>
+<p>包含在iomanip中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iomanip&gt;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>头文件引入后可使用dec,hex,oct,ws,endl,ends,setprecision(int),setw(int)</p>
+<p>其中较为常用的是设置宽域的setw()，插入换行符并刷新流的endl，插入空字符的ends。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">10</span><span class="o">&lt;&lt;</span><span class="mi">20</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">------1020
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//用格式控制符控制输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iomainip&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;输入十进制整数K和实数n的值：&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">Decimal:&#34;</span><span class="o">&lt;&lt;</span><span class="n">dec</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">Hexadecimal:&#34;</span><span class="o">&lt;&lt;</span><span class="n">hex</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\t</span><span class="s">0ctal:&#34;</span><span class="o">&lt;&lt;</span><span class="n">oct</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;设置域宽setw(5):</span><span class="se">\n</span><span class="s">&#34;</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>    <span class="c1">//5&lt;7
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;设置域宽setw(10):</span><span class="se">\n</span><span class="s">&#34;</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>    <span class="c1">//10&gt;7
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;设置小数位数setprecision(4):</span><span class="se">\n</span><span class="s">&#34;</span><span class="o">&lt;&lt;</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序运行情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入十进制整数K和实数n的值：1001               3.14159
+</span></span><span class="line"><span class="cl">Decimal:1001
+</span></span><span class="line"><span class="cl">Hexadecimal:3e9
+</span></span><span class="line"><span class="cl">Octal:1751
+</span></span><span class="line"><span class="cl">设置域宽setw(5):
+</span></span><span class="line"><span class="cl">3.14159
+</span></span><span class="line"><span class="cl">设置域宽setw(10):
+</span></span><span class="line"><span class="cl">    3.14159
+</span></span><span class="line"><span class="cl">设置小数位数setprecision(4):
+</span></span><span class="line"><span class="cl">2.142
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="插入部分c语言控制符和函数">插入部分C语言控制符和函数</h2>
+<p>1.printf(&ldquo;格式控制符&rdquo;,输出列表)和scanf(&ldquo;格式控制符&rdquo;,地址列表)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Input k,n,ch&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%f,%c&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;k=%d,n=%f,ch=%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序运行情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input k,n,ch:5 3.14,a
+</span></span><span class="line"><span class="cl">k=5,n=3,ch=a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>printf(&quot;x=%dy=%f\n&quot;,x,y);</code> <br>
+等同于 <br>
+<code>cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;&quot;y=&quot;&lt;&lt;y;</code></p>
+<p>2.getchar()和putchar()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Input ch:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//scanf()和printf()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;ch=5c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//getchar()和putchar()
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  ch=getchar();
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  putchar(ch);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  putchar(&#39;\n&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序运行情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input ch:A
+</span></span><span class="line"><span class="cl">ch=A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="数据溢出">数据溢出</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">short</span> <span class="n">a</span><span class="o">=</span><span class="mi">32767</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Input b:&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;sizeof=&#34;</span><span class="o">&lt;&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;a=&#34;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34;,b=&#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试用例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input b:2
+</span></span><span class="line"><span class="cl">sizeof=2
+</span></span><span class="line"><span class="cl">a=-32767,b=2
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序" data-hashtags="C&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20210115/" data-hashtag="C&#43;&#43;"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20210115/" data-title="C&#43;&#43;简单程序"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20210110/" class="prev" rel="prev" title="C&#43;&#43;入门"><i class="fas fa-angle-left fa-fw"></i>C&#43;&#43;入门</a>
+            <a href="/20210118/" class="next" rel="next" title="C&#43;&#43;程序控制结构">C&#43;&#43;程序控制结构<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>
