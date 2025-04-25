@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Appium自动化操作02(元素定位及查看工具) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200527/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="Appium自动化操作02(元素定位及查看工具)">
+  <meta property="og:description" content="前言 最好有Selenium的Web自动化的实际经验
+运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-24T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="爬虫">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="Appium自动化操作02(元素定位及查看工具)">
+  <meta name="twitter:description" content="前言 最好有Selenium的Web自动化的实际经验
+运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200527/" /><link rel="prev" href="http://www.spiritysdx.top/20200523/" /><link rel="next" href="http://www.spiritysdx.top/20200525/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Appium自动化操作02(元素定位及查看工具)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200527\/"
+        },"genre": "posts","keywords": "python, 爬虫","wordcount":  2104 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200527\/","datePublished": "2020-05-24T00:00:00+00:00","dateModified": "2020-05-24T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Appium自动化操作02(元素定位及查看工具)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-24">2020-05-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2104 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#uiautomateviewer">uiautomateviewer</a></li>
+    <li><a href="#appium-inspector">Appium Inspector</a></li>
+    <li><a href="#定位元素的方法">定位元素的方法</a></li>
+    <li><a href="#参考文档">参考文档</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>最好有<code>Selenium</code>的Web自动化的实际经验</p>
+<p>运行基础：client库(0.52版本)，Appium Server，安卓SDK(含JDK环境)，USB调试模式下的手机(开发者模式)</p>
+<h1 id="定位元素">定位元素</h1>
+<p>从示例代码就可以发现，和<code>Selenium Web</code>自动化一样，要操作界面元素，必须先定位(选择)元素。</p>
+<p>Appium是基于Selenium的，所以和<code>Selenium</code>代码定位元素的基本规则相同：</p>
+<p><code>find_element_by_XXX</code>方法，返回符合条件的第一个元素，找不到抛出异常</p>
+<p><code>find_elements_by_XXX</code>方法，返回符合条件的所有元素的列表，找不到返回空列表</p>
+<p>通过<code>WebDriver</code>对象调用这样的方法，查找范围是整个界面</p>
+<p>通过<code>WebElement</code>对象调用这样的方法，查找范围是该节点的子节点</p>
+<hr>
+<h1 id="界面元素查看工具">界面元素查看工具</h1>
+<p>做<code>Selenium Web</code>自动化的时候，要找到元素，我们是通过浏览器的开发者工具栏来查看元素的特性，根据这些特性（属性和位置），来定位元素</p>
+<p><code>Appium</code>要自动化手机应用，同样需要工具查看界面元素的特征。</p>
+<p>常用的查看工具：</p>
+<p><code>Android Sdk</code>中的<code>uiautomateviewer</code></p>
+<p><code>Appium Desktop</code>中的<code>Appium Inspector</code></p>
+<hr>
+<h2 id="uiautomateviewer">uiautomateviewer</h2>
+<p>安卓查看APP界面元素，最常用的就是<code>Android SDK</code>中的工具<code>uiautomateviewer</code>，它在SDK目录目录的<code>tools\bin</code>目录中</p>
+<p>和<code>Selenium</code>一样，我们要定位选择元素，也是根据元素的特征，包括:</p>
+<pre><code>元素的属性
+元素的相对位置（相对父元素、兄弟元素等）
+具体细节，参考视频里面的讲解。
+</code></pre>
+<hr>
+<h2 id="appium-inspector">Appium Inspector</h2>
+<p><code>Appium Desktop</code>中的<code>Appium Inspector</code>也可以查看元素。</p>
+<p>它的一个优点是可以直接验证<strong>选择表达式是否能定位到元素</strong></p>
+<hr>
+<h2 id="定位元素的方法">定位元素的方法</h2>
+<p>1.根据ID</p>
+<p>在Selenium Web自动化里，如果能根据ID选择定位元素，最好根据ID，因为通常来说ID是唯一的，所以根据ID选择 效率高。</p>
+<p>在安卓应用自动化的时候，同样可以根据ID查找。</p>
+<p>但是这个ID，是安卓应用元素的<code>resource-id</code>属性</p>
+<p>具体代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.根据CLASS NAME</p>
+<p>安卓界面元素的<code>class</code>属性其实就是根据元素的类型，类似web里面的<code>tagname</code>， 所以通常不是唯一的。</p>
+<p>通常，我们根据<code>class</code>属性来选择元素，是要选择多个而不是一个。</p>
+<p>当然如果你确定要查找的界面元素的类型 在当前界面中只有一个，就可以根据<code>class</code>来唯一选择。</p>
+<p>具体代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_class_name</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.根据ACCESSIBILITY ID</p>
+<p>元素的<code>content-desc</code>属性是用来描述该元素的作用的。</p>
+<p>如果要查询的界面元素有<code>content-desc</code>属性，我们可以通过它来定位选择元素。</p>
+<p>具体代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_accessibility_id</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.Xpath</p>
+<p>Appium也支持通过<code>Xpath</code>选择元素。</p>
+<p>但是其可靠性和性能不如Selenium Web自动化。因为Web自动化对Xpath的支持是由浏览器实现的，而<code>Appium Xpath</code>的支持是Appium Server实现的。</p>
+<p>毕竟，浏览器产品的成熟度比Appium要高很多。</p>
+<p>当然，<code>Xpath</code>是标准语法，所以这里表达式的语法规则和Selenium里面<code>Xpath</code>的语法是一样的，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//ele0/ele1[@attr=&#34;value&#34;]&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：</p>
+<p>selenium自动化中，<code>xpath</code>表达式中每个节点名是html的<code>tagname</code>。</p>
+<p>但是在appium中，<code>xpath</code>表达式中每个节点名是元素的<code>class</code>属性值。</p>
+<p>比如：要选择所有的文本节点，就用如下代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//android.widget.TextView&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="参考文档">参考文档</h2>
+<p>根据<code>id</code>，<code>classname</code>， <code>accessibilityid</code>，<code>xpath</code>这些方法选择元素，其实底层都是利用了安卓<code>uiautomator</code>框架的API功能实现的。</p>
+<p>这里是谷歌安卓官方文档介绍： <a href="https://developer.android.google.cn/training/testing/ui-automator" target="_blank" rel="noopener noreffer">https://developer.android.google.cn/training/testing/ui-automator</a></p>
+<p>也就是说，程序的这些定位请求，被<code>Appium server</code>转发给手机自动化代理程序，就转化为为<code>uiautomator</code>里面相应的定位函数调用。</p>
+<p>其实，自动化程序，可以直接告诉手机上的自动化代理程序，让它调用<code>UI Automator API</code>的java代码，实现最为直接的自动化控制。</p>
+<p>主要是通过<code>UiSelector</code>这个类里面的方法实现元素定位的，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;new UiSelector().text(&#34;热门&#34;).className(&#34;android.widget.TextView&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ele</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_android_uiautomator</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ele</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就是通过<code>text</code>属性和<code>className</code>的属性两个条件来定位元素。</p>
+<p><code>UiSelector</code>里面有些元素选择的方法可以解决前面解决不了的问题。</p>
+<p>比如</p>
+<p><code>text</code>方法</p>
+<pre><code>可以根据元素的文本属性查找元素
+</code></pre>
+<p><code>textContains</code></p>
+<pre><code>根据文本包含什么字符串
+</code></pre>
+<p><code>textStartsWith</code></p>
+<pre><code>根据文本以什么字符串开头
+</code></pre>
+<p><code>textmartch</code>方法</p>
+<pre><code>可以使用正则表达式选择一些元素，如下
+
+```python
+code = 'new UiSelector().textMatches(&quot;^我的.*&quot;)'
+```
+</code></pre>
+<p><code>UiSelector</code>的<code>instance</code>和<code>index</code>也可以用来定位元素，都是从0开始计数，他们的区别：</p>
+<pre><code>instance是匹配的结果所有元素里面 的第几个元素
+
+index则是其父元素的几个节点，类似xpath里面的*[n]
+</code></pre>
+<p><code>UiSelector</code>的<code>childSelector</code>可以选择后代元素，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;new UiSelector().resourceId(&#34;tv.danmaku.bili:id/recycler_view&#34;).childSelector(new UiSelector().className(&#34;android.widget.TextView&#34;))&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ele</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_android_uiautomator</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：<code>childSelector</code>后面的引号要框住整个<code>uiSelector</code>的表达式</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-24</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)" data-hashtags="python,爬虫"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200527/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200527/" data-title="Appium自动化操作02(元素定位及查看工具)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200523/" class="prev" rel="prev" title="Appium自动化操作01(环境安装与初始结构)"><i class="fas fa-angle-left fa-fw"></i>Appium自动化操作01(环境安装与初始结构)</a>
+            <a href="/20200525/" class="next" rel="next" title="Appium自动化操作03(界面操作和adb命令)">Appium自动化操作03(界面操作和adb命令)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

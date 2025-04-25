@@ -1,0 +1,41 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vnc - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/vnc/</link>
+        <description>Vnc - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/vnc/" rel="self" type="application/rss+xml" /><item>
+    <title>基于docker的在线IDE制作(支持浏览器直接访问)</title>
+    <link>http://www.spiritysdx.top/20250305/</link>
+    <pubDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250305/</guid>
+    <description><![CDATA[<h2 id="仓库">仓库</h2>
+<p><a href="https://github.com/oneclickvirt/dockerfile-templates" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/dockerfile-templates</a></p>
+<p>适配境内环境，搭建带浏览器web查看NOVNC的在线IDE</p>
+<p>对应开发环境支持 AMD64 ARM64</p>
+<p>对应GPU/NPU的驱动支持</p>
+<p>对应平台的AI插件支持</p>
+<p>由于版权问题和镜像大小问题，tar包我就不传了</p>]]></description>
+</item><item>
+    <title>CentOS8的VNC窗口桌面使用</title>
+    <link>http://www.spiritysdx.top/20210704/</link>
+    <pubDate>Sun, 04 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210704/</guid>
+    <description><![CDATA[<h2 id="centos8安装vnc窗口桌面并使用">CentOS8安装VNC窗口桌面并使用</h2>
+<h3 id="step1-安装vnc软件">Step1 安装vnc软件</h3>
+<p>终端窗口输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -i
+</span></span><span class="line"><span class="cl">dnf install tigervnc tigervnc-server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step2-修改vncserver-config-defaults--如果添加一行localhost-外部不能访问">Step2 修改vncserver-config-defaults ， 如果添加一行localhost ，外部不能访问</h3>
+<p>终端窗口输入</p>]]></description>
+</item></channel>
+</rss>

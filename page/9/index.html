@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.142.0">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="二叉树的博客">
+  <meta property="og:description" content="个人学习日志">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="二叉树的博客">
+  <meta name="twitter:description" content="个人学习日志">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="二叉树的博客">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="二叉树的博客"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/www.spiritysdx.top\/","inLanguage": "zh-CN","description": "个人学习日志","name": "二叉树的博客"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="二叉树上的我"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/103393591"
+        data-srcset="https://avatars.githubusercontent.com/u/103393591, https://avatars.githubusercontent.com/u/103393591 1.5x, https://avatars.githubusercontent.com/u/103393591 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/103393591"
+        title="https://avatars.githubusercontent.com/u/103393591" /></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/spiritLHLS" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw"></i></a><a href="https://t.me/spiritlhl_bot" title="Telegram" target="_blank" rel="noopener noreffer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="mailto:spiritlhlbusiness@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220119/">自建青龙代理拉取Github仓库或文件</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-01-19">2022-01-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>因为青龙拉取部分作者仓库通过<code>https://ghproxy.com/</code>代理拉取频繁，导致了请求量比较大的仓库被该代理加速作者封禁。所以可以自建代理的链接替换默认的<code>https://github.com/</code>，自己用自己的反代不会封禁，自建代理实现<code>ql repo</code>或<code>ql raw</code>拉取实时的GitHub仓库或文件。</p></div><div class="post-footer">
+        <a href="/20220119/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220117/">本地ARM机子&#43;云服务vps指定端口内穿&#43;开机自启=外网访问本地机子</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-01-17">2022-01-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>事先声明，本文为个人内网穿透经验，可能不具备复刻性质，自行查验。</p>
+<h2 id="前期配置">前期配置</h2>
+<p>A 腾讯云的VPS一台(配置带宽决定你的上限) &mdash; 我的是Ubuntu，内核amd64</p></div><div class="post-footer">
+        <a href="/20220117/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20211003/">2021年全国大学生数学建模竞赛C题省一等奖代码部分</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-10-03">2021-10-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>论文配套的代码均为本人编写，第三四问存在部分代码问题，需要改动细节部分才能运行成功，后面两问的代码时间成本很高，长则数小时，短则十几二十分钟，自己跑酌情修改迭代次数，转换赛题要求的填表格式得通过最后部分的代码才能转换。</p></div><div class="post-footer">
+        <a href="/20211003/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20211002/">2021年全国大学生数学建模竞赛C题省一等奖论文部分</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-10-02">2021-10-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>博客展示的是机器转义的markdown格式的，部分内容无法正常展示，完整内容详见博客相关资源。</p>
+<p>论文配套的代码均为本人编写，第三四问存在部分代码问题，需要改动细节部分才能运行成功，后面两问的代码时间成本很高，长则数小时，短则十几二十分钟，自己跑酌情修改迭代次数，转换赛题要求的填表格式得通过最后部分的代码才能转换。</p></div><div class="post-footer">
+        <a href="/20211002/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210728/">逻辑回归1-乳腺癌数据案例</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-28">2021-07-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a>&nbsp;<a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>逻辑回归的一个小案例，使用sklearn自带的一个数据</p>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LR</span> <span class="c1">#逻辑回归</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span> <span class="c1">#导入乳腺癌数据集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>  <span class="c1"># 导入分测试与训练集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="c1">#精确性分数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span><span class="c1">#乳腺癌数据集</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'data': array([[1.799e+01, 1.038e+01, 1.228e+02, ..., 2.654e-01, 4.601e-01,
+         1.189e-01],
+        [2.057e+01, 1.777e+01, 1.329e+02, ..., 1.860e-01, 2.750e-01,
+         8.902e-02],
+        [1.969e+01, 2.125e+01, 1.300e+02, ..., 2.430e-01, 3.613e-01,
+         8.758e-02],
+        ...,
+        [1.660e+01, 2.808e+01, 1.083e+02, ..., 1.418e-01, 2.218e-01,
+         7.820e-02],
+        [2.060e+01, 2.933e+01, 1.401e+02, ..., 2.650e-01, 4.087e-01,
+         1.240e-01],
+        [7.760e+00, 2.454e+01, 4.792e+01, ..., 0.000e+00, 2.871e-01,
+         7.039e-02]]),
+ 'target': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0,
+        1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0,
+        1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1,
+        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
+        0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1,
+        1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0,
+        1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1,
+        1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0,
+        0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0,
+        1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1,
+        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1,
+        1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
+        1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1,
+        1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1]),
+ 'frame': None,
+ 'target_names': array(['malignant', 'benign'], dtype='&lt;U9'),
+ 'DESCR': '.. _breast_cancer_dataset:\n\nBreast cancer wisconsin (diagnostic) dataset\n--------------------------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 569\n\n    :Number of Attributes: 30 numeric, predictive attributes and the class\n\n    :Attribute Information:\n        - radius (mean of distances from center to points on the perimeter)\n        - texture (standard deviation of gray-scale values)\n        - perimeter\n        - area\n        - smoothness (local variation in radius lengths)\n        - compactness (perimeter^2 / area - 1.0)\n        - concavity (severity of concave portions of the contour)\n        - concave points (number of concave portions of the contour)\n        - symmetry\n        - fractal dimension (&quot;coastline approximation&quot; - 1)\n\n        The mean, standard error, and &quot;worst&quot; or largest (mean of the three\n        worst/largest values) of these features were computed for each image,\n        resulting in 30 features.  For instance, field 0 is Mean Radius, field\n        10 is Radius SE, field 20 is Worst Radius.\n\n        - class:\n                - WDBC-Malignant\n                - WDBC-Benign\n\n    :Summary Statistics:\n\n    ===================================== ====== ======\n                                           Min    Max\n    ===================================== ====== ======\n    radius (mean):                        6.981  28.11\n    texture (mean):                       9.71   39.28\n    perimeter (mean):                     43.79  188.5\n    area (mean):                          143.5  2501.0\n    smoothness (mean):                    0.053  0.163\n    compactness (mean):                   0.019  0.345\n    concavity (mean):                     0.0    0.427\n    concave points (mean):                0.0    0.201\n    symmetry (mean):                      0.106  0.304\n    fractal dimension (mean):             0.05   0.097\n    radius (standard error):              0.112  2.873\n    texture (standard error):             0.36   4.885\n    perimeter (standard error):           0.757  21.98\n    area (standard error):                6.802  542.2\n    smoothness (standard error):          0.002  0.031\n    compactness (standard error):         0.002  0.135\n    concavity (standard error):           0.0    0.396\n    concave points (standard error):      0.0    0.053\n    symmetry (standard error):            0.008  0.079\n    fractal dimension (standard error):   0.001  0.03\n    radius (worst):                       7.93   36.04\n    texture (worst):                      12.02  49.54\n    perimeter (worst):                    50.41  251.2\n    area (worst):                         185.2  4254.0\n    smoothness (worst):                   0.071  0.223\n    compactness (worst):                  0.027  1.058\n    concavity (worst):                    0.0    1.252\n    concave points (worst):               0.0    0.291\n    symmetry (worst):                     0.156  0.664\n    fractal dimension (worst):            0.055  0.208\n    ===================================== ====== ======\n\n    :Missing Attribute Values: None\n\n    :Class Distribution: 212 - Malignant, 357 - Benign\n\n    :Creator:  Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian\n\n    :Donor: Nick Street\n\n    :Date: November, 1995\n\nThis is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.\nhttps://goo.gl/U2Uwz2\n\nFeatures are computed from a digitized image of a fine needle\naspirate (FNA) of a breast mass.  They describe\ncharacteristics of the cell nuclei present in the image.\n\nSeparating plane described above was obtained using\nMultisurface Method-Tree (MSM-T) [K. P. Bennett, &quot;Decision Tree\nConstruction Via Linear Programming.&quot; Proceedings of the 4th\nMidwest Artificial Intelligence and Cognitive Science Society,\npp. 97-101, 1992], a classification method which uses linear\nprogramming to construct a decision tree.  Relevant features\nwere selected using an exhaustive search in the space of 1-4\nfeatures and 1-3 separating planes.\n\nThe actual linear program used to obtain the separating plane\nin the 3-dimensional space is that described in:\n[K. P. Bennett and O. L. Mangasarian: &quot;Robust Linear\nProgramming Discrimination of Two Linearly Inseparable Sets&quot;,\nOptimization Methods and Software 1, 1992, 23-34].\n\nThis database is also available through the UW CS ftp server:\n\nftp ftp.cs.wisc.edu\ncd math-prog/cpo-dataset/machine-learn/WDBC/\n\n.. topic:: References\n\n   - W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction \n     for breast tumor diagnosis. IS&amp;T/SPIE 1993 International Symposium on \n     Electronic Imaging: Science and Technology, volume 1905, pages 861-870,\n     San Jose, CA, 1993.\n   - O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and \n     prognosis via linear programming. Operations Research, 43(4), pages 570-577, \n     July-August 1995.\n   - W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques\n     to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994) \n     163-171.',
+ 'feature_names': array(['mean radius', 'mean texture', 'mean perimeter', 'mean area',
+        'mean smoothness', 'mean compactness', 'mean concavity',
+        'mean concave points', 'mean symmetry', 'mean fractal dimension',
+        'radius error', 'texture error', 'perimeter error', 'area error',
+        'smoothness error', 'compactness error', 'concavity error',
+        'concave points error', 'symmetry error',
+        'fractal dimension error', 'worst radius', 'worst texture',
+        'worst perimeter', 'worst area', 'worst smoothness',
+        'worst compactness', 'worst concavity', 'worst concave points',
+        'worst symmetry', 'worst fractal dimension'], dtype='&lt;U23'),
+ 'filename': '/home/ubuntu/.local/lib/python3.8/site-packages/sklearn/datasets/data/breast_cancer.csv'}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569, 30)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="c1">#(569, 30)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569, 30)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl1</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l1&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="c1">#l1 正则化会压缩到0</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl2</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l2&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="c1">#l2 正则化不会压缩到0，默认l2正则化不填的话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#逻辑回归的重要属性coef_，查看每个特征所对应的参数</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl1</span> <span class="o">=</span> <span class="n">lrl1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl1</span><span class="o">.</span><span class="n">coef_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 4.00409758,  0.03192262, -0.13763277, -0.01622177,  0.        ,
+         0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.        ,  0.50529191,  0.        , -0.07128513,  0.        ,
+         0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.        , -0.2458918 , -0.12855748, -0.01441275,  0.        ,
+         0.        , -2.03953157,  0.        ,  0.        ,  0.        ]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="c1">#array([10])    30个特征中有10个特征的系数不为0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([10])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl2</span> <span class="o">=</span> <span class="n">lrl2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl2</span><span class="o">.</span><span class="n">coef_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 1.61331113e+00,  1.00124606e-01,  4.60084835e-02,
+        -4.19839426e-03, -9.26228937e-02, -3.00484301e-01,
+        -4.53250190e-01, -2.19778015e-01, -1.33074668e-01,
+        -1.92576286e-02,  1.89635811e-02,  8.74998561e-01,
+         1.32421950e-01, -9.53784315e-02, -9.62972408e-03,
+        -2.53596204e-02, -5.83890299e-02, -2.67755115e-02,
+        -2.73846616e-02, -8.05302922e-05,  1.28529688e+00,
+        -3.00088054e-01, -1.74310770e-01, -2.23545072e-02,
+        -1.70267493e-01, -8.77272211e-01, -1.15830085e+00,
+        -4.22526360e-01, -4.12406225e-01, -8.66393364e-02]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl2</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">l1</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l2</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l1test</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l2test</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">Ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">420</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">19</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl1</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l1&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl2</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l2&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">lrl1</span> <span class="o">=</span> <span class="n">lrl1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span><span class="n">Ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">),</span><span class="n">Ytrain</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l1test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">),</span><span class="n">Ytest</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl2</span> <span class="o">=</span> <span class="n">lrl2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span><span class="n">Ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">),</span><span class="n">Ytrain</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l2test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">),</span><span class="n">Ytest</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">[</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="n">l1test</span><span class="p">,</span><span class="n">l2test</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;green&#34;</span><span class="p">,</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="s2">&#34;lightgreen&#34;</span><span class="p">,</span><span class="s2">&#34;gray&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;L1&#34;</span><span class="p">,</span><span class="s2">&#34;L2&#34;</span><span class="p">,</span><span class="s2">&#34;L1test&#34;</span><span class="p">,</span><span class="s2">&#34;L2test&#34;</span><span class="p">]</span>    
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">19</span><span class="p">),</span><span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1">#图例的位置在哪里?4表示，右下角</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="c1">#0.8~0.9比较好</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://spiritlhl-tc.oss-cn-beijing.aliyuncs.com/output_12_0.png"
+        data-srcset="https://spiritlhl-tc.oss-cn-beijing.aliyuncs.com/output_12_0.png, https://spiritlhl-tc.oss-cn-beijing.aliyuncs.com/output_12_0.png 1.5x, https://spiritlhl-tc.oss-cn-beijing.aliyuncs.com/output_12_0.png 2x"
+        data-sizes="auto"
+        alt="https://spiritlhl-tc.oss-cn-beijing.aliyuncs.com/output_12_0.png"
+        title="png" /></p></div><div class="post-footer">
+        <a href="/20210728/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>,&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210727/">随机森林在乳腺癌数据上的调参</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-27">2021-07-27</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a>&nbsp;<a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>数据集合来自kaggle</p>
+<p>链接：https://www.kaggle.com/c/digit-recognizer/data</p>
+<p>其中test和train的csv数据集为所需数据集。</p></div><div class="post-footer">
+        <a href="/20210727/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>,&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210726/">删除进程操作</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-26">2021-07-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div><div class="content"><h2 id="删除指定端口的所有进程">删除指定端口的所有进程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">kill</span> -9 <span class="k">$(</span>lsof -i:端口号 -t<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="删除指定名称的所有进程">删除指定名称的所有进程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">kill</span> -9 <span class="k">$(</span>pidof 名字<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="查看指定端口占用情况">查看指定端口占用情况</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo lsof -i:端口号
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="删除指定pid的进程">删除指定pid的进程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">kill</span> -9 pid号
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer">
+        <a href="/20210726/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210725/">Okteto常用项目</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-25">2021-07-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div><div class="content"><h1 id="docker-compose搭建">docker-compose搭建</h1>
+<h2 id="wordpress">wordpress</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.3&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="l">/data/wordpress_db:/var/lib/mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">rootwordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="s2">&#34;8000:80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">db:3306</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cloudreve">Cloudreve</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cloudreve</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">public</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">cloudreve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">jialezi/cloudreve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="m">5212</span><span class="p">:</span><span class="m">5212</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">volumes</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">/root/cloudreve</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bitwarden">Bitwarden</h2>
+<p>管理地址为“xxx/admin”。</p></div><div class="post-footer">
+        <a href="/20210725/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/github/">Github</a>,&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/docker/">Docker</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210724/">预处理3-连续值与特征选取</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-24">2021-07-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>使用的相关数据链接如下：</p>
+<p><a href="https://gitee.com/spiritlhl/za/releases/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">点我跳转</a></p>
+<h1 id="代码">代码</h1>
+<h2 id="连续值预处理">连续值预处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;Narrativedata.csv&#34;</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">)</span><span class="c1">#index_col=0将第0列作为索引，不写则认为第0列为特征</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#将年龄二值化 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 891 entries, 0 to 890
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Age       891 non-null    float64
+ 1   Sex       891 non-null    object 
+ 2   Embarked  889 non-null    object 
+ 3   Survived  891 non-null    object 
+dtypes: float64(1), object(3)
+memory usage: 34.8+ KB
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Binarizer</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>               <span class="c1">#类为特征专用，所以不能使用一维数组</span>
+</span></span><span class="line"><span class="cl"><span class="n">transformer</span> <span class="o">=</span> <span class="n">Binarizer</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1">#阈值threshold=n, 小于等于n的数值转为0, 大于n的数值转为1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformer</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p></div><div class="post-footer">
+        <a href="/20210724/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>,&nbsp;<a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>,&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210723/">预处理2-随机森林填补缺失值</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-23">2021-07-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a></span></div><div class="content"><h2 id="随机森林填补缺失值实测回归比较好">随机森林填补缺失值(实测回归比较好)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="c1">#随机森林分类树</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">wine</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'data': array([[1.423e+01, 1.710e+00, 2.430e+00, ..., 1.040e+00, 3.920e+00,
+         1.065e+03],
+        [1.320e+01, 1.780e+00, 2.140e+00, ..., 1.050e+00, 3.400e+00,
+         1.050e+03],
+        [1.316e+01, 2.360e+00, 2.670e+00, ..., 1.030e+00, 3.170e+00,
+         1.185e+03],
+        ...,
+        [1.327e+01, 4.280e+00, 2.260e+00, ..., 5.900e-01, 1.560e+00,
+         8.350e+02],
+        [1.317e+01, 2.590e+00, 2.370e+00, ..., 6.000e-01, 1.620e+00,
+         8.400e+02],
+        [1.413e+01, 4.100e+00, 2.740e+00, ..., 6.100e-01, 1.600e+00,
+         5.600e+02]]),
+ 'target': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2]),
+ 'frame': None,
+ 'target_names': array(['class_0', 'class_1', 'class_2'], dtype='&lt;U7'),
+ 'DESCR': '.. _wine_dataset:\n\nWine recognition dataset\n------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 178 (50 in each of three classes)\n    :Number of Attributes: 13 numeric, predictive attributes and the class\n    :Attribute Information:\n \t\t- Alcohol\n \t\t- Malic acid\n \t\t- Ash\n\t\t- Alcalinity of ash  \n \t\t- Magnesium\n\t\t- Total phenols\n \t\t- Flavanoids\n \t\t- Nonflavanoid phenols\n \t\t- Proanthocyanins\n\t\t- Color intensity\n \t\t- Hue\n \t\t- OD280/OD315 of diluted wines\n \t\t- Proline\n\n    - class:\n            - class_0\n            - class_1\n            - class_2\n\t\t\n    :Summary Statistics:\n    \n    ============================= ==== ===== ======= =====\n                                   Min   Max   Mean     SD\n    ============================= ==== ===== ======= =====\n    Alcohol:                      11.0  14.8    13.0   0.8\n    Malic Acid:                   0.74  5.80    2.34  1.12\n    Ash:                          1.36  3.23    2.36  0.27\n    Alcalinity of Ash:            10.6  30.0    19.5   3.3\n    Magnesium:                    70.0 162.0    99.7  14.3\n    Total Phenols:                0.98  3.88    2.29  0.63\n    Flavanoids:                   0.34  5.08    2.03  1.00\n    Nonflavanoid Phenols:         0.13  0.66    0.36  0.12\n    Proanthocyanins:              0.41  3.58    1.59  0.57\n    Colour Intensity:              1.3  13.0     5.1   2.3\n    Hue:                          0.48  1.71    0.96  0.23\n    OD280/OD315 of diluted wines: 1.27  4.00    2.61  0.71\n    Proline:                       278  1680     746   315\n    ============================= ==== ===== ======= =====\n\n    :Missing Attribute Values: None\n    :Class Distribution: class_0 (59), class_1 (71), class_2 (48)\n    :Creator: R.A. Fisher\n    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n    :Date: July, 1988\n\nThis is a copy of UCI ML Wine recognition datasets.\nhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\n\nThe data is the results of a chemical analysis of wines grown in the same\nregion in Italy by three different cultivators. There are thirteen different\nmeasurements taken for different constituents found in the three types of\nwine.\n\nOriginal Owners: \n\nForina, M. et al, PARVUS - \nAn Extendible Package for Data Exploration, Classification and Correlation. \nInstitute of Pharmaceutical and Food Analysis and Technologies,\nVia Brigata Salerno, 16147 Genoa, Italy.\n\nCitation:\n\nLichman, M. (2013). UCI Machine Learning Repository\n[https://archive.ics.uci.edu/ml]. Irvine, CA: University of California,\nSchool of Information and Computer Science. \n\n.. topic:: References\n\n  (1) S. Aeberhard, D. Coomans and O. de Vel, \n  Comparison of Classifiers in High Dimensional Settings, \n  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Technometrics). \n\n  The data was used with many others for comparing various \n  classifiers. The classes are separable, though only RDA \n  has achieved 100% correct classification. \n  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) \n  (All results using the leave-one-out technique) \n\n  (2) S. Aeberhard, D. Coomans and O. de Vel, \n  &quot;THE CLASSIFICATION PERFORMANCE OF RDA&quot; \n  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Journal of Chemometrics).\n',
+ 'feature_names': ['alcohol',
+  'malic_acid',
+  'ash',
+  'alcalinity_of_ash',
+  'magnesium',
+  'total_phenols',
+  'flavanoids',
+  'nonflavanoid_phenols',
+  'proanthocyanins',
+  'color_intensity',
+  'hue',
+  'od280/od315_of_diluted_wines',
+  'proline']}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="c1">#特征矩阵</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178, 13)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="c1">#标签，以数的形式呈现</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#实例化</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">xtrain</span><span class="p">,</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytrain</span><span class="p">,</span><span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#数据和特征分开导入</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#打分</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_c</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_r</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Single Tree:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">,</span><span class="s2">&#34;Random Forest:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_r</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Single Tree:0.8703703703703703 Random Forest:0.9629629629629629
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 交叉验证</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rfc</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">rfc_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;RandomForest&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">clf_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;DecisionTree&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/spiritlhl/picture/raw/master/output_10_0.png"
+        data-srcset="https://gitee.com/spiritlhl/picture/raw/master/output_10_0.png, https://gitee.com/spiritlhl/picture/raw/master/output_10_0.png 1.5x, https://gitee.com/spiritlhl/picture/raw/master/output_10_0.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/spiritlhl/picture/raw/master/output_10_0.png"
+        title="png" /></p></div><div class="post-footer">
+        <a href="/20210723/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>,&nbsp;<a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>,&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/8/">8</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/9/">9</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/18/">18</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"二叉树上的我"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

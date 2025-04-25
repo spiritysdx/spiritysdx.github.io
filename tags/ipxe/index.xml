@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Ipxe - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/ipxe/</link>
+        <description>Ipxe - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/ipxe/" rel="self" type="application/rss+xml" /><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>该方法的前提：</p>
+<p>商家使用PVE虚拟化WIN服务器</p>
+<p>WIN服务器可配置使用Network进行启动</p>
+<p>启动时可使用NO VNC操控IPXE命令</p>
+<p>已知符合条件的服务器：<a href="https://hosting.netfront.net/aff.php?aff=126&amp;pid=67" target="_blank" rel="noopener noreffer">NETFRONT</a></p>]]></description>
+</item></channel>
+</rss>

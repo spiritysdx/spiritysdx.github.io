@@ -1,0 +1,1011 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>神经网络 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link>
+        <description>神经网络 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 28 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+    <title>逻辑回归1-乳腺癌数据案例</title>
+    <link>http://www.spiritysdx.top/20210728/</link>
+    <pubDate>Wed, 28 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210728/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>逻辑回归的一个小案例，使用sklearn自带的一个数据</p>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LR</span> <span class="c1">#逻辑回归</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span> <span class="c1">#导入乳腺癌数据集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>  <span class="c1"># 导入分测试与训练集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="c1">#精确性分数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span><span class="c1">#乳腺癌数据集</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'data': array([[1.799e+01, 1.038e+01, 1.228e+02, ..., 2.654e-01, 4.601e-01,
+         1.189e-01],
+        [2.057e+01, 1.777e+01, 1.329e+02, ..., 1.860e-01, 2.750e-01,
+         8.902e-02],
+        [1.969e+01, 2.125e+01, 1.300e+02, ..., 2.430e-01, 3.613e-01,
+         8.758e-02],
+        ...,
+        [1.660e+01, 2.808e+01, 1.083e+02, ..., 1.418e-01, 2.218e-01,
+         7.820e-02],
+        [2.060e+01, 2.933e+01, 1.401e+02, ..., 2.650e-01, 4.087e-01,
+         1.240e-01],
+        [7.760e+00, 2.454e+01, 4.792e+01, ..., 0.000e+00, 2.871e-01,
+         7.039e-02]]),
+ 'target': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0,
+        1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0,
+        1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1,
+        1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
+        0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1,
+        1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0,
+        0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0,
+        1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1,
+        1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0,
+        0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+        0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0,
+        1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1,
+        1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1,
+        1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+        1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
+        1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1,
+        1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1]),
+ 'frame': None,
+ 'target_names': array(['malignant', 'benign'], dtype='&lt;U9'),
+ 'DESCR': '.. _breast_cancer_dataset:\n\nBreast cancer wisconsin (diagnostic) dataset\n--------------------------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 569\n\n    :Number of Attributes: 30 numeric, predictive attributes and the class\n\n    :Attribute Information:\n        - radius (mean of distances from center to points on the perimeter)\n        - texture (standard deviation of gray-scale values)\n        - perimeter\n        - area\n        - smoothness (local variation in radius lengths)\n        - compactness (perimeter^2 / area - 1.0)\n        - concavity (severity of concave portions of the contour)\n        - concave points (number of concave portions of the contour)\n        - symmetry\n        - fractal dimension (&quot;coastline approximation&quot; - 1)\n\n        The mean, standard error, and &quot;worst&quot; or largest (mean of the three\n        worst/largest values) of these features were computed for each image,\n        resulting in 30 features.  For instance, field 0 is Mean Radius, field\n        10 is Radius SE, field 20 is Worst Radius.\n\n        - class:\n                - WDBC-Malignant\n                - WDBC-Benign\n\n    :Summary Statistics:\n\n    ===================================== ====== ======\n                                           Min    Max\n    ===================================== ====== ======\n    radius (mean):                        6.981  28.11\n    texture (mean):                       9.71   39.28\n    perimeter (mean):                     43.79  188.5\n    area (mean):                          143.5  2501.0\n    smoothness (mean):                    0.053  0.163\n    compactness (mean):                   0.019  0.345\n    concavity (mean):                     0.0    0.427\n    concave points (mean):                0.0    0.201\n    symmetry (mean):                      0.106  0.304\n    fractal dimension (mean):             0.05   0.097\n    radius (standard error):              0.112  2.873\n    texture (standard error):             0.36   4.885\n    perimeter (standard error):           0.757  21.98\n    area (standard error):                6.802  542.2\n    smoothness (standard error):          0.002  0.031\n    compactness (standard error):         0.002  0.135\n    concavity (standard error):           0.0    0.396\n    concave points (standard error):      0.0    0.053\n    symmetry (standard error):            0.008  0.079\n    fractal dimension (standard error):   0.001  0.03\n    radius (worst):                       7.93   36.04\n    texture (worst):                      12.02  49.54\n    perimeter (worst):                    50.41  251.2\n    area (worst):                         185.2  4254.0\n    smoothness (worst):                   0.071  0.223\n    compactness (worst):                  0.027  1.058\n    concavity (worst):                    0.0    1.252\n    concave points (worst):               0.0    0.291\n    symmetry (worst):                     0.156  0.664\n    fractal dimension (worst):            0.055  0.208\n    ===================================== ====== ======\n\n    :Missing Attribute Values: None\n\n    :Class Distribution: 212 - Malignant, 357 - Benign\n\n    :Creator:  Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian\n\n    :Donor: Nick Street\n\n    :Date: November, 1995\n\nThis is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.\nhttps://goo.gl/U2Uwz2\n\nFeatures are computed from a digitized image of a fine needle\naspirate (FNA) of a breast mass.  They describe\ncharacteristics of the cell nuclei present in the image.\n\nSeparating plane described above was obtained using\nMultisurface Method-Tree (MSM-T) [K. P. Bennett, &quot;Decision Tree\nConstruction Via Linear Programming.&quot; Proceedings of the 4th\nMidwest Artificial Intelligence and Cognitive Science Society,\npp. 97-101, 1992], a classification method which uses linear\nprogramming to construct a decision tree.  Relevant features\nwere selected using an exhaustive search in the space of 1-4\nfeatures and 1-3 separating planes.\n\nThe actual linear program used to obtain the separating plane\nin the 3-dimensional space is that described in:\n[K. P. Bennett and O. L. Mangasarian: &quot;Robust Linear\nProgramming Discrimination of Two Linearly Inseparable Sets&quot;,\nOptimization Methods and Software 1, 1992, 23-34].\n\nThis database is also available through the UW CS ftp server:\n\nftp ftp.cs.wisc.edu\ncd math-prog/cpo-dataset/machine-learn/WDBC/\n\n.. topic:: References\n\n   - W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction \n     for breast tumor diagnosis. IS&amp;T/SPIE 1993 International Symposium on \n     Electronic Imaging: Science and Technology, volume 1905, pages 861-870,\n     San Jose, CA, 1993.\n   - O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and \n     prognosis via linear programming. Operations Research, 43(4), pages 570-577, \n     July-August 1995.\n   - W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques\n     to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994) \n     163-171.',
+ 'feature_names': array(['mean radius', 'mean texture', 'mean perimeter', 'mean area',
+        'mean smoothness', 'mean compactness', 'mean concavity',
+        'mean concave points', 'mean symmetry', 'mean fractal dimension',
+        'radius error', 'texture error', 'perimeter error', 'area error',
+        'smoothness error', 'compactness error', 'concavity error',
+        'concave points error', 'symmetry error',
+        'fractal dimension error', 'worst radius', 'worst texture',
+        'worst perimeter', 'worst area', 'worst smoothness',
+        'worst compactness', 'worst concavity', 'worst concave points',
+        'worst symmetry', 'worst fractal dimension'], dtype='&lt;U23'),
+ 'filename': '/home/ubuntu/.local/lib/python3.8/site-packages/sklearn/datasets/data/breast_cancer.csv'}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569, 30)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="c1">#(569, 30)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(569, 30)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl1</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l1&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="c1">#l1 正则化会压缩到0</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl2</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l2&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="c1">#l2 正则化不会压缩到0，默认l2正则化不填的话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#逻辑回归的重要属性coef_，查看每个特征所对应的参数</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl1</span> <span class="o">=</span> <span class="n">lrl1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl1</span><span class="o">.</span><span class="n">coef_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 4.00409758,  0.03192262, -0.13763277, -0.01622177,  0.        ,
+         0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.        ,  0.50529191,  0.        , -0.07128513,  0.        ,
+         0.        ,  0.        ,  0.        ,  0.        ,  0.        ,
+         0.        , -0.2458918 , -0.12855748, -0.01441275,  0.        ,
+         0.        , -2.03953157,  0.        ,  0.        ,  0.        ]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="c1">#array([10])    30个特征中有10个特征的系数不为0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([10])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl2</span> <span class="o">=</span> <span class="n">lrl2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lrl2</span><span class="o">.</span><span class="n">coef_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 1.61331113e+00,  1.00124606e-01,  4.60084835e-02,
+        -4.19839426e-03, -9.26228937e-02, -3.00484301e-01,
+        -4.53250190e-01, -2.19778015e-01, -1.33074668e-01,
+        -1.92576286e-02,  1.89635811e-02,  8.74998561e-01,
+         1.32421950e-01, -9.53784315e-02, -9.62972408e-03,
+        -2.53596204e-02, -5.83890299e-02, -2.67755115e-02,
+        -2.73846616e-02, -8.05302922e-05,  1.28529688e+00,
+        -3.00088054e-01, -1.74310770e-01, -2.23545072e-02,
+        -1.70267493e-01, -8.77272211e-01, -1.15830085e+00,
+        -4.22526360e-01, -4.12406225e-01, -8.66393364e-02]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">lrl2</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True,  True,  True,  True,  True,  True,  True,
+         True,  True,  True]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">l1</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l2</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l1test</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">l2test</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">Ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">420</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">19</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl1</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l1&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl2</span> <span class="o">=</span> <span class="n">LR</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&#34;l2&#34;</span><span class="p">,</span><span class="n">solver</span><span class="o">=</span><span class="s2">&#34;liblinear&#34;</span><span class="p">,</span><span class="n">C</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">lrl1</span> <span class="o">=</span> <span class="n">lrl1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span><span class="n">Ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">),</span><span class="n">Ytrain</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l1test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">),</span><span class="n">Ytest</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lrl2</span> <span class="o">=</span> <span class="n">lrl2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span><span class="n">Ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">),</span><span class="n">Ytrain</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l2test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">lrl2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">),</span><span class="n">Ytest</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">[</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="n">l1test</span><span class="p">,</span><span class="n">l2test</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;green&#34;</span><span class="p">,</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="s2">&#34;lightgreen&#34;</span><span class="p">,</span><span class="s2">&#34;gray&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;L1&#34;</span><span class="p">,</span><span class="s2">&#34;L2&#34;</span><span class="p">,</span><span class="s2">&#34;L1test&#34;</span><span class="p">,</span><span class="s2">&#34;L2test&#34;</span><span class="p">]</span>    
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">19</span><span class="p">),</span><span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1">#图例的位置在哪里?4表示，右下角</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="c1">#0.8~0.9比较好</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p></p>]]></description>
+</item><item>
+    <title>随机森林在乳腺癌数据上的调参</title>
+    <link>http://www.spiritysdx.top/20210727/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210727/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>数据集合来自kaggle</p>
+<p>链接：https://www.kaggle.com/c/digit-recognizer/data</p>
+<p>其中test和train的csv数据集为所需数据集。</p>]]></description>
+</item><item>
+    <title>预处理3-连续值与特征选取</title>
+    <link>http://www.spiritysdx.top/20210724/</link>
+    <pubDate>Sat, 24 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210724/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>使用的相关数据链接如下：</p>
+<p><a href="https://gitee.com/spiritlhl/za/releases/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">点我跳转</a></p>
+<h1 id="代码">代码</h1>
+<h2 id="连续值预处理">连续值预处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;Narrativedata.csv&#34;</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">)</span><span class="c1">#index_col=0将第0列作为索引，不写则认为第0列为特征</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&#34;Age&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#将年龄二值化 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 891 entries, 0 to 890
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Age       891 non-null    float64
+ 1   Sex       891 non-null    object 
+ 2   Embarked  889 non-null    object 
+ 3   Survived  891 non-null    object 
+dtypes: float64(1), object(3)
+memory usage: 34.8+ KB
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Binarizer</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>               <span class="c1">#类为特征专用，所以不能使用一维数组</span>
+</span></span><span class="line"><span class="cl"><span class="n">transformer</span> <span class="o">=</span> <span class="n">Binarizer</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1">#阈值threshold=n, 小于等于n的数值转为0, 大于n的数值转为1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformer</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>预处理2-随机森林填补缺失值</title>
+    <link>http://www.spiritysdx.top/20210723/</link>
+    <pubDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210723/</guid>
+    <description><![CDATA[<h2 id="随机森林填补缺失值实测回归比较好">随机森林填补缺失值(实测回归比较好)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="c1">#随机森林分类树</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">wine</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'data': array([[1.423e+01, 1.710e+00, 2.430e+00, ..., 1.040e+00, 3.920e+00,
+         1.065e+03],
+        [1.320e+01, 1.780e+00, 2.140e+00, ..., 1.050e+00, 3.400e+00,
+         1.050e+03],
+        [1.316e+01, 2.360e+00, 2.670e+00, ..., 1.030e+00, 3.170e+00,
+         1.185e+03],
+        ...,
+        [1.327e+01, 4.280e+00, 2.260e+00, ..., 5.900e-01, 1.560e+00,
+         8.350e+02],
+        [1.317e+01, 2.590e+00, 2.370e+00, ..., 6.000e-01, 1.620e+00,
+         8.400e+02],
+        [1.413e+01, 4.100e+00, 2.740e+00, ..., 6.100e-01, 1.600e+00,
+         5.600e+02]]),
+ 'target': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2]),
+ 'frame': None,
+ 'target_names': array(['class_0', 'class_1', 'class_2'], dtype='&lt;U7'),
+ 'DESCR': '.. _wine_dataset:\n\nWine recognition dataset\n------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 178 (50 in each of three classes)\n    :Number of Attributes: 13 numeric, predictive attributes and the class\n    :Attribute Information:\n \t\t- Alcohol\n \t\t- Malic acid\n \t\t- Ash\n\t\t- Alcalinity of ash  \n \t\t- Magnesium\n\t\t- Total phenols\n \t\t- Flavanoids\n \t\t- Nonflavanoid phenols\n \t\t- Proanthocyanins\n\t\t- Color intensity\n \t\t- Hue\n \t\t- OD280/OD315 of diluted wines\n \t\t- Proline\n\n    - class:\n            - class_0\n            - class_1\n            - class_2\n\t\t\n    :Summary Statistics:\n    \n    ============================= ==== ===== ======= =====\n                                   Min   Max   Mean     SD\n    ============================= ==== ===== ======= =====\n    Alcohol:                      11.0  14.8    13.0   0.8\n    Malic Acid:                   0.74  5.80    2.34  1.12\n    Ash:                          1.36  3.23    2.36  0.27\n    Alcalinity of Ash:            10.6  30.0    19.5   3.3\n    Magnesium:                    70.0 162.0    99.7  14.3\n    Total Phenols:                0.98  3.88    2.29  0.63\n    Flavanoids:                   0.34  5.08    2.03  1.00\n    Nonflavanoid Phenols:         0.13  0.66    0.36  0.12\n    Proanthocyanins:              0.41  3.58    1.59  0.57\n    Colour Intensity:              1.3  13.0     5.1   2.3\n    Hue:                          0.48  1.71    0.96  0.23\n    OD280/OD315 of diluted wines: 1.27  4.00    2.61  0.71\n    Proline:                       278  1680     746   315\n    ============================= ==== ===== ======= =====\n\n    :Missing Attribute Values: None\n    :Class Distribution: class_0 (59), class_1 (71), class_2 (48)\n    :Creator: R.A. Fisher\n    :Donor: Michael Marshall (MARSHALL%PLU@io.arc.nasa.gov)\n    :Date: July, 1988\n\nThis is a copy of UCI ML Wine recognition datasets.\nhttps://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data\n\nThe data is the results of a chemical analysis of wines grown in the same\nregion in Italy by three different cultivators. There are thirteen different\nmeasurements taken for different constituents found in the three types of\nwine.\n\nOriginal Owners: \n\nForina, M. et al, PARVUS - \nAn Extendible Package for Data Exploration, Classification and Correlation. \nInstitute of Pharmaceutical and Food Analysis and Technologies,\nVia Brigata Salerno, 16147 Genoa, Italy.\n\nCitation:\n\nLichman, M. (2013). UCI Machine Learning Repository\n[https://archive.ics.uci.edu/ml]. Irvine, CA: University of California,\nSchool of Information and Computer Science. \n\n.. topic:: References\n\n  (1) S. Aeberhard, D. Coomans and O. de Vel, \n  Comparison of Classifiers in High Dimensional Settings, \n  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Technometrics). \n\n  The data was used with many others for comparing various \n  classifiers. The classes are separable, though only RDA \n  has achieved 100% correct classification. \n  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) \n  (All results using the leave-one-out technique) \n\n  (2) S. Aeberhard, D. Coomans and O. de Vel, \n  &quot;THE CLASSIFICATION PERFORMANCE OF RDA&quot; \n  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of \n  Mathematics and Statistics, James Cook University of North Queensland. \n  (Also submitted to Journal of Chemometrics).\n',
+ 'feature_names': ['alcohol',
+  'malic_acid',
+  'ash',
+  'alcalinity_of_ash',
+  'magnesium',
+  'total_phenols',
+  'flavanoids',
+  'nonflavanoid_phenols',
+  'proanthocyanins',
+  'color_intensity',
+  'hue',
+  'od280/od315_of_diluted_wines',
+  'proline']}
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="c1">#特征矩阵</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178, 13)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="c1">#标签，以数的形式呈现</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178,)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#实例化</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">xtrain</span><span class="p">,</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytrain</span><span class="p">,</span><span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#数据和特征分开导入</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtrain</span><span class="p">,</span><span class="n">ytrain</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#打分</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_c</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">score_r</span> <span class="o">=</span> <span class="n">rfc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">ytest</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Single Tree:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">,</span><span class="s2">&#34;Random Forest:</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_r</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Single Tree:0.8703703703703703 Random Forest:0.9629629629629629
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 交叉验证</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rfc_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rfc</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">clf_s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">rfc_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;RandomForest&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">clf_s</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;DecisionTree&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p></p>]]></description>
+</item><item>
+    <title>预处理1-分类数据</title>
+    <link>http://www.spiritysdx.top/20210722/</link>
+    <pubDate>Thu, 22 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210722/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>使用的相关数据链接如下：</p>
+<p><a href="https://gitee.com/spiritlhl/za/releases/%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">点我跳转</a></p>
+<h2 id="数据预处理">数据预处理</h2>
+<p>无量纲化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#归一化 收到0~1之间</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#正则化不是归一化 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#不太熟悉numpy的小伙伴，能够判断data的结构吗？</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如果换成表是什么样子？</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>决策树3-泰坦尼克号实例(网格搜索,超参数调参)</title>
+    <link>http://www.spiritysdx.top/20210721/</link>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210721/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>数据集来自kaggle</p>
+<p>链接：https://www.kaggle.com/c/titanic/data</p>
+<p>里面的test和train的csv数据集为所需数据集。</p>]]></description>
+</item><item>
+    <title>决策树2-简单调参</title>
+    <link>http://www.spiritysdx.top/20210720/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210720/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_wine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span> <span class="o">=</span> <span class="n">load_wine</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(178, 13)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">wine</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">data</span><span class="p">),</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wine</span><span class="o">.</span><span class="n">target</span><span class="p">)],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>]]></description>
+</item><item>
+    <title>决策树1-分类器</title>
+    <link>http://www.spiritysdx.top/20210719/</link>
+    <pubDate>Mon, 19 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210719/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>     <span class="c1">#分割训练集和测试集</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>       <span class="c1">#K近邻</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="简单案例">简单案例</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris_X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">iris_y</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris_X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,:]</span><span class="c1">#四个属性两朵花</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[5.1, 3.5, 1.4, 0.2],
+       [4.9, 3. , 1.4, 0.2]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">iris_y</span><span class="c1">#三类花</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#分割训练集和测试集</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">iris_X</span><span class="p">,</span><span class="n">iris_y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="c1">#测试占30%</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_train</span><span class="c1">#顺便打乱了数据</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([0, 0, 2, 1, 0, 0, 2, 0, 0, 2, 0, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1,
+       1, 0, 0, 2, 1, 1, 2, 1, 2, 1, 0, 2, 2, 0, 1, 1, 1, 0, 2, 0, 1, 0,
+       1, 2, 2, 1, 0, 1, 2, 1, 2, 0, 2, 1, 2, 1, 1, 0, 0, 2, 2, 0, 1, 2,
+       1, 0, 0, 0, 2, 0, 0, 1, 2, 2, 2, 1, 2, 1, 0, 1, 1, 0, 1, 2, 0, 2,
+       1, 2, 0, 1, 0, 0, 0, 1, 1, 0, 0, 2, 2, 2, 0, 2, 0])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span> <span class="c1">#使用K近邻分类</span>
+</span></span><span class="line"><span class="cl"><span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>     <span class="c1">#输入测试集</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>KNeighborsClassifier()
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="c1">#预测</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([2, 2, 2, 1, 0, 2, 0, 2, 2, 0, 0, 0, 1, 0, 0, 2, 1, 0, 1, 1, 0, 2,
+       2, 1, 1, 1, 0, 1, 0, 2, 2, 2, 2, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 1,
+       1])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([2, 2, 2, 1, 0, 1, 0, 2, 2, 0, 0, 0, 2, 0, 0, 2, 1, 0, 1, 1, 0, 2,
+       2, 1, 1, 1, 0, 1, 0, 2, 1, 2, 2, 0, 1, 0, 1, 2, 2, 0, 1, 0, 1, 1,
+       1])
+</code></pre>
+<h1 id="模型导入训练">模型导入训练</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span> <span class="c1">#导入基础数据</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>  <span class="c1">#导入模型</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#导入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">loaded_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_X</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_y</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#定义模型并训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="c1">#线性模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_X</span><span class="p">,</span><span class="n">data_y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>LinearRegression()
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#预测</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_X</span><span class="p">[:</span><span class="mi">4</span><span class="p">,:])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([30.00384338, 25.02556238, 30.56759672, 28.60703649])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data_y</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([24. , 21.6, 34.7, 33.4])
+</code></pre>
+<p>import matplotlib.pyplot as plt</p>]]></description>
+</item><item>
+    <title>决策树线性回归</title>
+    <link>http://www.spiritysdx.top/20210718/</link>
+    <pubDate>Sun, 18 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210718/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span> <span class="c1">#回归树</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#生成噪声曲线</span>
+</span></span><span class="line"><span class="cl"><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="c1">#生成区分行列的二维数据，一维数据不分行列，生成0~1之间的数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[4.17022005e-01, 7.20324493e-01, 1.14374817e-04],
+       [3.02332573e-01, 1.46755891e-01, 9.23385948e-02]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="c1">#导入二维数据，ravel降维y，可将任意维度降维为一维</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x7f87d52f56a0&gt;
+</code></pre>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span><span class="c1">#每5个数字加随机+-0.5之间的数当成噪声</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x7f87d5113e50&gt;
+</code></pre>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#设定参数的模型导入并训练</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_1</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regr_2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>DecisionTreeRegressor(max_depth=5)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#取0~5以0.01为步长的有顺序点，后面将1维升维2，跟reshape（-1，1）作用一致</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y_1</span> <span class="o">=</span> <span class="n">regr_1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_2</span> <span class="o">=</span> <span class="n">regr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&#34;darkorange&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;data&#34;</span><span class="p">)</span><span class="c1">#边框，点，图例名称</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;cornflowerblue&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;max_depth=2&#34;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;yellowgreen&#34;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;max_depth=5&#34;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;target&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Decision Tree Regression&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="c1">#显示图例</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p></p>]]></description>
+</item><item>
+    <title>深度学习之神经网络</title>
+    <link>http://www.spiritysdx.top/20200409/</link>
+    <pubDate>Thu, 09 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200409/</guid>
+    <description><![CDATA[<h1 id="font-colorcyan教计算机识别手写数字font"><font color=cyan>教计算机识别手写数字</font></h1>
+<p>(转载自YouTube)</p>
+<p>人工神经网络是在现代神经科学的基础上提出和发展起来的，旨在反映人脑结构及功能的一种抽象数学模型。自1943 年美国心理学家 W. McCulloch 和数学家 W. Pitts 提 出形式神经元的抽象数学模型—MP 模型以来，人工神经网络理论技术经过了 50 多年 曲折的发展。特别是 20 世纪 80 年代，人工神经网络的研究取得了重大进展，有关的理论和方法已经发展成一门界于物理学、数学、计算机科学和神经生物学之间的交叉学科。希望阅读本篇，能使你对神经网络有一个大概的了解，明白其大概的工作原理。</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vps - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/vps/</link>
+        <description>Vps - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/vps/" rel="self" type="application/rss+xml" /><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。</p>
+<h2 id="pve">pve</h2>
+<p>proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方面还是一塌糊涂</p>]]></description>
+</item><item>
+    <title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title>
+    <link>http://www.spiritysdx.top/20230506/</link>
+    <pubDate>Sat, 06 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230506/</guid>
+    <description><![CDATA[<h1 id="pve">PVE</h1>
+<p>感谢 Proxmox VE 的免费订阅支持</p>
+<p>原始仓库：<a href="https://github.com/spiritLHLS/pve" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/pve</a></p>
+<p>说明文档</p>
+<p>国内(China)：</p>
+<p><a href="https://virt.spiritlhl.net/" target="_blank" rel="noopener noreffer">virt.spiritlhl.net</a></p>
+<p>国际(Global)：</p>
+<p><a href="https://www.spiritlhl.net/" target="_blank" rel="noopener noreffer">www.spiritlhl.net</a></p>
+<p>说明文档中 Proxmox VE 分区内容</p>
+<p><a href="https://github.com/oneclickvirt/kvm_images" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/kvm_images</a> 为对应虚拟机镜像仓库</p>
+<h3 id="前言">前言</h3>
+<p><strong>国内服务器请使用国内命令，国际服务器请使用国际命令</strong></p>]]></description>
+</item><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>该方法的前提：</p>
+<p>商家使用PVE虚拟化WIN服务器</p>
+<p>WIN服务器可配置使用Network进行启动</p>
+<p>启动时可使用NO VNC操控IPXE命令</p>
+<p>已知符合条件的服务器：<a href="https://hosting.netfront.net/aff.php?aff=126&amp;pid=67" target="_blank" rel="noopener noreffer">NETFRONT</a></p>]]></description>
+</item><item>
+    <title>为openvz或kvm架构的linux服务器增加swap分区</title>
+    <link>http://www.spiritysdx.top/20221206/</link>
+    <pubDate>Tue, 06 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221206/</guid>
+    <description><![CDATA[<h3 id="为openvz或kvm架构的linux服务器增加swap分区">为openvz或kvm架构的linux服务器增加swap分区</h3>
+<h4 id="addswap">addswap</h4>
+<p>更新时间：2022.12.05</p>
+<p>为openvz或kvm架构的linux服务器增加swap分区，请确保在root权限下使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -i 
+</span></span><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh -o addswap.sh <span class="o">&amp;&amp;</span> chmod +x addswap.sh <span class="o">&amp;&amp;</span> bash addswap.sh 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>已增加openvz架构重启swap自动添加。</p>]]></description>
+</item><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[<h3 id="使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</h3>
+<p>Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容器，一键多开NAT小鸡，一键多开NAT服务器</p>
+<p>上述需求都得到了解决</p>]]></description>
+</item></channel>
+</rss>

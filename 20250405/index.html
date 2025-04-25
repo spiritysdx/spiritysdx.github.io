@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>魔改dockur制作可迁移的Windows镜像(单文件) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20250405/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="魔改dockur制作可迁移的Windows镜像(单文件)">
+  <meta property="og:description" content="修改dockur制作Windows镜像 https://github.com/dockur/windows
+拉取测试的版本: v4.33
+原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-05T00:00:00+00:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Dockur">
+    <meta property="article:tag" content="Kvm">
+    <meta property="article:tag" content="Windows">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="魔改dockur制作可迁移的Windows镜像(单文件)">
+  <meta name="twitter:description" content="修改dockur制作Windows镜像 https://github.com/dockur/windows
+拉取测试的版本: v4.33
+原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20250405/" /><link rel="prev" href="http://www.spiritysdx.top/20250315/" /><link rel="next" href="http://www.spiritysdx.top/20250415/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "魔改dockur制作可迁移的Windows镜像(单文件)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20250405\/"
+        },"genre": "posts","keywords": "docker, dockur, kvm, windows","wordcount":  2425 ,
+        "url": "http:\/\/www.spiritysdx.top\/20250405\/","datePublished": "2025-04-05T00:00:00+00:00","dateModified": "2025-04-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">魔改dockur制作可迁移的Windows镜像(单文件)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>Docker</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-04-05">2025-04-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2425 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#修改dockur制作windows镜像">修改dockur制作Windows镜像</a>
+      <ul>
+        <li><a href="#1-克隆仓库">1. 克隆仓库</a></li>
+        <li><a href="#2-修改dockerfile">2. 修改<code>Dockerfile</code></a></li>
+        <li><a href="#3-打包镜像并导出tar包">3. 打包镜像并导出tar包</a></li>
+        <li><a href="#4-下载windows镜像">4. 下载Windows镜像</a></li>
+        <li><a href="#5-开设虚拟机容器">5. 开设虚拟机容器</a></li>
+        <li><a href="#6-设置容器无需重新下载和安装镜像">6. 设置容器无需重新下载和安装镜像</a></li>
+        <li><a href="#7-设置虚拟机c盘自动扩容">7. 设置虚拟机C盘自动扩容</a></li>
+        <li><a href="#8-设置开机自启程序">8. 设置开机自启程序</a></li>
+        <li><a href="#9-提交并导出最终镜像">9. 提交并导出最终镜像</a></li>
+        <li><a href="#10-加载并运行最终镜像">10. 加载并运行最终镜像</a></li>
+        <li><a href="#关于gpu">关于GPU</a></li>
+        <li><a href="#关于端口">关于端口</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="修改dockur制作windows镜像">修改dockur制作Windows镜像</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>拉取测试的版本: <a href="https://github.com/dockur/windows/tree/v4.33" target="_blank" rel="noopener noreffer">v4.33</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。</p>
+<p>由于默认的镜像存在无法持久化保存修改的问题，这里需要修改镜像并重新打包。最终只会保存一个文件，即容器导出的tar包。</p>
+<p>tar包打出来的大小会比较大，目前我打出来是26.3G。(这个大小不受系统内安装了多少软件影响，这是写入卷默认的大小)</p>
+<h3 id="1-克隆仓库">1. 克隆仓库</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/dockur/windows.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> windows
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于需要进入其<code>src</code>目录下的<code>install.sh</code>，先执行以下命令先查询行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sed -n <span class="s1">&#39;/rm -f &#34;\$STORAGE\/windows\.old&#34;/,/rm -f &#34;\$STORAGE\/windows\.type&#34;/p&#39;</span> src/install.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看结果是否为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.old&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.vga&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.net&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.usb&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.args&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.base&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.boot&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.mode&#34;
+</span></span><span class="line"><span class="cl">  rm -f &#34;$STORAGE/windows.type&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是的话，执行以下命令删除这些行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sed -i <span class="s1">&#39;/rm -f &#34;\$STORAGE\/windows\.old&#34;/,/rm -f &#34;\$STORAGE\/windows\.type&#34;/d&#39;</span> src/install.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-修改dockerfile">2. 修改<code>Dockerfile</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">ARG</span> <span class="nv">VERSION_ARG</span><span class="o">=</span><span class="s2">&#34;latest&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># FROM scratch AS build-amd64</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> debian:bookworm-slim AS build-amd64</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>qemux/qemu:7.11 / /<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm-updates main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>&gt; /etc/apt/sources.list<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">DEBCONF_NOWARNINGS</span><span class="o">=</span><span class="s2">&#34;yes&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span><span class="s2">&#34;noninteractive&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">DEBCONF_NONINTERACTIVE_SEEN</span><span class="o">=</span><span class="s2">&#34;true&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nb">set</span> -eu <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apt-get --no-install-recommends -y install <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        wsdd <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        samba <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        wimtools <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        dos2unix <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        cabextract <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        libxml2-utils <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        libarchive-tools <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        netcat-openbsd <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apt-get clean <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># COPY --chmod=755 ./src /run/</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># COPY --chmod=755 ./assets /run/assets</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ADD --chmod=664 https://github.com/qemus/virtiso-whql/releases/download/v1.9.45-0/virtio-win-1.9.45.tar.xz /drivers.txz</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> ./src /run/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> chmod -R <span class="m">755</span> /run/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> ./assets /run/assets/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> chmod -R <span class="m">755</span> /run/assets/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> https://cdn.spiritlhl.net/https://github.com/qemus/virtiso-whql/releases/download/v1.9.45-0/virtio-win-1.9.45.tar.xz /drivers.txz<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> chmod <span class="m">664</span> /drivers.txz<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># FROM dockurr/windows-arm:${VERSION_ARG} AS build-arm64</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># FROM build-${TARGETARCH}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># VOLUME /storage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> mkdir -p /storage <span class="o">&amp;&amp;</span> df -h /storage<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">VERSION_ARG</span><span class="o">=</span><span class="s2">&#34;0.00&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_ARG</span><span class="s2">&#34;</span> &gt; /run/version<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3389 8006</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">RAM_SIZE</span><span class="o">=</span><span class="s2">&#34;4G&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CPU_CORES</span><span class="o">=</span><span class="s2">&#34;2&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 减少C盘默认大小，实际使用最多16G</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ENV DISK_SIZE=&#34;64G&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">DISK_SIZE</span><span class="o">=</span><span class="s2">&#34;20G&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;/usr/bin/tini&#34;</span><span class="p">,</span> <span class="s2">&#34;-s&#34;</span><span class="p">,</span> <span class="s2">&#34;/run/entry.sh&#34;</span><span class="p">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考上面的<code>Dockerfile</code>进行修改：</p>
+<ul>
+<li>加入<code>docker.spiritlhl.news</code>加速原始镜像下载。</li>
+<li>注释掉<code>VOLUME /storage</code>，去除挂载并改成<code>RUN mkdir -p /storage &amp;&amp; df -h /storage</code>。</li>
+<li>将带<code>--chmod</code>的行改成使用<code>COPY</code>和<code>RUN chmod</code>的两行命令。</li>
+<li>注释掉<code>FROM build-${TARGETARCH}</code>。</li>
+</ul>
+<p>如果当前部署机是x86的，就注释掉以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> dockurr/windows-arm:${VERSION_ARG} AS build-arm64</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>并修改<code>FROM scratch AS build-amd64</code>为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> debian:bookworm-slim AS build-amd64</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>同时加入清华源加速部分依赖下载，注意不能删除<code>/etc/apt/sources.list.d/</code>下的文件，有一些包必须通过官方源下载即便很慢：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm-updates main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>&gt; /etc/apt/sources.list<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果当前部署机是arm64的，就注释掉以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> scratch AS build-amd64</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-打包镜像并导出tar包">3. 打包镜像并导出tar包</h3>
+<p>执行以下命令打包镜像并导出tar包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build -t windows:builder .
+</span></span><span class="line"><span class="cl">docker save -o builder.tar windows:builder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-下载windows镜像">4. 下载Windows镜像</h3>
+<p>在 <a href="https://down.idc.wiki/ISOS/Windows/" target="_blank" rel="noopener noreffer">https://down.idc.wiki/ISOS/Windows/</a> 中找到要使用的ISO镜像进行下载，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget https://down.idc.wiki/ISOS/Windows/Server%202022/zh-cn_windows_server_2022_x64_dvd_6c73507d.iso <span class="o">&amp;&amp;</span> chmod <span class="m">777</span> zh-cn_windows_server_2022_x64_dvd_6c73507d.iso
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下载镜像大概需要10分钟。</p>
+<p>或者不使用这里的镜像，下面开设的时候不挂载<code>-v ./zh-cn_windows_server_2022_x64_dvd_6c73507d.iso:/boot.iso</code>而是使用<code>--env VERSION=&quot;2019&quot;</code>这种方法指定下载官方的iso文件，也可以。这块参考 <a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a> 仓库中的说明。</p>
+<h3 id="5-开设虚拟机容器">5. 开设虚拟机容器</h3>
+<p>使用下载的ISO镜像开设虚拟机容器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker load -i builder.tar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -it -d -e <span class="nv">RAM_SIZE</span><span class="o">=</span><span class="s2">&#34;8G&#34;</span> -e <span class="nv">CPU_CORES</span><span class="o">=</span><span class="s2">&#34;4&#34;</span> --name win2022 -p 8006:8006 --device<span class="o">=</span>/dev/kvm --device<span class="o">=</span>/dev/net/tun --cap-add NET_ADMIN -v ./zh-cn_windows_server_2022_x64_dvd_6c73507d.iso:/boot.iso --stop-timeout <span class="m">120</span> windows:builder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>整个开设过程大约需要90分钟。</p>
+<h3 id="6-设置容器无需重新下载和安装镜像">6. 设置容器无需重新下载和安装镜像</h3>
+<p>执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> win2022 sh -c <span class="s1">&#39;echo &#34;data.img&#34; &gt; /storage/windows.boot&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>PS: 本操作借鉴自 <a href="https://github.com/dockur/windows/issues/1192" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows/issues/1192</a></p>
+<h3 id="7-设置虚拟机c盘自动扩容">7. 设置虚拟机C盘自动扩容</h3>
+<p>由于原先系统制作的时候Dockerfile中预定义的硬盘为20G，实际开设过程中需要增大硬盘大小，否则会出现C盘使用一段时间后磁盘写满的情况，所以需要在开设的时候指定扩容硬盘，但这样依然没有自动扩容硬盘到C盘，虚拟机中进入磁盘管理器后可以看到有未分配的硬盘。</p>
+<p>需要在打包镜像前创建一个bat脚本，创建定时任务在系统启动后执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl">net session <span class="p">&gt;</span>nul <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%errorlevel%</span> <span class="ow">neq</span> 0 <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /b
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="s2">&#34;dptemp=</span><span class="nv">%temp%</span><span class="s2">\extend_c_drive.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="s2">&#34;</span><span class="nv">%dptemp%</span><span class="s2">&#34;</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> select volume C
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> extend
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">diskpart /s <span class="s2">&#34;</span><span class="nv">%dptemp%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="s2">&#34;</span><span class="nv">%dptemp%</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 设置 &ndash; 控制面板 &ndash; 计划任务 &ndash; 创建基本任务 &ndash; 当前用户登录时启动任务(L) &ndash; 选择这个bat程序文件 &ndash; 创建任务</p>
+<h3 id="8-设置开机自启程序">8. 设置开机自启程序</h3>
+<p>类似上述操作，事先查找到要开机自启动的桌面的程序路径，右键点开图标的<code>属性(R)</code>，复制粘贴<code>属性(R)</code>中的<code>目标(T)</code>的地址，替换下面的<code>&quot;路径&quot;</code>为对应的路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl"><span class="k">setlocal</span> enabledelayedexpansion
+</span></span><span class="line"><span class="cl"><span class="k">start</span> <span class="s2">&#34;&#34;</span> <span class="s2">&#34;路径&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9-提交并导出最终镜像">9. 提交并导出最终镜像</h3>
+<p>提交虚拟机容器并导出镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker commit win2022 windows:2022 <span class="o">&amp;&amp;</span> docker save -o win2022.tar windows:2022
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意当前宿主机必须至少拥有100G空闲的硬盘在路径<code>/</code>上，否则会出现类似<code>write ./.docker_temp_336929345: no space left on device</code>这样的报错。</p>
+<p>这个导出并保存为文件的命令执行时间在60分钟左右。</p>
+<h3 id="10-加载并运行最终镜像">10. 加载并运行最终镜像</h3>
+<p>如果使用这个tar包开设虚拟机，执行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker load -i win2022.tar <span class="o">&amp;&amp;</span> docker run -it -d -e <span class="nv">RAM_SIZE</span><span class="o">=</span><span class="s2">&#34;8G&#34;</span> -e <span class="nv">CPU_CORES</span><span class="o">=</span><span class="s2">&#34;4&#34;</span> --name win2022 -p 8006:8006 --device<span class="o">=</span>/dev/kvm --device<span class="o">=</span>/dev/net/tun --cap-add NET_ADMIN --stop-timeout <span class="m">120</span> windows:2022
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个过程大概需要5分钟。</p>
+<p>如果需要增加硬盘大小，那么就设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-e <span class="nv">DISK_SIZE</span><span class="o">=</span><span class="s2">&#34;35G&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果需要外挂数据，那么就</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-v 宿主机的那个文件夹的绝对路径:/data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在开设的win中：</p>
+<ul>
+<li>打开<code>文件资源管理器</code>。</li>
+<li>点击左侧的<code>网络</code>选项。</li>
+<li>找到名为<code>host.lan</code>的计算机。</li>
+<li>双击<code>host.lan</code>，看到一个名为<code>Data</code>的共享文件夹，该共享文件夹对应挂载的文件夹。</li>
+</ul>
+<h3 id="关于gpu">关于GPU</h3>
+<p>这样制作的镜像GPU无法在容器内给到Windows的虚拟机使用的，即便可以在容器中安装驱动并成功使用，也无法转发给容器内的虚拟机</p>
+<p>相关尝试 <a href="https://github.com/dockur/windows/issues/22" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows/issues/22</a></p>
+<h3 id="关于端口">关于端口</h3>
+<p>只能使用官方给的端口，无法自行修改，要修改的话需要修改基础镜像中复制的 qemus/qemu 镜像</p>
+<p>目前容器内的端口是</p>
+<p>web端启动的NoVNC端口是 8006</p>
+<p>RDP启动的端口是 3389</p>
+<p>如果需要使用对应服务，需要在docker启动时指定映射容器的这两个端口</p>
+<h2 id="后记">后记</h2>
+<p>虽然这样持久化保存了系统镜像到了docker的写入层，但是镜像体积会非常大，我打包win的server的2022打包的tar包总计26.3G大小。</p>
+<p>造成这样的原因是默认的挂载点被我修改删掉了，没法约束对应storage文件夹的大小了，默认就是docker分配的匿名挂载的大小。</p>
+<p>同时启动速度极慢，不如直接通过ProxmoxVE或者Kubevirt的直接启动qcow2文件来得快。</p>
+<p>在浏览器端的VNC无法使用复制粘贴功能，这块没有解决的方法，系QEMU本身不支持的问题(仅限Windows虚拟机)</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-04-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)" data-hashtags="docker,dockur,kvm,windows"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20250405/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20250405/" data-title="魔改dockur制作可迁移的Windows镜像(单文件)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">Docker</a>,&nbsp;<a href="/tags/dockur/">Dockur</a>,&nbsp;<a href="/tags/kvm/">Kvm</a>,&nbsp;<a href="/tags/windows/">Windows</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20250315/" class="prev" rel="prev" title="通过dockur制作可迁移的Windows镜像(双文件)"><i class="fas fa-angle-left fa-fw"></i>通过dockur制作可迁移的Windows镜像(双文件)</a>
+            <a href="/20250415/" class="next" rel="next" title="kubevirt初体验">kubevirt初体验<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

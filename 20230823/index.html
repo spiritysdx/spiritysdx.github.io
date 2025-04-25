@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>高效探索学习解决组合图分区问题(基于强化学习的优化算法) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20230823/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="高效探索学习解决组合图分区问题(基于强化学习的优化算法)">
+  <meta property="og:description" content="前言 老板下指示复现两篇文章，这是其中一篇
+https://arxiv.org/pdf/2205.14105v1.pdf
+文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解
+原始数据 ER40/BA40到ER500/BA500 https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579
+https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47
+分别命名为ER和BA数据集">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-23T00:00:00+00:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Jupyter">
+    <meta property="article:tag" content="Pytorch">
+    <meta property="article:tag" content="Conda">
+    <meta property="article:tag" content="Python">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="高效探索学习解决组合图分区问题(基于强化学习的优化算法)">
+  <meta name="twitter:description" content="前言 老板下指示复现两篇文章，这是其中一篇
+https://arxiv.org/pdf/2205.14105v1.pdf
+文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解
+原始数据 ER40/BA40到ER500/BA500 https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579
+https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47
+分别命名为ER和BA数据集">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230823/" /><link rel="prev" href="http://www.spiritysdx.top/20230816/" /><link rel="next" href="http://www.spiritysdx.top/20230829/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "高效探索学习解决组合图分区问题(基于强化学习的优化算法)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230823\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, jupyter, pytorch, conda, Python, GCN, RNN","wordcount":  1770 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230823\/","datePublished": "2023-08-23T00:00:00+00:00","dateModified": "2023-08-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">高效探索学习解决组合图分区问题(基于强化学习的优化算法)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-23">2023-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1770 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#原始数据">原始数据</a>
+      <ul>
+        <li><a href="#er40ba40到er500ba500">ER40/BA40到ER500/BA500</a></li>
+        <li><a href="#er800到er10000">ER800到ER10000</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关github仓库">相关Github仓库</a></li>
+    <li><a href="#实验的问题">实验的问题</a></li>
+    <li><a href="#优化思路">优化思路</a></li>
+    <li><a href="#ecord的伪代码">ECORD的伪代码</a></li>
+    <li><a href="#优化点">优化点</a></li>
+    <li><a href="#相关知识点">相关知识点</a>
+      <ul>
+        <li><a href="#rnn">RNN</a></li>
+        <li><a href="#gru">GRU</a></li>
+        <li><a href="#bptt">BPTT</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/2205.14105v1.pdf</a></p>
+<p>文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="er40ba40到er500ba500">ER40/BA40到ER500/BA500</h3>
+<p><a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer">https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579</a></p>
+<p><a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer">https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47</a></p>
+<p>分别命名为ER和BA数据集</p>
+<h3 id="er800到er10000">ER800到ER10000</h3>
+<p><a href="https://www.sciencedirect.com/science/article/abs/pii/S0952197612002175" target="_blank" rel="noopener noreffer">https://www.sciencedirect.com/science/article/abs/pii/S0952197612002175</a></p>
+<h2 id="相关github仓库">相关Github仓库</h2>
+<p><a href="https://github.com/tomdbar/ecord" target="_blank" rel="noopener noreffer">https://github.com/tomdbar/ecord</a></p>
+<p>这是作者的原始仓库，非常感谢作者提供了Dockerfile和对应的数据集，使得环境依赖强制约束的非常好，开源了这么久了还能跑，依赖无需大更新</p>
+<p>我修复了一下numpy依赖的版本(pytorch要求更高了)，然后总结了一下一步安装的脚本和步奏如下</p>
+<p><a href="https://github.com/spiritysdx/ecord#edited" target="_blank" rel="noopener noreffer">https://github.com/spiritysdx/ecord#edited</a></p>
+<p>进入容器后可以非常容易的一键训练出网络和使用各测试集测试，再次感谢原作者对这方面的支持</p>
+<h2 id="实验的问题">实验的问题</h2>
+<p>最大割（Max-Cut）问题的目标是将一个给定的无向图中的节点分成两个不相交的集合，使得割（即连接两个集合的边）的数量尽可能多。换句话说，要找到一个划分，使得划分的边的数目最大化。</p>
+<p>形式化地说，给定一个无向图 G = (V, E)，其中 V 表示节点的集合，E 表示边的集合，Max-Cut问题的目标是找到一个节点划分 (A, B)，其中 A 和 B 是不相交的子集，使得划分的边的数量尽可能多。数学上，目标可以表示为最大化以下函数：</p>
+<p>maximize  E(A, B) = {(u, v) ∈ E : u ∈ A 且 v ∈ B} 的大小。</p>
+<h2 id="优化思路">优化思路</h2>
+<p>构建了一个新的算法 ECORD（具有递归解码的探索性组合优化），它将单个GNN预处理步骤与快速行动解码相结合，从而用简单的顶点观察和对正在进行的优化轨迹的学习表示来替代进一步的几何推理。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230823/1.png?raw=true" /></p>
+<p>这里的翻转实际就是属于哪个子集，对于每个顶点，都提供以下信息：(i) 当前标签，(ii) 如果翻转该顶点会导致的切割值的立即变化（被称为“预览”）和 (iii) 自上次翻转节点以来的步数。</p>
+<p>目标观察是当前状态和最佳观察状态之间切割值的（归一化）差异，以及当前状态中任何顶点的最大预览值。</p>
+<h2 id="ecord的伪代码">ECORD的伪代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">对于每一批次的 episodes 做如下循环：
+</span></span><span class="line"><span class="cl">    从分布 D 中随机采样一批 BG 图 G(V, E)。
+</span></span><span class="line"><span class="cl">    使用图神经网络计算每个顶点的嵌入向量。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    对于每个 episode 中的时间步 t 做如下循环：
+</span></span><span class="line"><span class="cl">        计算用于反向传播的时间步数 k0。
+</span></span><span class="line"><span class="cl">        对于批次中的每个图 Gj 做如下循环：
+</span></span><span class="line"><span class="cl">            根据策略选择动作 a(t)：
+</span></span><span class="line"><span class="cl">                - 以概率 ε 随机选择动作 a(t)。
+</span></span><span class="line"><span class="cl">                - 以概率 1 - ε 使用 softmax(Qθ(s(t),·) / τ) 方法选择动作 a(t)。
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            更新解决方案集合 S(t+1)：
+</span></span><span class="line"><span class="cl">                - 如果 a(t) 不在 S(t) 中，则将其加入到 S(t) 中。
+</span></span><span class="line"><span class="cl">                - 如果 a(t) 在 S(t) 中，则将其从 S(t) 中移除。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            将元组 m(t) = (s(t-k0), ..., s(t+1), a(t-k0), ..., a(t), r(t), d) 添加到经验回放内存 M 中。
+</span></span><span class="line"><span class="cl">            # 这个元组包含了状态、动作、奖励等信息，用于训练模型。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            如果 t 模除 fupd 等于 0，则进行如下操作：
+</span></span><span class="line"><span class="cl">                从经验回放内存 M 中随机采样一批经验 M(t)。
+</span></span><span class="line"><span class="cl">                使用 BPTT 方法从时间步 t 到 t - k0 进行反向传播，更新模型参数 θ。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                更新目标网络的参数 θ：
+</span></span><span class="line"><span class="cl">                θ ← θτupd + θ(1 - τupd)
+</span></span><span class="line"><span class="cl">            结束
+</span></span><span class="line"><span class="cl">        结束
+</span></span><span class="line"><span class="cl">    结束
+</span></span><span class="line"><span class="cl">结束
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="优化点">优化点</h2>
+<p>ECO-DQN在每个决策步骤都使用了昂贵的GNN，再加上推理过程中的探索轨迹，导致其扩展性甚至不如S2V-DQN，并且仅用了一些手工特征来表示先前的搜索轨迹。</p>
+<p>ECORD通过使用初始GNN嵌入，然后使用循环单元来平衡图网络提供的信息与基于学习的轨迹表示之间的关系，弥补了这一缺点。</p>
+<h2 id="相关知识点">相关知识点</h2>
+<h3 id="rnn">RNN</h3>
+<p>基于MLP多塞了一项时间t，多了一个时间轴，当前的预测值实际就是当前的观察值的预测，但当前预测值只用到了当前的隐变量ht，ht和前一个时刻的ht-1有关，ht也和前一个时间t-1中的观察值xt-1有关。(当前时间t中，输出和输入的信息不互通，但理论上预测成功的话二者是一样的)</p>
+<h3 id="gru">GRU</h3>
+<p>门控循环单元与普通的循环神经网络(RNN)之间的关键区别在于： 前者支持隐状态的门控。 这意味着模型有专门的机制来确定应该何时更新隐状态， 以及应该何时重置隐状态。</p>
+<p>重置门有助于捕获序列中的短期依赖关系；更新门有助于捕获序列中的长期依赖关系。重置和更新门都具有可学习的参数， 因此可以对模型进行训练。</p>
+<h3 id="bptt">BPTT</h3>
+<p>通过时间反向传播，要求将循环神经网络的计算图一次展开一个时间步， 以获得模型变量和参数之间的依赖关系。然后，基于链式法则，应用反向传播来计算和存储梯度。</p>
+<p>由于通过时间反向传播是反向传播在循环神经网络中的应用方式， 所以训练循环神经网络交替使用前向传播和通过时间反向传播。 通过时间反向传播依次计算并存储上述梯度。 具体而言，存储的中间值会被重复使用，以避免重复计算。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)" data-hashtags="机器学习,深度学习,jupyter,pytorch,conda,Python,GCN,RNN"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230823/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230823/" data-title="高效探索学习解决组合图分区问题(基于强化学习的优化算法)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/jupyter/">Jupyter</a>,&nbsp;<a href="/tags/pytorch/">Pytorch</a>,&nbsp;<a href="/tags/conda/">Conda</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/gcn/">GCN</a>,&nbsp;<a href="/tags/rnn/">RNN</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230816/" class="prev" rel="prev" title="图优化问题经常拿来比较的一些模型"><i class="fas fa-angle-left fa-fw"></i>图优化问题经常拿来比较的一些模型</a>
+            <a href="/20230829/" class="next" rel="next" title="为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)">为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

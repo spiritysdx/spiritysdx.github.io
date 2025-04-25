@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>深度学习之神经网络 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200409/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="深度学习之神经网络">
+  <meta property="og:description" content="教计算机识别手写数字 (转载自YouTube)
+人工神经网络是在现代神经科学的基础上提出和发展起来的，旨在反映人脑结构及功能的一种抽象数学模型。自1943 年美国心理学家 W. McCulloch 和数学家 W. Pitts 提 出形式神经元的抽象数学模型—MP 模型以来，人工神经网络理论技术经过了 50 多年 曲折的发展。特别是 20 世纪 80 年代，人工神经网络的研究取得了重大进展，有关的理论和方法已经发展成一门界于物理学、数学、计算机科学和神经生物学之间的交叉学科。希望阅读本篇，能使你对神经网络有一个大概的了解，明白其大概的工作原理。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-04-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-04-09T00:00:00+00:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="神经网络">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="深度学习之神经网络">
+  <meta name="twitter:description" content="教计算机识别手写数字 (转载自YouTube)
+人工神经网络是在现代神经科学的基础上提出和发展起来的，旨在反映人脑结构及功能的一种抽象数学模型。自1943 年美国心理学家 W. McCulloch 和数学家 W. Pitts 提 出形式神经元的抽象数学模型—MP 模型以来，人工神经网络理论技术经过了 50 多年 曲折的发展。特别是 20 世纪 80 年代，人工神经网络的研究取得了重大进展，有关的理论和方法已经发展成一门界于物理学、数学、计算机科学和神经生物学之间的交叉学科。希望阅读本篇，能使你对神经网络有一个大概的了解，明白其大概的工作原理。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200409/" /><link rel="prev" href="http://www.spiritysdx.top/20200404/" /><link rel="next" href="http://www.spiritysdx.top/20200411/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "深度学习之神经网络",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200409\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, Python, 神经网络","wordcount":  3667 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200409\/","datePublished": "2020-04-09T00:00:00+00:00","dateModified": "2020-04-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">深度学习之神经网络</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-09">2020-04-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3667 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="font-colorcyan教计算机识别手写数字font"><font color=cyan>教计算机识别手写数字</font></h1>
+<p>(转载自YouTube)</p>
+<p>人工神经网络是在现代神经科学的基础上提出和发展起来的，旨在反映人脑结构及功能的一种抽象数学模型。自1943 年美国心理学家 W. McCulloch 和数学家 W. Pitts 提 出形式神经元的抽象数学模型—MP 模型以来，人工神经网络理论技术经过了 50 多年 曲折的发展。特别是 20 世纪 80 年代，人工神经网络的研究取得了重大进展，有关的理论和方法已经发展成一门界于物理学、数学、计算机科学和神经生物学之间的交叉学科。希望阅读本篇，能使你对神经网络有一个大概的了解，明白其大概的工作原理。</p>
+<p>神经网络之名来源自人的大脑结构。为什么叫做神经网络？我们来剖析一下，它的神经元是什么，神经元又是如何链接起来的，相信你就能得到答案了。目前说到神经元，我希望你把它暂时理解成一个用来装数字的容器，装着一个0到1之间的数字，仅此而已。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/cb38b72d11d5f.webp"
+        data-srcset="https://pic./2020/04/02/cb38b72d11d5f.webp, https://pic./2020/04/02/cb38b72d11d5f.webp 1.5x, https://pic./2020/04/02/cb38b72d11d5f.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/cb38b72d11d5f.webp"
+        title="picture1" /></p>
+<p>看这个例子，这个网络一开始的地方有很多神经元，分别对应了28×28的输入图像里的每一个像素，总计784个神经元，神经元中装着的数字代表对应像素的灰度值，0表示纯黑橡素，1表示纯白像素，我们把神经元里装着的数叫做“激活值”。你可以想象这么一个画面，激活值越大，神经元就点着越亮。那么这些784个神经元就组成了网络的第一层，现在我们跳到网络的最后一层，这一层的十个神经元分别代表0到9这十个数字，它们的激活值，同理都处在0到1之间，这些值表示系统认为输入的图像对应着哪个数字的可能性，网络中还有几层“隐含层”，暂时我们就把它看作一个大黑箱，里面就进行着处理识别数字的具体工作。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/15d8c16c82ba8.webp"
+        data-srcset="https://pic./2020/04/02/15d8c16c82ba8.webp, https://pic./2020/04/02/15d8c16c82ba8.webp 1.5x, https://pic./2020/04/02/15d8c16c82ba8.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/15d8c16c82ba8.webp"
+        title="picture2" /></p>
+<p>这个网络中，我选择加两层隐含层，每层有16个神经元，但其实这些设置都是随便选的，结构选择两层的原因在后续的介绍中我会解释，而选择16个神经元无非是显得好看罢了。(ಡωಡ)实际应用中，在网络结构上，我们有很大的调整实验的余地。</p>
+<p>在神经网络的实验中，上一层的激活值将决定下一层的激活值。所以说，神经网络处理信息的核心机制正是一层激活值是通过怎样的运算算出下一层的激活值的。某种程度上讲，它想模仿的是生物神经元组成的网络。某些神经元的激发，就会促使另一些神经元激发。如果这个神经元网络被训练成熟，你在网络输入层的784个神经元处，输入了784个代表图像像素的灰度值。那么，随着一层层神经元的激活，会产生某些特殊的图案，最终在输出层得到某种结果。那我们首先要讨论的是：我们到底希望这些中间层最好能做什么呢？</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/7113b0afb156e.webp"
+        data-srcset="https://pic./2020/04/02/7113b0afb156e.webp, https://pic./2020/04/02/7113b0afb156e.webp 1.5x, https://pic./2020/04/02/7113b0afb156e.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/7113b0afb156e.webp"
+        title="picture3" /></p>
+<p>当我们人类在识别数字的时候，我们其实是在组合数字的各个部件。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/e3f12e0690f4f.webp"
+        data-srcset="https://pic./2020/04/02/e3f12e0690f4f.webp, https://pic./2020/04/02/e3f12e0690f4f.webp 1.5x, https://pic./2020/04/02/e3f12e0690f4f.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/e3f12e0690f4f.webp"
+        title="picture4" /></p>
+<p>在理想的情况下，我们希望倒数第二层的各个神经元能分别对应上一个笔画部件。这样一来，当我们输入一个9或8这种带圈数字时，某个神经元的激活值就会接近于1，而且我兵部特指某种样子的圈，我是希望所有这种位于图像顶部的圆圈图案都能点亮这个神经元。这样一来，从第三层到最后一层，我们只需要学习哪些部件能组合出哪个数字即可。当然，这样一来我们就引来了更多的问题。例如，要如何识别这些部件？其实，识别圆圈还可以细分成很多部分：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/c887154aa384f.webp"
+        data-srcset="https://pic./2020/04/02/c887154aa384f.webp, https://pic./2020/04/02/c887154aa384f.webp 1.5x, https://pic./2020/04/02/c887154aa384f.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/c887154aa384f.webp"
+        title="picture5" /></p>
+<p>于是我们希望在网络第二层的各个神经元就能对应上这些各种各样的短边，没准当这样的图像输入进来的时候，它就能把所有关联的八到十个神经元都给点亮，接着就能点亮对应顶部圆圈和长竖条的神经元，最后就能点亮对应9字的神经元👇👇👇👇👇👇👇👇👇👇</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/1fb5b96b5efb5.webp"
+        data-srcset="https://pic./2020/04/02/1fb5b96b5efb5.webp, https://pic./2020/04/02/1fb5b96b5efb5.webp 1.5x, https://pic./2020/04/02/1fb5b96b5efb5.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/1fb5b96b5efb5.webp"
+        title="picture6" /></p>
+<p>至于我们的网络是否真的能做到这一步，需要我们对网络进行训练，但这就是我们的希望，希望这种层状结构能完成的目标。更进一步的讲，假如神经网络真能识别出这类边缘和图案，它就能更好的运用到其他的图像识别上来。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/2352470d2244b.webp"
+        data-srcset="https://pic./2020/04/02/2352470d2244b.webp, https://pic./2020/04/02/2352470d2244b.webp 1.5x, https://pic./2020/04/02/2352470d2244b.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/2352470d2244b.webp"
+        title="picture7" /></p>
+<p>甚至不光是图像识别，世界上各种人工智能的任务，都可以转化为抽象元素，一层层的抽丝剥茧，就比如语言识别，就是要从原音频中识别出特殊的声音，组合成特定的音节，组合成单词，再组合成短语，以及更抽象的概念。回到神经网络工作原理上来，试想一下，你要设计上一层中的激活值到底如何决定下一层中的激活值。我们需要设计一个机制，可以把像素拼成短边，把短边拼成图案，或把图案拼成数字等等。在这个例子里，我们来放大关注其中的一个。我们来设计，让第二层中的这一个神经元能够正确识别出图像的这快区域里是否存在一条边。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/311e0a4755bf4.webp"
+        data-srcset="https://pic./2020/04/02/311e0a4755bf4.webp, https://pic./2020/04/02/311e0a4755bf4.webp 1.5x, https://pic./2020/04/02/311e0a4755bf4.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/311e0a4755bf4.webp"
+        title="picture8" /></p>
+<p>现在我们就需要知道这个网络的参数，以及如何调整网络上的旋钮开关，才能让它足以表示出特殊的图案。我们需要给这个神经元和第一层所有神经元间的每一条接线都赋上一个权重值，这些权重都不过是数字数字而已。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/c1f0136a8e453.webp"
+        data-srcset="https://pic./2020/04/02/c1f0136a8e453.webp, https://pic./2020/04/02/c1f0136a8e453.webp 1.5x, https://pic./2020/04/02/c1f0136a8e453.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/c1f0136a8e453.webp"
+        title="picture9" /></p>
+<p>然后，我们拿起第一层所有的激活值值和它们对应的权重值一起，算出它们的加权和。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/fa34f3b539e31.webp"
+        data-srcset="https://pic./2020/04/02/fa34f3b539e31.webp, https://pic./2020/04/02/fa34f3b539e31.webp 1.5x, https://pic./2020/04/02/fa34f3b539e31.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/fa34f3b539e31.webp"
+        title="picture10" /></p>
+<p>我觉得把这些权重值做成一个表格更好理解，让我们把正的权重标记为绿色，负的标记成红色，颜色越暗，就大致表示它的权重越接近于0。现在我们把关注区域的权重赋为正值，而其他所有的权重一律赋为0，这样一来，对所有的像素取加权和，就只会累加我们关注区域的像素值了。此时如果你真的想识别出这里是否存在一条边，你只需要给周围一圈的像素赋予负的权重。这样，当中间的像素量，周围的像素暗时，加权和就能达到最大。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/d93ae779000f5.webp"
+        data-srcset="https://pic./2020/04/02/d93ae779000f5.webp, https://pic./2020/04/02/d93ae779000f5.webp 1.5x, https://pic./2020/04/02/d93ae779000f5.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/d93ae779000f5.webp"
+        title="picture11" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/216ff0b7bb304.webp"
+        data-srcset="https://pic./2020/04/02/216ff0b7bb304.webp, https://pic./2020/04/02/216ff0b7bb304.webp 1.5x, https://pic./2020/04/02/216ff0b7bb304.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/216ff0b7bb304.webp"
+        title="picture12" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/e31d265ad4b9a.webp"
+        data-srcset="https://pic./2020/04/02/e31d265ad4b9a.webp, https://pic./2020/04/02/e31d265ad4b9a.webp 1.5x, https://pic./2020/04/02/e31d265ad4b9a.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/e31d265ad4b9a.webp"
+        title="picture13" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/9dde445a60c50.webp"
+        data-srcset="https://pic./2020/04/02/9dde445a60c50.webp, https://pic./2020/04/02/9dde445a60c50.webp 1.5x, https://pic./2020/04/02/9dde445a60c50.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/9dde445a60c50.webp"
+        title="picture14" /></p>
+<p>这样计算出来的加权和可以是任意大小，但在这个网络中，我们需要激活值处在0与1之间。那么，我们就可以顺其自然把这个加权和输入进某个函数，把这条实数轴挤压进0到1的区间内，其中一个叫sigmoid的函数非常常用，它又叫logistic/逻辑斯蒂曲线。 简而言之，它能把非常大的负值变成接近0，非常大的正值变成接近于1，而在取值0附近则是平稳增长的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/65c42ebb42a08.webp"
+        data-srcset="https://pic./2020/04/02/65c42ebb42a08.webp, https://pic./2020/04/02/65c42ebb42a08.webp 1.5x, https://pic./2020/04/02/65c42ebb42a08.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/65c42ebb42a08.webp"
+        title="picture15" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/08442a4142889.webp"
+        data-srcset="https://pic./2020/04/02/08442a4142889.webp, https://pic./2020/04/02/08442a4142889.webp 1.5x, https://pic./2020/04/02/08442a4142889.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/08442a4142889.webp"
+        title="picture16" /></p>
+<p>所以这个神经元中的激活值，实际上就是对加权和到底有多正的打分。但有时候，即使加权和大于0时，你也不想把神经元点亮，可能只有当和大于例如10的时候才让它激发。此时，你就需要加上一个偏置值·，保证不能随便激发。（当加权值大于10时，激发才有意义，过早激发会出现偏差）而我们只需要在加权和之后加上一个负10之类的数，再把它送进sigmoid函数即可，这个附加的数就叫偏置。总而言之，权重告诉你这个第二层的神经元关注什么样的像素图案，偏置告诉你加权和得有多大，才能让神经元的激发变得有意义。我们这就解说完了其中一个神经元，但这每一层的每一个神经元，都会和第一层全部的784个神经元相连接，每个神经元各带784个权重，而且每一个神经元都会在计算自己的加权后加上自己的偏置，再通过sigmoid压缩输出自己的结果。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/044d7273e5596.webp"
+        data-srcset="https://pic./2020/04/02/044d7273e5596.webp, https://pic./2020/04/02/044d7273e5596.webp 1.5x, https://pic./2020/04/02/044d7273e5596.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/044d7273e5596.webp"
+        title="picture17" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/95584f74aed79.webp"
+        data-srcset="https://pic./2020/04/02/95584f74aed79.webp, https://pic./2020/04/02/95584f74aed79.webp 1.5x, https://pic./2020/04/02/95584f74aed79.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/95584f74aed79.webp"
+        title="picture18" /></p>
+<p>这一下子要考虑的东西就多了起来，这层隐含层的16个神经元，就需要总计784×16个权重值和16个偏置值，而且这还是单单第一层和第二层之间的连接，别的层之间还有它们分别自带的权重和偏置，一整套下来整个网络一共会用上将近13000个权重加偏置，相当于这个网络上有将近13000多个旋钮开关让你调整，从而带来不一样的结果。所以当我们讨论机器如何学习的时候，我们其实在讲，电脑应该如何设置这一大坨数字参数，才能让它正确地解决问题。这里有一个细思极恐的###思想实验，想象一下你自己手动调整这些权重还有偏置参数，让第二层识别短边，第三层识别图案。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/1fb5b96b5efb5.webp"
+        data-srcset="https://pic./2020/04/02/1fb5b96b5efb5.webp, https://pic./2020/04/02/1fb5b96b5efb5.webp 1.5x, https://pic./2020/04/02/1fb5b96b5efb5.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/1fb5b96b5efb5.webp"
+        title="picture19" />
+思想实验2</p>
+<p>比起把网络完全当作一个黑箱，我个人觉得这么考虑更加令人满意，毕竟当网络的输出和期望出了偏差的时候，如果你一定程度上了解了这些权重和偏置的意义，那么你再尝试对结构进行修正就有出发点了。或许你的神经网络能输出正确的结果，但过程和你想象的不一样，那么深挖权重和偏置的实际意义，就可能对你的假设提出挑战（即使正确工作，也要追究缘由，进而探索出所有可能的解决方案。）</p>
+<p>让我们把某一层中所有的激活值统一成一列向量，再把它和下一层检索有的权重放到一个矩阵中，矩阵第n行就是这一层的所有神经元和下一层第n个神经元间所有的连线的权重，这样权重和向量乘积的第n项就是这一层所有的激活值和下一层第n个神经元间连线权重的加权和。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/3dd4bb77cd4ab.webp"
+        data-srcset="https://pic./2020/04/02/3dd4bb77cd4ab.webp, https://pic./2020/04/02/3dd4bb77cd4ab.webp 1.5x, https://pic./2020/04/02/3dd4bb77cd4ab.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/3dd4bb77cd4ab.webp"
+        title="picture20" /></p>
+<p>表达偏置值的时候，我们并不会把一个个值都拎出来单独讨论。相反，我们会把它们都放到一个向量里然后和它们之前的矩阵乘法相加。最后一步，我们把整个表达式用一个sigmoid包起来。所谓包起来就是指对表达式结果向量中的每一项都取一次sigmoid。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/d34761bffa579.webp"
+        data-srcset="https://pic./2020/04/02/d34761bffa579.webp, https://pic./2020/04/02/d34761bffa579.webp 1.5x, https://pic./2020/04/02/d34761bffa579.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/d34761bffa579.webp"
+        title="picture21" /></p>
+<p>现在，只要我们一写下权重矩阵和相应向量的符号，神经网络各层之间激活值的转化就可以表达得清晰简明明了了。 这种表达也让我们写程序变得简便了许多，因为很多库在矩阵乘法方面做了十足的优化。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/613a9c7831b40.webp"
+        data-srcset="https://pic./2020/04/02/613a9c7831b40.webp, https://pic./2020/04/02/613a9c7831b40.webp 1.5x, https://pic./2020/04/02/613a9c7831b40.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/613a9c7831b40.webp"
+        title="picture22" /></p>
+<p>还记得之前，我叫你把神经元看作数字的容器吗？实际上，神经元中装着的值是取决于你的输入图像的，所以我们把神经元看作一个函数才更加准确，</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/73cd7dbc0d128.webp"
+        data-srcset="https://pic./2020/04/02/73cd7dbc0d128.webp, https://pic./2020/04/02/73cd7dbc0d128.webp 1.5x, https://pic./2020/04/02/73cd7dbc0d128.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/73cd7dbc0d128.webp"
+        title="picture23" /></p>
+<p>它的输入是上层所有的神经元的输出，它的输出是一个0到1之间的值。其实整个神经网络就是一个函数，一个输入784个值，输出10个值的函数。不过这个函数极其复杂，使用了13000个权重参数偏置参数来识别特定的图案，又要循环不停地用到矩阵乘法和sigmoid映射运算，但它终究是个函数而已，而且它的复杂程度可以稍微让人安点心。如果它没有那么复杂的话，我们恐怕就不大能指望它数字识别能有多准了。说到这里，你明白神经网络是怎么运算了吗？</p>
+<p>狮子图片来自Kevin Pluck</p>
+<p>参考文献：</p>
+<p>[1]Seltzer, Michael L.,Droppo, Jasha. Multi-task learning in deep neural networks for improved phoneme recognition[P]. ,2013.</p>
+<p>[2]Jeff Heaton. Ian Goodfellow, Yoshua Bengio, and Aaron Courville: Deep learning[J]. Genetic Programming and Evolvable Machines,2018,19(1-2).</p>
+<p>（本篇鸣谢3Blue1Brown的图文支持）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/02/f7a1947cc7ee4.webp"
+        data-srcset="https://pic./2020/04/02/f7a1947cc7ee4.webp, https://pic./2020/04/02/f7a1947cc7ee4.webp 1.5x, https://pic./2020/04/02/f7a1947cc7ee4.webp 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/02/f7a1947cc7ee4.webp"
+        title="picture24" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络" data-hashtags="机器学习,深度学习,Python,神经网络"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200409/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200409/" data-title="深度学习之神经网络"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200404/" class="prev" rel="prev" title="hugo博客在GitHub上进行部署"><i class="fas fa-angle-left fa-fw"></i>hugo博客在GitHub上进行部署</a>
+            <a href="/20200411/" class="next" rel="next" title="hugo博客部署码云">hugo博客部署码云<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

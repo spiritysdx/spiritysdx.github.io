@@ -1,0 +1,162 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>归档 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/posts/</link>
+        <description>归档 | 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 25 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>通用docker容器镜像打包应用的流程</title>
+    <link>http://www.spiritysdx.top/20250425/</link>
+    <pubDate>Fri, 25 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250425/</guid>
+    <description><![CDATA[<h2 id="基础镜像选择">基础镜像选择</h2>
+<ul>
+<li><code>scratch</code> - 空白模板</li>
+<li><code>debian:bookworm-slim</code> - debian的基础模板</li>
+<li><code>ubuntu:22.04</code> - ubuntu的官方模板</li>
+<li><a href="https://github.com/linuxserver/docker-baseimage-kasmvnc?tab=readme-ov-file#available-distros" target="_blank" rel="noopener noreffer">linuxserver的KASM模板</a> - <code>ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm</code></li>
+<li><a href="https://github.com/kasmtech/workspaces-images" target="_blank" rel="noopener noreffer">kasmtech的第三方应用程序KASM模板</a></li>
+<li><a href="https://github.com/jlesage/docker-baseimage-gui?tab=readme-ov-file#images" target="_blank" rel="noopener noreffer">jlesage的NOVNC模板</a> - <code>jlesage/baseimage-gui:ubuntu-22.04-v4</code></li>
+</ul>
+<p>由于镜像需要安装显卡驱动，所以这里选择了Ubuntu基础的Novnc的模板。如果不需要安装显卡驱动，换debian基础的也可以，镜像体积会更小一些。</p>]]></description>
+</item><item>
+    <title>kubevirt初体验</title>
+    <link>http://www.spiritysdx.top/20250415/</link>
+    <pubDate>Tue, 15 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250415/</guid>
+    <description><![CDATA[<h2 id="确认当前k8s版本以及对应的kubevirt版本">确认当前k8s版本以及对应的kubevirt版本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span><span class="line"><span class="cl">Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据</p>
+<p><a href="https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md" target="_blank" rel="noopener noreffer">https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md</a></p>
+<p>查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58</p>]]></description>
+</item><item>
+    <title>魔改dockur制作可迁移的Windows镜像(单文件)</title>
+    <link>http://www.spiritysdx.top/20250405/</link>
+    <pubDate>Sat, 05 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250405/</guid>
+    <description><![CDATA[<h2 id="修改dockur制作windows镜像">修改dockur制作Windows镜像</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>拉取测试的版本: <a href="https://github.com/dockur/windows/tree/v4.33" target="_blank" rel="noopener noreffer">v4.33</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。</p>]]></description>
+</item><item>
+    <title>通过dockur制作可迁移的Windows镜像(双文件)</title>
+    <link>http://www.spiritysdx.top/20250315/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250315/</guid>
+    <description><![CDATA[<h2 id="使用dockur的原始镜像制作windows镜像双文件">使用dockur的原始镜像制作Windows镜像(双文件)</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像默认会将系统安装到挂载出的盘中。</p>
+<p>本页说明最终将保存两个文件，一个是挂载盘的压缩文件，一个是容器导出的tar包。</p>]]></description>
+</item><item>
+    <title>通过ProxmoxVE制作kubevirt可用的Windows镜像</title>
+    <link>http://www.spiritysdx.top/20250325/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250325/</guid>
+    <description><![CDATA[<h2 id="通过proxmoxve制作kubevirt可用的win镜像">通过ProxmoxVE制作kubevirt可用的WIN镜像</h2>
+<p><a href="https://github.com/ILLKX/Windows-VirtIO" target="_blank" rel="noopener noreffer">https://github.com/ILLKX/Windows-VirtIO</a></p>
+<p>下载带virtio的虚拟机镜像</p>
+<p>然后借鉴 <a href="https://www.spiritlhl.net/guide/pve/pve_windows.html" target="_blank" rel="noopener noreffer">https://www.spiritlhl.net/guide/pve/pve_windows.html</a> 开设虚拟机，到图形化安装后即可，不要配置网络</p>
+<p>在虚拟机内需要设置一个bat脚本，设置系统启动后执行，脚本的内容是</p>]]></description>
+</item><item>
+    <title>基于docker的在线IDE制作(支持浏览器直接访问)</title>
+    <link>http://www.spiritysdx.top/20250305/</link>
+    <pubDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250305/</guid>
+    <description><![CDATA[<h2 id="仓库">仓库</h2>
+<p><a href="https://github.com/oneclickvirt/dockerfile-templates" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/dockerfile-templates</a></p>
+<p>适配境内环境，搭建带浏览器web查看NOVNC的在线IDE</p>
+<p>对应开发环境支持 AMD64 ARM64</p>
+<p>对应GPU/NPU的驱动支持</p>
+<p>对应平台的AI插件支持</p>
+<p>由于版权问题和镜像大小问题，tar包我就不传了</p>]]></description>
+</item><item>
+    <title>k8s日常问题排障</title>
+    <link>http://www.spiritysdx.top/20250225/</link>
+    <pubDate>Tue, 25 Feb 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250225/</guid>
+    <description><![CDATA[<h2 id="一般流程">一般流程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get pods -A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就<code>describe</code>一下
+下面所有示例都用<code>kube-system</code>作为查询的namespace，实际看你要查什么服务对应的namespace</p>]]></description>
+</item><item>
+    <title>jetbrains家的goland项目可用但老爆红</title>
+    <link>http://www.spiritysdx.top/20240714/</link>
+    <pubDate>Sun, 14 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240714/</guid>
+    <description><![CDATA[<h2 id="问题">问题</h2>
+<p>目前新的go项目默认都是<code>go module</code>模式，由于我需要使用私有仓库的package，清除了mod的缓存后Goland就识别不到我后续在命令行下执行</p>]]></description>
+</item><item>
+    <title>机房本地服务器自建Gitea并使用</title>
+    <link>http://www.spiritysdx.top/20240713/</link>
+    <pubDate>Sat, 13 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240713/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>由于Github在国内访问速度较慢，所以选择在本地服务器上自建Gitea，使用国内服务器内穿端口后访问速度较快，并且可以自己管理代码，更安全。</p>]]></description>
+</item><item>
+    <title>nvidia-smi被自动升级无法与GPU通信了怎么办</title>
+    <link>http://www.spiritysdx.top/20240712/</link>
+    <pubDate>Fri, 12 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240712/</guid>
+    <description><![CDATA[<h2 id="问题">问题</h2>
+<p>如题目所说，这里贴个报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nvidia-smi
+</span></span><span class="line"><span class="cl">Failed to initialize NVML: Driver/library version mismatch
+</span></span><span class="line"><span class="cl">NVML library version: 535.183
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原先的版本是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> NVIDIA-SMI 535.171.04             Driver Version: 535.171.04   CUDA Version: 12.2 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="修复方案">修复方案</h2>
+<h3 id="下载官方驱动">下载官方驱动</h3>
+<p>打开官方网站：<a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer">https://www.nvidia.cn/Download/Find.aspx?lang=cn</a></p>
+<p>按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致</p>]]></description>
+</item></channel>
+</rss>

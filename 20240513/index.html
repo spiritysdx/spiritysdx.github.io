@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>给机房的Ubuntu22.04安装LXD共享GPU资源 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20240513/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="给机房的Ubuntu22.04安装LXD共享GPU资源">
+  <meta property="og:description" content="前言 为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-13T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Ubuntu">
+    <meta property="article:tag" content="Lxd">
+    <meta property="article:tag" content="Incus">
+    <meta property="article:tag" content="Https">
+    <meta property="article:tag" content="Gpu">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="给机房的Ubuntu22.04安装LXD共享GPU资源">
+  <meta name="twitter:description" content="前言 为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20240513/" /><link rel="prev" href="http://www.spiritysdx.top/20240512/" /><link rel="next" href="http://www.spiritysdx.top/20240514/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "给机房的Ubuntu22.04安装LXD共享GPU资源",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20240513\/"
+        },"genre": "posts","keywords": "linux, ubuntu, lxd, incus, https, gpu, LTS, conda, nvidia, pytorch, cuda, 机房","wordcount":  3560 ,
+        "url": "http:\/\/www.spiritysdx.top\/20240513\/","datePublished": "2024-05-13T00:00:00+00:00","dateModified": "2024-05-13T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">给机房的Ubuntu22.04安装LXD共享GPU资源</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-13">2024-05-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3560 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#安装lxd">安装LXD</a></li>
+    <li><a href="#初始化lxd">初始化LXD</a></li>
+    <li><a href="#启动web">启动WEB</a></li>
+    <li><a href="#配置web">配置WEB</a></li>
+    <li><a href="#刷新浏览器进入">刷新浏览器进入</a></li>
+    <li><a href="#开设lxc容器">开设LXC容器</a></li>
+    <li><a href="#两种设置显卡的方式">两种设置显卡的方式</a>
+      <ul>
+        <li><a href="#使用命令设置">使用命令设置</a></li>
+        <li><a href="#使用yaml文件">使用yaml文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器安装ssh和设置root密码验证登录">容器安装SSH和设置root密码验证登录</a></li>
+    <li><a href="#容器内安装gpu驱动">容器内安装GPU驱动</a>
+      <ul>
+        <li><a href="#容器内外查询显卡驱动">容器内外查询显卡驱动</a></li>
+        <li><a href="#容器内外显卡驱动版本一致时使用官方命令安装">容器内外显卡驱动版本一致时使用官方命令安装</a></li>
+        <li><a href="#使用nvidia官方包安装显卡驱动">使用Nvidia官方包安装显卡驱动</a></li>
+        <li><a href="#设置不要自动更新驱动">设置不要自动更新驱动</a></li>
+        <li><a href="#设置锁死包版本">设置锁死包版本</a>
+          <ul>
+            <li><a href="#锁死nvidia相关包">锁死nvidia相关包</a></li>
+            <li><a href="#锁死linux内核">锁死linux内核</a></li>
+          </ul>
+        </li>
+        <li><a href="#测试是否安装成功">测试是否安装成功</a></li>
+      </ul>
+    </li>
+    <li><a href="#共享容器文件夹和宿主机文件夹">共享容器文件夹和宿主机文件夹</a></li>
+    <li><a href="#多用户创建">多用户创建</a></li>
+    <li><a href="#后言">后言</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。</p>
+<p>为什么使用官方的WEB端？因为官方支持最完善，虽然其实也就一个壳子，但社区会有管理员管管问题，其他第三方的WEB端更新缓慢且无社区支持。</p>
+<h2 id="安装lxd">安装LXD</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">snap install lxd
+</span></span><span class="line"><span class="cl">apt install zfsutils-linux bridge-utils -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要删除 lxd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">snap</span> <span class="n">remove</span> <span class="o">--</span><span class="n">purge</span> <span class="n">lxd</span> 
+</span></span><span class="line"><span class="cl"><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">lxd</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="初始化lxd">初始化LXD</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/snap/bin/lxd init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面这些选项很重要请手动指定，其他选项未列出的回车使用默认值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Name of the storage backend to use (ceph, dir, lvm, zfs, btrfs) [default=zfs]: zfs
+</span></span><span class="line"><span class="cl">Would you like to use an existing empty block device (e.g. a disk or partition)? (yes/no) [default=no]: no
+</span></span><span class="line"><span class="cl">Size in GiB of the new loop device (1GiB minimum) [default=30GiB]: 填你的空闲硬盘大小，我的有1T，所以填1024GiB
+</span></span><span class="line"><span class="cl">Would you like stale cached images to be updated automatically? (yes/no) [default=yes]: no
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>增加第三方镜像源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc remote add opsmaru https://images.opsmaru.dev/spaces/9bfad87bd318b8f06012059a --public --protocol simplestreams
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置CGROUP配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">snap</span> <span class="n">set</span> <span class="n">lxd</span> <span class="n">lxcfs</span><span class="o">.</span><span class="n">loadavg</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">snap</span> <span class="n">set</span> <span class="n">lxd</span> <span class="n">lxcfs</span><span class="o">.</span><span class="n">pidfd</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">snap</span> <span class="n">set</span> <span class="n">lxd</span> <span class="n">lxcfs</span><span class="o">.</span><span class="n">cfs</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">systemctl</span> <span class="n">restart</span> <span class="n">snap</span><span class="o">.</span><span class="n">lxd</span><span class="o">.</span><span class="n">daemon</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置镜像不更新</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc config unset images.auto_update_interval
+</span></span><span class="line"><span class="cl">lxc config set images.auto_update_interval 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解除进程数限制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if [ -f &#34;/etc/security/limits.conf&#34; ]; then
+</span></span><span class="line"><span class="cl">    if ! grep -q &#34;*          hard    nproc       unlimited&#34; /etc/security/limits.conf; then
+</span></span><span class="line"><span class="cl">        echo &#39;*          hard    nproc       unlimited&#39; | sudo tee -a /etc/security/limits.conf
+</span></span><span class="line"><span class="cl">    fi
+</span></span><span class="line"><span class="cl">    if ! grep -q &#34;*          soft    nproc       unlimited&#34; /etc/security/limits.conf; then
+</span></span><span class="line"><span class="cl">        echo &#39;*          soft    nproc       unlimited&#39; | sudo tee -a /etc/security/limits.conf
+</span></span><span class="line"><span class="cl">    fi
+</span></span><span class="line"><span class="cl">fi
+</span></span><span class="line"><span class="cl">if [ -f &#34;/etc/systemd/logind.conf&#34; ]; then
+</span></span><span class="line"><span class="cl">    if ! grep -q &#34;UserTasksMax=infinity&#34; /etc/systemd/logind.conf; then
+</span></span><span class="line"><span class="cl">        echo &#39;UserTasksMax=infinity&#39; | sudo tee -a /etc/systemd/logind.conf
+</span></span><span class="line"><span class="cl">    fi
+</span></span><span class="line"><span class="cl">fi
+</span></span><span class="line"><span class="cl">ufw disable
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后此时建议重启服务器以解放线程限制</p>
+<h2 id="启动web">启动WEB</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">lxc</span> <span class="n">config</span> <span class="n">set</span> <span class="n">core</span><span class="o">.</span><span class="n">https_address</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">8443</span>
+</span></span><span class="line"><span class="cl"><span class="n">snap</span> <span class="n">set</span> <span class="n">lxd</span> <span class="n">ui</span><span class="o">.</span><span class="n">enable</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">systemctl</span> <span class="n">reload</span> <span class="n">snap</span><span class="o">.</span><span class="n">lxd</span><span class="o">.</span><span class="n">daemon</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于是机房，需要内穿端口，所以我在跳板机上的服务端(非机房的服务器)执行映射</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo proxy server -r &#34;:8443@:8443&#34; -P &#34;127.0.0.1:8800&#34; -C proxy.crt -K proxy.key --log proxy.log --daemon
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这条命令看不懂的看我上篇博客</p>
+<h2 id="配置web">配置WEB</h2>
+<p>打开跳板机的https协议的8443端口，正常进入设置</p>
+<p>官方演示视频： <a href="https://www.youtube.com/watch?v=wqEH_d8LC1k" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=wqEH_d8LC1k</a></p>
+<p>通过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Generate
+</span></span><span class="line"><span class="cl">Create a new certificate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成证书(生成过程中建议跳过密码验证)，这个证书务必保管好，因为后面要用到。</p>
+<p>设置界面有讲解每个主流浏览器的证书设置方法，以下我说的浏览器设置的方法为<code>EDGE</code>，其他浏览器类似，可参考上面的官方演示视频。</p>
+<p>两个证书文件，一个<code>crt</code>一个<code>pfx</code>，前者在机房的机器里用，后者在你的浏览器里用。</p>
+<p>crt证书文件你可以打开后复制粘贴在机房的机器里创建一个一样内容一样名字的crt文件，这样就不用麻烦的上传crt文件了。crt证书存在后，你在机房的机器中执行下述命令验证</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc config trust add 那个证书名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在浏览器中导入pfx证书，注意，其中有一步是问你密码的，留空继续即可，因为前面选生成的时候跳过了，还有一步问你证书保存地址的，选择<code>根据证书类型，自动选择证书存储(U)</code>即可。</p>
+<h2 id="刷新浏览器进入">刷新浏览器进入</h2>
+<p>因为之前进入浏览器是忽略证书校验了，此时刷新也会忽略证书校验，点击不安全那里，然后点击 <code>你的证书选择</code> 选择 <code>LXD UI</code>开头的名字的证书即可，选择后会自动刷新浏览器进入控制台。</p>
+<h2 id="开设lxc容器">开设LXC容器</h2>
+<p>如下图所示进行开设，注意，Ubuntu 系统最好选择带 LTS 标签的，否则软件源可能出现问题。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png" /></p>
+<p>设置完点<code>create</code>就开始创建了</p>
+<h2 id="两种设置显卡的方式">两种设置显卡的方式</h2>
+<h3 id="使用命令设置">使用命令设置</h3>
+<p>或在机房的机器上使用命令设置(ctnmae我设置为mother，实际请改成自己的容器名字)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ctname=&#34;mother&#34;
+</span></span><span class="line"><span class="cl">sudo lxc config device add $ctname gpu gpu
+</span></span><span class="line"><span class="cl">sudo lxc config set $ctname security.nesting true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不建议启用特权容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 启用特权容器的命令
+</span></span><span class="line"><span class="cl">ctname=&#34;mother&#34;
+</span></span><span class="line"><span class="cl">sudo lxc config set $ctname security.privileged true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启用特权容器应该会在<code>lxc.log</code>中报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ERROR    conf - ../src/src/lxc/conf.c:turn_into_dependent_mounts:3451 - No such file or directory - Failed to recursively turn old root mount tree into dependent mount. Continuing...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果具有多个显卡，务必指定该容器使用哪张显卡(id后跟显卡序号)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ctname=&#34;mother&#34;
+</span></span><span class="line"><span class="cl">sudo lxc config device add $ctname gpu-tmp gpu id=0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用yaml文件">使用yaml文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">devices: 
+</span></span><span class="line"><span class="cl">  gpu:
+</span></span><span class="line"><span class="cl">    type: gpu
+</span></span><span class="line"><span class="cl">config:
+</span></span><span class="line"><span class="cl">  security.nesting: &#34;true&#34;
+</span></span><span class="line"><span class="cl">  security.privileged: &#34;true&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或指定显卡序号(通过id指定序号)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">devices:
+</span></span><span class="line"><span class="cl">  gpu-tmp:
+</span></span><span class="line"><span class="cl">    id: &#34;0&#34;
+</span></span><span class="line"><span class="cl">    type: gpu
+</span></span><span class="line"><span class="cl">config:
+</span></span><span class="line"><span class="cl">  security.nesting: &#34;true&#34;
+</span></span><span class="line"><span class="cl">  security.privileged: &#34;true&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="容器安装ssh和设置root密码验证登录">容器安装SSH和设置root密码验证登录</h2>
+<p>进入容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc exec mother -- /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用我维护的仓库的一键脚本进行配置，使用我的cdn进行加速</p>
+<p>仓库：<a href="https://github.com/oneclickvirt/lxd" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/lxd</a></p>
+<p>下载脚本:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt update &amp;&amp; apt install dos2unix -y
+</span></span><span class="line"><span class="cl">curl -o ssh_bash.sh https://cdn.spiritlhl.net/https://raw.githubusercontent.com/oneclickvirt/lxd/main/scripts/ssh_bash.sh &amp;&amp; chmod 777 ssh_bash.sh &amp;&amp; dos2unix ssh_bash.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为是国内服务器，不需要更改DNS，所以需要删除5~10行的内容:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sed -i &#39;5,10d&#39; ssh_bash.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./ssh_bash.sh 你想要设置的密码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置完毕后按<code>ctrl+a+d</code>退出容器或执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">exit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>退出容器回到机房的机器(宿主机)</p>
+<p>再执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询对应容器的IPV4地址替换下面的<code>10.228.242.7</code>测试SSH连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh root@10.228.242.7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后应该会询问是否继续，输入<code>yes</code>后再输入你刚刚设置的容器密码即可，若能正常进入容器，那么证明这一步无问题</p>
+<h2 id="容器内安装gpu驱动">容器内安装GPU驱动</h2>
+<p><strong>容器和宿主机的显卡驱动必须保持一致，否则无法正常使用GPU</strong>，所以必须在容器内外进行驱动查询。</p>
+<h3 id="容器内外查询显卡驱动">容器内外查询显卡驱动</h3>
+<p>容器外执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可能的显示为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">root@a12-ThinkStation-P620:~/lxd# nvidia-smi
+</span></span><span class="line"><span class="cl">Mon May 13 23:42:04 2024       
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| NVIDIA-SMI 535.171.04             Driver Version: 535.171.04   CUDA Version: 12.2     |
+</span></span><span class="line"><span class="cl">|-----------------------------------------+----------------------+----------------------+
+</span></span><span class="line"><span class="cl">| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span></span><span class="line"><span class="cl">| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+</span></span><span class="line"><span class="cl">|                                         |                      |               MIG M. |
+</span></span><span class="line"><span class="cl">|=========================================+======================+======================|
+</span></span><span class="line"><span class="cl">|   0  NVIDIA RTX A6000               Off | 00000000:61:00.0 Off |                  Off |
+</span></span><span class="line"><span class="cl">| 30%   27C    P8              11W / 300W |    168MiB / 49140MiB |      0%      Default |
+</span></span><span class="line"><span class="cl">|                                         |                      |                  N/A |
+</span></span><span class="line"><span class="cl">+-----------------------------------------+----------------------+----------------------+
+</span></span><span class="line"><span class="cl">                                                                                         
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| Processes:                                                                            |
+</span></span><span class="line"><span class="cl">|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+</span></span><span class="line"><span class="cl">|        ID   ID                                                             Usage      |
+</span></span><span class="line"><span class="cl">|=======================================================================================|
+</span></span><span class="line"><span class="cl">|    0   N/A  N/A      1713      G   /usr/lib/xorg/Xorg                           75MiB |
+</span></span><span class="line"><span class="cl">|    0   N/A  N/A      2108      G   /usr/bin/gnome-shell                         61MiB |
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到宿主机的驱动版本为<code>535.171.04</code></p>
+<p>执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc exec mother -- /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入mother容器内执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询显卡驱动</p>
+<p>可能显示如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">root@mother:~# nvidia-smi
+</span></span><span class="line"><span class="cl">Command &#39;nvidia-smi&#39; not found, but can be installed with:
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-510         # version 510.60.02-0ubuntu1, or
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-510-server  # version 510.47.03-0ubuntu3
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-390         # version 390.157-0ubuntu0.22.04.2
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-418-server  # version 418.226.00-0ubuntu5~0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-450-server  # version 450.248.02-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-470         # version 470.223.02-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-470-server  # version 470.223.02-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-525         # version 525.147.05-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-525-server  # version 525.147.05-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-535         # version 535.129.03-0ubuntu0.22.04.1
+</span></span><span class="line"><span class="cl">apt install nvidia-utils-535-server  # version 535.129.03-0ubuntu0.22.04.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到容器内的驱动最多支持到<code>535.129.03</code>，<strong>容器内外显卡驱动的版本是不同的，不能直接进行安装</strong>.</p>
+<h3 id="容器内外显卡驱动版本一致时使用官方命令安装">容器内外显卡驱动版本一致时使用官方命令安装</h3>
+<p>如果你查询得到的版本一致，那么可以使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install nvidia-utils-535 -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进行安装，而我的驱动版本不一致，不能这么安装</p>
+<h3 id="使用nvidia官方包安装显卡驱动">使用Nvidia官方包安装显卡驱动</h3>
+<p>打开官方网站：<a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer">https://www.nvidia.cn/Download/Find.aspx?lang=cn</a></p>
+<p>按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA%281%29.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA%281%29.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA%281%29.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA%281%29.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png" /></p>
+<p>然后点击<code>搜索</code>进行搜索，我搜索结果如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/%28AMD64_EM64T%29%20NVIDIA.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/%28AMD64_EM64T%29%20NVIDIA.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/%28AMD64_EM64T%29%20NVIDIA.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/%28AMD64_EM64T%29%20NVIDIA.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png" /></p>
+<p>出现下面这个界面后，别急着点击下载</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png"
+        data-srcset="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png 1.5x, https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png"
+        title="https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png" /></p>
+<p><strong>右键</strong>点击<code>同意并开始下载</code>复制下载链接，在<strong>容器内</strong>使用<code>wget</code>下载(<strong>不是宿主机！</strong>)</p>
+<p>然后执行(我下到的是<code>NVIDIA-Linux-x86_64-535.171.04.run</code>文件)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bash NVIDIA-Linux-x86_64-535.171.04.run --no-kernel-module
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于容器和宿主机需要共享GPU，所以在安装容器的显卡驱动时需要添加<code>--no-kernel-module</code>参数。</p>
+<p>安装选项都选择<code>no</code>即可，安装好显卡驱动后执行<code>nvidia-smi</code>查看显卡驱动是否和宿主机的版本一致。</p>
+<p>这里容器安装不加载到内核中，所以有时候你的误操作会导致<code>nvidia-smi</code>异常，你重启容器依旧异常，此时需要从新执行上面的安装命令再重启容器，就能修复了。</p>
+<p>所以那个下好的run文件还是保留着吧，以防万一，千万别删了。</p>
+<h3 id="设置不要自动更新驱动">设置不要自动更新驱动</h3>
+<p>nvidia-smi有可能被ubuntu官方更新连带更新。</p>
+<p><strong>以下所有操作在宿主机上和容器上最好都执行</strong></p>
+<p>查看设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /etc/apt/apt.conf.d/10periodic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">APT</span><span class="p">::</span><span class="n">Periodic</span><span class="p">::</span><span class="n">Update</span><span class="o">-</span><span class="n">Package</span><span class="o">-</span><span class="n">Lists</span> <span class="s2">&#34;7&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">APT</span><span class="p">::</span><span class="n">Periodic</span><span class="p">::</span><span class="n">Download</span><span class="o">-</span><span class="n">Upgradeable</span><span class="o">-</span><span class="n">Packages</span> <span class="s2">&#34;0&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">APT</span><span class="p">::</span><span class="n">Periodic</span><span class="p">::</span><span class="n">AutocleanInterval</span> <span class="s2">&#34;0&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">APT</span><span class="p">::</span><span class="n">Periodic</span><span class="p">::</span><span class="n">Unattended</span><span class="o">-</span><span class="n">Upgrade</span> <span class="s2">&#34;1&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改为全是0并保存文件避免自动升级包。</p>
+<h3 id="设置锁死包版本">设置锁死包版本</h3>
+<p><strong>以下所有操作仅在宿主机上操作，不是容器</strong></p>
+<p>命令行执行下面的命令</p>
+<h4 id="锁死nvidia相关包">锁死nvidia相关包</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">packages</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-cfg1-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-common-535&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-compute-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-compute-535:i386&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-decode-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-decode-535:i386&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-encode-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-encode-535:i386&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-extra-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-fbc1-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-fbc1-535:i386&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-gl-535:amd64&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;libnvidia-gl-535:i386&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> pkg in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">packages</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    sudo apt-mark hold <span class="s2">&#34;</span><span class="nv">$pkg</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="锁死linux内核">锁死linux内核</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo apt-mark hold linux-image-generic linux-headers-generic 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="测试是否安装成功">测试是否安装成功</h3>
+<p><strong>容器内</strong>执行下述命令安装<code>Miniconda3</code>，安装成功后重启容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">repo</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">Miniconda3</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span>
+</span></span><span class="line"><span class="cl"><span class="n">bash</span> <span class="n">Miniconda3</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">u</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH:$HOME/miniconda3/bin:$HOME/miniconda3/condabin&#34;&#39;</span> <span class="o">&gt;&gt;~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH:$HOME/.local/share/jupyter&#34;&#39;</span> <span class="o">&gt;&gt;~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="n">sleep</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">echo</span> <span class="s1">&#39;export PATH=&#34;/home/user/miniconda3/bin:$PATH&#34;&#39;</span> <span class="o">&gt;&gt;~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="n">sleep</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&#34;/home/user/miniconda3/bin:$PATH&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">conda</span> <span class="n">init</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重启后：</p>
+<p>退出base环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda deactivate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动base环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda activate base
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来安装<code>pytorch</code>，方便测试GPU是否已共享成功</p>
+<p>打开</p>
+<p><a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener noreffer">https://pytorch.org/get-started/locally/</a></p>
+<p>或</p>
+<p><a href="https://pytorch.org/get-started/previous-versions/" target="_blank" rel="noopener noreffer">https://pytorch.org/get-started/previous-versions/</a></p>
+<p>查看对应版本安装，由于我的cuda版本是<code>12.2</code>，所以我执行了以下命令，其他版本自行查询
+(下面pytorch-cuda用的12.1这个版本是因为没有12.2的版本，所以只能退而求其次使用低一个版本的)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装过程中一直按回车即可</p>
+<p>测试是否可以调用显卡，下面的命令执行显示<code>true</code>则没问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(base) root@mother:~# python                                                                                                                                                
+</span></span><span class="line"><span class="cl">Python 3.12.2 | packaged by Anaconda, Inc. | (main, Feb 27 2024, 17:35:02) [GCC 11.2.0] on linux                                                                       
+</span></span><span class="line"><span class="cl">Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34; for more information.                                                                                                      
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; import torch                          
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt; print(torch.cuda.is_available())    
+</span></span><span class="line"><span class="cl">True                                   
+</span></span><span class="line"><span class="cl">&gt;&gt;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试没问题，按<code>ctrl+z</code>退出conda的python窗口</p>
+<h2 id="共享容器文件夹和宿主机文件夹">共享容器文件夹和宿主机文件夹</h2>
+<p>为方便文件的传输与节约内存使用，需要设置共享文件夹来实现宿主机与容器之间的文件传输。</p>
+<p>在宿主机的<code>/root</code>路径下执行下述命令创建文件夹和设置权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir sharefile
+</span></span><span class="line"><span class="cl">chmod 777 sharefile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在宿主机创建共享区域share-host</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc profile create share-host
+</span></span><span class="line"><span class="cl">lxc profile set share-host security.privileged true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检查是否创建成功</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc profile show share-host
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将文件夹添加到制定LXD容器mother中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ctname=&#34;mother&#34;
+</span></span><span class="line"><span class="cl">lxc config device add $ctname share-host disk source=/root/sharefile path=/root/sharefile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="多用户创建">多用户创建</h2>
+<p>模板容器<code>mother</code>已经配置好了，执行<code>lxc stop mother</code>以停止容器方便复制</p>
+<p>克隆容器 参数一为模板容器名称，参数二为目标容器名称</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc copy mother user1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动用户1的容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lxc start user1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一定要保证模板容器在copy前是stopped状态，否则你复制会复制带上内网IP地址，复制会导致冲突。</p>
+<h2 id="后言">后言</h2>
+<p>至于多用户下的容器，对应容器需要映射不同的端口，后续专门写一篇讲讲怎么配置</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2024-05-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源" data-hashtags="linux,ubuntu,lxd,incus,https,gpu,LTS,conda,nvidia,pytorch,cuda,机房"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20240513/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20240513/" data-title="给机房的Ubuntu22.04安装LXD共享GPU资源"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/ubuntu/">Ubuntu</a>,&nbsp;<a href="/tags/lxd/">Lxd</a>,&nbsp;<a href="/tags/incus/">Incus</a>,&nbsp;<a href="/tags/https/">Https</a>,&nbsp;<a href="/tags/gpu/">Gpu</a>,&nbsp;<a href="/tags/lts/">LTS</a>,&nbsp;<a href="/tags/conda/">Conda</a>,&nbsp;<a href="/tags/nvidia/">Nvidia</a>,&nbsp;<a href="/tags/pytorch/">Pytorch</a>,&nbsp;<a href="/tags/cuda/">Cuda</a>,&nbsp;<a href="/tags/%E6%9C%BA%E6%88%BF/">机房</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20240512/" class="prev" rel="prev" title="给机房的Ubuntu22.04的Linux进行内穿映射端口"><i class="fas fa-angle-left fa-fw"></i>给机房的Ubuntu22.04的Linux进行内穿映射端口</a>
+            <a href="/20240514/" class="next" rel="next" title="在Pycharm上连接远程虚拟环境进行使用">在Pycharm上连接远程虚拟环境进行使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

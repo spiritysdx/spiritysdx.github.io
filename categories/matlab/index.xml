@@ -1,0 +1,426 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Matlab - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/matlab/</link>
+        <description>Matlab - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 01 Feb 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/matlab/" rel="self" type="application/rss+xml" /><item>
+    <title>小额贷款的划算问题(matlab数学建模)</title>
+    <link>http://www.spiritysdx.top/20210201/</link>
+    <pubDate>Mon, 01 Feb 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210201/</guid>
+    <description><![CDATA[<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">clc</span><span class="p">;</span><span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% 获取数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">day_i</span><span class="p">=</span><span class="mi">3</span><span class="o">/</span><span class="mi">10000</span> <span class="c">%日息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">number_of_periods_i</span><span class="p">=</span><span class="n">day_i</span><span class="o">*</span><span class="mi">30</span> <span class="c">%月利率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">P</span><span class="p">=</span><span class="mi">10000</span> <span class="c">%借款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">N</span> <span class="p">=</span> <span class="mi">12</span> <span class="c">%还款期数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% 模型选取及计算</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">=</span><span class="n">P</span> <span class="c">%借款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rate</span><span class="p">=</span><span class="n">number_of_periods_i</span> <span class="c">%月利率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">number_of_periods</span><span class="p">=</span><span class="n">N</span> <span class="c">%贷款期数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">command</span><span class="p">=</span><span class="n">input</span><span class="p">(</span>‘输入<span class="mi">0</span>为等额本金还款，输入<span class="mi">1</span>为等额本息还款，输入<span class="mi">2</span>为等本等息还款，输入<span class="mi">3</span>为先息后本还款： ‘<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">command</span><span class="o">==</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等额本金还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">/</span><span class="n">number_of_periods</span> <span class="c">%每月偿还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初余额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M1</span><span class="p">=</span><span class="n">M</span><span class="o">+</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">M1</span><span class="p">)</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">,</span><span class="n">M1</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等额本金还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等额本息还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="p">(</span><span class="n">rate</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span>^<span class="n">number_of_periods</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span>^<span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mon</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="n">R</span> <span class="c">%每月偿还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">M</span><span class="o">*</span><span class="n">number_of_periods</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="o">-</span><span class="n">R</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等额本息还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等本等息还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">/</span><span class="n">number_of_periods</span> <span class="c">%月还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=[</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">]</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M2</span><span class="p">=</span><span class="n">M</span><span class="o">+</span><span class="n">R</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">M</span><span class="o">*</span><span class="n">number_of_periods</span><span class="o">+</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="o">*</span><span class="n">number_of_periods</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="o">-</span><span class="n">R</span>’<span class="p">,</span><span class="n">M2</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等本等息还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%先息后本还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="mi">0</span> <span class="c">%月还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M3</span><span class="p">=</span><span class="n">R</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M4</span><span class="p">=</span><span class="n">debt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">P</span><span class="o">+</span><span class="n">sum_R</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">last_number_of_periods_debt</span><span class="p">=</span><span class="n">P</span><span class="o">+</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span> <span class="c">%最后一个月还款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">,</span><span class="n">M3</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还利息 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款利息’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’先息后本还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="源文档">源文档</h2>
+<p><strong>完整文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-小额贷款的划算问题</a></strong></p>]]></description>
+</item><item>
+    <title>Matlab02(矩阵运算)</title>
+    <link>http://www.spiritysdx.top/20200702/</link>
+    <pubDate>Thu, 02 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200702/</guid>
+    <description><![CDATA[<h1 id="通过下标引用矩阵元素">通过下标引用矩阵元素</h1>
+<pre><code>A(3,2)表示A矩阵第3行第2列的元素。
+</code></pre>
+<p>如若超出限制行列维数，自动扩展，未赋值的默认为0</p>
+<h1 id="通过序号来引用矩阵元素">通过序号来引用矩阵元素</h1>
+<pre><code>A(3)等同于A(1,2)
+</code></pre>
+<p>A(i,j)的序号为(j-1)×m+i</p>]]></description>
+</item><item>
+    <title>Matlab01(基础命令)</title>
+    <link>http://www.spiritysdx.top/20200701/</link>
+    <pubDate>Wed, 01 Jul 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200701/</guid>
+    <description><![CDATA[<h1 id="基础命令">基础命令</h1>
+<p>1.打开文件夹</p>
+<p>命令行窗口输入</p>
+<pre><code>cd 文件夹名
+</code></pre>
+<p>这里推荐先在文件管理器先创建后打开</p>
+<hr>
+<p>2.赋值变量会在工作区显示</p>
+<p>可在命令行窗口输入<code>whos</code> 或 <code>who</code><br>
+可以查看变量属性和具体参数</p>]]></description>
+</item></channel>
+</rss>

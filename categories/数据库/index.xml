@@ -1,0 +1,75 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据库 - 分类 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>数据库 - 分类 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 15 Jun 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL数据库04(常见函数)</title>
+    <link>http://www.spiritysdx.top/20200615/</link>
+    <pubDate>Mon, 15 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200615/</guid>
+    <description><![CDATA[<h1 id="分组函数">分组函数</h1>
+<p>功能：作统计使用，又称为聚合函数或统计函数或组函数</p>
+<hr>
+<h2 id="分类">分类：</h2>
+<p>sum     求和<br>
+avg     平均值<br>
+max     最大值<br>
+min     最小值  <br>
+count   计算个数</p>
+<hr>
+<h2 id="特点">特点：</h2>
+<p>1.sum，avg一般用于处理数值型，max，min，count可以处理任何类型</p>]]></description>
+</item><item>
+    <title>MySQL数据库03(常见函数)</title>
+    <link>http://www.spiritysdx.top/20200531/</link>
+    <pubDate>Sun, 31 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200531/</guid>
+    <description><![CDATA[<h1 id="函数">函数</h1>
+<p>概念:类似于java的方法，将-组逻辑语句封装在方法体中，对外暴露方法名</p>
+<p>好处:</p>
+<pre><code>1、隐藏了实现细节     
+2、 提高代码的重用性    
+</code></pre>
+<p>调用:</p>
+<p>select 函数名(实参列表) [ from 表] ;</p>]]></description>
+</item><item>
+    <title>MySQL数据库02(图形界面客户端基本运行指令)</title>
+    <link>http://www.spiritysdx.top/20200530/</link>
+    <pubDate>Sat, 30 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200530/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>图形界面客户端下载链接</p>
+<p><a href="https://spiritlhl.lanzous.com/id5vuji" target="_blank" rel="noopener noreffer">https://spiritlhl.lanzous.com/id5vuji</a></p>
+<h1 id="客户端安装">客户端安装</h1>
+<p>1.配置证书 <br>
+2.新建用户配置<br>
+3.启用<br>
+4.询问(navaicate)窗口是命令行窗口<br>
+5.ctrl+s保存指令<br>
+6.ctrl+鼠标滚动轴调整字体大小<br>
+7.指令末尾加分号</p>]]></description>
+</item><item>
+    <title>MySQL数据库01(cmder基本运行指令)</title>
+    <link>http://www.spiritysdx.top/20200529/</link>
+    <pubDate>Fri, 29 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20200529/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>MySQL数据库下载链接(5.5版本)</p>
+<p><a href="https://spiritlhl.lanzous.com/id5vt2f" target="_blank" rel="noopener noreffer">https://spiritlhl.lanzous.com/id5vt2f</a></p>
+<h1 id="常用指令">常用指令</h1>
+<p>1.查看当前所有的数据库<br>
+<code>show dat abases;</code>
+2.打开指定的库
+<code>use 库名;</code>
+3.查看当前库的所有表
+<code>show_ tables;</code>
+4.查看其它库的所有表<br>
+<code>show tables from 库名;</code><br>
+5.创建表</p>]]></description>
+</item></channel>
+</rss>

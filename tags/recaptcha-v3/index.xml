@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ReCAPTCHA-V3 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/recaptcha-v3/</link>
+        <description>ReCAPTCHA-V3 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/recaptcha-v3/" rel="self" type="application/rss+xml" /><item>
+    <title>Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)</title>
+    <link>http://www.spiritysdx.top/20221102/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221102/</guid>
+    <description><![CDATA[<h1 id="前言">前言</h1>
+<p>破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。</p>
+<p>网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)</p>]]></description>
+</item></channel>
+</rss>

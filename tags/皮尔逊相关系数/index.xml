@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>皮尔逊相关系数 - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/</link>
+        <description>皮尔逊相关系数 - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>多元回归和熵值评价法及多目标遗传优化算法</title>
+    <link>http://www.spiritysdx.top/20210713/</link>
+    <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210713/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>感谢组员书写书面报告，代码部分由我书写，我写的很烂，将就看吧。</p>
+<h2 id="第一届长三角数学建模">第一届长三角数学建模</h2>
+<h2 id="b题--锅炉水冷壁温度曲线">B题  锅炉水冷壁温度曲线</h2>
+<h2 id="1stopt多元拟合">1Stopt多元拟合</h2>
+<p>个人体会：</p>
+<p>只能确定2个自变量1个因变量的拟合函数形式，更高维的无法寻找公式进行拟合。</p>]]></description>
+</item></channel>
+</rss>

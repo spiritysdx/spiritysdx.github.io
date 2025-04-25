@@ -1,0 +1,27 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Dockur - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/dockur/</link>
+        <description>Dockur - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 05 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/dockur/" rel="self" type="application/rss+xml" /><item>
+    <title>魔改dockur制作可迁移的Windows镜像(单文件)</title>
+    <link>http://www.spiritysdx.top/20250405/</link>
+    <pubDate>Sat, 05 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250405/</guid>
+    <description><![CDATA[<h2 id="修改dockur制作windows镜像">修改dockur制作Windows镜像</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>拉取测试的版本: <a href="https://github.com/dockur/windows/tree/v4.33" target="_blank" rel="noopener noreffer">v4.33</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。</p>]]></description>
+</item><item>
+    <title>通过dockur制作可迁移的Windows镜像(双文件)</title>
+    <link>http://www.spiritysdx.top/20250315/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250315/</guid>
+    <description><![CDATA[<h2 id="使用dockur的原始镜像制作windows镜像双文件">使用dockur的原始镜像制作Windows镜像(双文件)</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像默认会将系统安装到挂载出的盘中。</p>
+<p>本页说明最终将保存两个文件，一个是挂载盘的压缩文件，一个是容器导出的tar包。</p>]]></description>
+</item></channel>
+</rss>

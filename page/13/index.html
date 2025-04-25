@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.142.0">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="二叉树的博客">
+  <meta property="og:description" content="个人学习日志">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="二叉树的博客">
+  <meta name="twitter:description" content="个人学习日志">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="二叉树的博客">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="二叉树的博客"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/www.spiritysdx.top\/","inLanguage": "zh-CN","description": "个人学习日志","name": "二叉树的博客"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="二叉树上的我"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/103393591"
+        data-srcset="https://avatars.githubusercontent.com/u/103393591, https://avatars.githubusercontent.com/u/103393591 1.5x, https://avatars.githubusercontent.com/u/103393591 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/103393591"
+        title="https://avatars.githubusercontent.com/u/103393591" /></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/spiritLHLS" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw"></i></a><a href="https://t.me/spiritlhl_bot" title="Telegram" target="_blank" rel="noopener noreffer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="mailto:spiritlhlbusiness@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210417/">C&#43;&#43;栈结构实现行编辑</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-17">2021-04-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-行编辑数据结构严蔚敏c语言版的c实现">题目 行编辑(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：一行有误的数据</p>
+<p>输出：一行正确的数据</p>
+<p>处理方法：           <br>
+允许用户输入出差错，并在发现有误时及时更正。例如：可用一个退格符“#”表示前一个字符无效；可用一个退行符“@”表示当前行中的字符均无效。</p></div><div class="post-footer">
+        <a href="/20210417/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210415/">C&#43;&#43;栈结构实现括号匹配</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-15">2021-04-15</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-括号匹配检验数据结构严蔚敏c语言版的c实现">题目 括号匹配检验(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：一串括号</p>
+<p>输出：检验结果（缺左括号、有多余左括号、左右不匹配、匹配成功）</p>
+<p>处理方法：</p>
+<p>检验括号是否匹配的方法可用“期待的急迫程度”这个概念来描述：</p></div><div class="post-footer">
+        <a href="/20210415/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210414/">C&#43;&#43;栈结构实现进制转换</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-14">2021-04-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-数制转换数据结构严蔚敏c语言版的c实现">题目 数制转换(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：十进制整数</p>
+<p>输出：八进制整数</p>
+<p>处理方法：基于下列原理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">N = (N div d)×d + N mod d              
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(其中：div为整除运算，mod为求余运算)</p></div><div class="post-footer">
+        <a href="/20210414/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210413/">C&#43;&#43;单链表尾插法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-13">2021-04-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-尾插法数据结构严蔚敏c语言版的c实现">题目 尾插法(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：键盘输入</p>
+<p>输出：带头结点的单链表L</p>
+<p>处理方法：待插结点*s插入到最后一个结点之后。</p>
+<p>步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1)获得最后一个结点的位置,使p指向该结点              
+</span></span><span class="line"><span class="cl">2)p-&gt;next = new LNode;          
+</span></span><span class="line"><span class="cl">3)p = p-&gt;next;              
+</span></span><span class="line"><span class="cl">4)cin&gt;&gt;p-&gt;data;             
+</span></span><span class="line"><span class="cl">5)p-&gt;next = NULL;           
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析：要想获取最后一个结点的位置，必须从头指针开始顺着next链搜索链表的全部结点，该过程的时间复杂度是O( )。如果每次插入都按此方法获取最后一个结点的位置，则整个创建算法的时间复杂度为O( )。</p></div><div class="post-footer">
+        <a href="/20210413/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210412/">C&#43;&#43;非递减有序顺序表合并</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-12">2021-04-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-按值非递减有序排列表合并数据结构严蔚敏c语言版的c实现">题目 按值非递减有序排列表合并(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>已知线性表La和Lb中的数据元素按值非递减有序排列，要求将La和Lb归并成一个新的线性表Lc，且Lc中的数据元素仍按值非递减有序排列。（用顺序表实现）</p></div><div class="post-footer">
+        <a href="/20210412/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210411/">C&#43;&#43;顺序表合并</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-11">2021-04-11</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-c顺序表合并数据结构严蔚敏c语言版的c实现">题目 C++顺序表合并(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>求两个线性表La和Lb的并集La = La U Lb （用顺序表实现）</p>
+<p>( 要求：“就地运算”，运算结果仍然存放在La中 )</p></div><div class="post-footer">
+        <a href="/20210411/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210308/">C&#43;&#43;函数分文件编写(VScode2021配置教程)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-08">2021-03-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="vscode2021新版的c函数分文件编写配置">vscode2021新版的C++函数分文件编写配置</h1>
+<p>如图所示，需要下载这个插件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C/C++ Project Generator
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210308091652596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210308091652596.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210308091652596.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210308091652596.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210308091652596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" />
+安装并启用后，使用方法如下
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210308091718789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210308091718789.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210308091718789.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210308091718789.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210308091718789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210308091732634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210308091732634.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210308091732634.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210308091732634.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210308091732634.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" />
+创建工程文件后目录结构如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/20210308091749652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/20210308091749652.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/20210308091749652.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/20210308091749652.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/20210308091749652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NwaXJpdExITA==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" />
+main.cpp文件使用自定义的swap函数，swap函数的头文件放include文件夹，源文件放src文件夹</p></div><div class="post-footer">
+        <a href="/20210308/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210206/">C&#43;&#43;指针</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-06">2021-02-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="指针的概念">指针的概念</h1>
+<p><code>内存地址</code>      <br>
+内存空间的编排是以字节为单位的，每一个字节（也称单元）都有一个编号，这就是地址。内存地址通常是一个大小为4个字节的整数（这与具体的计算机有关），一般用十六进制数表示。</p></div><div class="post-footer">
+        <a href="/20210206/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210202/">C&#43;&#43;自定义数据类型</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-02">2021-02-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h2 id="结构体">结构体</h2>
+<p>C++里数组是由相同数据类型的一组元素构成的集合，但实际问题中，经常会遇到由相互关联的，但类型不同的数据组成的数据结构。比如：描述一个学生的数据实体应该包括其学号、姓名、性别、年龄、成绩等数据。如果用多个独立的简单数据类型表示的话，就无法体现其整体性，也不便于数据的整体操作。</p></div><div class="post-footer">
+        <a href="/20210202/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210201/">小额贷款的划算问题(matlab数学建模)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-01">2021-02-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/matlab/"><i class="far fa-folder fa-fw"></i>Matlab</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="n">clc</span><span class="p">;</span><span class="n">close</span> <span class="n">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% 获取数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">day_i</span><span class="p">=</span><span class="mi">3</span><span class="o">/</span><span class="mi">10000</span> <span class="c">%日息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">number_of_periods_i</span><span class="p">=</span><span class="n">day_i</span><span class="o">*</span><span class="mi">30</span> <span class="c">%月利率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">P</span><span class="p">=</span><span class="mi">10000</span> <span class="c">%借款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">N</span> <span class="p">=</span> <span class="mi">12</span> <span class="c">%还款期数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%% 模型选取及计算</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">=</span><span class="n">P</span> <span class="c">%借款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rate</span><span class="p">=</span><span class="n">number_of_periods_i</span> <span class="c">%月利率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">number_of_periods</span><span class="p">=</span><span class="n">N</span> <span class="c">%贷款期数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">command</span><span class="p">=</span><span class="n">input</span><span class="p">(</span>‘输入<span class="mi">0</span>为等额本金还款，输入<span class="mi">1</span>为等额本息还款，输入<span class="mi">2</span>为等本等息还款，输入<span class="mi">3</span>为先息后本还款： ‘<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">command</span><span class="o">==</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等额本金还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">/</span><span class="n">number_of_periods</span> <span class="c">%每月偿还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初余额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M1</span><span class="p">=</span><span class="n">M</span><span class="o">+</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">M1</span><span class="p">)</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">,</span><span class="n">M1</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等额本金还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等额本息还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="p">(</span><span class="n">rate</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span>^<span class="n">number_of_periods</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span>^<span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rate</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mon</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="n">R</span> <span class="c">%每月偿还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">M</span><span class="o">*</span><span class="n">number_of_periods</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="o">-</span><span class="n">R</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等额本息还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%等本等息还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">Amount</span><span class="o">/</span><span class="n">number_of_periods</span> <span class="c">%月还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=[</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">,</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="p">]</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M2</span><span class="p">=</span><span class="n">M</span><span class="o">+</span><span class="n">R</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">M</span><span class="o">*</span><span class="n">number_of_periods</span><span class="o">+</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span><span class="o">*</span><span class="n">number_of_periods</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="o">-</span><span class="n">R</span>’<span class="p">,</span><span class="n">M2</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还本金 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’等本等息还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">command</span><span class="o">==</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%先息后本还款方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="mi">0</span> <span class="c">%月还本金</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">number_of_periods</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)=</span><span class="n">Amount</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">-</span><span class="n">M</span> <span class="c">%月初金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="p">=</span><span class="n">Amount</span><span class="o">*</span><span class="n">rate</span> <span class="c">%月底的利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">debt</span><span class="p">=</span><span class="n">Amount</span><span class="o">+</span><span class="n">R</span> <span class="c">%月底欠款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M3</span><span class="p">=</span><span class="n">R</span> <span class="c">%月还款额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_R</span><span class="p">=</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="c">%总利息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M4</span><span class="p">=</span><span class="n">debt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sum_Amount</span><span class="p">=</span><span class="n">P</span><span class="o">+</span><span class="n">sum_R</span> <span class="c">%还款总额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">last_number_of_periods_debt</span><span class="p">=</span><span class="n">P</span><span class="o">+</span><span class="n">P</span><span class="o">*</span><span class="n">rate</span> <span class="c">%最后一个月还款金额</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span><span class="p">=</span><span class="n">M</span><span class="o">-</span><span class="nb">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">number_of_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">=[</span><span class="n">Amount</span>’<span class="p">,</span><span class="n">R</span>’<span class="p">,</span><span class="n">debt</span>’<span class="p">,</span><span class="n">M</span>’<span class="p">,</span><span class="n">M3</span>’<span class="p">]</span><span class="c">%月初所欠金额 利息额 月末所欠金额 偿还利息 月末付款</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)={</span>‘月初所欠金额’<span class="p">,</span>’利息额’<span class="p">,</span>’月末所欠金额’<span class="p">,</span>’偿还本金’<span class="p">,</span>’月末付款利息’<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">,:)</span> <span class="p">=</span> <span class="n">num2cell</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">xlswrite</span><span class="p">(</span>‘<span class="n">data</span><span class="p">.</span><span class="n">xlsx</span>’<span class="p">,</span><span class="n">result</span><span class="p">,</span>’先息后本还款方式’<span class="p">)</span><span class="c">%输出excel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_R</span><span class="p">=</span><span class="c">%f’,sum_R)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fprintf</span><span class="p">(</span>‘<span class="n">sum_Amount</span><span class="p">=</span><span class="c">%f’,sum_Amount)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="源文档">源文档</h2>
+<p><strong>完整文档详见：<a href="https://www.spiritlhl.top/ziyuan/" target="_blank" rel="noopener noreffer">博客相关资源-小额贷款的划算问题</a></strong></p></div><div class="post-footer">
+        <a href="/20210201/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/matlab/">Matlab</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/12/">12</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/13/">13</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/14/">14</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/15/">15</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/18/">18</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"二叉树上的我"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

@@ -1,0 +1,137 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Kvm - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/kvm/</link>
+        <description>Kvm - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 15 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/kvm/" rel="self" type="application/rss+xml" /><item>
+    <title>kubevirt初体验</title>
+    <link>http://www.spiritysdx.top/20250415/</link>
+    <pubDate>Tue, 15 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250415/</guid>
+    <description><![CDATA[<h2 id="确认当前k8s版本以及对应的kubevirt版本">确认当前k8s版本以及对应的kubevirt版本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span><span class="line"><span class="cl">Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据</p>
+<p><a href="https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md" target="_blank" rel="noopener noreffer">https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md</a></p>
+<p>查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58</p>]]></description>
+</item><item>
+    <title>魔改dockur制作可迁移的Windows镜像(单文件)</title>
+    <link>http://www.spiritysdx.top/20250405/</link>
+    <pubDate>Sat, 05 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250405/</guid>
+    <description><![CDATA[<h2 id="修改dockur制作windows镜像">修改dockur制作Windows镜像</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>拉取测试的版本: <a href="https://github.com/dockur/windows/tree/v4.33" target="_blank" rel="noopener noreffer">v4.33</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。</p>]]></description>
+</item><item>
+    <title>通过dockur制作可迁移的Windows镜像(双文件)</title>
+    <link>http://www.spiritysdx.top/20250315/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250315/</guid>
+    <description><![CDATA[<h2 id="使用dockur的原始镜像制作windows镜像双文件">使用dockur的原始镜像制作Windows镜像(双文件)</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像默认会将系统安装到挂载出的盘中。</p>
+<p>本页说明最终将保存两个文件，一个是挂载盘的压缩文件，一个是容器导出的tar包。</p>]]></description>
+</item><item>
+    <title>通过ProxmoxVE制作kubevirt可用的Windows镜像</title>
+    <link>http://www.spiritysdx.top/20250325/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250325/</guid>
+    <description><![CDATA[<h2 id="通过proxmoxve制作kubevirt可用的win镜像">通过ProxmoxVE制作kubevirt可用的WIN镜像</h2>
+<p><a href="https://github.com/ILLKX/Windows-VirtIO" target="_blank" rel="noopener noreffer">https://github.com/ILLKX/Windows-VirtIO</a></p>
+<p>下载带virtio的虚拟机镜像</p>
+<p>然后借鉴 <a href="https://www.spiritlhl.net/guide/pve/pve_windows.html" target="_blank" rel="noopener noreffer">https://www.spiritlhl.net/guide/pve/pve_windows.html</a> 开设虚拟机，到图形化安装后即可，不要配置网络</p>
+<p>在虚拟机内需要设置一个bat脚本，设置系统启动后执行，脚本的内容是</p>]]></description>
+</item><item>
+    <title>一些关于IPV6分配和使用的闲聊</title>
+    <link>http://www.spiritysdx.top/20240111/</link>
+    <pubDate>Thu, 11 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240111/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。</p>
+<h2 id="pve">pve</h2>
+<p>proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方面还是一塌糊涂</p>]]></description>
+</item><item>
+    <title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title>
+    <link>http://www.spiritysdx.top/20230506/</link>
+    <pubDate>Sat, 06 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230506/</guid>
+    <description><![CDATA[<h1 id="pve">PVE</h1>
+<p>感谢 Proxmox VE 的免费订阅支持</p>
+<p>原始仓库：<a href="https://github.com/spiritLHLS/pve" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/pve</a></p>
+<p>说明文档</p>
+<p>国内(China)：</p>
+<p><a href="https://virt.spiritlhl.net/" target="_blank" rel="noopener noreffer">virt.spiritlhl.net</a></p>
+<p>国际(Global)：</p>
+<p><a href="https://www.spiritlhl.net/" target="_blank" rel="noopener noreffer">www.spiritlhl.net</a></p>
+<p>说明文档中 Proxmox VE 分区内容</p>
+<p><a href="https://github.com/oneclickvirt/kvm_images" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/kvm_images</a> 为对应虚拟机镜像仓库</p>
+<h3 id="前言">前言</h3>
+<p><strong>国内服务器请使用国内命令，国际服务器请使用国际命令</strong></p>]]></description>
+</item><item>
+    <title>将WIN系统DD为Linux系统</title>
+    <link>http://www.spiritysdx.top/20230222/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230222/</guid>
+    <description><![CDATA[<h3 id="前言">前言</h3>
+<p>该方法的前提：</p>
+<p>商家使用PVE虚拟化WIN服务器</p>
+<p>WIN服务器可配置使用Network进行启动</p>
+<p>启动时可使用NO VNC操控IPXE命令</p>
+<p>已知符合条件的服务器：<a href="https://hosting.netfront.net/aff.php?aff=126&amp;pid=67" target="_blank" rel="noopener noreffer">NETFRONT</a></p>]]></description>
+</item><item>
+    <title>为openvz或kvm架构的linux服务器增加swap分区</title>
+    <link>http://www.spiritysdx.top/20221206/</link>
+    <pubDate>Tue, 06 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221206/</guid>
+    <description><![CDATA[<h3 id="为openvz或kvm架构的linux服务器增加swap分区">为openvz或kvm架构的linux服务器增加swap分区</h3>
+<h4 id="addswap">addswap</h4>
+<p>更新时间：2022.12.05</p>
+<p>为openvz或kvm架构的linux服务器增加swap分区，请确保在root权限下使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -i 
+</span></span><span class="line"><span class="cl">curl -L https://raw.githubusercontent.com/spiritLHLS/addswap/main/addswap.sh -o addswap.sh <span class="o">&amp;&amp;</span> chmod +x addswap.sh <span class="o">&amp;&amp;</span> bash addswap.sh 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>已增加openvz架构重启swap自动添加。</p>]]></description>
+</item><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[<h3 id="使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</h3>
+<p>Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容器，一键多开NAT小鸡，一键多开NAT服务器</p>
+<p>上述需求都得到了解决</p>]]></description>
+</item></channel>
+</rss>

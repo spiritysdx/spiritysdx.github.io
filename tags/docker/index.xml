@@ -1,0 +1,189 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Docker - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/docker/</link>
+        <description>Docker - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 25 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>通用docker容器镜像打包应用的流程</title>
+    <link>http://www.spiritysdx.top/20250425/</link>
+    <pubDate>Fri, 25 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250425/</guid>
+    <description><![CDATA[<h2 id="基础镜像选择">基础镜像选择</h2>
+<ul>
+<li><code>scratch</code> - 空白模板</li>
+<li><code>debian:bookworm-slim</code> - debian的基础模板</li>
+<li><code>ubuntu:22.04</code> - ubuntu的官方模板</li>
+<li><a href="https://github.com/linuxserver/docker-baseimage-kasmvnc?tab=readme-ov-file#available-distros" target="_blank" rel="noopener noreffer">linuxserver的KASM模板</a> - <code>ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm</code></li>
+<li><a href="https://github.com/kasmtech/workspaces-images" target="_blank" rel="noopener noreffer">kasmtech的第三方应用程序KASM模板</a></li>
+<li><a href="https://github.com/jlesage/docker-baseimage-gui?tab=readme-ov-file#images" target="_blank" rel="noopener noreffer">jlesage的NOVNC模板</a> - <code>jlesage/baseimage-gui:ubuntu-22.04-v4</code></li>
+</ul>
+<p>由于镜像需要安装显卡驱动，所以这里选择了Ubuntu基础的Novnc的模板。如果不需要安装显卡驱动，换debian基础的也可以，镜像体积会更小一些。</p>]]></description>
+</item><item>
+    <title>魔改dockur制作可迁移的Windows镜像(单文件)</title>
+    <link>http://www.spiritysdx.top/20250405/</link>
+    <pubDate>Sat, 05 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250405/</guid>
+    <description><![CDATA[<h2 id="修改dockur制作windows镜像">修改dockur制作Windows镜像</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>拉取测试的版本: <a href="https://github.com/dockur/windows/tree/v4.33" target="_blank" rel="noopener noreffer">v4.33</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像会将系统安装到挂载出的盘中。</p>]]></description>
+</item><item>
+    <title>通过dockur制作可迁移的Windows镜像(双文件)</title>
+    <link>http://www.spiritysdx.top/20250315/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250315/</guid>
+    <description><![CDATA[<h2 id="使用dockur的原始镜像制作windows镜像双文件">使用dockur的原始镜像制作Windows镜像(双文件)</h2>
+<p><a href="https://github.com/dockur/windows" target="_blank" rel="noopener noreffer">https://github.com/dockur/windows</a></p>
+<p>原始仓库的镜像默认只是一个ISO下载器和网络自动设置器，本质上不包含Windows镜像，容器启动后镜像默认会将系统安装到挂载出的盘中。</p>
+<p>本页说明最终将保存两个文件，一个是挂载盘的压缩文件，一个是容器导出的tar包。</p>]]></description>
+</item><item>
+    <title>基于docker的在线IDE制作(支持浏览器直接访问)</title>
+    <link>http://www.spiritysdx.top/20250305/</link>
+    <pubDate>Wed, 05 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250305/</guid>
+    <description><![CDATA[<h2 id="仓库">仓库</h2>
+<p><a href="https://github.com/oneclickvirt/dockerfile-templates" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/dockerfile-templates</a></p>
+<p>适配境内环境，搭建带浏览器web查看NOVNC的在线IDE</p>
+<p>对应开发环境支持 AMD64 ARM64</p>
+<p>对应GPU/NPU的驱动支持</p>
+<p>对应平台的AI插件支持</p>
+<p>由于版权问题和镜像大小问题，tar包我就不传了</p>]]></description>
+</item><item>
+    <title>在root权限下使用守护进程自托管Github的Runners</title>
+    <link>http://www.spiritysdx.top/20240510/</link>
+    <pubDate>Fri, 10 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240510/</guid>
+    <description><![CDATA[<h2 id="前置条件">前置条件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /root
+</span></span><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install curl sudo -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装">安装</h2>
+<p>执行下述命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">RUNNER_ALLOW_RUNASROOT</span><span class="o">=</span><span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后正常安装至于<code>./config</code>那一步，然后不要使用官方的启动方式，而是使用守护进程启动，做到runner开机自启以及日志记录</p>]]></description>
+</item><item>
+    <title>为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)</title>
+    <link>http://www.spiritysdx.top/20230829/</link>
+    <pubDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230829/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>观望了全网的Docker启用IPV6的方法，要么是Docker版本更替法子不通了，要么是没说明一些前置条件的细节，导致方法也用不了，所以这里记录一下我走通的方法，一个兼容高低版本Docker和不同网络环境的方法</p>]]></description>
+</item><item>
+    <title>Okteto常用项目</title>
+    <link>http://www.spiritysdx.top/20210725/</link>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20210725/</guid>
+    <description><![CDATA[<h1 id="docker-compose搭建">docker-compose搭建</h1>
+<h2 id="wordpress">wordpress</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.3&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="l">/data/wordpress_db:/var/lib/mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">rootwordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">wordpress</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="s2">&#34;8000:80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">db:3306</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">WORDPRESS_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l">wordpress</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cloudreve">Cloudreve</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cloudreve</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">public</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">cloudreve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">jialezi/cloudreve</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="m">5212</span><span class="p">:</span><span class="m">5212</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">volumes</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">/root/cloudreve</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bitwarden">Bitwarden</h2>
+<p>管理地址为“xxx/admin”。</p>]]></description>
+</item></channel>
+</rss>

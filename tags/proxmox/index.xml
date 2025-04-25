@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Proxmox - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/proxmox/</link>
+        <description>Proxmox - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/proxmox/" rel="self" type="application/rss+xml" /><item>
+    <title>通过ProxmoxVE制作kubevirt可用的Windows镜像</title>
+    <link>http://www.spiritysdx.top/20250325/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250325/</guid>
+    <description><![CDATA[<h2 id="通过proxmoxve制作kubevirt可用的win镜像">通过ProxmoxVE制作kubevirt可用的WIN镜像</h2>
+<p><a href="https://github.com/ILLKX/Windows-VirtIO" target="_blank" rel="noopener noreffer">https://github.com/ILLKX/Windows-VirtIO</a></p>
+<p>下载带virtio的虚拟机镜像</p>
+<p>然后借鉴 <a href="https://www.spiritlhl.net/guide/pve/pve_windows.html" target="_blank" rel="noopener noreffer">https://www.spiritlhl.net/guide/pve/pve_windows.html</a> 开设虚拟机，到图形化安装后即可，不要配置网络</p>
+<p>在虚拟机内需要设置一个bat脚本，设置系统启动后执行，脚本的内容是</p>]]></description>
+</item></channel>
+</rss>

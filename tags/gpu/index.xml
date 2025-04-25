@@ -1,0 +1,75 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Gpu - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/gpu/</link>
+        <description>Gpu - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 12 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/gpu/" rel="self" type="application/rss+xml" /><item>
+    <title>nvidia-smi被自动升级无法与GPU通信了怎么办</title>
+    <link>http://www.spiritysdx.top/20240712/</link>
+    <pubDate>Fri, 12 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240712/</guid>
+    <description><![CDATA[<h2 id="问题">问题</h2>
+<p>如题目所说，这里贴个报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nvidia-smi
+</span></span><span class="line"><span class="cl">Failed to initialize NVML: Driver/library version mismatch
+</span></span><span class="line"><span class="cl">NVML library version: 535.183
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原先的版本是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> NVIDIA-SMI 535.171.04             Driver Version: 535.171.04   CUDA Version: 12.2 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="修复方案">修复方案</h2>
+<h3 id="下载官方驱动">下载官方驱动</h3>
+<p>打开官方网站：<a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer">https://www.nvidia.cn/Download/Find.aspx?lang=cn</a></p>
+<p>按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致</p>]]></description>
+</item><item>
+    <title>conda使用GPU时的一些陷阱</title>
+    <link>http://www.spiritysdx.top/20240607/</link>
+    <pubDate>Fri, 07 Jun 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240607/</guid>
+    <description><![CDATA[<h2 id="conda默认的python环境版本过高需要降级默认的python环境">conda默认的python环境版本过高，需要降级默认的Python环境</h2>
+<p>假设原始环境是Python12的环境</p>
+<p>直接使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conda install python==3.11
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似上述方法指定python版本下载，注意这个命令要在conda的虚拟环境中执行才会替换当前python版本。</p>]]></description>
+</item><item>
+    <title>给机房的Ubuntu22.04安装LXD共享GPU资源</title>
+    <link>http://www.spiritysdx.top/20240513/</link>
+    <pubDate>Mon, 13 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240513/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。</p>]]></description>
+</item><item>
+    <title>给机房的windows11系统安装Ubuntu22.04的Linux双系统</title>
+    <link>http://www.spiritysdx.top/20240509/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240509/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>前置条件以及一些碎碎念：</p>
+<p>至少两块硬盘，一块硬盘已安装Windows11，另一块硬盘用于安装<code>Ubuntu22.04</code>，两块硬盘保证系统不会互相影响出奇怪的问题</p>]]></description>
+</item></channel>
+</rss>

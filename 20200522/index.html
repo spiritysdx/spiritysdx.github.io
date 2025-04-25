@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>NumPy (下) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200522/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="NumPy (下)">
+  <meta property="og:description" content="前言 本篇鸣谢 马川-燕大 的增删整理， 王圣元 ——原创文章，与原文不同之处包含我的学习记录。 匹配Jupyter Notebook的ipynb文档链接下载地址如下">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-22T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="数学建模">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="NumPy (下)">
+  <meta name="twitter:description" content="前言 本篇鸣谢 马川-燕大 的增删整理， 王圣元 ——原创文章，与原文不同之处包含我的学习记录。 匹配Jupyter Notebook的ipynb文档链接下载地址如下">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200522/" /><link rel="prev" href="http://www.spiritysdx.top/20200517/" /><link rel="next" href="http://www.spiritysdx.top/20200523/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NumPy (下)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200522\/"
+        },"genre": "posts","keywords": "python, 数学建模","wordcount":  5649 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200522\/","datePublished": "2020-05-22T00:00:00+00:00","dateModified": "2020-05-22T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">NumPy (下)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-22">2020-05-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5649 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#本篇鸣谢-马川-燕大-的增删整理-王圣元-原创文章httpsmpweixinqqcomsfo-uignsou2nbvlxsw_nvw与原文不同之处包含我的学习记录">本篇鸣谢 <em>马川-燕大</em> 的增删整理， <em>王圣元</em> ——<a href="https://mp.weixin.qq.com/s/Fo-UIGnsoU2nBVLxSw_nVw">原创文章</a>，与原文不同之处包含我的学习记录。</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-数组的变形">4 数组的变形</a>
+      <ul>
+        <li><a href="#41-重塑和打平">4.1 重塑和打平</a>
+          <ul>
+            <li><a href="#重塑">重塑</a></li>
+            <li><a href="#打平">打平</a></li>
+            <li><a href="#行主序和列主序">行主序和列主序</a></li>
+            <li><a href="#font-colorredb知识点bfont"><font color="red"><b>知识点</b></font></a></li>
+          </ul>
+        </li>
+        <li><a href="#42-合并和分裂">4.2 合并和分裂</a>
+          <ul>
+            <li><a href="#合并">合并</a></li>
+            <li><a href="#font-colorredbconcatenatebfont"><font color="red"><b>concatenate</b></font></a></li>
+            <li><a href="#font-colorredbvstack-hstack-dstackbfont"><font color="red"><b>vstack, hstack, dstack</b></font></a></li>
+            <li><a href="#分裂">分裂</a></li>
+            <li><a href="#font-colorredbsplitbfont"><font color="red"><b>split</b></font></a></li>
+            <li><a href="#font-colorredbhsplit-vsplitbfont"><font color="red"><b>hsplit, vsplit</b></font></a></li>
+          </ul>
+        </li>
+        <li><a href="#43-重复和拼接">4.3 重复和拼接</a>
+          <ul>
+            <li><a href="#重复">重复</a></li>
+            <li><a href="#拼接">拼接</a></li>
+          </ul>
+        </li>
+        <li><a href="#44-其他操作">4.4 其他操作</a>
+          <ul>
+            <li><a href="#排序">排序</a></li>
+            <li><a href="#插入和删除">插入和删除</a></li>
+            <li><a href="#复制">复制</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5数组的计算">5数组的计算</a>
+      <ul>
+        <li><a href="#51-元素层面计算">5.1 元素层面计算</a></li>
+        <li><a href="#52-广播机制计算">5.2 广播机制计算</a>
+          <ul>
+            <li><a href="#广播的引出">广播的引出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6-总结">6 总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<h3 id="本篇鸣谢-马川-燕大-的增删整理-王圣元-原创文章httpsmpweixinqqcomsfo-uignsou2nbvlxsw_nvw与原文不同之处包含我的学习记录">本篇鸣谢 <em>马川-燕大</em> 的增删整理， <em>王圣元</em> ——<a href="https://mp.weixin.qq.com/s/Fo-UIGnsoU2nBVLxSw_nVw" target="_blank" rel="noopener noreffer">原创文章</a>，与原文不同之处包含我的学习记录。</h3>
+<p>匹配Jupyter Notebook的ipynb文档链接下载地址如下</p>
+<p><a href="https://spiritlhl.lanzous.com/icwc7ib" target="_blank" rel="noopener noreffer"><strong>源文档</strong></a></p>
+<p>接着上篇继续后面两个章节，<strong>数组变形</strong>和<strong>数组计算</strong>。</p>
+<p><strong>提纲：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/5365f25ef9d6a.png"
+        data-srcset="https://pic./2020/05/22/5365f25ef9d6a.png, https://pic./2020/05/22/5365f25ef9d6a.png 1.5x, https://pic./2020/05/22/5365f25ef9d6a.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/5365f25ef9d6a.png"
+        title="https://pic./2020/05/22/5365f25ef9d6a.png" /></p>
+<h2 id="4-数组的变形">4 数组的变形</h2>
+<p>本节介绍<strong>四大类</strong>数组层面上的操作，具体有</p>
+<ol>
+<li>
+<p>重塑 (reshape) 和打平 (ravel, flatten)</p>
+</li>
+<li>
+<p>合并 (concatenate, stack) 和分裂 (split)</p>
+</li>
+<li>
+<p>重复 (repeat) 和拼接 (tile)</p>
+</li>
+<li>
+<p>其他操作 (sort, insert, delete, copy)</p>
+</li>
+</ol>
+<h3 id="41-重塑和打平">4.1 重塑和打平</h3>
+<p>重塑 (reshape) 和打平 (ravel, flatten) 这两个操作仅仅只改变数组的维度</p>
+<ul>
+<li>
+<p>重塑是<strong>从低维到高维</strong></p>
+</li>
+<li>
+<p>打平是<strong>从高维到低维</strong></p>
+</li>
+</ul>
+<h4 id="重塑">重塑</h4>
+<p>用reshape()函数将一维数组 arr 重塑成二维数组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+</code></pre>
+<blockquote>
+<p>思考：为什么重塑后的数组不是</p>
+</blockquote>
+<pre><code>[[ 0 4 8]
+ [ 1 5 9]
+ [ 2 6 10]
+ [ 3 7 11]]
+</code></pre>
+<p>当你重塑高维矩阵时，不想花时间算某一维度的元素个数时，可以用「-1」取代，程序会自动帮你计算出来。比如把 12 个元素重塑成 (2, 6)，你可以写成 (2,-1) 或者 (-1, 6)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+</code></pre>
+<h4 id="打平">打平</h4>
+<p>用 ravel() 或flatten() 函数将二维数组 arr 打平成一维数组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ravel_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">ravel_arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flatten_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">flatten_arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+</code></pre>
+<blockquote>
+<p>思考：为什么打平后的数组不是</p>
+</blockquote>
+<pre><code>[ 0 3 6 9 1 4 7 10 2 5 8 11]
+</code></pre>
+<p>要回答本节两个问题，需要了解 numpy 数组在内存块的存储方式。</p>
+<h4 id="行主序和列主序">行主序和列主序</h4>
+<p>行主序 (row-major order) 指每行的元素在内存块中彼此相邻，而列主序 (column-major order) 指每列的元素在内存块中彼此相邻。</p>
+<p>在众多计算机语言中，</p>
+<p>默认行主序的有 <strong>C</strong> 语言(下图 order=‘<strong>C</strong>’ 等价于行主序)</p>
+<p>默认列主序的有 <strong>F</strong>ortran 语言(下图 order=‘<strong>F</strong>’ 等价于列主序)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/b605b92f359ab.png"
+        data-srcset="https://pic./2020/05/22/b605b92f359ab.png, https://pic./2020/05/22/b605b92f359ab.png 1.5x, https://pic./2020/05/22/b605b92f359ab.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/b605b92f359ab.png"
+        title="https://pic./2020/05/22/b605b92f359ab.png" /></p>
+<p>在 numpy 数组中，默认的是行主序，即 order =&lsquo;C&rsquo;。现在可以回答本节那两个问题了。</p>
+<p>如果你真的想在「重塑」和「打平」时用列主序，只用把 order 设为 &lsquo;F&rsquo;，以重塑举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 0  4  8]
+ [ 1  5  9]
+ [ 2  6 10]
+ [ 3  7 11]]
+</code></pre>
+<p>细心的读者可能已经发现为什么「打平」需要两个函数 ravel() 或 flatten()？它们的区别在哪里？</p>
+<h4 id="font-colorredb知识点bfont"><font color="red"><b>知识点</b></font></h4>
+<p>函数 ravel() 或 flatten() 的不同之处是</p>
+<p><strong>1. ravel() 按「行主序」打平时<font color="red"><b>没有复制</b></font>原数组，按「列主序」在打平时<font color="red"><b>复制了</b></font>原数组</strong></p>
+<p><strong>2. flatten() 在打平时<font color="red"><b>复制了</b></font>原数组</strong></p>
+<p>用代码验证一下，首先看 flatten()，将打平后的数组 flatten 第一个元素更新为 10000，并没有对原数组 arr 产生任何影响 (证明 flatten() 是复制了原数组)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">flatten</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">flatten</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">flatten_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[0 1 2]
+ [3 4 5]]
+[0 1 2 3 4 5]
+[[0 1 2]
+ [3 4 5]]
+</code></pre>
+<p>再看 ravel() 在「列主序」打平，将打平后的数组 ravel_F 第一个元素更新为 10000，并没有对原数组 arr 产生任何影响 (证明 ravel(order=&lsquo;F&rsquo;) 是复制了原数组)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ravel_F</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ravel_F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">ravel_F</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[10000     3     1     4     2     5]
+[[0 1 2]
+ [3 4 5]]
+</code></pre>
+<p>最后看 ravel() 在「行主序」打平，将打平后的数组 ravel_C 第一个元素更新为 10000，原数组 arr[0][0] 也变成了 10000 (证明 ravel() 没有复制原数组)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ravel_C</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ravel_C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">ravel_C</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[10000     1     2     3     4     5]
+[[10000     1     2]
+ [    3     4     5]]
+</code></pre>
+<h3 id="42-合并和分裂">4.2 合并和分裂</h3>
+<p>合并 (concatenate, stack) 和分裂 (split) 这两个操作仅仅只改变数组的分合</p>
+<ul>
+<li>
+<p>合并是多合一</p>
+</li>
+<li>
+<p>分裂是一分多</p>
+</li>
+</ul>
+<h4 id="合并">合并</h4>
+<p>使用「合并」函数有两种选择</p>
+<ol>
+<li>
+<p>有通用的 concatenate</p>
+</li>
+<li>
+<p>有专门的 vstack, hstack, dstack</p>
+</li>
+</ol>
+<p>用下面两个数组来举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="font-colorredbconcatenatebfont"><font color="red"><b>concatenate</b></font></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 1,  2,  3],
+       [ 4,  5,  6],
+       [ 7,  8,  9],
+       [10, 11, 12]])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[ 1,  2,  3,  7,  8,  9],
+       [ 4,  5,  6, 10, 11, 12]])
+</code></pre>
+<p>在 concatenate() 函数里通过设定轴，来对数组进行竖直方向合并 (轴 0) 和水平方向合并 (轴 1)。</p>
+<h4 id="font-colorredbvstack-hstack-dstackbfont"><font color="red"><b>vstack, hstack, dstack</b></font></h4>
+<p>通用的东西是好，但是可能效率不高，NumPy 里还有专门合并的函数</p>
+<ul>
+<li>
+<p>vstack：v 代表 vertical，竖直合并，等价于 concatenate(axis=0)</p>
+</li>
+<li>
+<p>hstack：h 代表 horizontal，水平合并，等价于 concatenate(axis=1)</p>
+</li>
+<li>
+<p>dstack：d 代表 depth-wise，按深度合并，深度有点像彩色照片的 RGB 通道</p>
+</li>
+</ul>
+<p>一图胜千言：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/55144614b11c0.png"
+        data-srcset="https://pic./2020/05/22/55144614b11c0.png, https://pic./2020/05/22/55144614b11c0.png 1.5x, https://pic./2020/05/22/55144614b11c0.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/55144614b11c0.png"
+        title="https://pic./2020/05/22/55144614b11c0.png" /></p>
+<p>用代码验证一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">))</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">))</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">))</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+[[ 1  2  3  7  8  9]
+ [ 4  5  6 10 11 12]]
+[[[ 1  7]
+  [ 2  8]
+  [ 3  9]]
+
+ [[ 4 10]
+  [ 5 11]
+  [ 6 12]]]
+</code></pre>
+<p>和 vstack, hstack 不同，dstack 将原数组的维度增加了一维。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">((</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(2, 3, 2)
+</code></pre>
+<h4 id="分裂">分裂</h4>
+<p>使用「分裂」函数有两种选择</p>
+<ol>
+<li>
+<p>有通用的 split</p>
+</li>
+<li>
+<p>有专门的 hsplit, vsplit</p>
+</li>
+</ol>
+<p>用下面数组来举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]
+ [20 21 22 23 24]]
+</code></pre>
+<h4 id="font-colorredbsplitbfont"><font color="red"><b>split</b></font></h4>
+<p>和 concatenate() 函数一样，我们可以在 split() 函数里通过设定轴，来对数组沿着竖直方向分裂 (轴 0) 和沿着水平方向分裂 (轴 1)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">arr</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The first split is&#39;</span><span class="p">,</span> <span class="n">first</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The second split is&#39;</span><span class="p">,</span> <span class="n">second</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The third split is&#39;</span><span class="p">,</span> <span class="n">third</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>The first split is [[0 1 2 3 4]]
+The second split is [[ 5  6  7  8  9]
+ [10 11 12 13 14]]
+The third split is [[15 16 17 18 19]
+ [20 21 22 23 24]]
+</code></pre>
+<p>split() 默认沿着轴 0 分裂，其第二个参数 [1, 3] 相当于是个切片操作，将数组分成三部分：</p>
+<ul>
+<li>
+<p>第一部分 - :1 (即第 1 行)</p>
+</li>
+<li>
+<p>第二部分 - 1:3 (即第 2 到 3 行)</p>
+</li>
+<li>
+<p>第二部分 - 3:  (即第 4 到 5 行)</p>
+</li>
+</ul>
+<h4 id="font-colorredbhsplit-vsplitbfont"><font color="red"><b>hsplit, vsplit</b></font></h4>
+<p>vsplit() 和 split(axis=0) 等价，hsplit() 和 split(axis=1) 等价。一图胜千言：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/0df0097a1a1d9.png"
+        data-srcset="https://pic./2020/05/22/0df0097a1a1d9.png, https://pic./2020/05/22/0df0097a1a1d9.png 1.5x, https://pic./2020/05/22/0df0097a1a1d9.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/0df0097a1a1d9.png"
+        title="https://pic./2020/05/22/0df0097a1a1d9.png" /></p>
+<p>为了和上面不重复，我们只看 hsplit。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hsplit</span><span class="p">(</span><span class="n">arr</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The first split is&#39;</span><span class="p">,</span> <span class="n">first</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The second split is&#39;</span><span class="p">,</span> <span class="n">second</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The third split is&#39;</span><span class="p">,</span> <span class="n">third</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>The first split is [[ 0]
+ [ 5]
+ [10]
+ [15]
+ [20]]
+The second split is [[ 1  2]
+ [ 6  7]
+ [11 12]
+ [16 17]
+ [21 22]]
+The third split is [[ 3  4]
+ [ 8  9]
+ [13 14]
+ [18 19]
+ [23 24]]
+</code></pre>
+<h3 id="43-重复和拼接">4.3 重复和拼接</h3>
+<p>重复 (repeat) 和拼接 (tile) 这两个操作本质都是复制</p>
+<ul>
+<li>
+<p>重复是在元素层面复制</p>
+</li>
+<li>
+<p>拼接是在数组层面复制</p>
+</li>
+</ul>
+<h4 id="重复">重复</h4>
+<p>函数 repeat() 复制的是数组的每一个元素，参数有几种设定方法：</p>
+<ul>
+<li>
+<p>一维数组：用标量和列表来复制元素的个数</p>
+</li>
+<li>
+<p>多维数组：用标量和列表来复制元素的个数，用轴来控制复制的行和列</p>
+</li>
+</ul>
+<p><font color="red"><b>标量</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[0 1 2]
+[0 0 0 1 1 1 2 2 2]
+</code></pre>
+<p>标量参数 3 - 数组 arr 中每个元素复制 3 遍。</p>
+<p><font color="red"><b>列表</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[0 0 1 1 1 2 2 2 2]
+</code></pre>
+<p>列表参数 [2,3,4] - 数组 arr 中每个元素分别复制 2, 3, 4 遍。</p>
+<p><font color="red"><b>标量和轴</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2d</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[0 1 2]
+ [3 4 5]]
+[[0 1 2]
+ [0 1 2]
+ [3 4 5]
+ [3 4 5]]
+</code></pre>
+<p>标量参数 2 和轴 0 - 数组 arr2d 中每个元素沿着轴 0 复制 2 遍。</p>
+<p><font color="red"><b>列表和轴</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[0 0 1 1 1 2 2 2 2]
+ [3 3 4 4 4 5 5 5 5]]
+</code></pre>
+<p>列表参数 [2,3,4] 和轴 1 - 数组 arr2d 中每个元素沿着轴 1 分别复制 2, 3, 4 遍。</p>
+<h4 id="拼接">拼接</h4>
+<p>函数 tile() 复制的是数组本身，参数有几种设定方法：</p>
+<ul>
+<li>
+<p>标量：把数组当成一个元素，一列一列复制</p>
+</li>
+<li>
+<p>形状：把数组当成一个元素，按形状复制</p>
+</li>
+</ul>
+<p><font color="red"><b>标量</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2d</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">arr2d</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[0 1 2]
+ [3 4 5]]
+[[0 1 2 0 1 2]
+ [3 4 5 3 4 5]]
+</code></pre>
+<p>标量参数 2 - 数组 arr 按列复制 2 遍。</p>
+<p><font color="red"><b>形状</b></font></p>
+<p>tile 是瓷砖的意思，顾名思义，这个函数就是把数组像瓷砖一样铺展开来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr2d2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2d2</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1 2]
+ [3 4]]
+</code></pre>
+<p><strong>横向</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/0a88690672dfb.png"
+        data-srcset="https://pic./2020/05/22/0a88690672dfb.png, https://pic./2020/05/22/0a88690672dfb.png 1.5x, https://pic./2020/05/22/0a88690672dfb.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/0a88690672dfb.png"
+        title="https://pic./2020/05/22/0a88690672dfb.png" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">arr2d2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>    <span class="c1"># 与 np.tile(arr2d2, 4) 等价</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[1, 2, 1, 2, 1, 2, 1, 2],
+       [3, 4, 3, 4, 3, 4, 3, 4]])
+</code></pre>
+<p><strong>纵向</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/b17e29bbe81eb.png"
+        data-srcset="https://pic./2020/05/22/b17e29bbe81eb.png, https://pic./2020/05/22/b17e29bbe81eb.png 1.5x, https://pic./2020/05/22/b17e29bbe81eb.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/b17e29bbe81eb.png"
+        title="https://pic./2020/05/22/b17e29bbe81eb.png" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">arr2d2</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[1, 2],
+       [3, 4],
+       [1, 2],
+       [3, 4],
+       [1, 2],
+       [3, 4]])
+</code></pre>
+<p><strong>横向+纵向</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/fe15217fcf826.png"
+        data-srcset="https://pic./2020/05/22/fe15217fcf826.png, https://pic./2020/05/22/fe15217fcf826.png 1.5x, https://pic./2020/05/22/fe15217fcf826.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/fe15217fcf826.png"
+        title="https://pic./2020/05/22/fe15217fcf826.png" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">arr2d2</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1 2 1 2 1 2 1 2]
+ [3 4 3 4 3 4 3 4]
+ [1 2 1 2 1 2 1 2]
+ [3 4 3 4 3 4 3 4]
+ [1 2 1 2 1 2 1 2]
+ [3 4 3 4 3 4 3 4]]
+</code></pre>
+<p>形状参数 (3,4) - 数组 arr 按形状复制 12 (3×4) 遍，并以 (3,4) 的形式展现。</p>
+<h3 id="44-其他操作">4.4 其他操作</h3>
+<p>本节讨论数组的其他操作，包括排序 (sort)，插入 (insert)，删除 (delete) 和复制 (copy)。</p>
+<h4 id="排序">排序</h4>
+<p>排序包括直接排序 (direct sort) 和间接排序 (indirect sort)。</p>
+<p><font color="red"><b>直接排序</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;Before sorting&#39;</span><span class="p">,</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;After sorting&#39;</span><span class="p">,</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Before sorting [5 3 2 6 1 4]
+After sorting [1 2 3 4 5 6]
+</code></pre>
+<p>sort()函数是按升序 (ascending order) 排列的，该函数里没有参数可以控制 order，因此你想要按降序排列的数组，只需</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[6 5 4 3 2 1]
+</code></pre>
+<p>现在让人困惑的地方来了。</p>
+<p><font color="red"><b>知识点</b></font></p>
+<p>用来排序 numpy 用两种方式：</p>
+<ol>
+<li>
+<p>arr.sort()#原址排序</p>
+</li>
+<li>
+<p>np.sort( arr )#副本排序</p>
+</li>
+</ol>
+<p>第一种 sort 会改变 arr，第二种 sort 在排序时创建了 arr 的一个复制品，不会改变 arr。看下面代码，用一个形状是 (3, 4) 的「二维随机整数」数组来举例，用整数是为了便于读者好观察排序前后的变化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span> <span class="mi">40</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[10  3 38 38]
+ [27 32 14 11]
+ [11  5 11  0]]
+</code></pre>
+<p>第一种 arr.sort()，对第一列排序，发现 arr 的元素<strong>改变</strong>了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[10  3 38 38]
+ [11 32 14 11]
+ [27  5 11  0]]
+</code></pre>
+<p>第二种 np.sort(arr)，对第二列排序，但是 arr 的元素<strong>不变</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([ 3,  5, 32])
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[10  3 38 38]
+ [11 32 14 11]
+ [27  5 11  0]]
+</code></pre>
+<p>此外也可以在不同的轴上排序，对于二维数组，在「轴 0」上排序是「跨行」排序，在「轴 1」上排序是「跨列」排序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 3 10 38 38]
+ [11 11 14 32]
+ [ 0  5 11 27]]
+</code></pre>
+<p><font color="red"><b>间接排序</b></font></p>
+<p>有时候我们不仅仅只想排序数组，还想在排序过程中<font color="red"><b>提取每个元素在原数组对应的索引</b></font>(index)，这时 argsort() 就派上用场了。以排列下面五个学生的数学分数为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">91</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">idx</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="c1">#得到排序索引</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">idx</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[1 3 4 2 0]
+</code></pre>
+<p>这个 idx = [1 3 4 2 0] 怎么理解呢？很简单，排序完之后分数应该是 [60 80 91 99 100]，</p>
+<ul>
+<li>
+<p>60，即 score[1] 排在第0位， 因此 idx[0] =1</p>
+</li>
+<li>
+<p>80，即 score[3] 排在第1 位， 因此 idx[1] =3</p>
+</li>
+<li>
+<p>91，即 score[4] 排在第2 位， 因此 idx[2] =4</p>
+</li>
+<li>
+<p>99，即 score[2] 排在第3 位， 因此 idx[3] =2</p>
+</li>
+<li>
+<p>100，即 score[0] 排在第4 位， 因此 idx[4] =0</p>
+</li>
+</ul>
+<p>用这个 idx 对 score 做一个「花式索引」得到 (还记得上贴的内容吗？)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">score</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[ 60  80  91  99 100]
+</code></pre>
+<p>再看一个二维数组的例子。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span> <span class="mi">40</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[38 14 23 19]
+ [15  8 38 37]
+ [ 4  0 21 23]]
+</code></pre>
+<p>对其第一行 arr[0] 排序，获取索引，在应用到所用行上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span><span class="p">[:,</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[14, 19, 23, 38],
+       [ 8, 37, 38, 15],
+       [ 0, 23, 21,  4]])
+</code></pre>
+<p>这不就是「花式索引」吗？来我们分解一下以上代码，先看看索引。传入[索引]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[1 3 2 0]
+</code></pre>
+<p>「花式索引」来了，结果和上面一样的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[23, 38, 19, 14],
+       [38, 15, 37,  8],
+       [21,  4, 23,  0]])
+</code></pre>
+<h4 id="插入和删除">插入和删除</h4>
+<p>和列表一样，我们可以给 numpy 数组</p>
+<ul>
+<li>
+<p>用insert()函数在某个特定位置之前插入元素</p>
+</li>
+<li>
+<p>用delete()函数删除某些特定元素</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">a</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[0 1 2 3 4 5]
+[  0 100   1   2   3   4   5]
+[0 2 4 5]
+</code></pre>
+<h4 id="复制">复制</h4>
+<p>用copy()函数来复制数组 a 得到 a_copy，很明显，改变 a_copy 里面的元素不会改变 a。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a_copy</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;Before changing value, a is&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;Before changing value, a_copy is&#39;</span><span class="p">,</span> <span class="n">a_copy</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a_copy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;After changing value, a_copy is&#39;</span><span class="p">,</span> <span class="n">a_copy</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;After changing value, a is&#39;</span><span class="p">,</span> <span class="n">a</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Before changing value, a is [0 1 2 3 4 5]
+Before changing value, a_copy is [0 1 2 3 4 5]
+After changing value, a_copy is [ 0  1  2  3  4 99]
+After changing value, a is [0 1 2 3 4 5]
+</code></pre>
+<h2 id="5数组的计算">5数组的计算</h2>
+<p>本节介绍<strong>两大类</strong>数组计算，具体有</p>
+<ol>
+<li>
+<p>元素层面 (element-wise) 计算</p>
+</li>
+<li>
+<p>广播机制 (broadcasting) 计算</p>
+</li>
+</ol>
+<h3 id="51-元素层面计算">5.1 元素层面计算</h3>
+<p>Numpy 数组元素层面计算包括：</p>
+<ol>
+<li>
+<p>二元运算 (binary operation)：加减乘除</p>
+</li>
+<li>
+<p>数学函数：倒数、平方、指数、对数</p>
+</li>
+<li>
+<p>比较运算 (comparison)</p>
+</li>
+</ol>
+<p>先定义两个数组 arr1 和 arr2。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr2</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1. 2. 3.]
+ [4. 5. 6.]]
+[[2. 2. 2.]
+ [2. 2. 2.]]
+</code></pre>
+<p><font color="red"><b>加、减、乘、除</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="o">-</span> <span class="n">arr2</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="o">*</span> <span class="n">arr2</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="o">/</span> <span class="n">arr2</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[4. 5. 6.]
+ [7. 8. 9.]]
+[[-1.  0.  1.]
+ [ 2.  3.  4.]]
+[[ 2.  4.  6.]
+ [ 8. 10. 12.]]
+[[0.5 1.  1.5]
+ [2.  2.5 3. ]]
+</code></pre>
+<p><font color="red"><b>倒数、平方、指数、对数</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">arr1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">arr1</span> <span class="o">**</span> <span class="mi">2</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1.         0.5        0.33333333]
+ [0.25       0.2        0.16666667]]
+[[ 1.  4.  9.]
+ [16. 25. 36.]]
+[[  2.71828183   7.3890561   20.08553692]
+ [ 54.59815003 148.4131591  403.42879349]]
+[[0.         0.69314718 1.09861229]
+ [1.38629436 1.60943791 1.79175947]]
+</code></pre>
+<p><font color="red"><b>比较</b></font></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">&gt;</span> <span class="n">arr2</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">&gt;</span> <span class="mi">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array([[False, False, False],
+       [ True,  True,  True]])
+</code></pre>
+<p>从上面结果可知</p>
+<ul>
+<li>
+<p>「数组和数组间的二元运算」都是在元素层面上进行的</p>
+</li>
+<li>
+<p>「作用在数组上的数学函数」都是作用在数组的元素层面上的。</p>
+</li>
+<li>
+<p>「数组和数组间的比较」都是在元素层面上进行的</p>
+</li>
+</ul>
+<p>但是在「数组和标量间的比较」时，python 好像先把 3 复制了和 arr1 形状一样的数组 [[3,3,3], [3,3,3]]，然后再在元素层面上作比较。上述这个复制标量的操作叫做「广播机制」，是 NumPy 里最重要的一个特点，在下一节会详细讲到。</p>
+<h3 id="52-广播机制计算">5.2 广播机制计算</h3>
+<h4 id="广播的引出">广播的引出</h4>
+<p>当两个数组的形状并不相同的时候，我们可以通过扩展数组的方法来实现相加、相减、相乘等操作，这种机制叫做广播（broadcasting）。</p>
+<p>比如，一个二维数组减去列平均值，来对数组的每一列进行距平化处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1">#shape(4,3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr_mean</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>      <span class="c1">#shape(3,)</span>
+</span></span><span class="line"><span class="cl"><span class="n">demeaned</span> <span class="o">=</span> <span class="n">arr</span> <span class="o">-</span><span class="n">arr_mean</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr_mean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">demeaned</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[ 0.48226402  1.20876697 -0.67351982]
+ [ 0.65606798 -1.16182488 -1.68726346]
+ [-0.92629614  0.49865982 -0.07100581]
+ [ 0.73134776 -0.28327924  0.14857151]]
+[ 0.23584591  0.06558067 -0.5708044 ]
+[[ 0.24641812  1.1431863  -0.10271542]
+ [ 0.42022208 -1.22740555 -1.11645907]
+ [-1.16214204  0.43307915  0.49979858]
+ [ 0.49550185 -0.34885991  0.71937591]]
+</code></pre>
+<p>很明显上式arr和arr_mean维度并不形同，但是它们可以进行相减操作，这就是通过广播机制来实现的。</p>
+<p><strong>广播的原则</strong></p>
+<p><strong>如果两个数组的后缘维度（trailing dimension，即从末尾开始算起的维度）的轴长度相符，或其中的一方的长度为1</strong>，则认为它们是广播兼容的。广播会在缺失和（或）长度为1的维度上进行。</p>
+<p>这句话乃是理解广播的核心。广播主要发生在两种情况，一种是两个数组的维数不相等，但是它们的后缘维度的轴长相符，另外一种是有一方的长度为1。</p>
+<p><strong><font color="red">数组维度不同，后缘维度的轴长相符</font></strong></p>
+<p>我们来看一个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>  <span class="c1">#arr1.shape = (4,3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>    <span class="c1">#arr2.shape = (3,)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr_sum</span> <span class="o">=</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr_sum</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1 2 3]
+ [2 3 4]
+ [3 4 5]
+ [4 5 6]]
+</code></pre>
+<p>上例中arr1的shape为（4,3），arr2的shape为（3，）。可以说前者是二维的，而后者是一维的。但是它们的后缘维度相等，arr1的第二维长度为3，和arr2的维度相同。arr1和arr2的shape并不一样，但是它们可以执行相加操作，这就是通过广播完成的，在这个例子当中是将arr2沿着0轴进行扩展。</p>
+<p>上面程序当中的广播如下图所示(<strong>一维数据在轴0上的广播</strong>):</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/32fa6840c39a3.png"
+        data-srcset="https://pic./2020/05/22/32fa6840c39a3.png, https://pic./2020/05/22/32fa6840c39a3.png 1.5x, https://pic./2020/05/22/32fa6840c39a3.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/32fa6840c39a3.png"
+        title="https://pic./2020/05/22/32fa6840c39a3.png" /></p>
+<p>同样的例子还有(<strong>三维数据在轴0上的广播</strong>)：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/0275b84b7cdd2.png"
+        data-srcset="https://pic./2020/05/22/0275b84b7cdd2.png, https://pic./2020/05/22/0275b84b7cdd2.png 1.5x, https://pic./2020/05/22/0275b84b7cdd2.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/0275b84b7cdd2.png"
+        title="https://pic./2020/05/22/0275b84b7cdd2.png" /></p>
+<p>从上面的图可以看到，（3,4,2）和（4,2）的维度是不相同的，前者为3维，后者为2维。但是它们后缘维度的轴长相同，都为（4,2），所以可以沿着0轴进行广播。</p>
+<p>同样，还有一些例子：（4,2,3）和（2,3）是兼容的，（4,2,3）还和（3）是兼容的，后者需要在两个轴上面进行扩展。</p>
+<p><strong><font color="red">数组维度相同，其中有个轴为1</font></strong></p>
+<p>我们来看下面的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>  <span class="c1">#arr1.shape = (4,3)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">]])</span>    <span class="c1">#arr2.shape = (4, 1)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">arr_sum</span> <span class="o">=</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">arr_sum</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[[1 1 1]
+ [3 3 3]
+ [5 5 5]
+ [7 7 7]]
+</code></pre>
+<p>arr1的shape为（4,3），arr2的shape为（4,1），它们都是二维的，但是第二个数组在1轴上的长度为1，所以，可以在1轴上面进行广播，如下图所示(<strong>二维数组在轴1上的广播</strong>)：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/fc69ffdf4fbb2.png"
+        data-srcset="https://pic./2020/05/22/fc69ffdf4fbb2.png, https://pic./2020/05/22/fc69ffdf4fbb2.png 1.5x, https://pic./2020/05/22/fc69ffdf4fbb2.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/fc69ffdf4fbb2.png"
+        title="https://pic./2020/05/22/fc69ffdf4fbb2.png" /></p>
+<p>在这种情况下，两个数组的维度要保证相等，其中有一个轴的长度为1，这样就会沿着长度为1的轴进行扩展。这样的例子还有：（4,6）和（1,6） 。（3,5,6）和（1,5,6）、（3,1,6）、（3,5,1），后面三个分别会沿着0轴，1轴，2轴进行广播。</p>
+<p>人们经常需要通过算术运算过程将较低维度的数组在除0轴以外的其他轴向上广播。根据广播的原则，较小数组的“广播维”必须为1。</p>
+<p>对于三维的情况，在三维中的任何一维上广播其实也就是将数据重塑为兼容的形状而已。下图说明了要在三维数组各维度上广播的形状需求(<strong>能在该三维数组上广播的二维数组的形状</strong>)。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/22/fd09423ea77c9.png"
+        data-srcset="https://pic./2020/05/22/fd09423ea77c9.png, https://pic./2020/05/22/fd09423ea77c9.png 1.5x, https://pic./2020/05/22/fd09423ea77c9.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/22/fd09423ea77c9.png"
+        title="https://pic./2020/05/22/fd09423ea77c9.png" /></p>
+<h2 id="6-总结">6 总结</h2>
+<p>NumPy 篇终于完结！即上贴讨论过的数组创建、数组存载和数组获取，本贴讨论了数组变形、数组计算。</p>
+<p>数组变形有以下重要操作：</p>
+<ul>
+<li>
+<p>改变维度的重塑和打平</p>
+</li>
+<li>
+<p>改变分合的合并和分裂</p>
+</li>
+<li>
+<p>复制本质的重复和拼接</p>
+</li>
+<li>
+<p>其他排序插入删除复制</p>
+</li>
+</ul>
+<p>数组计算有以下重要操作：</p>
+<ol>
+<li>
+<p>元素层面：四则运算、函数，比较</p>
+</li>
+<li>
+<p>广播机制：太重要了，大量用于科学计算和机器学习中！</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/05/12/f0e6dce0060f9.png"
+        data-srcset="https://pic./2020/05/12/f0e6dce0060f9.png, https://pic./2020/05/12/f0e6dce0060f9.png 1.5x, https://pic./2020/05/12/f0e6dce0060f9.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/05/12/f0e6dce0060f9.png"
+        title="结束" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)" data-hashtags="python,数学建模"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200522/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200522/" data-title="NumPy (下)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200517/" class="prev" rel="prev" title="Selenium的web自动化操作03(语法补充)"><i class="fas fa-angle-left fa-fw"></i>Selenium的web自动化操作03(语法补充)</a>
+            <a href="/20200523/" class="next" rel="next" title="Appium自动化操作01(环境安装与初始结构)">Appium自动化操作01(环境安装与初始结构)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

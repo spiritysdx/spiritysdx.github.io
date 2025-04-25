@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>kubevirt初体验 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20250415/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="kubevirt初体验">
+  <meta property="og:description" content="确认当前k8s版本以及对应的kubevirt版本 1 kubectl version 显示
+1 2 Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;} Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;} 根据
+https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md
+查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-15T00:00:00+00:00">
+    <meta property="article:tag" content="Golang">
+    <meta property="article:tag" content="Kubevirt">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Kvm">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="K8s">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="kubevirt初体验">
+  <meta name="twitter:description" content="确认当前k8s版本以及对应的kubevirt版本 1 kubectl version 显示
+1 2 Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;} Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;} 根据
+https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md
+查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20250415/" /><link rel="prev" href="http://www.spiritysdx.top/20250405/" /><link rel="next" href="http://www.spiritysdx.top/20250425/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "kubevirt初体验",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20250415\/"
+        },"genre": "posts","keywords": "golang, kubevirt, kubernetes, kvm, windows, k8s","wordcount":  1108 ,
+        "url": "http:\/\/www.spiritysdx.top\/20250415\/","datePublished": "2025-04-15T00:00:00+00:00","dateModified": "2025-04-15T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">kubevirt初体验</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="far fa-folder fa-fw"></i>Golang</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-04-15">2025-04-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1108 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#确认当前k8s版本以及对应的kubevirt版本">确认当前k8s版本以及对应的kubevirt版本</a></li>
+    <li><a href="#下载安装">下载安装</a>
+      <ul>
+        <li><a href="#1-部署-kubevirt-operator"><strong>1. 部署 KubeVirt Operator</strong></a></li>
+        <li><a href="#2-创建-kubevirt-cr"><strong>2. 创建 KubeVirt CR</strong></a></li>
+        <li><a href="#3-确认安装"><strong>3. 确认安装</strong></a></li>
+        <li><a href="#4-安装-virtctl"><strong>4. 安装 <code>virtctl</code></strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#测试开设kvm虚拟机">测试开设KVM虚拟机</a></li>
+    <li><a href="#启动一个vnc服务可选">启动一个VNC服务(可选)</a></li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="确认当前k8s版本以及对应的kubevirt版本">确认当前k8s版本以及对应的kubevirt版本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span><span class="line"><span class="cl">Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据</p>
+<p><a href="https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md" target="_blank" rel="noopener noreffer">https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md</a></p>
+<p>查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58</p>
+<h2 id="下载安装">下载安装</h2>
+<p>由于在境内，github不畅通，使用<code>https://cdn.spiritlhl.net/</code>代理下载相关文件</p>
+<h3 id="1-部署-kubevirt-operator"><strong>1. 部署 KubeVirt Operator</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">VERSION</span><span class="o">=</span>v0.58.1
+</span></span><span class="line"><span class="cl">kubectl create -f https://cdn.spiritlhl.net/https://github.com/kubevirt/kubevirt/releases/download/<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>/kubevirt-operator.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-创建-kubevirt-cr"><strong>2. 创建 KubeVirt CR</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl create -f https://cdn.spiritlhl.net/https://github.com/kubevirt/kubevirt/releases/download/<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>/kubevirt-cr.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-确认安装"><strong>3. 确认安装</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl get pods -n kubevirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等待所有 Pod 进入 <code>Running</code> 或 <code>Completed</code> 状态。(实测大致需要5~10分支，拉取<code>quay.io/kubevirt/</code>的镜像，好在这个域名没被ban)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl get kubevirt -n kubevirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果 <code>Phase</code> 显示 <code>Deployed</code>，说明 KubeVirt 已成功安装。</p>
+<hr>
+<h3 id="4-安装-virtctl"><strong>4. 安装 <code>virtctl</code></strong></h3>
+<p><code>virtctl</code> 是管理虚拟机的命令行工具：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -L -o virtctl https://cdn.spiritlhl.net/https://github.com/kubevirt/kubevirt/releases/download/<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>/virtctl-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>-linux-amd64
+</span></span><span class="line"><span class="cl">chmod +x virtctl
+</span></span><span class="line"><span class="cl">sudo mv virtctl /usr/local/bin/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你可以用 <code>virtctl</code> 创建、管理 Windows Server Core 虚拟机。</p>
+<h2 id="测试开设kvm虚拟机">测试开设KVM虚拟机</h2>
+<p>检测集群是否支持KVM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get nodes -o custom-columns<span class="o">=</span><span class="s2">&#34;NAME:.metadata.name,CPU Manager:.status.allocatable.cpu,Device Plugin:.status.allocatable.kubevirt\.io/kvm&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虚拟机的yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Namespace</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kubevirt.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">VirtualMachine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cirros</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">running</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">kubevirt.io/size</span><span class="p">:</span><span class="w"> </span><span class="l">small</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">kubevirt.io/domain</span><span class="p">:</span><span class="w"> </span><span class="l">cirros</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">domain</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">devices</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">disks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">containerdisk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">disk</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">bus</span><span class="p">:</span><span class="w"> </span><span class="l">virtio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cloudinitdisk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">disk</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">bus</span><span class="p">:</span><span class="w"> </span><span class="l">virtio</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">interfaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">masquerade</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">128Mi </span><span class="w"> </span><span class="c"># **改成 128Mi，避免 64M 太小导致 KVM 启动失败**</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">pod</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">containerdisk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">containerDisk</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">quay.io/kubevirt/cirros-container-disk-demo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cloudinitdisk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">cloudInitNoCloud</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">userData</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">              #cloud-config
+</span></span></span><span class="line"><span class="cl"><span class="sd">              password: &#34;cirros&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">              chpasswd: { expire: False }</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f cirros-vm.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检测虚拟机是否已启动，如果 PHASE 是 Running，说明虚拟机已成功启动。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get vmi -n <span class="nb">test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接 Cirros 虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">virtctl console cirros -n <span class="nb">test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认用户名：<code>cirros</code>
+密码：<code>gocubsgo</code></p>
+<h2 id="启动一个vnc服务可选">启动一个VNC服务(可选)</h2>
+<p>如果虚拟机本身没有图形界面，就没必要构建</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f virtvnc.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>yaml内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kubevirt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRoleBinding</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kubevirt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">roleRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">subresources.kubevirt.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstances/console</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstances/vnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">kubevirt.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachines</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstances</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstancepresets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstancereplicasets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">virtualmachineinstancemigrations</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kubevirt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8001</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8001</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1 </span><span class="w"> </span><span class="c"># 修正这里</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kubevirt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">  </span><span class="c"># 新增 selector，必须匹配 template 里的 labels</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">node-role.kubernetes.io/master</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tolerations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;node-role.kubernetes.io/master&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Equal&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;NoSchedule&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">virtvnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">quay.io/samblade/virtvnc:v0.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8001</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">successThreshold</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">timeoutSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>部署后检测</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get pods -n kubevirt
+</span></span><span class="line"><span class="cl">kubectl get svc -n kubevirt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可见</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">master</span><span class="o">-</span><span class="mi">167</span> <span class="n">kubevirt</span><span class="p">]</span><span class="c1"># kubectl get pods -n kubevirt</span>
+</span></span><span class="line"><span class="cl"><span class="n">NAME</span>                               <span class="n">READY</span>   <span class="n">STATUS</span>    <span class="n">RESTARTS</span>       <span class="n">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="mi">5557</span><span class="n">bb6fdb</span><span class="o">-</span><span class="n">r87ht</span>          <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>              <span class="mi">171</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">controller</span><span class="o">-</span><span class="mi">79</span><span class="n">f97cfbbd</span><span class="o">-</span><span class="mi">2</span><span class="n">gl8c</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">1</span> <span class="p">(</span><span class="mi">144</span><span class="n">m</span> <span class="n">ago</span><span class="p">)</span>   <span class="mi">170</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">controller</span><span class="o">-</span><span class="mi">79</span><span class="n">f97cfbbd</span><span class="o">-</span><span class="mi">9</span><span class="n">tkdw</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">4</span> <span class="p">(</span><span class="mi">148</span><span class="n">m</span> <span class="n">ago</span><span class="p">)</span>   <span class="mi">170</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">handler</span><span class="o">-</span><span class="n">hhssq</span>                 <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>              <span class="mi">170</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">operator</span><span class="o">-</span><span class="mi">7</span><span class="n">c9fd57795</span><span class="o">-</span><span class="mi">7</span><span class="n">rr2m</span>     <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">2</span> <span class="p">(</span><span class="mi">144</span><span class="n">m</span> <span class="n">ago</span><span class="p">)</span>   <span class="mi">174</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">operator</span><span class="o">-</span><span class="mi">7</span><span class="n">c9fd57795</span><span class="o">-</span><span class="mi">8655</span><span class="n">v</span>     <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">3</span> <span class="p">(</span><span class="mi">148</span><span class="n">m</span> <span class="n">ago</span><span class="p">)</span>   <span class="mi">174</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virtvnc</span><span class="o">-</span><span class="mi">548</span><span class="n">df7b7cd</span><span class="o">-</span><span class="mi">7</span><span class="n">nlp4</span>           <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>              <span class="mi">110</span><span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">master</span><span class="o">-</span><span class="mi">167</span> <span class="n">kubevirt</span><span class="p">]</span><span class="c1"># kubectl get svc -n kubevirt</span>
+</span></span><span class="line"><span class="cl"><span class="n">NAME</span>                          <span class="n">TYPE</span>        <span class="n">CLUSTER</span><span class="o">-</span><span class="ne">IP</span>      <span class="n">EXTERNAL</span><span class="o">-</span><span class="ne">IP</span>   <span class="n">PORT</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>          <span class="n">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="n">kubevirt</span><span class="o">-</span><span class="n">operator</span><span class="o">-</span><span class="n">webhook</span>     <span class="n">ClusterIP</span>   <span class="mf">10.96</span><span class="o">.</span><span class="mf">227.221</span>   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>        <span class="mi">443</span><span class="o">/</span><span class="n">TCP</span>          <span class="mi">172</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">kubevirt</span><span class="o">-</span><span class="n">prometheus</span><span class="o">-</span><span class="n">metrics</span>   <span class="n">ClusterIP</span>   <span class="mf">10.96</span><span class="o">.</span><span class="mf">191.28</span>    <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>        <span class="mi">443</span><span class="o">/</span><span class="n">TCP</span>          <span class="mi">172</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">api</span>                      <span class="n">ClusterIP</span>   <span class="mf">10.96</span><span class="o">.</span><span class="mf">57.55</span>     <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>        <span class="mi">443</span><span class="o">/</span><span class="n">TCP</span>          <span class="mi">172</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virt</span><span class="o">-</span><span class="n">exportproxy</span>              <span class="n">ClusterIP</span>   <span class="mf">10.96</span><span class="o">.</span><span class="mf">150.110</span>   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>        <span class="mi">443</span><span class="o">/</span><span class="n">TCP</span>          <span class="mi">172</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">virtvnc</span>                       <span class="n">NodePort</span>    <span class="mf">10.96</span><span class="o">.</span><span class="mf">123.159</span>   <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>        <span class="mi">8001</span><span class="p">:</span><span class="mi">30091</span><span class="o">/</span><span class="n">TCP</span>   <span class="mi">118</span><span class="n">s</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="后记">后记</h2>
+<p>跑起来流程大概就是</p>
+<p>qcow2 &ndash;&gt; 加载创建PVC &ndash;&gt; 创建网络和crd &ndash;&gt; pod启动对应的容器 &ndash;&gt; VNC捕获页面</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-04-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验" data-hashtags="golang,kubevirt,kubernetes,kvm,windows,k8s"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20250415/" data-hashtag="golang"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20250415/" data-title="kubevirt初体验"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/golang/">Golang</a>,&nbsp;<a href="/tags/kubevirt/">Kubevirt</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/kvm/">Kvm</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/k8s/">K8s</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20250405/" class="prev" rel="prev" title="魔改dockur制作可迁移的Windows镜像(单文件)"><i class="fas fa-angle-left fa-fw"></i>魔改dockur制作可迁移的Windows镜像(单文件)</a>
+            <a href="/20250425/" class="next" rel="next" title="通用docker容器镜像打包应用的流程">通用docker容器镜像打包应用的流程<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

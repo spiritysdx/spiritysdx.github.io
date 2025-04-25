@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>K8s - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/k8s/</link>
+        <description>K8s - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 15 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/k8s/" rel="self" type="application/rss+xml" /><item>
+    <title>kubevirt初体验</title>
+    <link>http://www.spiritysdx.top/20250415/</link>
+    <pubDate>Tue, 15 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250415/</guid>
+    <description><![CDATA[<h2 id="确认当前k8s版本以及对应的kubevirt版本">确认当前k8s版本以及对应的kubevirt版本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:34:27Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span><span class="line"><span class="cl">Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;23&#34;, GitVersion:&#34;v1.23.17&#34;, GitCommit:&#34;953be8927218ec8067e1af2641e540238ffd7576&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2023-02-22T13:27:46Z&#34;, GoVersion:&#34;go1.19.6&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据</p>
+<p><a href="https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md" target="_blank" rel="noopener noreffer">https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md</a></p>
+<p>查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58</p>]]></description>
+</item><item>
+    <title>通过ProxmoxVE制作kubevirt可用的Windows镜像</title>
+    <link>http://www.spiritysdx.top/20250325/</link>
+    <pubDate>Sat, 15 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250325/</guid>
+    <description><![CDATA[<h2 id="通过proxmoxve制作kubevirt可用的win镜像">通过ProxmoxVE制作kubevirt可用的WIN镜像</h2>
+<p><a href="https://github.com/ILLKX/Windows-VirtIO" target="_blank" rel="noopener noreffer">https://github.com/ILLKX/Windows-VirtIO</a></p>
+<p>下载带virtio的虚拟机镜像</p>
+<p>然后借鉴 <a href="https://www.spiritlhl.net/guide/pve/pve_windows.html" target="_blank" rel="noopener noreffer">https://www.spiritlhl.net/guide/pve/pve_windows.html</a> 开设虚拟机，到图形化安装后即可，不要配置网络</p>
+<p>在虚拟机内需要设置一个bat脚本，设置系统启动后执行，脚本的内容是</p>]]></description>
+</item><item>
+    <title>k8s日常问题排障</title>
+    <link>http://www.spiritysdx.top/20250225/</link>
+    <pubDate>Tue, 25 Feb 2025 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20250225/</guid>
+    <description><![CDATA[<h2 id="一般流程">一般流程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get pods -A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就<code>describe</code>一下
+下面所有示例都用<code>kube-system</code>作为查询的namespace，实际看你要查什么服务对应的namespace</p>]]></description>
+</item></channel>
+</rss>

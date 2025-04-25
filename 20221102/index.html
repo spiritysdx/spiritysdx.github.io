@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20221102/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)">
+  <meta property="og:description" content="前言 破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。
+网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-11-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-11-02T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Selenium">
+    <meta property="article:tag" content="Shadow-Root">
+    <meta property="article:tag" content="ReCAPTCHA-V3">
+    <meta property="article:tag" content="验证码">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)">
+  <meta name="twitter:description" content="前言 破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。
+网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20221102/" /><link rel="prev" href="http://www.spiritysdx.top/20220224/" /><link rel="next" href="http://www.spiritysdx.top/20221103/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20221102\/"
+        },"genre": "posts","keywords": "python, selenium, shadow-root, reCAPTCHA-V3, 验证码","wordcount":  4098 ,
+        "url": "http:\/\/www.spiritysdx.top\/20221102\/","datePublished": "2022-11-02T00:00:00+00:00","dateModified": "2022-11-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-02">2022-11-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4098 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#验证码识别数字字符混合图片">验证码识别(数字字符混合图片)</a></li>
+        <li><a href="#过谷歌验证v3recaptchav3的路线">过谷歌验证(V3)reCAPTCHA(V3)的路线</a></li>
+        <li><a href="#代码">代码</a>
+          <ul>
+            <li><a href="#1先说插件版本的路线直接上代码具体内容看注释">1.先说插件版本的路线，直接上代码，具体内容看注释</a></li>
+            <li><a href="#2第三方接口路线个人尤其推荐">2.第三方接口路线(个人尤其推荐)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。</p>
+<p>网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)</p>
+<h3 id="验证码识别数字字符混合图片">验证码识别(数字字符混合图片)</h3>
+<p>1.需要加载谷歌插件<a href="https://github.com/spiritLHL/Driver_sign/blob/master/AutoVerify.crx" target="_blank" rel="noopener noreffer">AutoVerify</a></p>
+<p>这种识别是为了过简单的文字+数字的验证图片用的方法。</p>
+<p>这个插件能实现点击输入框后自动查找图片自动填入验证码的功能，不需要浏览器级别的操作(右键菜单栏之类的浏览器级别操作)，所以是过普通验证码的不二选择。</p>
+<p>当然这个过于依赖插件了，实际可以去使用一些公开的库进行验证码识别，这样速度更快。</p>
+<p>比如说以下这些</p>
+<p><a href="https://github.com/sml2h3/ddddocr" target="_blank" rel="noopener noreffer">https://github.com/sml2h3/ddddocr</a></p>
+<p><a href="https://github.com/madmaze/pytesseract" target="_blank" rel="noopener noreffer">https://github.com/madmaze/pytesseract</a></p>
+<p>这个识别正确率因人而异。</p>
+<p>2.使用公开的API进行验证码识别，需要各种平台账户，这部分将在我的另一篇博客中总结。</p>
+<p>(具体使用方法跟我过谷歌验证的reCAPTCHA的第二路线有异曲同工之妙)</p>
+<h3 id="过谷歌验证v3recaptchav3的路线">过谷歌验证(V3)reCAPTCHA(V3)的路线</h3>
+<p>两个路线，跟上面的想法也是类似的。</p>
+<p>1.直接通过插件过验证，但需要你点击某个特定按钮显示特定内容才能过。优点是只需要点点点，配置简单，速度极快，缺点是通过率80%左右(国内环境)，点的过程中需要点击shadow-root(closed)里的按钮，而且可能触发谷歌的人机识别，导致IP短暂进入黑名单不给后续验证。</p>
+<p>2.通过第三方接口。优点是不需要插件，通过率几乎100%，不易触发谷歌的人机识别，缺点是配置比较麻烦，而且你的第三方接口账号有一定的风险(几乎忽略不计，只要你不泄露密钥)。</p>
+<h3 id="代码">代码</h3>
+<h4 id="1先说插件版本的路线直接上代码具体内容看注释">1.先说插件版本的路线，直接上代码，具体内容看注释</h4>
+<p>插件地址<a href="https://github.com/spiritLHL/extend_mode/blob/main/buster.crx" target="_blank" rel="noopener noreffer">buster.crx</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># by spiritlhl</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span><span class="p">,</span> <span class="n">Chrome</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.service</span> <span class="kn">import</span> <span class="n">Service</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span> <span class="k">as</span> <span class="n">wait</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyshadow.main</span> <span class="kn">import</span> <span class="n">Shadow</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 加载依赖</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">input_dependence</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">driver</span><span class="p">,</span> <span class="n">shadow</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 启动浏览器内核</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span> <span class="o">=</span> <span class="n">ChromeOptions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">headless</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 有头模式才能加载插件，无头模式无法加载插件</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path_e</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&#34;\buster.crx&#34;</span> <span class="c1"># 插件放同一文件夹下，加载</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_extension</span><span class="p">(</span><span class="n">path_e</span><span class="p">)</span> <span class="c1"># 通过配置参数加载</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 为了提高成功率，需要随机浏览器指纹，当然也可以不随机，此时建议同IP或地域运行，避免不同IP或不同地域同浏览器指纹的奇怪情况</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     path_e = os.getcwd() + r&#34;\random-user-agent.crx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     opt.add_extension(path_e)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     path_e = os.getcwd() + r&#34;\canvas-fingerprint-blocker.crx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     opt.add_extension(path_e) </span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;--start-maximized&#34;</span><span class="p">)</span> <span class="c1"># 最大化浏览器窗口，避免谷歌验证检测出默认大小判定机器</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置开发者模式启动，该模式下webdriver属性为正常值</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--no-sandbox&#39;</span><span class="p">)</span> <span class="c1"># 这一串在linux下有用，win下没啥大用</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 下面几个参数开启开启插件的功能避免导入后无法显示使用</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s1">&#39;excludeSwitches&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;enable-automation&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s1">&#39;excludeSwitches&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;enable-logging&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--disable-blink-features=AutomationControlled&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 配置谷歌浏览器的chromedriver，我的在同一目录下，直接写名字即可</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ser</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="s2">&#34;chromedriver&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span> <span class="o">=</span> <span class="n">Chrome</span><span class="p">(</span><span class="n">service</span><span class="o">=</span><span class="n">ser</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 加载阴影模块，有需要GitHub搜一下pyshadow库，在shadow-root为open的状态下好用</span>
+</span></span><span class="line"><span class="cl">    <span class="n">shadow</span> <span class="o">=</span> <span class="n">Shadow</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置加载页面超时时长</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">set_page_load_timeout</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">driver</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在谷歌浏览器配置界面修改插件默认配置(很重要，不然你插件加载了但不在所有网站启用，照样白加载了)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">change_seeting</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">driver</span><span class="p">,</span> <span class="n">shadow</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">shadow</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="s2">&#34;#devMode&#34;</span><span class="p">)</span> <span class="c1"># pyshadow库真是个好东西，点谷歌配置shadow-root(open)按钮的不二之选</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">shadow</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="s1">&#39;#detailsButton&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">shadow</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="s1">&#39;#host-access&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">all_options</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="s2">&#34;option&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">all_options</span><span class="p">:</span> <span class="c1"># 第三个选项适配所有网站</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;选项显示的文本 &#34;</span><span class="p">),</span> <span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;选项值为 &#34;</span><span class="p">),</span> <span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;选项显示的文本 &#34;</span><span class="p">),</span> <span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;选项值为 &#34;</span><span class="p">),</span> <span class="n">option</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">option</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">shadow</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="s1">&#39;#centeredContent&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">shadow</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="s1">&#39;#closeButton&#39;</span><span class="p">)</span><span class="c1"># 一定要点返回，不然白改选项了，不返回不保存，你直接跳转别的页面也没保存的！！！</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pass_recaptha</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">driver</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 点击验证</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 这一句是跳转验证框内，不然在iframe外无法对iframe内元素进行操作</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="s1">&#39;/html/body/main/div/div/div[2]/div/div/div/div/div/form/div[3]/div/div/div/iframe&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 等待那个勾选框加载，当可点击时再点击</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="s2">&#34;span#recaptcha-anchor&#34;</span><span class="p">)))</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 返回默认的界面，跳出iframe，此时需要加载进入另一个iframe</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">default_content</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 加载进入另一个iframe</span>
+</span></span><span class="line"><span class="cl">    <span class="n">element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;/html/body/div[10]/div[4]/iframe&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 选中buster插件需要使用的第三个黄色无障碍按钮</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="s1">&#39;#rc-imageselect &gt; div.rc-footer &gt; div.rc-controls &gt; div.primary-controls &gt; div.rc-buttons &gt; div.button-holder.help-button-holder&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 下面的操作是使用tab键盘事件选中按钮，enter键盘事件点击，因为该按钮不在open的shadow-root中，在shadow-root(closed)中，必须使用这种操作点击，否则其他任何方法都无法奏效，pyshadow也不能</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ac</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ac</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">TAB</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ac</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;点击了&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 点击完毕后，页面跳转到无障碍页面，此时有可能需要再次点击无障碍按钮使得插件运作(我尝试多次，有可能需要有可能不需要，自己判别)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="s1">&#39;body &gt; div &gt; div &gt; div.rc-footer &gt; div.rc-controls &gt; div.primary-controls &gt; div.rc-buttons &gt; div.button-holder.help-button-holder&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Bc</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Bc</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">TAB</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Bc</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;再次点击无障碍按钮&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此时如果插件正常运作，应该已经自动过验证了，但我自己测试的过程中过的几率低，有可能是因为我在大陆内的原因，无法连接顺畅(Github的Actions中倒是成功率极高，几乎没有不过的，大概率肯定网络原因了)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正常运作后需要driver.switch_to.default_content()回到原始界面进行别的操作，否则你的无法操作iframe外的元素</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>附上那个无障碍按钮的源码图，在shadow-root(closed)里的按钮，真的只能通过键盘事件进行操作了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67"
+        data-srcset="https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67, https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67 1.5x, https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67 2x"
+        data-sizes="auto"
+        alt="https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67"
+        title="https://camo.githubusercontent.com/a24bbd24ba25ed89d2a6d2e15dae55dbe0ec619f864f8f0258265f5422bc0310/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7370697269744c484c2f7475636875616e67406d61737465722f31353933484e585246445630584744372535444d4f253544427e312e706e67" /></p>
+<p>附上pyshadow的Github仓库，操作open状态下的shadowroot的不二选择：</p>
+<p><a href="https://github.com/sukgu/pyshadow" target="_blank" rel="noopener noreffer">https://github.com/sukgu/pyshadow</a></p>
+<h4 id="2第三方接口路线个人尤其推荐">2.第三方接口路线(个人尤其推荐)</h4>
+<p>你需要准备挺多东西的，我一一说一下前期工作。</p>
+<p>腾讯云账号一个&mdash;&gt;<a href="https://curl.qcloud.com/afnZClZM" target="_blank" rel="noopener noreffer">链接</a></p>
+<p>右上角点击注册或登陆(不需要钱，白嫖的服务，有账号就行了)</p>
+<p>腾讯云账号对应的访问密钥一对&mdash;-&gt;<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></p>
+<p>新建密钥后把密钥的SecretId和SecretKey记住备用。</p>
+<p>腾讯云账号对应开启语音识别服务&mdash;-&gt;<a href="https://console.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr</a></p>
+<p>免费的语音识别服务，每个月5小时免费时长，识别一年都用不了5小时吧。。。</p>
+<p>本地python环境安装腾讯云的python的sdk：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install tencentcloud-sdk-python
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好了，准备工作做完了，直接上代码！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># by spiritlhl</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ChromeOptions</span><span class="p">,</span> <span class="n">Chrome</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.service</span> <span class="kn">import</span> <span class="n">Service</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;腾讯云账号的SecretId&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;腾讯云账号的SecretKey&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="n">id_d</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">id_d</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(resp.to_json_string())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;StatusStr&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;waiting&#34;</span> <span class="ow">or</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;StatusStr&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;doing&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;Result&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;]&#34;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># print(json.loads(resp.to_json_string()))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;Result&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;]&#34;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上传音频链接msg_url</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">upload</span><span class="p">(</span><span class="n">msg_url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_en&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Url&#34;</span><span class="p">:</span> <span class="n">msg_url</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(resp)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ID</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;TaskId&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># print(ID)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">st</span> <span class="o">=</span> <span class="n">get_result</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ID</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">st</span> <span class="o">!=</span> <span class="kc">False</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">120</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">st</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关键点，上面两函数直接套着用就行了，不用管，这里是重点</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pass_recaptha</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="n">driver</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 点击验证</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 等待加载上验证框，验证框iframe被套在一个form中</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="s1">&#39;//*[@id=&#34;form-submit&#34;]/div[2]/div/div/div/iframe&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 进入验证框所在iframe</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="s1">&#39;//*[@id=&#34;form-submit&#34;]/div[2]/div/div/div/iframe&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;加载验证中&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 等待勾选框可点击再点击</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="s2">&#34;#recaptcha-anchor&#34;</span><span class="p">)))</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 随机2~3秒避免加载不出来</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 回到默认页面</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">default_content</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 等待点击勾选框后的弹窗界面iframe有没有加载出来</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;/html/body/div[10]/div[4]/iframe&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 进入弹窗界面的iframe</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;/html/body/div[10]/div[4]/iframe&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 等待语音按钮是否加载出来，注意，这里在shadow-root里面，不可以直接用css选择器或xpath路径点击</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;recaptcha-audio-button&#34;]&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 选中语音按钮</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;recaptcha-audio-button&#34;]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 初始化键盘事件</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Ac</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># tab按键选中</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Ac</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">TAB</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># enter按键点击</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Ac</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;点击了语音按钮&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 等待页面跳转出现下载按钮，跳转后会出现语音下载按钮，需要捕获它的href值，它就是音频链接msg_url</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;/html/body/div/div/div[7]/a&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">msg_url</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;/html/body/div/div/div[7]/a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&#34;href&#34;</span><span class="p">)</span> <span class="c1"># 获取链接</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result1</span> <span class="o">=</span> <span class="n">upload</span><span class="p">(</span><span class="n">msg_url</span><span class="p">)</span> <span class="c1"># 上传链接返回结果</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;识别结果为：&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 等待加载填写框</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EC</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;audio-response&#34;]&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 选中填写框</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;audio-response&#34;]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 随机时长，避免判断为机器人</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 等待加载verify验证按钮</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EC</span><span class="o">.</span><span class="n">element_to_be_clickable</span><span class="p">((</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;recaptcha-verify-button&#34;]&#39;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 选中点击verify按钮</span>
+</span></span><span class="line"><span class="cl">        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&#34;recaptcha-verify-button&#34;]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">translator</span><span class="o">.</span><span class="n">trans</span><span class="p">(</span><span class="s2">&#34;语音验证通过&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 回到初始页面，进行下一步操作</span>
+</span></span><span class="line"><span class="cl">    <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">default_content</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样子就通过腾讯云提供的免费语音识别过了谷歌验证，每次识别只需要识别不到30秒的音频，然后结果在10秒内出来，正确率几乎百分百，我暂时没碰到过没验证出来的。(每次几乎都在6~8秒内过，从上传到出结果)</p>
+<p>这种法子风险在于如果你部署的环境不是私密环境，你的腾讯云账号访问密钥(等同于你的账号密码)就容易泄露，所以建议确认环境的安全性后再使用本方法。</p>
+<p>当然如果使用Github的Actions，又是私库，那就没有这种顾虑了。</p>
+<h1 id="后言">后言</h1>
+<p>当然，还有第三种法子，这时候就需要你用更高级的深度学习以及cv图像识别进行了。</p>
+<p>个人使用免费API过的多一点，插件用不习惯，判断是否成功过了验证很麻烦。</p>
+<p>付费的话有很多国外网站做，谷歌一搜一大把。我穷人一个，没那钱买付费服务。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)" data-hashtags="python,selenium,shadow-root,reCAPTCHA-V3,验证码"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20221102/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20221102/" data-title="Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/selenium/">Selenium</a>,&nbsp;<a href="/tags/shadow-root/">Shadow-Root</a>,&nbsp;<a href="/tags/recaptcha-v3/">ReCAPTCHA-V3</a>,&nbsp;<a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20220224/" class="prev" rel="prev" title="(MCM/ICM)比特币和黄金组合投资策略的主体代码部分"><i class="fas fa-angle-left fa-fw"></i>(MCM/ICM)比特币和黄金组合投资策略的主体代码部分</a>
+            <a href="/20221103/" class="next" rel="next" title="免费破解图片验证码(数字或中英混合)(附代码)(2022)">免费破解图片验证码(数字或中英混合)(附代码)(2022)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

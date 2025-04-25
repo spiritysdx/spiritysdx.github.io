@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CNF - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/cnf/</link>
+        <description>CNF - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/cnf/" rel="self" type="application/rss+xml" /><item>
+    <title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title>
+    <link>http://www.spiritysdx.top/20230808/</link>
+    <pubDate>Tue, 08 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230808/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>老板下指示复现两篇文章，这是其中一篇</p>
+<p><a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1810.10659.pdf</a></p>
+<p>文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解</p>
+<h2 id="原始数据">原始数据</h2>
+<h3 id="training-data">Training Data</h3>
+<p><a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer">https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html</a></p>
+<h3 id="testing-data">Testing Data</h3>
+<h4 id="sat-competition-2017">SAT Competition 2017</h4>
+<p><a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer">https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf</a></p>]]></description>
+</item></channel>
+</rss>

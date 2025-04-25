@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.142.0">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="二叉树的博客">
+  <meta property="og:description" content="个人学习日志">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="二叉树的博客">
+  <meta name="twitter:description" content="个人学习日志">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="二叉树的博客">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="二叉树的博客"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/www.spiritysdx.top\/","inLanguage": "zh-CN","description": "个人学习日志","name": "二叉树的博客"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="二叉树上的我"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/103393591"
+        data-srcset="https://avatars.githubusercontent.com/u/103393591, https://avatars.githubusercontent.com/u/103393591 1.5x, https://avatars.githubusercontent.com/u/103393591 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/103393591"
+        title="https://avatars.githubusercontent.com/u/103393591" /></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/spiritLHLS" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw"></i></a><a href="https://t.me/spiritlhl_bot" title="Telegram" target="_blank" rel="noopener noreffer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="mailto:spiritlhlbusiness@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210519/">C&#43;&#43;中序线索二叉链表的建立及遍历</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-05-19">2021-05-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-中序线索二叉链表的建立及遍历数据结构严蔚敏c语言版的c实现">题目 中序线索二叉链表的建立及遍历(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：字符串序列</p>
+<p>输出：结点的相关信息，中序序列</p>
+<p>处理方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1)在中序遍历过程中修改结点的左、右指针域，以保存当前访问结点的“前驱”和“后继”信息。
+</span></span><span class="line"><span class="cl">2)遍历过程中，附设指针pre,  并始终保持指针pre指向当前访问的指针p所指结点的前驱。
+</span></span><span class="line"><span class="cl">3)中序线索二叉树结构对称。其中：第一个结点是最左下的结点，最后一个结点是最右下的结点。
+</span></span><span class="line"><span class="cl">4)在中序线索二叉树上找结点的(直接)后继/前驱方法：
+</span></span><span class="line"><span class="cl">    a)若该结点有右孩子，其后继为其右子树中最左下的结点；
+</span></span><span class="line"><span class="cl">    b)若该结点无右孩子，其后继由rchild指向：其后继为满足以下条件的最小子树的根r：该结点为r的左子树中最右下的结点。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="一问题分析">一、问题分析</h1>
+<p>线性链表中指向结点前驱和后继的指针，叫做线索，在线索二叉树上进行遍历，只要先找到序列的第一个结点，然后依次找结点的后继直到结点的后继为空时为止。</p></div><div class="post-footer">
+        <a href="/20210519/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210517/">C&#43;&#43;二叉树中叶子结点的个数与深度的统计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-05-17">2021-05-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-统计二叉树中叶子结点的个数计算二叉树的深度数据结构严蔚敏c语言版的c实现">题目 统计二叉树中叶子结点的个数，计算二叉树的深度(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：字符串序列</p>
+<p>输出：叶子结点的个数，二叉树的深度</p>
+<p>处理方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1)先序遍历二叉树。在遍历过程中查找叶子结点，并计数。由此，需在遍历算法中增添一个“计数”的参数，并将算法中“访问结点”的操作改为：若是叶子，则计数器增1。     
+</span></span><span class="line"><span class="cl">2)后序遍历二叉树。从二叉树深度的定义可知，二叉树的深度应为其左、右子树深度的最大值加1。由此，先分别求得左、右子树的深度，算法中“访问结点”的操作为：求得左、右子树深度的最大值，然后加 1 。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="一问题分析">一、问题分析</h1>
+<p>统计叶子结点的个数需要先序遍历二叉树，增加计数器和判断语句统计叶子节点数。       <br>
+统计二叉树的深度需要后序遍历二叉树，求得左右两子树深度，判断最大值并加一输出。</p></div><div class="post-footer">
+        <a href="/20210517/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210516/">C&#43;&#43;二叉树的建立</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-05-16">2021-05-16</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a>&nbsp;<a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div><div class="content"><h1 id="题目-二叉链表的建立先中后序遍历数据结构严蔚敏c语言版的c实现">题目 二叉链表的建立，先（中、后）序遍历(数据结构严蔚敏C语言版的C++实现)</h1>
+<p>输入：字符串序列         <br>
+输出：先（中、后）序序列         <br>
+处理方法：通过补虚结点，使二叉树中各实际结点均具有左右孩子，再对该二叉树按先序遍历进行输入。以字符串的形式:根、左子树、右子树定义一棵二叉树：</p></div><div class="post-footer">
+        <a href="/20210516/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210515/">C&#43;&#43;数值逼近-迭代法Aikten法以及牛顿法求解线性方程根通用程序</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-05-15">2021-05-15</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值逼近">数值逼近</h1>
+<p>公元 1225 年，比萨的数学家 Leonardo（即 Fibonacci（斐波那契）），1170-1250）研究了方程</p>
+<p><code>x^3+2*x^2+10*x-20=0</code></p>
+<p>得到一个根 x* = 1.368 808 107，没有人知道他用什么方法得到这个值。对于这个方程，分别用下列方法：
+（1）迭代法式1 ；
+（2）迭代法式2 ；
+（3）对（1）的 Aitken 加速方法；
+（4）对（2）的 Aitken 加速方法；
+（5）Newton 法 。
+求方程的根（可取 x0 = 1 ），计算到 Leonardo 所得到的准确度。</p></div><div class="post-footer">
+        <a href="/20210515/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210512/">2021新型冠状病毒（COVID-19/2019-nCoV）疫情分析</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-05-12">2021-05-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="新型冠状病毒covid-192019-ncov疫情分析">新型冠状病毒（COVID-19/2019-nCoV）疫情分析</h1>
+<blockquote>
+<p><strong>spiritLHL</strong></p>
+</blockquote>
+<h2 id="font-colorred重要说明font"><font color='red'>重要说明</font></h2>
+<p>帮同一个选修课的学妹码的结课作业，这是我个人完善后的版本(她的还有很多错漏)</p>
+<p>分析文档：完成度：代码质量 3:5:2</p>
+<p>其中分析文档是指你数据分析的过程中，对各问题分析的思路、对结果的解释、说明(要求言简意赅，不要为写而写)</p></div><div class="post-footer">
+        <a href="/20210512/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210426/">C&#43;&#43;数值逼近-迭代法求非线性方程的根</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-26">2021-04-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值逼近">数值逼近</h1>
+<p>用迭代法求非线性方程<code>(x+1)^2-sinx-3=0</code>的根。
+取迭代函数<code>0.5*(3+sin((x))-1-(x)*(x))</code>，精度要求为<code>1*10^-2</code>，最多迭代 100 次。</p></div><div class="post-footer">
+        <a href="/20210426/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210425/">C&#43;&#43;数值逼近-Euler方法、改进Euler方法和经典四阶Runge-Kutta方法求解初值问题</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-25">2021-04-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值积分">数值积分</h1>
+<p>取步长 h = 0.1 ，分别用 Euler 方法、改进 Euler 方法和经典四阶 Runge-Kutta 方法求解初值问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">f(x,y) =  ((y)-2*(x)/(y))
+</span></span><span class="line"><span class="cl">f(0)  =   0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>并将计算结果与<code>sqrt(1+2*(x))</code>精确解相比较。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;math.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="c1">//用于函数SetConsoleOutputCP(65001);更改cmd编码为utf8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define f(x,y)  ((y)-2*(x)/(y))
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define y(x)    sqrt(1+2*(x))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">65001</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mf">0.1f</span><span class="p">,</span><span class="n">y0</span><span class="o">=</span><span class="mf">1.0f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ye</span><span class="p">,</span><span class="n">yp</span><span class="p">,</span><span class="n">ym</span><span class="p">,</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">,</span><span class="n">yr</span><span class="p">,</span><span class="n">yx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">    精确解            Euler方法&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;          改进Euler方法     4阶Runge-Kutta方法&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> x       y      ye[k]    |ye[k]-y|   &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;ym[k]   |ym[k]-y|   yr[k]   |yr[k]-y|</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%3.1f  %8.6f  %8.6f  %8.6f  &#34;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%8.6f  %8.6f  %8.6f  %8.6f  </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ye</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//Euler方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ym</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//改进的Euler方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">yr</span><span class="o">=</span><span class="n">y0</span><span class="p">;</span>     <span class="c1">//4阶Runge-Kutta方法的初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ye</span> <span class="o">=</span> <span class="n">ye</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ye</span><span class="p">);</span>   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">yp</span> <span class="o">=</span> <span class="n">ym</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ym</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ym</span> <span class="o">=</span> <span class="n">ym</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ym</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">yp</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">k1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">yr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">k1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k3</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k4</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">yr</span><span class="o">+</span><span class="n">h</span><span class="o">*</span><span class="n">k3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yr</span> <span class="o">=</span> <span class="n">yr</span> <span class="o">+</span> <span class="n">h</span><span class="o">/</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="o">+</span><span class="n">k4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yx</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%3.1f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f  %8.6f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">yx</span><span class="p">,</span><span class="n">ye</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">ye</span><span class="o">-</span><span class="n">yx</span><span class="p">),</span><span class="n">ym</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">ym</span><span class="o">-</span><span class="n">yx</span><span class="p">),</span><span class="n">yr</span><span class="p">,</span><span class="n">fabs</span><span class="p">(</span><span class="n">yr</span><span class="o">-</span><span class="n">yx</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer">
+        <a href="/20210425/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210424/">C&#43;&#43;数值逼近-复化梯形公式和复化 Simpson 公式计算定积分的近似值</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-24">2021-04-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值逼近">数值逼近</h1>
+<p>将区间<code>[0,1]</code>四等分，分别用复化梯形公式和复化 Simpson 公式计算定积分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">f(x)  4.0 / (1 + (x) * (x))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>的近似值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include&lt;stdio.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="c1">//用于函数SetConsoleOutputCP(65001);更改cmd编码为utf8 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define  f(x)  4.0 / (1 + (x) * (x))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">yk</span><span class="p">,</span> <span class="n">xkh</span><span class="p">,</span> <span class="n">ykh</span><span class="p">,</span> <span class="n">xk1</span><span class="p">,</span> <span class="n">yk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">xk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">xk</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;复化梯形公式计算的结果：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">yk</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xkh</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ykh</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xkh</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk1</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yk1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xk1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="n">yk</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">ykh</span> <span class="o">+</span> <span class="n">yk1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xk</span> <span class="o">=</span> <span class="n">xk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">yk</span> <span class="o">=</span> <span class="n">yk1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;复化 Simpson 公式计算的结果：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//显示中文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="mi">65001</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer">
+        <a href="/20210424/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210423/">C&#43;&#43;数值逼近-Newton插值法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-23">2021-04-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值逼近">数值逼近</h1>
+<p>天安门广场升旗的时间是日出的时刻，而降旗的时间是日落时分。根据天安门广场管理委员会的公告，某年 10 月份升降旗的时间如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">日期     1                  15                22
+</span></span><span class="line"><span class="cl">升旗   6:09                6:23               6:31
+</span></span><span class="line"><span class="cl">降旗   17:58               17:36              17:26
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>请根据上述数据构造 Newton 插值多项式，并计算当年 10 月 8 日北京市的日照时长。</p></div><div class="post-footer">
+        <a href="/20210423/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20210422/">C&#43;&#43;数值逼近-Hermite插值法通用程序</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-22">2021-04-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw"></i>C++</a></span></div><div class="content"><h1 id="数值逼近">数值逼近</h1>
+<p>参考matlab程序：https://www.ilovematlab.cn/thread-450391-1-1.html</p>
+<p>个人编写的c++版本如下</p></div><div class="post-footer">
+        <a href="/20210422/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91/">数值逼近</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/12/">12</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/13/">13</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/14/">14</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/18/">18</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"二叉树上的我"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

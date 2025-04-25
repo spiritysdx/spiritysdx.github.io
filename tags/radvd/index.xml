@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Radvd - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/radvd/</link>
+        <description>Radvd - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/radvd/" rel="self" type="application/rss+xml" /><item>
+    <title>为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)</title>
+    <link>http://www.spiritysdx.top/20230829/</link>
+    <pubDate>Tue, 29 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20230829/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>观望了全网的Docker启用IPV6的方法，要么是Docker版本更替法子不通了，要么是没说明一些前置条件的细节，导致方法也用不了，所以这里记录一下我走通的方法，一个兼容高低版本Docker和不同网络环境的方法</p>]]></description>
+</item></channel>
+</rss>

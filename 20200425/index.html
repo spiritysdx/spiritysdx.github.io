@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>撰写hugo博客的markdown格式 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200425/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="撰写hugo博客的markdown格式">
+  <meta property="og:description" content="1. 前言 本markdown文档初版下载链接：
+(建议看初版文档理解书写格式，书写标准以本网站本页面为主) https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ 提取码：0a83
+本篇鸣谢胡国磊学长整理，由我进行加工发布">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-04-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-04-25T00:00:00+00:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="撰写hugo博客的markdown格式">
+  <meta name="twitter:description" content="1. 前言 本markdown文档初版下载链接：
+(建议看初版文档理解书写格式，书写标准以本网站本页面为主) https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ 提取码：0a83
+本篇鸣谢胡国磊学长整理，由我进行加工发布">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200425/" /><link rel="prev" href="http://www.spiritysdx.top/20200422/" /><link rel="next" href="http://www.spiritysdx.top/20200427/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "撰写hugo博客的markdown格式",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200425\/"
+        },"genre": "posts","keywords": "hugo","wordcount":  1843 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200425\/","datePublished": "2020-04-25T00:00:00+00:00","dateModified": "2020-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">撰写hugo博客的markdown格式</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E7%9B%B8%E5%85%B3/"><i class="far fa-folder fa-fw"></i>博客建站相关</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-25">2020-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1843 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-前言">1. 前言</a></li>
+    <li><a href="#2-示例文章">2. 示例文章</a></li>
+    <li><a href="#3-通用语法">3 通用语法</a>
+      <ul>
+        <li><a href="#30-分割线">3.0 分割线</a></li>
+        <li><a href="#31-标题">3.1 标题</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#二级标题">二级标题</a>
+      <ul>
+        <li><a href="#三级标题">三级标题</a></li>
+        <li><a href="#32-无序列表">3.2 无序列表</a></li>
+        <li><a href="#33-有序列表">3.3 有序列表</a></li>
+        <li><a href="#34-引用">3.4 引用</a></li>
+        <li><a href="#35-粗体和斜体">3.5 粗体和斜体</a></li>
+        <li><a href="#36-链接">3.6 链接</a></li>
+        <li><a href="#37-分割线">3.7 分割线</a></li>
+        <li><a href="#38-删除线">3.8 删除线</a></li>
+        <li><a href="#39-表格">3.9 表格</a></li>
+        <li><a href="#310-图片">3.10 图片</a></li>
+        <li><a href="#41-代码块">4.1 代码块</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-其他语法">5 其他语法</a>
+      <ul>
+        <li><a href="#51-html">5.1 HTML</a></li>
+        <li><a href="#52-uml">5.2 UML</a></li>
+        <li><a href="#53-组件图床">5.3 组件图床</a></li>
+        <li><a href="#54-下拉列表部分主题支持本格式">5.4 下拉列表(部分主题支持本格式)</a></li>
+        <li><a href="#55-更多文档">5.5 更多文档</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-前言">1. 前言</h2>
+<p>本markdown文档初版下载链接：<br>
+(建议看初版文档理解书写格式，书写标准以本网站本页面为主)
+<a href="https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1z_2IsuaRh8cYmtssepvIXQ
+</a><br>
+提取码：0a83</p>
+<p>本篇鸣谢胡国磊学长整理，由我进行加工发布</p>
+<h2 id="2-示例文章">2. 示例文章</h2>
+<ul>
+<li><span style="color:orangered;font-weight:bold;">橙心：</span><a href="https://mp.weixin.qq.com/s/raFgkqlV5hZmrXiEWVAyfQ" target="_blank" rel="noopener noreffer">终于等到你，公众号排版神器</a></li>
+<li><span style="color:#773098;font-weight:bold;">姹紫：</span><a href="https://mp.weixin.qq.com/s/KmoRDGdJLZ7reMfTDDaFGg" target="_blank" rel="noopener noreffer">JavaScript 数据结构与算法之美</a></li>
+<li><span style="color:#35b378;font-weight:bold;">绿意：</span><a href="https://mp.weixin.qq.com/s/SVKMsQtOLNqYXeT_f95FUw" target="_blank" rel="noopener noreffer">前端硬核面试专题之 CSS 55 问</a></li>
+<li><span style="color:rgb(248,57,41);font-weight:bold;">红绯：</span><a href="https://mp.weixin.qq.com/s/DrvJBEWqH14atF_4O1IXFw" target="_blank" rel="noopener noreffer">日常 | 我用什么工具写作？</a></li>
+<li><span style="color:orangered;font-weight:bold;">Wechat-Format</span>：<a href="https://mp.weixin.qq.com/s/QPsOUkLCsvhqSicTOGaHJg" target="_blank" rel="noopener noreffer">Markdown Nice 新特性：阿里云图床</a></li>
+<li><span style="color:#0e88eb;font-weight:bold;">科技蓝</span>：<a href="https://mp.weixin.qq.com/s/eDIDOESem_s93liccYK-qw" target="_blank" rel="noopener noreffer">2019 前端秋季社招面试经历总结（二年多经验）</a></li>
+</ul>
+<p>效果及代码图如下:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/2fb934480db8e.png"
+        data-srcset="https://pic./2020/04/27/2fb934480db8e.png, https://pic./2020/04/27/2fb934480db8e.png 1.5x, https://pic./2020/04/27/2fb934480db8e.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/2fb934480db8e.png"
+        title="1" /></p>
+<h2 id="3-通用语法">3 通用语法</h2>
+<h3 id="30-分割线">3.0 分割线</h3>
+<p>在markdown语法中,一行连用三个或者三个以上的星号,减号,或者下划线,就可以表示分割线。</p>
+<p>例如:*** &mdash; __</p>
+<p>为方便记忆,只需记住三个减号&quot;&mdash;&ldquo;可以表示分割线即可。</p>
+<p>另外,分割线可以起到把分割线上下的内容分割成两个段落的作用。</p>
+<h3 id="31-标题">3.1 标题</h3>
+<p>在文字写书写不同数量的<code>#</code>可以完成不同的标题，一行开头打上不同数目的#最后在#末尾加上空格再书写标题内容，效果如下：</p>
+<h1 id="一级标题">一级标题</h1>
+<h2 id="二级标题">二级标题</h2>
+<h3 id="三级标题">三级标题</h3>
+<h3 id="32-无序列表">3.2 无序列表</h3>
+<p>无序列表的使用，在符号<code>-</code>后加空格使用。如下：</p>
+<ul>
+<li>无序列表 1</li>
+<li>无序列表 2</li>
+<li>无序列表 3</li>
+</ul>
+<p>如果要控制列表的层级，则需要在符号<code>-</code>前使用空格。如下：</p>
+<ul>
+<li>无序列表 1</li>
+<li>无序列表 2
+<ul>
+<li>无序列表 2.1</li>
+<li>无序列表 2.2</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-有序列表">3.3 有序列表</h3>
+<p>有序列表的使用，在数字及符号<code>.</code>后加空格后再输入内容，如下：</p>
+<ol>
+<li>有序列表 1</li>
+<li>有序列表 2</li>
+<li>有序列表 3</li>
+</ol>
+<h3 id="34-引用">3.4 引用</h3>
+<p>引用的格式是在符号<code>&gt;</code>后面书写文字。效果如下：</p>
+<blockquote>
+<p>读一本好书，就是在和高尚的人谈话。 ——歌德</p>
+</blockquote>
+<blockquote>
+<p>雇用制度对工人不利，但工人根本无力摆脱这个制度。 ——阮一峰</p>
+</blockquote>
+<h3 id="35-粗体和斜体">3.5 粗体和斜体</h3>
+<p>粗体的使用是在需要加粗的文字前后各加两个<code>*</code>。</p>
+<p>而斜体的使用则是在需要斜体的文字前后各加一个<code>*</code>。</p>
+<p>如果要使用粗体和斜体，那么就是在需要操作的文字前后加三个<code>*</code>。效果如下：</p>
+<p><strong>这个是粗体</strong></p>
+<p><em>这个是斜体</em></p>
+<p><em><strong>这个是粗体加斜体</strong></em></p>
+<p>注：由于 commonmark 标准，可能会导致加粗与想象不一致，如下</p>
+<p>**今天天气好晴朗，**处处好风光。</p>
+<p>这个是正常现象，请参考<a href="https://github.com/markdown-it/markdown-it/issues/410" title="加粗 Issue" target="_blank" rel="noopener noreffer">加粗 Issue</a>。</p>
+<h3 id="36-链接">3.6 链接</h3>
+<p>代码图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/7b82a928f7c77.png"
+        data-srcset="https://pic./2020/04/27/7b82a928f7c77.png, https://pic./2020/04/27/7b82a928f7c77.png 1.5x, https://pic./2020/04/27/7b82a928f7c77.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/7b82a928f7c77.png"
+        title="2" /></p>
+<p>效果如下：</p>
+<p>文章链接<a href="https://zhuanlan.zhihu.com/p/39717516" target="_blank" rel="noopener noreffer">你是《未来世界的幸存者》么？</a></p>
+<h3 id="37-分割线">3.7 分割线</h3>
+<p>代码图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/e7378f5bdfd3a.png"
+        data-srcset="https://pic./2020/04/27/e7378f5bdfd3a.png, https://pic./2020/04/27/e7378f5bdfd3a.png 1.5x, https://pic./2020/04/27/e7378f5bdfd3a.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/e7378f5bdfd3a.png"
+        title="4" /></p>
+<p>可以在一行中用三个以上的减号来建立一个分隔线，同时需要在分隔线的上面空一行。效果如下：</p>
+<hr>
+<h3 id="38-删除线">3.8 删除线</h3>
+<p>删除线的使用，在需要删除的文字前后各使用两个<code>~</code>，效果如下：</p>
+<p><del>这是要被删除的内容。</del></p>
+<h3 id="39-表格">3.9 表格</h3>
+<p>可以使用冒号来定义表格的对齐方式，格式如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/9e142d6c1a0a5.png"
+        data-srcset="https://pic./2020/04/27/9e142d6c1a0a5.png, https://pic./2020/04/27/9e142d6c1a0a5.png 1.5x, https://pic./2020/04/27/9e142d6c1a0a5.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/9e142d6c1a0a5.png"
+        title="图片" /></p>
+<p>效果如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">姓名</th>
+          <th style="text-align: center">年龄</th>
+          <th style="text-align: right">工作</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">小可爱</td>
+          <td style="text-align: center">18</td>
+          <td style="text-align: right">吃可爱多</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">小小勇敢</td>
+          <td style="text-align: center">20</td>
+          <td style="text-align: right">爬棵勇敢树</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">小小小机智</td>
+          <td style="text-align: center">22</td>
+          <td style="text-align: right">看一本机智书</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="310-图片">3.10 图片</h3>
+<p>插入图片，如果是行内图片则无图例，否则有图例，格式图如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/0e56081913d91.png"
+        data-srcset="https://pic./2020/04/27/0e56081913d91.png, https://pic./2020/04/27/0e56081913d91.png 1.5x, https://pic./2020/04/27/0e56081913d91.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/0e56081913d91.png"
+        title="5" /></p>
+<p>效果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgkr.cn-bj.ufileos.com/22cf98bd-3f85-45fc-9df7-e6b2808329d0.png"
+        data-srcset="https://imgkr.cn-bj.ufileos.com/22cf98bd-3f85-45fc-9df7-e6b2808329d0.png, https://imgkr.cn-bj.ufileos.com/22cf98bd-3f85-45fc-9df7-e6b2808329d0.png 1.5x, https://imgkr.cn-bj.ufileos.com/22cf98bd-3f85-45fc-9df7-e6b2808329d0.png 2x"
+        data-sizes="auto"
+        alt="https://imgkr.cn-bj.ufileos.com/22cf98bd-3f85-45fc-9df7-e6b2808329d0.png"
+        title="这里写图片描述" /></p>
+<p>支持 jpg、png、gif 等图片格式，</p>
+<ul>
+<li>支持图片<strong>拖拽和截图粘贴</strong>到编辑器中上传，上传时使用当前选择的图床。</li>
+<li>可使用<strong>格式-&gt;图片</strong>上传本地图片，网站仅支持「图壳」图床，失败率低可长久保存！</li>
+</ul>
+<h3 id="41-代码块">4.1 代码块</h3>
+<p>如果在一个行内需要引用代码，只要用反引号引起来就好，如下：</p>
+<p>Use the <code>printf()</code> function.</p>
+<p>在需要高亮的代码块的前一行及后一行使用三个反引号，同时<strong>第一行反引号后面表示代码块所使用的语言</strong></p>
+<p>格式图如下：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/14bcd1f7064f3.png"
+        data-srcset="https://pic./2020/04/27/14bcd1f7064f3.png, https://pic./2020/04/27/14bcd1f7064f3.png 1.5x, https://pic./2020/04/27/14bcd1f7064f3.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/14bcd1f7064f3.png"
+        title="6" /></p>
+<p>效果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// FileName: HelloWorld.java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HelloWorld</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// Java 入口程序，程序从此入口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello,World!&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 向控制台打印一条语句</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持以下语言种类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bash
+</span></span><span class="line"><span class="cl">clojure，cpp，cs，css
+</span></span><span class="line"><span class="cl">dart，dockerfile, diff
+</span></span><span class="line"><span class="cl">erlang
+</span></span><span class="line"><span class="cl">go，gradle，groovy
+</span></span><span class="line"><span class="cl">haskell
+</span></span><span class="line"><span class="cl">java，javascript，json，julia
+</span></span><span class="line"><span class="cl">kotlin
+</span></span><span class="line"><span class="cl">lisp，lua
+</span></span><span class="line"><span class="cl">makefile，markdown，matlab
+</span></span><span class="line"><span class="cl">objectivec
+</span></span><span class="line"><span class="cl">perl，php，python
+</span></span><span class="line"><span class="cl">r，ruby，rust
+</span></span><span class="line"><span class="cl">scala，shell，sql，swift
+</span></span><span class="line"><span class="cl">tex，typescript
+</span></span><span class="line"><span class="cl">verilog，vhdl
+</span></span><span class="line"><span class="cl">xml
+</span></span><span class="line"><span class="cl">yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要更换代码主题，可在上方挑选，不支持代码主题自定义。</p>
+<h2 id="5-其他语法">5 其他语法</h2>
+<h3 id="51-html">5.1 HTML</h3>
+<p>支持原生 HTML 语法，请写内联样式，格式图如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic./2020/04/27/58b5045c3724a.png"
+        data-srcset="https://pic./2020/04/27/58b5045c3724a.png, https://pic./2020/04/27/58b5045c3724a.png 1.5x, https://pic./2020/04/27/58b5045c3724a.png 2x"
+        data-sizes="auto"
+        alt="https://pic./2020/04/27/58b5045c3724a.png"
+        title="7" /></p>
+<p>效果如下：</p>
+<p><span style="display:block;text-align:right;color:orangered;">橙色居右</span>
+<span style="display:block;text-align:center;color:orangered;">橙色居中</span></p>
+<h3 id="52-uml">5.2 UML</h3>
+<p>不支持，推荐使用开源工具<code>https://draw.io/</code>制作后再导入图片</p>
+<h3 id="53-组件图床">5.3 组件图床</h3>
+<p>组件目前共支持 3 种图床和 1 种自定义图床，主要特点如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th>图床</th>
+          <th>费用</th>
+          <th>有效期</th>
+          <th>失败率</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SM.MS</td>
+          <td>免费</td>
+          <td>长期</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>阿里云</td>
+          <td>付费</td>
+          <td>自定义</td>
+          <td>低</td>
+      </tr>
+      <tr>
+          <td>七牛云</td>
+          <td>10G 免费</td>
+          <td>自定义</td>
+          <td>低</td>
+      </tr>
+      <tr>
+          <td>自定义</td>
+          <td>高昂</td>
+          <td>自定义</td>
+          <td>自定义</td>
+      </tr>
+  </tbody>
+</table>
+<p>4 个图床的缺点：</p>
+<table>
+  <thead>
+      <tr>
+          <th>图床</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SM.MS</td>
+          <td>失败率高可用性很差</td>
+      </tr>
+      <tr>
+          <td>阿里云</td>
+          <td>配置繁琐，费用昂贵</td>
+      </tr>
+      <tr>
+          <td>七牛云</td>
+          <td>配置繁琐，需购买长期域名</td>
+      </tr>
+      <tr>
+          <td>自定义</td>
+          <td>搭建后台繁琐</td>
+      </tr>
+  </tbody>
+</table>
+<p>这里我推荐我经常用的一个图源保存网站：</p>
+<p><a href="https://pic./" target="_blank" rel="noopener noreffer">https://pic./</a></p>
+<h3 id="54-下拉列表部分主题支持本格式">5.4 下拉列表(部分主题支持本格式)</h3>
+<p>代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;details&gt;
+</span></span><span class="line"><span class="cl">&lt;summary&gt;展开查看&lt;/summary&gt;
+</span></span><span class="line"><span class="cl">&lt;pre&gt;&lt;code&gt;
+</span></span><span class="line"><span class="cl">内容
+</span></span><span class="line"><span class="cl">&lt;/code&gt;&lt;/pre&gt;
+</span></span><span class="line"><span class="cl">&lt;/details&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下：</p>
+<details>
+<summary>展开查看</summary>
+<pre><code>
+内容
+</code></pre>
+</details>
+<h3 id="55-更多文档">5.5 更多文档</h3>
+<p>更多文档请参考 <a href="https://docs.mdnice.com" target="_blank" rel="noopener noreffer">markdown-nice-docs</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式" data-hashtags="hugo"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200425/" data-hashtag="hugo"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200425/" data-title="撰写hugo博客的markdown格式"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hugo/">Hugo</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200422/" class="prev" rel="prev" title="爬虫流程及方法07(爬虫技术路线整理)(实时更新)"><i class="fas fa-angle-left fa-fw"></i>爬虫流程及方法07(爬虫技术路线整理)(实时更新)</a>
+            <a href="/20200427/" class="next" rel="next" title="爬虫流程及方法09(动态加载页面)(ajax请求)(Json实例)">爬虫流程及方法09(动态加载页面)(ajax请求)(Json实例)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

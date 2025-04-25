@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>通用docker容器镜像打包应用的流程 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20250425/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="通用docker容器镜像打包应用的流程">
+  <meta property="og:description" content="基础镜像选择 scratch - 空白模板 debian:bookworm-slim - debian的基础模板 ubuntu:22.04 - ubuntu的官方模板 linuxserver的KASM模板 - ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm kasmtech的第三方应用程序KASM模板 jlesage的NOVNC模板 - jlesage/baseimage-gui:ubuntu-22.04-v4 由于镜像需要安装显卡驱动，所以这里选择了Ubuntu基础的Novnc的模板。如果不需要安装显卡驱动，换debian基础的也可以，镜像体积会更小一些。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-25T00:00:00+00:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="通用docker容器镜像打包应用的流程">
+  <meta name="twitter:description" content="基础镜像选择 scratch - 空白模板 debian:bookworm-slim - debian的基础模板 ubuntu:22.04 - ubuntu的官方模板 linuxserver的KASM模板 - ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm kasmtech的第三方应用程序KASM模板 jlesage的NOVNC模板 - jlesage/baseimage-gui:ubuntu-22.04-v4 由于镜像需要安装显卡驱动，所以这里选择了Ubuntu基础的Novnc的模板。如果不需要安装显卡驱动，换debian基础的也可以，镜像体积会更小一些。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20250425/" /><link rel="prev" href="http://www.spiritysdx.top/20250415/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "通用docker容器镜像打包应用的流程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20250425\/"
+        },"genre": "posts","keywords": "docker","wordcount":  5170 ,
+        "url": "http:\/\/www.spiritysdx.top\/20250425\/","datePublished": "2025-04-25T00:00:00+00:00","dateModified": "2025-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">通用docker容器镜像打包应用的流程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>Docker</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-04-25">2025-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5170 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础镜像选择">基础镜像选择</a></li>
+    <li><a href="#如何选择基础镜像模板">如何选择基础镜像模板</a></li>
+    <li><a href="#镜像是否需要更换软件源">镜像是否需要更换软件源</a></li>
+    <li><a href="#设置支持中文">设置支持中文</a></li>
+    <li><a href="#安装依赖">安装依赖</a></li>
+    <li><a href="#安装pytorch">安装pytorch</a></li>
+    <li><a href="#编译的默认用户选择">编译的默认用户选择</a></li>
+    <li><a href="#编译的默认路径设置">编译的默认路径设置</a></li>
+    <li><a href="#安装驱动">安装驱动</a>
+      <ul>
+        <li><a href="#nvidia">Nvidia</a></li>
+        <li><a href="#ascend">Ascend</a></li>
+        <li><a href="#容器内驱动测试">容器内驱动测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装应用">安装应用</a>
+      <ul>
+        <li><a href="#需要图形界面环境以jetbrains系列的应用为例">需要图形界面环境(以jetbrains系列的应用为例)</a></li>
+        <li><a href="#不需要图形界面环境以自带可浏览器在线浏览的应用为例">不需要图形界面环境(以自带可浏览器在线浏览的应用为例)</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器暴露端口">容器暴露端口</a></li>
+    <li><a href="#设置容器支持ssh连接">设置容器支持ssh连接</a>
+      <ul>
+        <li><a href="#如何测试容器基础镜像带什么环境">如何测试容器基础镜像带什么环境</a></li>
+        <li><a href="#基础镜像是带bash环境的">基础镜像是带bash环境的</a></li>
+        <li><a href="#基础镜像仅带sh环境的">基础镜像仅带sh环境的</a></li>
+      </ul>
+    </li>
+    <li><a href="#容器内端口转发更改默认端口">容器内端口转发更改默认端口</a></li>
+    <li><a href="#容器镜像固化">容器镜像固化</a></li>
+    <li><a href="#容器镜像导出">容器镜像导出</a></li>
+    <li><a href="#容器镜像导入">容器镜像导入</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="基础镜像选择">基础镜像选择</h2>
+<ul>
+<li><code>scratch</code> - 空白模板</li>
+<li><code>debian:bookworm-slim</code> - debian的基础模板</li>
+<li><code>ubuntu:22.04</code> - ubuntu的官方模板</li>
+<li><a href="https://github.com/linuxserver/docker-baseimage-kasmvnc?tab=readme-ov-file#available-distros" target="_blank" rel="noopener noreffer">linuxserver的KASM模板</a> - <code>ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm</code></li>
+<li><a href="https://github.com/kasmtech/workspaces-images" target="_blank" rel="noopener noreffer">kasmtech的第三方应用程序KASM模板</a></li>
+<li><a href="https://github.com/jlesage/docker-baseimage-gui?tab=readme-ov-file#images" target="_blank" rel="noopener noreffer">jlesage的NOVNC模板</a> - <code>jlesage/baseimage-gui:ubuntu-22.04-v4</code></li>
+</ul>
+<p>由于镜像需要安装显卡驱动，所以这里选择了Ubuntu基础的Novnc的模板。如果不需要安装显卡驱动，换debian基础的也可以，镜像体积会更小一些。</p>
+<h2 id="如何选择基础镜像模板">如何选择基础镜像模板</h2>
+<ul>
+<li><strong>空白模板</strong>：只适合不依赖任何环境的二进制文件执行，或复制其他容器依赖文件的时候，一般来说不追求极致的精简大小用不上。</li>
+<li><strong>alpine镜像</strong>：不追求极致的精简大小也用不上，alpine安装依赖如果特别多的时候比较难适配。</li>
+<li><strong>debian基础模板</strong>：适合有一定的依赖需求，但又需要尽量减少容器镜像大小的时候，比如装 vscode windows 的时候。</li>
+<li><strong>ubuntu模板</strong>：适合强依赖，比如装 Jupyter 的时候，需要安装大量依赖，还有就是安装Nvidia的驱动的时候，别的系统可能很难找到驱动。</li>
+</ul>
+<p>安装依赖的困难程度：ubuntu &lt; debian &lt; alpine &lt; scratch</p>
+<ul>
+<li><strong>KASM模板和NOVNC模板</strong>：适合应用本身不支持浏览器在线浏览，需要起一个图形界面的环境的时候，比如在制作 eclipse、idea、pycharm、webstorm 的时候。
+<ul>
+<li>KASM模板支持传输声音，受控端如果有传输声音的需求可以使用它，但KASM不支持非HTTPS下的复制粘贴功能。</li>
+<li>NOVNC模板不支持传输声音，但支持HTTP/HTTPS下的复制粘贴功能，一般来说用这个比较多。</li>
+</ul>
+</li>
+</ul>
+<p>具体看需求和时间成本选择基础镜像。</p>
+<h2 id="镜像是否需要更换软件源">镜像是否需要更换软件源</h2>
+<p>一般来说，在中国境内打包应用，软件源一般是需要更换的，非中国镜像源在执行包管理器更新的时候非常缓慢。</p>
+<p>这里可以使用 <a href="https://linuxmirrors.cn/" target="_blank" rel="noopener noreffer">https://linuxmirrors.cn/</a> 进行自动换源，例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">RUN curl -lk https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh -o ChangeMirrors.sh <span class="o">&amp;&amp;</span> chmod <span class="m">777</span> ChangeMirrors.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    ./ChangeMirrors.sh --source mirrors.tuna.tsinghua.edu.cn --web-protocol http --intranet <span class="nb">false</span> --close-firewall <span class="nb">true</span> --backup <span class="nb">true</span> --updata-software <span class="nb">false</span> --clean-cache <span class="nb">false</span> --ignore-backup-tips
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可自行搜索对应软件源进行替换，常见镜像源：阿里云、腾讯云、清华</p>
+<p>清华换源例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian bookworm-updates main contrib non-free non-free-firmware\n\
+</span></span></span><span class="line"><span class="cl"><span class="s2">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>&gt; /etc/apt/sources.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果镜像本身默认携带的软件源速度还可以，不加入换源这一步也行。</p>
+<h2 id="设置支持中文">设置支持中文</h2>
+<p>如果基础的镜像本身不支持中文显示，那么以ubuntu基础镜像为例子，下面是添加中文支持的环境安装和设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 添加中文语言和字体支持</span>
+</span></span><span class="line"><span class="cl">RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    language-pack-zh-hans <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    fonts-noto-cjk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    fonts-wqy-microhei <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="o">&amp;&amp;</span> locale-gen zh_CN.UTF-8 <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    update-locale <span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+</span></span><span class="line"><span class="cl">ENV <span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+</span></span><span class="line"><span class="cl">ENV <span class="nv">LANGUAGE</span><span class="o">=</span>zh_CN:zh
+</span></span><span class="line"><span class="cl">ENV <span class="nv">LC_ALL</span><span class="o">=</span>zh_CN.UTF-8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装依赖">安装依赖</h2>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    python3-pip <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    openjdk-17-jdk <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libxrender1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libxtst6 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libxi6 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libxext6 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libfontconfig1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libfreetype6 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    libx11-6 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    vim <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    nano <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sudo <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    build-essential <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    dkms <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    curl <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    initramfs-tools
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>apt-get update</code> 更新软件源</p>
+<p>然后就是安装依赖：常见依赖有 git、nano、vim、sudo、wget、curl 一般都用得上，最好默认安装上。</p>
+<p>其他依赖就看是否需要安装驱动或者别的特殊环境，比如：</p>
+<ul>
+<li>要装 python3-pip 是因为容器内要安装pip依赖，例子：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装ray</span>
+</span></span><span class="line"><span class="cl">RUN pip install <span class="nv">ray</span><span class="o">==</span>2.9.0 --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span><span class="line"><span class="cl">RUN pip install ray<span class="o">[</span>client<span class="o">]==</span>2.9.0 --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>要装 build-essential、initramfs-tools、dkms 是因为容器内要安装显卡驱动</li>
+<li>要装 openjdk-17-jdk 是因为容器内要使用java环境，同时需要设置：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 设置 JAVA_HOME</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-17-openjdk-amd64
+</span></span><span class="line"><span class="cl">ENV <span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$PATH</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装pytorch">安装pytorch</h2>
+<p>前置条件是容器内已安装了 python3-pip 包</p>
+<p>同时这里需要查找对应显卡驱动的pytorch版本安装，具体命令参考下面这个示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装对应版本的pytorch 见 https://pytorch.org/get-started/previous-versions/</span>
+</span></span><span class="line"><span class="cl">RUN pip install <span class="nv">torch</span><span class="o">==</span>2.4.0 <span class="nv">torchvision</span><span class="o">==</span>0.19.0 <span class="nv">torchaudio</span><span class="o">==</span>2.4.0 -f https://pytorch.org/get-started/previous-versions/#install-pytorch-using-pip-cu124 --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="编译的默认用户选择">编译的默认用户选择</h2>
+<p>Dockerfile编译的时候很多基础镜像设置的默认用户并不是<code>root</code>用户，导致编译出的镜像默认用户在一些路径上缺少操作权限。</p>
+<p>这里推荐在编译过程中，在真正安装和启动应用之前，设置一下使用<code>root</code>用户，提高权限避免上述问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 确保运行程序的用户非 app 用户</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">USER_ID</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">GROUP_ID</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修复 /etc/passwd 中的 app 用户问题</span>
+</span></span><span class="line"><span class="cl">RUN sed -i <span class="s1">&#39;/app::/d&#39;</span> /etc/passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="编译的默认路径设置">编译的默认路径设置</h2>
+<p>编译时若不指定默认路径，那么容器默认的bash命令的路径就可能会随着基础镜像的用户变更为不可操作的路径。</p>
+<p>这里推荐在编译过程中，在真正安装和启动应用之前，设置一下具体的容器默认路径，避免应用在启动过程中，一些设置文件被写入到不能持久化保存/无操作权限的路径中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 设置工作目录</span>
+</span></span><span class="line"><span class="cl">WORKDIR /home/ubuntu/
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置默认 home 目录</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">HOME</span><span class="o">=</span>/home/ubuntu/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装驱动">安装驱动</h2>
+<h3 id="nvidia">Nvidia</h3>
+<p>需要先确保宿主机本身已经安装了显卡驱动，否则容器内安装了驱动也无法与显卡通信：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>宿主机上执行后可见：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">root@a12-ThinkStation-P620:~/lxd# nvidia-smi
+</span></span><span class="line"><span class="cl">Mon May 13 23:42:04 2024       
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| NVIDIA-SMI 535.171.04             Driver Version: 535.171.04   CUDA Version: 12.2     |
+</span></span><span class="line"><span class="cl">|-----------------------------------------+----------------------+----------------------+
+</span></span><span class="line"><span class="cl">| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span></span><span class="line"><span class="cl">| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+</span></span><span class="line"><span class="cl">|                                         |                      |               MIG M. |
+</span></span><span class="line"><span class="cl">|=========================================+======================+======================|
+</span></span><span class="line"><span class="cl">|   0  NVIDIA RTX A6000               Off | 00000000:61:00.0 Off |                  Off |
+</span></span><span class="line"><span class="cl">| 30%   27C    P8              11W / 300W |    168MiB / 49140MiB |      0%      Default |
+</span></span><span class="line"><span class="cl">|                                         |                      |                  N/A |
+</span></span><span class="line"><span class="cl">+-----------------------------------------+----------------------+----------------------+
+</span></span><span class="line"><span class="cl">                                                                                         
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| Processes:                                                                            |
+</span></span><span class="line"><span class="cl">|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+</span></span><span class="line"><span class="cl">|        ID   ID                                                             Usage      |
+</span></span><span class="line"><span class="cl">|=======================================================================================|
+</span></span><span class="line"><span class="cl">|    0   N/A  N/A      1713      G   /usr/lib/xorg/Xorg                           75MiB |
+</span></span><span class="line"><span class="cl">|    0   N/A  N/A      2108      G   /usr/bin/gnome-shell                         61MiB |
+</span></span><span class="line"><span class="cl">+---------------------------------------------------------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的宿主机安装的驱动版本为 535.171.04</p>
+<p>那么容器内最好也安装这个版本，如果对应系统找不到这个版本，那么就找比这个版本低一点的版本安装，驱动一般是向下兼容的，不向上兼容。</p>
+<p>容器内安装驱动，需要在 <a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer">https://www.nvidia.cn/Download/Find.aspx?lang=cn</a> 中查询对应显卡版本对应基础镜像的系统的驱动。</p>
+<p>下载到宿主机上后，Dockerfile中可以用COPY命令COPY进去使用，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">COPY NVIDIA-Linux-x86_64-550.135.run /tmp/NVIDIA-Linux-x86_64-550.135.run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>容器内有了这个驱动后，且默认的依赖安装了：</p>
+<ul>
+<li>build-essential</li>
+<li>dkms</li>
+<li>initramfs-tools</li>
+</ul>
+<p>那么后续就可以：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 禁用 Nouveau 驱动</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> -e <span class="s2">&#34;blacklist nouveau\noptions nouveau modeset=0&#34;</span> &gt; /etc/modprobe.d/blacklist-nouveau.conf <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    update-initramfs -u
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 NVIDIA 550.135 驱动（自动化、静默安装）</span>
+</span></span><span class="line"><span class="cl">RUN chmod +x /tmp/NVIDIA-Linux-x86_64-550.135.run <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    /tmp/NVIDIA-Linux-x86_64-550.135.run --no-kernel-module --silent --accept-license
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样安装的驱动注意是一次性的，如果容器内的驱动在容器意外重启过程中被别的进程损坏，那么这里最好保留这个run文件到容器的<code>/home</code>或<code>/root</code>路径下，驱动出问题了用户可以自行用该文件修复。</p>
+<h3 id="ascend">Ascend</h3>
+<p>需要先确保宿主机本身已经安装了昇腾卡的显卡驱动，否则容器内安装了驱动也无法与显卡通信：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npu-smi info
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>宿主机上执行后可见：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@master-118 ~]# npu-smi info
+</span></span><span class="line"><span class="cl">+--------------------------------------------------------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| npu-smi 24.1.0.1                                 Version: 24.1.0.1                                     |
+</span></span><span class="line"><span class="cl">+-------------------------------+-----------------+------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| NPU     Name                  | Health          | Power(W)     Temp(C)           Hugepages-Usage(page) |
+</span></span><span class="line"><span class="cl">| Chip    Device                | Bus-Id          | AICore(%)    Memory-Usage(MB)                        |
+</span></span><span class="line"><span class="cl">+===============================+=================+======================================================+
+</span></span><span class="line"><span class="cl">| 5       310P3                 | OK              | NA           59                0     / 0             |
+</span></span><span class="line"><span class="cl">| 0       0                     | 0000:81:00.0    | 0            1492 / 44280                            |
+</span></span><span class="line"><span class="cl">+-------------------------------+-----------------+------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| 5       310P3                 | OK              | NA           58                0     / 0             |
+</span></span><span class="line"><span class="cl">| 1       1                     | 0000:81:00.0    | 0            1426 / 43693                            |
+</span></span><span class="line"><span class="cl">+===============================+=================+======================================================+
+</span></span><span class="line"><span class="cl">+-------------------------------+-----------------+------------------------------------------------------+
+</span></span><span class="line"><span class="cl">| NPU     Chip                  | Process id      | Process name             | Process memory(MB)        |
+</span></span><span class="line"><span class="cl">+===============================+=================+======================================================+
+</span></span><span class="line"><span class="cl">| No running processes found in NPU 5                                                                    |
+</span></span><span class="line"><span class="cl">+===============================+=================+======================================================+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么容器内可以直接COPY宿主机的环境做昇腾卡的驱动部署：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ENV <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/Ascend/driver/lib64/common:<span class="nv">$LD_LIBRARY_PATH</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/Ascend/driver/lib64/driver:<span class="nv">$LD_LIBRARY_PATH</span>
+</span></span><span class="line"><span class="cl">COPY dcmi /usr/local/dcmi
+</span></span><span class="line"><span class="cl">COPY npu-smi /usr/local/bin/npu-smi
+</span></span><span class="line"><span class="cl">COPY common /usr/local/Ascend/driver/lib64/common
+</span></span><span class="line"><span class="cl">COPY driver /usr/local/Ascend/driver/lib64/driver
+</span></span><span class="line"><span class="cl">COPY ascend_install.info /etc/ascend_install.info
+</span></span><span class="line"><span class="cl">COPY vnpu.cfg /etc/vnpu.cfg
+</span></span><span class="line"><span class="cl">COPY version.info /usr/local/Ascend/driver/version.info
+</span></span><span class="line"><span class="cl">RUN chmod +x /usr/local/bin/npu-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就安装进去了。</p>
+<h3 id="容器内驱动测试">容器内驱动测试</h3>
+<p>英伟达显卡和昇腾显卡的docker启动命令挂载显卡是不同的：</p>
+<p>英伟达显卡的docker启动命令中加入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">--gpus <span class="nv">device</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>昇腾显卡的docker启动命令中加入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-e <span class="nv">ASCEND_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span> --device<span class="o">=</span>/dev/davinci0 --device<span class="o">=</span>/dev/davinci_manager --device<span class="o">=</span>/dev/devmm_svm --device<span class="o">=</span>/dev/hisi_hdc -v /usr/local/Ascend:/usr/local/Ascend -v /usr/local/dcmi:/usr/local/dcmi 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it 容器名字 /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入容器后执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npu-smi info
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检测容器内的显卡驱动是否可用。</p>
+<h2 id="安装应用">安装应用</h2>
+<h3 id="需要图形界面环境以jetbrains系列的应用为例">需要图形界面环境(以jetbrains系列的应用为例)</h3>
+<p>需要先下载linux的安装包：<a href="https://www.jetbrains.com.cn/ides/" target="_blank" rel="noopener noreffer">https://www.jetbrains.com.cn/ides/</a></p>
+<p>注意有的在线IDE是不存在community社区版本的，此时只能下载开发者版本然后试用，简单的说有社区版本就下社区版本。</p>
+<p>然后将社区版本的linux的tar.gz包解压，因为需要在Dockerfile中指定其config的路径，所以需要：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">tar zxvf 文件名.tar.gz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在当前目录解压这个tar.gz包，解压后可见到类似 <code>pycharm-community-2024.2.1</code> 这样的文件夹名字，那么这个文件夹就是后续要用到的名字，然后这个文件夹就可以删除了，后续用不上，只是为了记下名字用的。</p>
+<p>Dockerfile中需要如下设置应用，这块的文件夹名字使用你实际解压得到的名字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 拷贝 PyCharm 安装包</span>
+</span></span><span class="line"><span class="cl">COPY pycharm-community-2024.2.1.tar.gz /tmp/pycharm.tar.gz
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压 PyCharm 并创建快捷方式</span>
+</span></span><span class="line"><span class="cl">RUN tar -xzf /tmp/pycharm.tar.gz -C /opt <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    ln -s /opt/pycharm-community-2024.2.1/bin/pycharm.sh /usr/local/bin/pycharm <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    rm /tmp/pycharm.tar.gz
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建启动脚本</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s1">&#39;#!/bin/sh&#39;</span> &gt; /startapp.sh <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nb">echo</span> <span class="s1">&#39;exec pycharm&#39;</span> &gt;&gt; /startapp.sh <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    chmod +x /startapp.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置版本信息</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s2">&#34;APP_NAME=PyCharm Community&#34;</span> &gt;&gt; /etc/environment <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nb">echo</span> <span class="s2">&#34;APP_VERSION=2024.2.1&#34;</span> &gt;&gt; /etc/environment
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改默认的 PyCharm 配置，持久化设置</span>
+</span></span><span class="line"><span class="cl">RUN tee -a /opt/pycharm-community-2024.2.1/bin/idea.properties <span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.system.path=/home/ubuntu/system
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.config.path=/home/ubuntu/config
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.plugins.path=/home/ubuntu/plugins
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.default.project.directory=/home/ubuntu/
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.no.launcher.banner=true
+</span></span></span><span class="line"><span class="cl"><span class="s">idea.disable.protocol.confirmation=true
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这块在配置的时候，注意<code>/home/ubuntu</code>必须是原基础镜像中存在的(<code>jlesage/baseimage-gui:ubuntu-22.04-v4</code>中肯定存在)，如果不存在的话需要先：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">RUN mkdir -p 持久化的home中的文件夹名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建路径，自行替换配置的文件夹名字。</p>
+<p>这块的启动脚本是配合<code>jlesage/baseimage-gui:ubuntu-22.04-v4</code>进行使用的。</p>
+<p>如果使用的是KASM模板配置，那么使用的需要查找对应的仓库的说明。</p>
+<p>需要图形界面环境的应用的启动命令不需要自行设计，必须交由原基础镜像的启动命令操作，不要修改它，否则图形界面环境启动不了。</p>
+<h3 id="不需要图形界面环境以自带可浏览器在线浏览的应用为例">不需要图形界面环境(以自带可浏览器在线浏览的应用为例)</h3>
+<p>比如 Jupyter 比如 code-server(vscode)</p>
+<p>这种应用就不需要安装NOVNC/KASM进行桌面环境的初始化了，直接可以使用基础的linux镜像进行制作。</p>
+<p>jupyter可以使用miniconda进行安装，参照 <a href="https://github.com/spiritLHLS/one-click-installation-script/blob/main/install_scripts/jupyter.sh" target="_blank" rel="noopener noreffer">https://github.com/spiritLHLS/one-click-installation-script/blob/main/install_scripts/jupyter.sh</a></p>
+<p>可写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装 Miniconda</span>
+</span></span><span class="line"><span class="cl">RUN wget -O /tmp/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    bash /tmp/miniconda.sh -b -p /opt/conda <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    rm /tmp/miniconda.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这块安装注意架构是amd64还是arm64，amd64写的是x86_64的安装脚本，arm64写的是aarch64的安装脚本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 初始化 Conda 并创建 Jupyter 环境</span>
+</span></span><span class="line"><span class="cl">RUN /opt/conda/bin/conda init bash <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nb">echo</span> <span class="s2">&#34;source /opt/conda/bin/activate&#34;</span> &gt;&gt; ~/.bashrc <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    conda config --set auto_activate_base <span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    conda create -n jupyter_env <span class="nv">python</span><span class="o">=</span>3.10 -y <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    conda clean -afy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这块在定义具体需要指定安装什么版本的python。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装 Jupyter 及插件</span>
+</span></span><span class="line"><span class="cl">RUN /opt/conda/bin/conda run -n jupyter_env pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple --timeout<span class="o">=</span><span class="m">300</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    jupyterlab notebook jupyter_server jupyter_http_over_ws jupyter-ai<span class="o">[</span>all<span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    /opt/conda/bin/conda run -n jupyter_env jupyter server extension <span class="nb">enable</span> --py jupyter_http_over_ws
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这块在定义需要安装所有jupyter的组件，并启用jupyter的插件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 写入 Jupyter 配置文件</span>
+</span></span><span class="line"><span class="cl">RUN mkdir -p /root/.jupyter <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    cat <span class="s">&lt;&lt;EOF &gt; /root/.jupyter/jupyter_server_config.py
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.allow_root = True
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.open_browser = False
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.password = &#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.ip = &#39;0.0.0.0&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.token = &#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.tornado_settings={ \&#34;headers\&#34;: { \&#34;Content-Security-Policy\&#34;: \&#34;frame-ancestors &#39;self&#39; *\&#34;} }
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.disable_check_xsrf = True
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.allow_origin = &#39;*&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.port = 31000
+</span></span></span><span class="line"><span class="cl"><span class="s">c.ServerApp.allow_remote_access = True
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这块在定义jupyter的默认配置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">CMD <span class="o">[</span><span class="s2">&#34;bash&#34;</span>, <span class="s2">&#34;-c&#34;</span>, <span class="s2">&#34;\
+</span></span></span><span class="line"><span class="cl"><span class="s2">base_url=</span><span class="k">$(</span><span class="nb">echo</span> <span class="se">\&#34;</span><span class="nv">$NOTEBOOK_ARGS</span><span class="se">\&#34;</span> <span class="p">|</span> sed -n <span class="se">\&#34;</span>s/.*--ServerApp.base_url<span class="o">=</span><span class="s1">&#39;\\([^&#39;</span><span class="o">]</span>*<span class="se">\\</span><span class="k">)</span><span class="s2">&#39;.*/\\1/p\&#34;) &amp;&amp; \
+</span></span></span><span class="line"><span class="cl"><span class="s2">conda init bash &amp;&amp; source ~/.bashrc &amp;&amp; conda activate jupyter_env &amp;&amp; \
+</span></span></span><span class="line"><span class="cl"><span class="s2">if [ -n \&#34;</span><span class="nv">$base_url</span><span class="s2">\&#34; ]; then \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  jupyter lab --allow-root --port=31000 --ip=0.0.0.0 --NotebookApp.token=&#39;&#39; --NotebookApp.password=&#39;&#39; --ServerApp.base_url=\&#34;</span><span class="nv">$base_url</span><span class="s2">\&#34;; \
+</span></span></span><span class="line"><span class="cl"><span class="s2">else \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  jupyter lab --allow-root --port=31000 --ip=0.0.0.0 --NotebookApp.token=&#39;&#39; --NotebookApp.password=&#39;&#39;; \
+</span></span></span><span class="line"><span class="cl"><span class="s2">fi&#34;</span><span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动命令由于需要外传指定jupyter的启动路径，所以写成这个非常复杂。</p>
+<p>不需要图形界面环境的应用的启动命令需要自行设计，不能交由原基础镜像的启动命令操作。</p>
+<h2 id="容器暴露端口">容器暴露端口</h2>
+<p>针对<code>jlesage/baseimage-gui:ubuntu-22.04-v4</code>基础镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 配置 VNC 服务器参数</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">DISPLAY</span><span class="o">=</span>:0
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许自动登录</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">GUI_AUTOLOGIN</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 root 用户启动 Eclipse</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">GUI_USER</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="c1"># VNC 端口（用于 VNC 客户端）</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">VNC_PORT</span><span class="o">=</span><span class="m">5900</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># noVNC 端口（用于 Web 浏览器访问）</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">WEB_LISTENING_PORT</span><span class="o">=</span><span class="m">31000</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用剪贴板共享</span>
+</span></span><span class="line"><span class="cl">ENV <span class="nv">ENABLE_CLIPBOARD</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 暴露端口</span>
+</span></span><span class="line"><span class="cl">EXPOSE <span class="m">5900</span> <span class="m">31000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对<code>debian:bookworm-slim</code>等仅系统的基础镜像：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 暴露端口</span>
+</span></span><span class="line"><span class="cl">EXPOSE <span class="m">5900</span> <span class="m">31000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="设置容器支持ssh连接">设置容器支持ssh连接</h2>
+<h3 id="如何测试容器基础镜像带什么环境">如何测试容器基础镜像带什么环境</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it 容器名字 /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种能进去的就是带bash环境的，报错的话试试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it 容器名字 /bin/sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种进得去的就是带sh环境的。</p>
+<p>最好使用带bash环境的基础镜像，带sh环境的基础镜像有一些shell命令的语法无法使用。</p>
+<h3 id="基础镜像是带bash环境的">基础镜像是带bash环境的</h3>
+<p>如：Debian、Ubuntu、Centos、Almalinux、Redhat等</p>
+<p>参考 <a href="https://github.com/oneclickvirt/docker/blob/main/scripts/ssh_bash.sh" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/docker/blob/main/scripts/ssh_bash.sh</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 依赖安装</span>
+</span></span><span class="line"><span class="cl">RUN apt-get update <span class="o">&amp;&amp;</span> apt-get install -y openssh-server <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    mkdir -p /var/run/sshd
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 sshd_config</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nv">config_file</span><span class="o">=</span><span class="s2">&#34;/etc/ssh/sshd_config&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s2">&#34;s/^#\?Port.*/Port 22/g&#34;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s2">&#34;s/^#\?PermitRootLogin.*/PermitRootLogin yes/g&#34;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s2">&#34;s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g&#34;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;s/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;s/#ListenAddress ::/ListenAddress ::/&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;s/#AddressFamily any/AddressFamily any/&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s2">&#34;s/^#\?PubkeyAuthentication.*/PubkeyAuthentication no/g&#34;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;/^#UsePAM\|UsePAM/c #UsePAM no&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;/^AuthorizedKeysFile/s/^/#/&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed -i <span class="s1">&#39;s/^#[[:space:]]*KbdInteractiveAuthentication.*\|^KbdInteractiveAuthentication.*/KbdInteractiveAuthentication yes/&#39;</span> <span class="s2">&#34;</span><span class="nv">$config_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置 root 密码（这里设置为 password，按需更改）</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s1">&#39;root:password&#39;</span> <span class="p">|</span> chpasswd
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动SSH服务</span>
+</span></span><span class="line"><span class="cl">RUN service sshd restart <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">RUN systemctl restart sshd <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">RUN systemctl restart ssh <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">RUN /usr/sbin/sshd <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">RUN service ssh restart <span class="o">||</span> <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面这里安装的<code>openssh-server</code>可以加入到之前的依赖安装中去，这里仅示例，不必另外写一次依赖安装。</p>
+<h3 id="基础镜像仅带sh环境的">基础镜像仅带sh环境的</h3>
+<p>如：Alpine</p>
+<p>参考 <a href="https://github.com/oneclickvirt/docker/blob/main/scripts/ssh_sh.sh" target="_blank" rel="noopener noreffer">https://github.com/oneclickvirt/docker/blob/main/scripts/ssh_sh.sh</a></p>
+<h2 id="容器内端口转发更改默认端口">容器内端口转发更改默认端口</h2>
+<p>有时候默认的程序的端口不符合需求，比如平台已经写死了转发容器内的<code>31000</code>端口做web端的端口，此时就需要修改原先的<code>8006</code>为<code>31000</code>端口</p>
+<p>这里需要一个通用的转发容器内部端口的方法，但注意，这种方法不适合转发NoVNC的端口，因为涉及ws协议头，没法转换，这种方法只能转换简单的nginx的tcp协议，不涉及协议头加密升级等内容，涉及NoVNC的端口改变还是得改配置文件</p>
+<p>此时需要使用<code>socat</code>进行端口转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">socat TCP-LISTEN:31000,fork,reuseaddr TCP:127.0.0.1:8006 <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以需要如下操作：</p>
+<p>在Dockerfile的同级目录下执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">touch entry-wrapper.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后<code>nano</code>或者<code>vim</code>写入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 启动端口转发（8006 → 31000）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    fork 到后台，不影响后面的 exec</span>
+</span></span><span class="line"><span class="cl">socat TCP-LISTEN:31000,fork,reuseaddr TCP:127.0.0.1:8006 <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 把日志重定向（可选）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># exec &gt;&gt; /var/log/entry-wrapper.log 2&gt;&amp;1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 最后 exec 回到原来的 entry.sh（并保持 tini 处理信号）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> /usr/bin/tini -s /run/entry.sh <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dockerfile中修改<code>ENTRYPOINT [&quot;/usr/bin/tini&quot;, &quot;-s&quot;, &quot;/run/entry.sh&quot;]</code>改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">COPY --chmod<span class="o">=</span><span class="m">755</span> entry-wrapper.sh /usr/bin/entry-wrapper.sh
+</span></span><span class="line"><span class="cl">ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/usr/bin/entry-wrapper.sh&#34;</span><span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改默认的web的端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># EXPOSE 8006</span>
+</span></span><span class="line"><span class="cl">EXPOSE <span class="m">31000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样操作后，<code>socat</code>在前面监听<code>31000</code>，把它转发到<code>8006</code>，又不影响原先的所有nginx的配置</p>
+<h2 id="容器镜像固化">容器镜像固化</h2>
+<p>在对容器进行完毕所有要修改的操作之后，在打包之前，需要commit一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker commit 容器名字 镜像名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="容器镜像导出">容器镜像导出</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker save -o 名字.tar 镜像名字
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导出镜像文件的tar包的过程中，需要保证当前路径的挂载点还有非常多的空闲硬盘，否则会写入报错。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">lsblk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">df -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看确保空间足够再进行导出。</p>
+<h2 id="容器镜像导入">容器镜像导入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker load -i 名字.tar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导入后就可以使用镜像了。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-04-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程" data-hashtags="docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20250425/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20250425/" data-title="通用docker容器镜像打包应用的流程"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">Docker</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20250415/" class="prev" rel="prev" title="kubevirt初体验"><i class="fas fa-angle-left fa-fw"></i>kubevirt初体验</a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

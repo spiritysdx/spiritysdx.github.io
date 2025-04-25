@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.142.0">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="二叉树的博客">
+  <meta property="og:description" content="个人学习日志">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="二叉树的博客">
+  <meta name="twitter:description" content="个人学习日志">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="二叉树的博客">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="二叉树的博客"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/www.spiritysdx.top\/","inLanguage": "zh-CN","description": "个人学习日志","name": "二叉树的博客"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="二叉树上的我"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/103393591"
+        data-srcset="https://avatars.githubusercontent.com/u/103393591, https://avatars.githubusercontent.com/u/103393591 1.5x, https://avatars.githubusercontent.com/u/103393591 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/103393591"
+        title="https://avatars.githubusercontent.com/u/103393591" /></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/spiritLHLS" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw"></i></a><a href="https://t.me/spiritlhl_bot" title="Telegram" target="_blank" rel="noopener noreffer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="mailto:spiritlhlbusiness@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20221102/">Python破解Google验证码ReCaptchav3的成功案例(附代码)(免费)(2022)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-11-02">2022-11-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>破解谷歌验证码，其实并不需要用高深的法子，只需要借助一些免费资源，免费插件，就能达到很好的效果。</p>
+<p>网上现在流传的几乎都说Google验证码ReCaptchav3得用深度学习，或者第三方收费打码网站，又或者抓住某些验证漏洞才能过，实际上，并不需要。这里我先从普通的验证码开始，介绍我破解Google验证码的思路以及个人成功案例。(全网独家，目前我各大搜索引擎找遍了都没有的，如需转发请注明本文来源)</p></div><div class="post-footer">
+        <a href="/20221102/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/selenium/">Selenium</a>,&nbsp;<a href="/tags/shadow-root/">Shadow-Root</a>,&nbsp;<a href="/tags/recaptcha-v3/">ReCAPTCHA-V3</a>,&nbsp;<a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220224/">(MCM/ICM)比特币和黄金组合投资策略的主体代码部分</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-24">2022-02-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>美赛论文对应主体代码部分，吐槽一句美赛居然不收代码也是离谱。</p>
+<p>论文配套的代码均为本人编写，运行无问题。</p>
+<p>感谢组员组长的配合论文撰写。</p>
+<h1 id="正文">正文</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span><span class="nn">math</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;BCHAIN-MKPRU.csv&#39;</span><span class="p">)</span> <span class="c1"># B</span>
+</span></span><span class="line"><span class="cl"><span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;LBMA-GOLD.csv&#39;</span><span class="p">)</span> <span class="c1"># G</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">r_hex</span> <span class="o">=</span> <span class="s1">&#39;#dc2624&#39;</span>     <span class="c1"># red,       RGB = 220,38,36</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt_hex</span> <span class="o">=</span> <span class="s1">&#39;#2b4750&#39;</span>    <span class="c1"># dark teal, RGB = 43,71,80</span>
+</span></span><span class="line"><span class="cl"><span class="n">tl_hex</span> <span class="o">=</span> <span class="s1">&#39;#45a0a2&#39;</span>    <span class="c1"># teal,      RGB = 69,160,162</span>
+</span></span><span class="line"><span class="cl"><span class="n">r1_hex</span> <span class="o">=</span> <span class="s1">&#39;#e87a59&#39;</span>    <span class="c1"># red,       RGB = 232,122,89</span>
+</span></span><span class="line"><span class="cl"><span class="n">tl1_hex</span> <span class="o">=</span> <span class="s1">&#39;#7dcaa9&#39;</span>   <span class="c1"># teal,      RGB = 125,202,169</span>
+</span></span><span class="line"><span class="cl"><span class="n">g_hex</span> <span class="o">=</span> <span class="s1">&#39;#649E7D&#39;</span>     <span class="c1"># green,     RGB = 100,158,125</span>
+</span></span><span class="line"><span class="cl"><span class="n">o_hex</span> <span class="o">=</span> <span class="s1">&#39;#dc8018&#39;</span>     <span class="c1"># orange,    RGB = 220,128,24</span>
+</span></span><span class="line"><span class="cl"><span class="n">tn_hex</span> <span class="o">=</span> <span class="s1">&#39;#C89F91&#39;</span>    <span class="c1"># tan,       RGB = 200,159,145</span>
+</span></span><span class="line"><span class="cl"><span class="n">g50_hex</span> <span class="o">=</span> <span class="s1">&#39;#6c6d6c&#39;</span>   <span class="c1"># grey-50,   RGB = 108,109,108</span>
+</span></span><span class="line"><span class="cl"><span class="n">bg_hex</span> <span class="o">=</span> <span class="s1">&#39;#4f6268&#39;</span>    <span class="c1"># blue grey, RGB = 79,98,104</span>
+</span></span><span class="line"><span class="cl"><span class="n">g25_hex</span> <span class="o">=</span> <span class="s1">&#39;#c7cccf&#39;</span>   <span class="c1"># grey-25,   RGB = 199,204,207</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p></div><div class="post-footer">
+        <a href="/20220224/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220226/">(MCM/ICM)比特币和黄金组合投资策略</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-23">2022-02-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><p>感谢组员组长的配合论文撰写。</p>
+<p><strong>1 Introduction</strong></p>
+<ol>
+<li><strong>Background and restatement of the problem</strong></li>
+</ol>
+<p>在如今金融迅猛发展的大背景下，交易员可以对众多的金融投资产品进行选择，并对其投资的波动性资产进行交易，以收获期望的回报。其中黄金和比特币为本文所选取的金融资产。比特币每天都进行交易而黄金只在开市日进行交易，且在交易中交易员需要支付对应比例的佣金。</p></div><div class="post-footer">
+        <a href="/20220226/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220225/">(MCM/ICM)比特币和黄金组合投资策略的策略代码部分</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-23">2022-02-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>美赛论文对应策略代码部分，吐槽一句美赛居然不收代码也是离谱。</p>
+<p>论文配套的代码均为本人编写，运行无碍。</p>
+<p>感谢组员组长的配合论文撰写。</p>
+<h1 id="正文">正文</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span><span class="nn">math</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;B.csv&#39;</span><span class="p">)</span> <span class="c1"># B</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;H.csv&#39;</span><span class="p">)</span> <span class="c1"># H</span>
+</span></span><span class="line"><span class="cl"><span class="n">Times</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;022.csv&#39;</span><span class="p">)</span> <span class="c1"># Time</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;Unnamed: 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;Unnamed: 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Times</span> <span class="o">=</span> <span class="n">Times</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&#34;Unnamed: 0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 先向前取值填充，再先后取值填充</span>
+</span></span><span class="line"><span class="cl"><span class="n">BH</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">B</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BH</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">BH</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;0&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">BH</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">BH</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;0&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">H</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p></div><div class="post-footer">
+        <a href="/20220225/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220222/">(MCM/ICM)The Best Investment Strategies For Gold And Bitcoin</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-22">2022-02-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>美赛论文，由于不能在md中方便的插入图片与数学公式，所以我选择删掉对应的地方。</p>
+<p>英文译制版本。</p>
+<p>论文配套的代码均为本人编写，感谢组员组长的配合论文撰写。</p></div><div class="post-footer">
+        <a href="/20220222/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220221/">(MCM/ICM)2022C题比特币与黄金投资问题汉译题目</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-21">2022-02-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><p>背景：</p>
+<p>市场交易者频繁买卖波动性资产，目标是最大化其总回报。每次买卖通常都会有佣金。 两种这样的资产是黄金和比特币。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png"
+        data-srcset="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png 1.5x, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png"
+        title="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.d65c8203-e3fb-4f58-9b02-f6fc3a295cb1.001.png" /></p>
+<p>图 1：黄金每日价格，每金衡盎司美元。 资料来源：伦敦金银市场协​​会，2021 年 9 月 11 日</p></div><div class="post-footer">
+        <a href="/20220221/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220213/">Suzhou Carbon Neutral-Circular Development Creative Plan</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-13">2022-02-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>很水的比赛，官方求着收论文，说是保底有钱。。。。</p>
+<p>英文译制版本。</p>
+<p>感谢组员组长的配合论文撰写。</p>
+<h1 id="正文">正文</h1>
+<p><strong>Suzhou Carbon Neutral</strong></p>
+<p><code>              </code><strong>Circular Development Creative Plan</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png"
+        data-srcset="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png 1.5x, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png"
+        title="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.f08d9cc6-484a-49ad-828c-9af7be48fe5c.001.png" /></p>
+<ol>
+<li><strong>Problem Analysis</strong></li>
+</ol>
+<p><strong>1.1 Background brief</strong></p>
+<p><strong>1.1.1 Problem introduction</strong></p>
+<p><code>    </code>In recent years, Suzhou has faced various new problems and challenges, such as economic transformation, low coordination between low-carbon development and social progress, and increased uncertainty in economic development, which has brought impacts and challenges to the realization of the carbon neutrality goal. However, due to the influence of many factors, such as excessive reliance on foreign transfer of primary energy, insufficient resource endowment, energy consumption mainly based on traditional fossil fuels such as coal, weak development of new energy and small market share, the overall impact of Suzhou has been directly or indirectly caused the higher carbon emissions.</p></div><div class="post-footer">
+        <a href="/20220213/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220212/">苏州市碳中和-循环发展创意方案书</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-12">2022-02-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"><i class="far fa-folder fa-fw"></i>数学建模</a></span></div><div class="content"><h1 id="前言">前言</h1>
+<p>很水的比赛，官方求着收论文，说是保底有钱。。。。</p>
+<p>感谢组员组长的配合论文撰写。</p>
+<h1 id="正文">正文</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png"
+        data-srcset="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png 1.5x, https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png 2x"
+        data-sizes="auto"
+        alt="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png"
+        title="https://gitee.com/spiritlhl/picture/raw/master/Aspose.Words.6700f7ce-98ec-42eb-ad35-08ea593d2591.001.png" /></p>
+<ol>
+<li>问题分析
+<ol>
+<li>背景简述
+<ol>
+<li>问题引入</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><code>    </code>近年来，苏州由于面临经济的转型、低碳发展与社会进步协调性降低、经济发展面临的不确定性增加等各种新问题、新挑战，给碳中和目标的实现带来的冲击与挑战。而一次能源过度依赖外地调入、资源禀赋不足、能源消费多以煤炭等传统化石燃料为主、新能源发展乏力且占市场份额较小等诸多因素的影响，直接或间接的造成了苏州整体的碳排放量较高的情况。</p></div><div class="post-footer">
+        <a href="/20220212/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220206/">图片验证码增强技术(提高识别正确率)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-02-06">2022-02-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div><div class="content"><h3 id="直接使用原始图片做验证码识别正确率较低使用增强技术后能大大提高识别率">直接使用原始图片做验证码识别正确率较低，使用增强技术后能大大提高识别率</h3>
+<p>黑底填充白底</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">Convert</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    将图像中白色像素转变为黑色像素
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span> <span class="s2">&#34;</span><span class="se">\\</span><span class="s2">&#34;</span><span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&#34;RGBA&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pixdata</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">pixdata</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">220</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pixdata</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&#34;result.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># result.png 黑色填充白底彩色图</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;result.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Successfully: &#34;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># origin.png 彩色验证码图片</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Convert</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;origin.png&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>彩色变黑白二值化增强</p></div><div class="post-footer">
+        <a href="/20220206/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/recaptcha/">Recaptcha</a>,&nbsp;<a href="/tags/captcha/">Captcha</a>,&nbsp;<a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20220120/">白嫖永久的免费VPS云服务器(2022.1.16已报废)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-01-20">2022-01-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/"><i class="far fa-folder fa-fw"></i>电脑技巧</a></span></div><div class="content"><h2 id="2022116">2022.1.16</h2>
+<p>Euserv激活账号以及安装机子需要钱了，无法白嫖了。。。</p>
+<p>但是有别的机子有类似机制能白嫖，详情请看</p>
+<p><a href="https://github.com/spiritLHL/Hang-up-items" target="_blank" rel="noopener noreffer">https://github.com/spiritLHL/Hang-up-items</a></p>
+<p>原有已经嫖到的自动续期脚本还是有效的。</p>
+<h2 id="前言">前言</h2>
+<p>2022.1.5更新图片链接以及部分说明</p></div><div class="post-footer">
+        <a href="/20220120/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/8/">8</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/9/">9</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/18/">18</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"二叉树上的我"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

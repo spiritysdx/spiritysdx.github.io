@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Lxc - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/lxc/</link>
+        <description>Lxc - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/lxc/" rel="self" type="application/rss+xml" /><item>
+    <title>使用LXD对服务器进行LXC容器切分</title>
+    <link>http://www.spiritysdx.top/20221205/</link>
+    <pubDate>Mon, 05 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20221205/</guid>
+    <description><![CDATA[<h3 id="使用lxd对服务器进行lxc容器切分下面简称母鸡开小鸡">使用LXD对服务器进行LXC容器切分(下面简称母鸡开小鸡)</h3>
+<p>Linux母鸡开小鸡，一键多开NAT小鸡，一键LXC虚拟化，一键多开服务器，多开容器，一键多开NAT小鸡，一键多开NAT服务器</p>
+<p>上述需求都得到了解决</p>]]></description>
+</item></channel>
+</rss>

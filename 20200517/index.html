@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Selenium的web自动化操作03(语法补充) - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20200517/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="Selenium的web自动化操作03(语法补充)">
+  <meta property="og:description" content="前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：
+Firefox
+Chrome
+其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-17T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="爬虫">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="Selenium的web自动化操作03(语法补充)">
+  <meta name="twitter:description" content="前言 需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：
+Firefox
+Chrome
+其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20200517/" /><link rel="prev" href="http://www.spiritysdx.top/20200512/" /><link rel="next" href="http://www.spiritysdx.top/20200522/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Selenium的web自动化操作03(语法补充)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20200517\/"
+        },"genre": "posts","keywords": "python, 爬虫","wordcount":  3471 ,
+        "url": "http:\/\/www.spiritysdx.top\/20200517\/","datePublished": "2020-05-17T00:00:00+00:00","dateModified": "2020-05-17T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Selenium的web自动化操作03(语法补充)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a>&nbsp;<a href="/categories/%E7%88%AC%E8%99%AB/"><i class="far fa-folder fa-fw"></i>爬虫</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-05-17">2020-05-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3471 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言"><strong>前言</strong></a></li>
+    <li><a href="#正文">正文</a></li>
+    <li><a href="#xpath语法简介">Xpath语法简介</a>
+      <ul>
+        <li><a href="#绝对路径选择">绝对路径选择</a></li>
+        <li><a href="#相对路径选择">相对路径选择</a></li>
+        <li><a href="#通配符">通配符</a></li>
+        <li><a href="#根据属性选择">根据属性选择</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#注意">注意：</a></li>
+              </ul>
+            </li>
+            <li><a href="#根据id属性选择">根据id属性选择</a></li>
+            <li><a href="#根据class属性选择">根据class属性选择</a></li>
+            <li><a href="#根据其他属性">根据其他属性</a></li>
+            <li><a href="#属性值包含字符串">属性值包含字符串</a></li>
+            <li><a href="#按次序选择">按次序选择</a></li>
+          </ul>
+        </li>
+        <li><a href="#第几个子元素">第几个子元素</a></li>
+        <li><a href="#某类型倒数第几个子元素">某类型倒数第几个子元素</a></li>
+        <li><a href="#范围选择">范围选择</a></li>
+        <li><a href="#组选择父节点兄弟节点">组选择、父节点、兄弟节点</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#组选择">组选择</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#选择父节点">选择父节点</a></li>
+        <li><a href="#兄弟节点选择">兄弟节点选择</a></li>
+        <li><a href="#selenium-注意点">selenium 注意点</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言"><strong>前言</strong></h2>
+<p>需要下载Chrome或Firefox的driver，Chrome内核81.440与Firefox内核74.0下载链接如下：</p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k3c" target="_blank" rel="noopener noreffer">Firefox</a></p>
+<p><a href="https://spiritlhl.lanzous.com/icg1k0j" target="_blank" rel="noopener noreffer">Chrome</a></p>
+<p>其他版本请在搜索引擎查找，本篇使用该版本，注意，driver下载后需要配置对应内核的游览器，电脑本身需要有该内核的游览器。</p>
+<hr>
+<h2 id="正文">正文</h2>
+<hr>
+<h2 id="xpath语法简介">Xpath语法简介</h2>
+<p>可以发现CSS选择元素非常灵活、强大。</p>
+<p>还有一种灵活、强大的选择元素的方式，就是使用Xpath表达式。</p>
+<p>XPath (XML Path Language) 是由国际标准化组织W3C指定的，用来在XML和HTML文档中选择节点的语言。</p>
+<p>目前主流浏览器 (chrome、firefox，edge，safari) 都支持XPath语法，xpath有 1 和 2 两个版本，目前浏览器支持的是 xpath 1的语法。</p>
+<p>既然已经有了CSS，为什么还要学习Xpath呢？因为</p>
+<p>有些场景用css选择web元素很麻烦，而xpath却比较方便。</p>
+<p>另外Xpath还有其他领域会使用到，比如爬虫框架Scrapy，手机App框架Appium。</p>
+<p>测试网址：http://cdn1.python3.vip/files/selenium/test1.html</p>
+<p>按F12打开调试窗口，点击Elements标签。</p>
+<p>要验证Xpath语法是否能成功选择元素，也可以像验证CSS语法那样，按组合键<code>Ctrl + F</code>就会出现搜索框</p>
+<p>xpath语法中，整个HTML文档根节点用’/‘表示，如果我们想选择的是根节点下面的html节点，则可以在搜索框输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果输入下面的表达式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/html/body/div
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个表达式表示选择html下面的body下面的div元素。</p>
+<p>注意<code>/</code>有点像CSS中的<code>&gt;</code>,表示直接子节点关系。</p>
+<hr>
+<h3 id="绝对路径选择">绝对路径选择</h3>
+<p>从根节点开始的，到某个节点，每层都依次写下来，每层之间用<code>/</code>分隔的表达式，就是某元素的绝对路径</p>
+<p>上面的xpath表达式<code>/html/body/div</code>，就是一个绝对路径的xpath表达式，等价于css表达式<code>html&gt;body&gt;div</code></p>
+<p>自动化程序要使用Xpath来选择web元素，应该调用WebDriver对象的方法<code>find_element_by_xpath</code>或者<code>find_elements_by_xpath</code>，像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="s2">&#34;/html/body/div&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="相对路径选择">相对路径选择</h3>
+<p>有的时候，我们需要选择网页中某个元素，不管它在什么位置 。</p>
+<p>比如，选择示例页面的所有标签名为<code>div</code>的元素，如果使用css表达式，直接写一个div就行了。</p>
+<p>那xpath怎么实现同样的功能呢？xpath需要前面加<code>//</code>, 表示从当前节点往下寻找所有的后代元素,不管它在什么位置。</p>
+<p>所以xpath表达式，应该这样写：<code>//div</code></p>
+<p>‘//’ 符号也可以继续加在后面,比如，要选择所有的<code>div</code>元素里面的所有的<code>p</code>元素 ，不管<code>div</code>在什么位置，也不管<code>p</code>元素在<code>div</code>下面的什么位置，则可以这样写<code>//div//p</code></p>
+<p>对应的自动化程序如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="s2">&#34;//div//p&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果使用CSS选择器，对应代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_css_selector</span><span class="p">(</span><span class="s2">&#34;div p&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果，要选择所有的<code>div</code>元素里面的直接子节点p，xpath就应该这样写了<code>//div/p</code></p>
+<p>如果使用CSS选择器，则为<code>div &gt; p</code></p>
+<hr>
+<h3 id="通配符">通配符</h3>
+<p>如果要选择所有div节点的所有直接子节点，可以使用表达式<code>//div/*</code></p>
+<p><code>*</code>是一个通配符，对应任意节点名的元素，等价于CSS选择器<code>div &gt; *</code></p>
+<p>代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="s2">&#34;//div/*&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;outerHTML&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="根据属性选择">根据属性选择</h3>
+<p>Xpath 可以根据属性来选择元素。</p>
+<p>根据属性来选择元素是通过这种格式来的<code>[@属性名='属性值']</code></p>
+<hr>
+<h5 id="注意">注意：</h5>
+<p>属性名注意前面有个@</p>
+<p>属性值一定要用引号，可以是单引号，也可以是双引号</p>
+<hr>
+<h4 id="根据id属性选择">根据id属性选择</h4>
+<p>选择id为west的元素，可以这样<code>//*[@id='west']</code></p>
+<hr>
+<h4 id="根据class属性选择">根据class属性选择</h4>
+<p>选择所有select元素中class为<code>single_choice</code>的元素，可以这样<code>//select[@class='single_choice']</code></p>
+<p>如果一个元素class有多个，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;p id=&#34;beijing&#34; class=&#39;capital huge-city&#39;&gt;
+</span></span><span class="line"><span class="cl">    北京
+</span></span><span class="line"><span class="cl">&lt;/p&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要选它，对应的xpath就应该是<code>//p[@class=&quot;capital huge-city&quot;]</code></p>
+<p>不能只写一个属性，像这样<code>//p[@class=&quot;capital&quot;]</code>则不行</p>
+<hr>
+<h4 id="根据其他属性">根据其他属性</h4>
+<p>同样的道理，我们也可以利用其它的属性选择</p>
+<p>比如选择具有multiple属性的所有页面元素，可以这样<code>//*[@multiple]</code></p>
+<hr>
+<h4 id="属性值包含字符串">属性值包含字符串</h4>
+<p>要选择style属性值包含color字符串的页面元素，可以这样<code>//*[contains(@style,'color')]</code></p>
+<p>要选择style属性值以color字符串开头的页面元素，可以这样<code>//*[starts-with(@style,'color')]</code></p>
+<p>style属性值以某个字符串结尾的页面元素，大家可以推测是<code>//*[ends-with(@style,'color')]</code>，但是很遗憾，这是xpath 2.0 的语法，目前浏览器都不支持。</p>
+<hr>
+<h4 id="按次序选择">按次序选择</h4>
+<p>前面学过css表达式可以根据元素在父节点中的次序选择，非常实用。</p>
+<p>xpath也可以根据次序选择元素。语法比css更简洁，直接在方括号中使用数字表示次序</p>
+<p>比如</p>
+<p>某类型<code>第几个</code>子元素</p>
+<p>比如</p>
+<p>要选择p类型第2个的子元素，就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//p[2]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，选择的是<code>p</code>类型第2个的子元素，不是第2个子元素，并且是<code>p</code>类型 。</p>
+<p>再比如，要选取父元素为<code>div</code>中的<code>p</code>类型<code>第2个</code>子元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//div/p[2]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="第几个子元素">第几个子元素</h3>
+<p>也可以选择第2个子元素，不管是什么类型，采用通配符</p>
+<p>比如 选择父元素为div的第2个子元素，不管是什么类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//div/*[2]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="某类型倒数第几个子元素">某类型倒数第几个子元素</h3>
+<p>当然也可以选取倒数第几个子元素</p>
+<p>比如：</p>
+<p>选取p类型倒数第1个子元素 &mdash;&gt; <code>//p[last()]</code>
+选取p类型倒数第2个子元素 &mdash;&gt; <code>//p[last()-1]</code>
+选择父元素为div中p类型倒数第3个子元素 &mdash;&gt;<code>//div/p[last()-2]</code></p>
+<hr>
+<h3 id="范围选择">范围选择</h3>
+<p>xpath还可以选择子元素的次序范围。</p>
+<p>比如，</p>
+<p>选取option类型第1到2个子元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//option[position()&lt;=2]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//option[position()&lt;3]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选择class属性为multi_choice的前3个子元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//*[@class=&#39;multi_choice&#39;]/*[position()&lt;=3]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选择class属性为multi_choice的后3个子元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//*[@class=&#39;multi_choice&#39;]/*[position()&gt;=last()-2]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为什么不是 last()-3 呢？因为</p>
+<p><code>last()</code>本身代表最后一个元素</p>
+<p><code>last()-1</code>本身代表倒数第2个元素</p>
+<p><code>last()-2</code>本身代表倒数第3个元素</p>
+<hr>
+<h3 id="组选择父节点兄弟节点">组选择、父节点、兄弟节点</h3>
+<hr>
+<h5 id="组选择">组选择</h5>
+<p>css有组选择，可以同时使用多个表达式，多个表达式选择的结果都是要选择的元素</p>
+<p>css组选择，表达式之间用逗号隔开</p>
+<p>xpath也有组选择，是用竖线隔开多个表达式</p>
+<p>比如，要选所有的option元素和所有的h4元素，可以使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#xpath
+</span></span><span class="line"><span class="cl">//option | //h4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等同于CSS选择器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#css
+</span></span><span class="line"><span class="cl">option , h4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再比如，要选所有的<code>class</code>为<code>single_choice</code>和<code>class</code>为<code>multi_choice</code>的元素，可以使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#xpath
+</span></span><span class="line"><span class="cl">//*[@class=&#39;single_choice&#39;] | //*[@class=&#39;multi_choice&#39;]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>等同于CSS选择器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#css
+</span></span><span class="line"><span class="cl">.single_choice , .multi_choice
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="选择父节点">选择父节点</h3>
+<p>xpath可以选择父节点，这是css做不到的。</p>
+<p>某个元素的父节点用<code>/..</code>表示</p>
+<p>比如，要选择<code>id</code>为<code>china</code>的节点的父节点，可以这样写<code>//*[@id='china']/..</code> 。</p>
+<p>当某个元素没有特征可以直接选择，但是它有子节点有特征， 就可以采用这种方法，先选择子节点，再指定父节点。</p>
+<p>还可以继续找上层父节点，比如<code>//*[@id='china']/../../..</code></p>
+<hr>
+<h3 id="兄弟节点选择">兄弟节点选择</h3>
+<p>前面学过css选择器，要选择某个节点的后续兄弟节点，用波浪线</p>
+<p>xpath也可以选择后续兄弟节点，用这样的语法<code>following-sibling::</code></p>
+<p>比如，要选择<code>class</code>为<code>single_choice</code>的元素的所有后续兄弟节点<code>//*[@class='single_choice']/following-sibling::*</code></p>
+<p>等同于CSS选择器<code>.single_choice ~ *</code></p>
+<p>如果，要选择后续节点中的div节点，就应该这样写<code>//*[@class='single_choice']/following-sibling::div</code></p>
+<p>xpath还可以选择前面的兄弟节点，用这样的语法<code>preceding-sibling::</code></p>
+<p>比如，要选择<code>class</code>为<code>single_choice</code>的元素的所有前面的兄弟节点<code>//*[@class='single_choice']/preceding-sibling::*</code></p>
+<p>而CSS选择器目前还没有方法选择前面的兄弟节点</p>
+<p>要了解更多Xpath选择语法，可以点击<a href="https://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="noopener noreffer">这里</a>，打开Xpath选择器参考手册</p>
+<hr>
+<h3 id="selenium-注意点">selenium 注意点</h3>
+<p>原代码：</p>
+<pre><code>先选择示例网页中，id是china的元素
+
+然后通过这个元素的WebElement对象，使用find_elements_by_xpath，选择里面的p元素，
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 先寻找id是china的元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">china</span> <span class="o">=</span> <span class="n">wd</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;china&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 再选择该元素内部的p元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">china</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="s1">&#39;//p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印结果</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----------------&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;outerHTML&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行发现，打印的不仅仅是china内部的p元素，而是所有的p元素。</p>
+<p>要在<strong>某个元素内部</strong>使用xpath选择元素，<strong>需要在xpath表达式最前面加个点</strong>。</p>
+<p>像这样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">elements</span> <span class="o">=</span> <span class="n">china</span><span class="o">.</span><span class="n">find_elements_by_xpath</span><span class="p">(</span><span class="s1">&#39;.//p&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)" data-hashtags="python,爬虫"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20200517/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20200517/" data-title="Selenium的web自动化操作03(语法补充)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20200512/" class="prev" rel="prev" title="NumPy (上)"><i class="fas fa-angle-left fa-fw"></i>NumPy (上)</a>
+            <a href="/20200522/" class="next" rel="next" title="NumPy (下)">NumPy (下)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.142.0">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="二叉树的博客">
+  <meta property="og:description" content="个人学习日志">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="二叉树的博客">
+  <meta name="twitter:description" content="个人学习日志">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="二叉树的博客">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="二叉树的博客"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/www.spiritysdx.top\/","inLanguage": "zh-CN","description": "个人学习日志","name": "二叉树的博客"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/" title="二叉树上的我"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/103393591"
+        data-srcset="https://avatars.githubusercontent.com/u/103393591, https://avatars.githubusercontent.com/u/103393591 1.5x, https://avatars.githubusercontent.com/u/103393591 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/103393591"
+        title="https://avatars.githubusercontent.com/u/103393591" /></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/spiritLHLS" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw"></i></a><a href="https://t.me/spiritlhl_bot" title="Telegram" target="_blank" rel="noopener noreffer me"><i class="fab fa-telegram-plane fa-fw"></i></a><a href="mailto:spiritlhlbusiness@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230926/">PageRank</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-26">2023-09-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="links-as-votes">Links as votes</h2>
+<p>使用In-coming links作为投票，也就是别人引用了我，即一个节点被多少其他节点指向，那么这个节点被多少用户点击的概率就越大。</p>
+<p>pagerank假设 In-Links 之间也是不一样，重要网站引用我和无名小将引用我肯定前者更重要。</p></div><div class="post-footer">
+        <a href="/20230926/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/pagerank/">PageRank</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230925/">用图卷积和树搜索解决组合优化问题(含笔记)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-25">2023-09-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="基于原文作的个人笔记在此展出">基于原文作的个人笔记，在此展出</h2>
+<p>建议按住ctrl然后滑动鼠标滑轮放大查看，笔记做的很小，图片分辨率很高，放大也不会糊</p>
+<p>原文：Combinatorial Optimization with Graph Convolutional Networks and Guided Tree Search</p>
+<p>原文链接：<a href="https://arxiv.org/abs/1810.10659" target="_blank" rel="noopener noreffer">https://arxiv.org/abs/1810.10659</a></p></div><div class="post-footer">
+        <a href="/20230925/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/%E6%A0%91%E6%90%9C%E7%B4%A2/">树搜索</a>,&nbsp;<a href="/tags/%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">组合优化</a>,&nbsp;<a href="/tags/%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2/">局部搜索</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%BC%A9%E5%87%8F/">图缩减</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230924/">Node2Vec</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-24">2023-09-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>DeepWalk 仅能反映相邻节点的社群相似信息，无法反映节点的功能角色相似的信息，因为DeespWalk仅使用连接信息(结构信息)学习。</p>
+<h2 id="有偏随机游走">有偏随机游走</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230924/1.png?raw=true" /></p></div><div class="post-footer">
+        <a href="/20230924/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/node2vec/">Node2Vec</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230923/">DeepWalk实战-维基百科词条图嵌入可视化</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-23">2023-09-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/" target="_blank" rel="noopener noreffer">https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/</a></p>
+<p><a href="https://github.com/prateekjoshi565/DeepWalk" target="_blank" rel="noopener noreffer">https://github.com/prateekjoshi565/DeepWalk</a></p>
+<h2 id="安装工具包">安装工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">networkx</span> <span class="n">gensim</span> <span class="n">pandas</span> <span class="n">numpy</span> <span class="n">tqdm</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">matplotlib</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Collecting networkx
+  Downloading networkx-3.1-py3-none-any.whl (2.1 MB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.1/2.1 MB[0m [31m50.1 MB/s[0m eta [36m0:00:00[0ma [36m0:00:01[0m
+[?25hCollecting gensim
+  Obtaining dependency information for gensim from https://files.pythonhosted.org/packages/22/40/7d2cce3ad4ad5d02aa68e253e6ea5f0acc381f02f594e235fe00a274faff/gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.3 kB)
+Collecting pandas
+  Obtaining dependency information for pandas from https://files.pythonhosted.org/packages/de/ce/b5d9c7ce1aaf9023b823c81932a50cd5e8f407198a696b0d1c6025a40b03/pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Collecting numpy
+  Obtaining dependency information for numpy from https://files.pythonhosted.org/packages/c4/36/161e2f8110f8c49e59f6107bd6da4257d30aff9f06373d0471811f73dcc5/numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (58 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m58.5/58.5 kB[0m [31m4.8 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting tqdm
+  Obtaining dependency information for tqdm from https://files.pythonhosted.org/packages/00/e5/f12a80907d0884e6dff9c16d0c0114d81b8cd07dc3ae54c5e962cc83037e/tqdm-4.66.1-py3-none-any.whl.metadata
+  Downloading tqdm-4.66.1-py3-none-any.whl.metadata (57 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m57.6/57.6 kB[0m [31m19.5 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting scikit-learn
+  Obtaining dependency information for scikit-learn from https://files.pythonhosted.org/packages/8f/87/5969092159207f583481ad80a03f09e2d4af1ebd197f4530ca4e906c947e/scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting matplotlib
+  Obtaining dependency information for matplotlib from https://files.pythonhosted.org/packages/65/5b/3b8fd7d66043f0638a35fa650570cbe69efd42fe169e5024f9307598b47e/matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)
+Collecting scipy&gt;=1.7.0 (from gensim)
+  Obtaining dependency information for scipy&gt;=1.7.0 from https://files.pythonhosted.org/packages/ef/1b/7538792254aec6850657d5b940fd05fe60582af829ffe40d6c054f065f34/scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m60.4/60.4 kB[0m [31m23.3 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting smart-open&gt;=1.8.1 (from gensim)
+  Obtaining dependency information for smart-open&gt;=1.8.1 from https://files.pythonhosted.org/packages/fc/d9/d97f1db64b09278aba64e8c81b5d322d436132df5741c518f3823824fae0/smart_open-6.4.0-py3-none-any.whl.metadata
+  Downloading smart_open-6.4.0-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from pandas) (2023.3.post1)
+Collecting tzdata&gt;=2022.1 (from pandas)
+  Downloading tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m341.8/341.8 kB[0m [31m66.1 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting joblib&gt;=1.1.1 (from scikit-learn)
+  Obtaining dependency information for joblib&gt;=1.1.1 from https://files.pythonhosted.org/packages/10/40/d551139c85db202f1f384ba8bcf96aca2f329440a844f924c8a0040b6d02/joblib-1.3.2-py3-none-any.whl.metadata
+  Downloading joblib-1.3.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting threadpoolctl&gt;=2.0.0 (from scikit-learn)
+  Obtaining dependency information for threadpoolctl&gt;=2.0.0 from https://files.pythonhosted.org/packages/81/12/fd4dea011af9d69e1cad05c75f3f7202cdcbeac9b712eea58ca779a72865/threadpoolctl-3.2.0-py3-none-any.whl.metadata
+  Downloading threadpoolctl-3.2.0-py3-none-any.whl.metadata (10.0 kB)
+Collecting contourpy&gt;=1.0.1 (from matplotlib)
+  Obtaining dependency information for contourpy&gt;=1.0.1 from https://files.pythonhosted.org/packages/b7/f6/78f60fa0b6ae64971178e2542e8b3ad3ba5f4f379b918ab7b18038a3f897/contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.9 kB)
+Collecting cycler&gt;=0.10 (from matplotlib)
+  Obtaining dependency information for cycler&gt;=0.10 from https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl.metadata
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools&gt;=4.22.0 (from matplotlib)
+  Obtaining dependency information for fonttools&gt;=4.22.0 from https://files.pythonhosted.org/packages/72/2c/7634a6c16b29d0c31cf54051beefab796abdfe8f52abead6d09e5403696e/fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (152 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m152.4/152.4 kB[0m [31m68.2 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting kiwisolver&gt;=1.0.1 (from matplotlib)
+  Obtaining dependency information for kiwisolver&gt;=1.0.1 from https://files.pythonhosted.org/packages/17/ba/17a706b232308e65f57deeccae503c268292e6a091313f6ce833a23093ea/kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+Requirement already satisfied: packaging&gt;=20.0 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from matplotlib) (23.1)
+Collecting pillow&gt;=6.2.0 (from matplotlib)
+  Obtaining dependency information for pillow&gt;=6.2.0 from https://files.pythonhosted.org/packages/3c/49/f87cecbdec4b00cc1187f01196d48c08828204cd861915fab44972dc705c/Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata
+  Downloading Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Collecting pyparsing&gt;=2.3.1 (from matplotlib)
+  Obtaining dependency information for pyparsing&gt;=2.3.1 from https://files.pythonhosted.org/packages/39/92/8486ede85fcc088f1b3dba4ce92dd29d126fd96b0008ea213167940a2475/pyparsing-3.1.1-py3-none-any.whl.metadata
+  Downloading pyparsing-3.1.1-py3-none-any.whl.metadata (5.1 kB)
+Requirement already satisfied: six&gt;=1.5 in /root/miniconda3/envs/jupyter-env/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.16.0)
+Downloading gensim-4.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (26.7 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m26.7/26.7 MB[0m [31m11.2 MB/s[0m eta [36m0:00:00[0m00:01[0m00:01[0m
+[?25hDownloading pandas-2.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m12.2/12.2 MB[0m [31m227.0 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading numpy-1.26.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m18.2/18.2 MB[0m [31m215.8 MB/s[0m eta [36m0:00:00[0ma [36m0:00:01[0m
+[?25hDownloading tqdm-4.66.1-py3-none-any.whl (78 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m78.3/78.3 kB[0m [31m40.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading scikit_learn-1.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.9 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m10.9/10.9 MB[0m [31m258.3 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading matplotlib-3.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m11.6/11.6 MB[0m [31m261.5 MB/s[0m eta [36m0:00:00[0m00:01[0m
+[?25hDownloading contourpy-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (302 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m302.8/302.8 kB[0m [31m121.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading fonttools-4.43.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.8 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.8/4.8 MB[0m [31m268.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading joblib-1.3.2-py3-none-any.whl (302 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m302.2/302.2 kB[0m [31m124.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.4/1.4 MB[0m [31m240.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading Pillow-10.0.1-cp311-cp311-manylinux_2_28_x86_64.whl (3.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.6/3.6 MB[0m [31m271.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pyparsing-3.1.1-py3-none-any.whl (103 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m103.1/103.1 kB[0m [31m51.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (36.4 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m36.4/36.4 MB[0m [31m64.6 MB/s[0m eta [36m0:00:00[0m:00:01[0m00:01[0m
+[?25hDownloading smart_open-6.4.0-py3-none-any.whl (57 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m57.0/57.0 kB[0m [31m17.1 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading threadpoolctl-3.2.0-py3-none-any.whl (15 kB)
+Installing collected packages: tzdata, tqdm, threadpoolctl, smart-open, pyparsing, pillow, numpy, networkx, kiwisolver, joblib, fonttools, cycler, scipy, pandas, contourpy, scikit-learn, matplotlib, gensim
+Successfully installed contourpy-1.1.1 cycler-0.12.1 fonttools-4.43.1 gensim-4.3.2 joblib-1.3.2 kiwisolver-1.4.5 matplotlib-3.8.0 networkx-3.1 numpy-1.26.0 pandas-2.1.1 pillow-10.0.1 pyparsing-3.1.1 scikit-learn-1.3.1 scipy-1.11.3 smart-open-6.4.0 threadpoolctl-3.2.0 tqdm-4.66.1 tzdata-2023.3
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m
+</code></pre>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span> <span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据分析</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># 随机数</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># 进度条</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取维基百科网页引用关联数据">获取维基百科网页引用关联数据</h2>
+<p>1.打开网站<code>https://densitydesign.github.io/strumentalia-seealsology</code></p></div><div class="post-footer">
+        <a href="/20230923/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/deepwalk/">DeepWalk</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230922/">DeepWalk</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-22">2023-09-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>深度学习思想用于图嵌入的开山之作 - DeepWalk</p>
+<p>学习路径：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true" /></p>
+<p>Random Walk 是一种遍历图的基本方法，而 Deep Walk 则是一种利用 Random Walk 生成的序列来学习节点嵌入的具体方法。</p></div><div class="post-footer">
+        <a href="/20230922/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/deepwalk/">DeepWalk</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230921/">嵌入整张图</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-21">2023-09-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="如何嵌入">如何嵌入</h2>
+<h3 id="全图进行编码嵌入">全图进行编码嵌入</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true" /></p>
+<h3 id="引入虚拟节点">引入虚拟节点</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true" /></p>
+<h3 id="匿名随机游走">匿名随机游走</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true" /></p>
+<p><a href="https://arxiv.org/pdf/1805.11921.pdf" target="_blank" rel="noopener noreffer">https://arxiv.org/pdf/1805.11921.pdf</a></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true" /></p>
+<p>只要是新节点就标记新的一号，认号不认原来的节点标识。</p></div><div class="post-footer">
+        <a href="/20230921/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/deepwalk/">DeepWalk</a>,&nbsp;<a href="/tags/node2vec/">Node2Vec</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230920/">矩阵分解角度 - 图嵌入(节点嵌入)和随机游走</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-20">2023-09-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true" /></p>
+<p>矩阵分解和随机游走在数学上意义是一样的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true" /></p>
+<h2 id="矩阵分解计算">矩阵分解计算</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true" /></p>
+<p>矩阵分解这里可能解析解不能直接求得，且可能不唯一，所以实际计算用的数值解。</p></div><div class="post-footer">
+        <a href="/20230920/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/deepwalk/">DeepWalk</a>,&nbsp;<a href="/tags/node2vec/">Node2Vec</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230919/">Random Walk &amp; Node2vec - 图表示学习起始</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-19">2023-09-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>本文讲述映射成D维向量的基于随机游走方法。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/1.png?raw=true" /></p>
+<p>学习路径：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/2.png?raw=true" /></p>
+<h2 id="图嵌入---node-embedding">图嵌入 - Node Embedding</h2>
+<p>把节点映射为一个D维向量。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/3.png?raw=true" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true"
+        data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true 2x"
+        data-sizes="auto"
+        alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true"
+        title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230920/4.png?raw=true" /></p></div><div class="post-footer">
+        <a href="/20230919/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/minibatch/">MiniBatch</a>,&nbsp;<a href="/tags/randomwalk/">RandomWalk</a>,&nbsp;<a href="/tags/node2vec/">Node2Vec</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230918/">NetworkX实战</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-18">2023-09-18</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h1 id="北京上海地铁站图数据挖掘">北京上海地铁站图数据挖掘</h1>
+<p>上海、北京地铁站点图数据挖掘，计算地铁站点的最短路径、节点重要度、集群系数、连通性。</p>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="可视化辅助函数">可视化辅助函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">measure_name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nodes</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                   <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">measures</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">nodelist</span><span class="o">=</span><span class="n">measures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nodes</span><span class="o">.</span><span class="n">set_norm</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">SymLogNorm</span><span class="p">(</span><span class="n">linthresh</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">linscale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># labels = nx.draw_networkx_labels(G, pos)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">measure_name</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># plt.colorbar(nodes)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字典按值排序辅助函数">字典按值排序辅助函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dict_sort_by_value</span><span class="p">(</span><span class="n">dict_input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    输入字典，输出按值排序的字典
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dict_input</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="导入地铁站连接表">导入地铁站连接表</h2>
+<p>数据来源：</p></div><div class="post-footer">
+        <a href="/20230918/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">特征工程</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/networkx/">Networkx</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/20230917/">NetworkX实用模板案例</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-09-17">2023-09-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div><div class="content"><h1 id="pagerank节点重要度">PageRank节点重要度</h1>
+<p>在NetworkX中，计算有向图节点的PageRank节点重要度。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>networkx官方教程：<a href="https://networkx.org/documentation/stable/tutorial.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html</a></p>
+<p>nx.Graph <a href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph</a></p>
+<p>给图、节点、连接添加属性：<a href="https://networkx.org/documentation/stable/tutorial.html#attributes" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/tutorial.html#attributes</a></p>
+<p>读写图：<a href="https://networkx.org/documentation/stable/reference/readwrite/index.html" target="_blank" rel="noopener noreffer">https://networkx.org/documentation/stable/reference/readwrite/index.html</a></p>
+<h2 id="导入工具包">导入工具包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 图数据挖掘</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据可视化</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">star_graph</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="计算pagerank节点重要度">计算PageRank节点重要度¶</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pagerank</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{0: 0.4583348922684132,
+ 1: 0.07738072967594098,
+ 2: 0.07738072967594098,
+ 3: 0.07738072967594098,
+ 4: 0.07738072967594098,
+ 5: 0.07738072967594098,
+ 6: 0.07738072967594098,
+ 7: 0.07738072967594098}
+</code></pre>
+<p>PageRank使用networkx实际只计算有向图的重要度，但传入无向图系统默认将其转换为双向图去计算了。</p></div><div class="post-footer">
+        <a href="/20230917/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">特征工程</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">图神经网络</a>,&nbsp;<a href="/tags/networkx/">Networkx</a>,&nbsp;<a href="/tags/cs244w/">CS244W</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/18/">18</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"二叉树上的我"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679"
+     crossorigin="anonymous"></script>
+        
+        <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+        <script>LA.init({id: "JcYvzwJYoTs6XHSy",ck: "JcYvzwJYoTs6XHSy"})</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Python加速科学运算的一些小技巧 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20230812/">
+  <meta property="og:site_name" content="二叉树的博客">
+  <meta property="og:title" content="Python加速科学运算的一些小技巧">
+  <meta property="og:description" content="原地操作 使用
+1 2 3 4 a = 1 b = 1 a &#43;= b print(a) # 结果是2 而不是使用
+1 a = a &#43; b 好处是内存不会复制扩展，只使用a和b的内存运算
+1 2 3 4 import numpy as np X = np.arange(12).reshape(3, 4) Y = np.array([[2, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]]) np.concatenate([X, Y], axis=0), np.concatenate([X, Y], axis=1) 检测内存是否一致，在下面的例子中，用Python的id()函数演示了这一点， 它提供了内存中引用对象的确切地址。 运行Y = Y &#43; X后，会发现id(Y)指向另一个位置。 这是因为Python首先计算Y &#43; X，为结果分配新的内存，然后使Y指向内存中的这个新位置。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-08-12T00:00:00+00:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Jupyter">
+    <meta property="article:tag" content="Python">
+    <meta property="og:image" content="http://www.spiritysdx.top/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
+  <meta name="twitter:title" content="Python加速科学运算的一些小技巧">
+  <meta name="twitter:description" content="原地操作 使用
+1 2 3 4 a = 1 b = 1 a &#43;= b print(a) # 结果是2 而不是使用
+1 a = a &#43; b 好处是内存不会复制扩展，只使用a和b的内存运算
+1 2 3 4 import numpy as np X = np.arange(12).reshape(3, 4) Y = np.array([[2, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]]) np.concatenate([X, Y], axis=0), np.concatenate([X, Y], axis=1) 检测内存是否一致，在下面的例子中，用Python的id()函数演示了这一点， 它提供了内存中引用对象的确切地址。 运行Y = Y &#43; X后，会发现id(Y)指向另一个位置。 这是因为Python首先计算Y &#43; X，为结果分配新的内存，然后使Y指向内存中的这个新位置。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://www.spiritysdx.top/20230812/" /><link rel="prev" href="http://www.spiritysdx.top/20230808/" /><link rel="next" href="http://www.spiritysdx.top/20230816/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY" /><meta name="msvalidate.01" content="FC9B6B8BEB3D3B56844ADA69766DBB24" /><meta name="yandex-verification" content="a12c7b8653d13f5c" /><meta name="baidu-site-verification" content="code-PDms1QIQxn" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python加速科学运算的一些小技巧",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/www.spiritysdx.top\/20230812\/"
+        },"genre": "posts","keywords": "机器学习, 深度学习, jupyter, Python","wordcount":  848 ,
+        "url": "http:\/\/www.spiritysdx.top\/20230812\/","datePublished": "2023-08-12T00:00:00+00:00","dateModified": "2023-08-12T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "二叉树上的我"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script data-ad-client="ca-pub-5991535488582679" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <a href="/" title="二叉树的博客"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/" title="二叉树上的我"> 首页 </a><a class="menu-item" href="/posts/" title="时间轴"> 时间轴 </a><a class="menu-item" href="/tags/" title="文章相关标签"> 标签 </a><a class="menu-item" href="/categories/" title="分类档案"> 归档 </a><a class="menu-item" href="/about/ziyuan" title="博客相关资源"> 资源 </a><a class="menu-item" href="/about/about" title="本站说明"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键字" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="二叉树的博客"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键字" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="二叉树上的我">首页</a><a class="menu-item" href="/posts/" title="时间轴">时间轴</a><a class="menu-item" href="/tags/" title="文章相关标签">标签</a><a class="menu-item" href="/categories/" title="分类档案">归档</a><a class="menu-item" href="/about/ziyuan" title="博客相关资源">资源</a><a class="menu-item" href="/about/about" title="本站说明">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Python加速科学运算的一些小技巧</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><i class="far fa-folder fa-fw"></i>机器学习</a>&nbsp;<a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-12">2023-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 848 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#原地操作">原地操作</a></li>
+    <li><a href="#重复使用数据使其在缓存中按序读写数据使其可预读取">重复使用数据使其在缓存中，按序读写数据使其可预读取</a></li>
+    <li><a href="#cpu多核优势可用对应并行数优化速度">CPU多核优势可用对应并行数优化速度</a></li>
+    <li><a href="#gpu上少用控制语句">GPU上少用控制语句</a></li>
+    <li><a href="#gpu上尽量保持内存本地性">GPU上尽量保持内存本地性</a></li>
+    <li><a href="#gpu上尽量使用并行">GPU上尽量使用并行</a></li>
+    <li><a href="#gpu和cpu不要频繁互传数据">GPU和CPU不要频繁互传数据</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="原地操作">原地操作</h2>
+<p>使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">+=</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 结果是2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而不是使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好处是内存不会复制扩展，只使用a和b的内存运算</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检测内存是否一致，在下面的例子中，用Python的id()函数演示了这一点， 它提供了内存中引用对象的确切地址。 运行<code>Y = Y + X</code>后，会发现id(Y)指向另一个位置。 这是因为Python首先计算Y + X，为结果分配新的内存，然后使Y指向内存中的这个新位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">before</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">X</span>
+</span></span><span class="line"><span class="cl"><span class="nb">id</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">==</span> <span class="n">before</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>幸运的是，执行原地操作非常简单。 可以使用切片表示法将操作的结果分配给先前分配的数组，例如<code>Y[:] = &lt;expression&gt;</code>。 为了说明这一点，首先创建一个新的矩阵Z，其形状与另一个Y相同， 使用zeros_like来分配一个全的块。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;id(Z):&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Z</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Y</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;id(Z):&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果在后续计算中没有重复使用X， 可以使用<code>X[:] = X + Y</code>或<code>X += Y</code>来减少操作的内存开销。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">before</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">+=</span> <span class="n">Y</span>
+</span></span><span class="line"><span class="cl"><span class="nb">id</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="n">before</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="重复使用数据使其在缓存中按序读写数据使其可预读取">重复使用数据使其在缓存中，按序读写数据使其可预读取</h2>
+<p>矩阵按行存储比按列存储读取更快，预读取是按行读取的</p>
+<h2 id="cpu多核优势可用对应并行数优化速度">CPU多核优势可用对应并行数优化速度</h2>
+<p>注意是使用物理核心数而不是逻辑核心数，这里的逻辑核心可能是物理核心的翻倍，需要仔细查看</p>
+<p>由于Python的多线程只是在一个核心上跑，多进程才是在多核上跑，所以优化代码时最好使用多进程优化</p>
+<p>多进程通信最好使用队列维护，可用兼容异步并行和同步逻辑，最好只使用尽量少的队列，尽量在一步逻辑内使用同队列一次，否则更新队列会很麻烦，逻辑考虑不周全可能会有漏洞(进程锁可解决，但太麻烦了，尽量多进程内的逻辑简单)</p>
+<p>但进程逻辑也不能太简单，否则开销比多线程还要大，任务过于简单不如使用单核多线程了</p>
+<h2 id="gpu上少用控制语句">GPU上少用控制语句</h2>
+<p>GPU的同步开销过大，支持很有限，GPU跑通用计算强但控制流不强</p>
+<h2 id="gpu上尽量保持内存本地性">GPU上尽量保持内存本地性</h2>
+<p>GPU的三级缓存很小</p>
+<h2 id="gpu上尽量使用并行">GPU上尽量使用并行</h2>
+<p>使用数千个线程(类同CPU)</p>
+<h2 id="gpu和cpu不要频繁互传数据">GPU和CPU不要频繁互传数据</h2>
+<p>带宽限制，同步开销，都不好频繁传数据</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧" data-hashtags="机器学习,深度学习,jupyter,Python"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://www.spiritysdx.top/20230812/" data-hashtag="机器学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://www.spiritysdx.top/20230812/" data-title="Python加速科学运算的一些小技巧"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/jupyter/">Jupyter</a>,&nbsp;<a href="/tags/python/">Python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/20230808/" class="prev" rel="prev" title="通过GCN生成概率图引导树搜索解决图的组合优化问题"><i class="fas fa-angle-left fa-fw"></i>通过GCN生成概率图引导树搜索解决图的组合优化问题</a>
+            <a href="/20230816/" class="next" rel="next" title="图优化问题经常拿来比较的一些模型">图优化问题经常拿来比较的一些模型<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+
+<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://comments.app/">Telegram Comments</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div id="ezoic-pub-ad-placeholder-101">
+        </div>
+        
+<div id="ezoic-pub-ad-placeholder-102"> </div>
+
+        <div class="footer-container"><div class="footer-line">Copyright 
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>保留所有权利&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <a href="https://boringbay.com"><img src="https://boringbay.com/api/badge/www.spiritysdx.top" width="11%" height="9%"></img></a>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.fill%2CArray.prototype.find%2CArray.from%2CIntersectionObserver%2CMath.sign%2CObject.assign%2CPromise%2CObject.entries%2CElement.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2Chtml5shiv%2CObject.values%2Cfetch%2CElement.prototype.after"></script><script type="text/javascript" src="/lib/object-fit-images/ofi.min.js"></script><script type="text/javascript" src="https://comments.app/js/widget.js?2" defer data-comments-app-website="zowkAKVw" data-limit="10" data-colorful="1"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-3TD0N5Q1SC', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body>
+</html>

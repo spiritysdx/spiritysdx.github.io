@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Gitea - 标签 - 二叉树的博客</title>
+        <link>http://www.spiritysdx.top/tags/gitea/</link>
+        <description>Gitea - 标签 - 二叉树的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 13 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://www.spiritysdx.top/tags/gitea/" rel="self" type="application/rss+xml" /><item>
+    <title>机房本地服务器自建Gitea并使用</title>
+    <link>http://www.spiritysdx.top/20240713/</link>
+    <pubDate>Sat, 13 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://www.spiritysdx.top/20240713/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>由于Github在国内访问速度较慢，所以选择在本地服务器上自建Gitea，使用国内服务器内穿端口后访问速度较快，并且可以自己管理代码，更安全。</p>]]></description>
+</item></channel>
+</rss>
