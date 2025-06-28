@@ -13,7 +13,11 @@
         <title>k8s日常问题排障 - 二叉树的博客</title><meta name="Description" content="个人学习日志"><meta property="og:url" content="http://www.spiritysdx.top/20250225/">
   <meta property="og:site_name" content="二叉树的博客">
   <meta property="og:title" content="k8s日常问题排障">
-  <meta property="og:description" content="一般流程 1 kubectl get pods -A 看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就describe一下 下面所有示例都用kube-system作为查询的namespace，实际看你要查什么服务对应的namespace">
+  <meta property="og:description" content="一般流程 1 free -m 需要确保无SWAP，否则kubelet起不来
+然后需要
+1 docker ps -a | grep etcd 看平面容器起来了没有，没有的话就得看容器日志排查问题
+然后
+1 kubectl get pods -A 看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就describe一下 下面所有示例都用kube-system作为查询的namespace，实际看你要查什么服务对应的namespace">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -27,7 +31,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://www.spiritysdx.top/logo.png">
   <meta name="twitter:title" content="k8s日常问题排障">
-  <meta name="twitter:description" content="一般流程 1 kubectl get pods -A 看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就describe一下 下面所有示例都用kube-system作为查询的namespace，实际看你要查什么服务对应的namespace">
+  <meta name="twitter:description" content="一般流程 1 free -m 需要确保无SWAP，否则kubelet起不来
+然后需要
+1 docker ps -a | grep etcd 看平面容器起来了没有，没有的话就得看容器日志排查问题
+然后
+1 kubectl get pods -A 看核心的namespace的pod有没有起来，有没有ready，有问题的pod名字就describe一下 下面所有示例都用kube-system作为查询的namespace，实际看你要查什么服务对应的namespace">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -40,7 +48,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/www.spiritysdx.top\/20250225\/"
-        },"genre": "posts","keywords": "golang, kubernetes, k8s","wordcount":  894 ,
+        },"genre": "posts","keywords": "golang, kubernetes, k8s","wordcount":  958 ,
         "url": "http:\/\/www.spiritysdx.top\/20250225\/","datePublished": "2025-02-25T00:00:00+00:00","dateModified": "2025-02-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -120,7 +128,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">k8s日常问题排障</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="far fa-folder fa-fw"></i>Golang</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-02-25">2025-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 894 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-02-25">2025-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 958 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -133,6 +141,26 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="一般流程">一般流程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">free -m
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要确保无SWAP，否则<code>kubelet</code>起不来</p>
+<p>然后需要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps -a <span class="p">|</span> grep etcd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看平面容器起来了没有，没有的话就得看容器日志排查问题</p>
+<p>然后</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

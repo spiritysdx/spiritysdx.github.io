@@ -193,6 +193,26 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">free -m
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要确保无SWAP，否则<code>kubelet</code>起不来</p>
+<p>然后需要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps -a <span class="p">|</span> grep etcd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看平面容器起来了没有，没有的话就得看容器日志排查问题</p>
+<p>然后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl get pods -A
 </span></span></code></pre></td></tr></table>
 </div>

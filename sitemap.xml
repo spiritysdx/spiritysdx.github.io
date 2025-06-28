@@ -2,24 +2,24 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://www.spiritysdx.top/categories/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/docker/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/categories/docker/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/posts/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/20250425/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/golang/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/categories/golang/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/k8s/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/kubernetes/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/kubevirt/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/20250415/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/kvm/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/windows/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://www.spiritysdx.top/tags/dockur/</loc><lastmod>2025-04-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://www.spiritysdx.top/20250405/</loc><lastmod>2025-04-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>http://www.spiritysdx.top/categories/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/docker/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/categories/docker/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/posts/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/20250425/</loc><lastmod>2025-04-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/golang/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/categories/golang/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/k8s/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/kubernetes/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/kubevirt/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/20250415/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/kvm/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/windows/</loc><lastmod>2025-04-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/tags/dockur/</loc><lastmod>2025-04-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://www.spiritysdx.top/20250405/</loc><lastmod>2025-04-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>http://www.spiritysdx.top/tags/proxmox/</loc><lastmod>2025-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>http://www.spiritysdx.top/tags/proxmoxve/</loc><lastmod>2025-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
             <loc>http://www.spiritysdx.top/20250315/</loc><lastmod>2025-03-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>

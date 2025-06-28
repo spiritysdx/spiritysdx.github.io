@@ -25,11 +25,11 @@ NVML library version: 535.183
 
 按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png)
 
 然后点击```搜索```进行搜索，我搜索结果如下
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png)
 
 出现下面这个界面后，别急着点击下载
 

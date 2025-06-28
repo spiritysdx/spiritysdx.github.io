@@ -131,13 +131,13 @@ lxc config trust add 那个证书名字
 如下图所示进行开设，注意，Ubuntu 系统最好选择带 LTS 标签的，否则软件源可能出现问题。
 
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-32.png)
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-40-59.png)
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-41-31.png)
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/image_2024-05-13_18-51-25.png)
 
 设置完点```create```就开始创建了
 
@@ -341,15 +341,15 @@ apt install nvidia-utils-535 -y
 
 按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_%E5%AE%98%E6%96%B9%E9%AB%98%E7%BA%A7%E9%A9%B1%E5%8A%A8%E6%90%9C%E7%B4%A2%20NVIDIA(1).png)
 
 然后点击```搜索```进行搜索，我搜索结果如下
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/(AMD64_EM64T)%20NVIDIA.png)
 
 出现下面这个界面后，别急着点击下载
 
-![](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png)
+![](https://raw.githubusercontent.com/spiritysdx/images/main/20240513/circle_screenshot_1_unknown.png)
 
 **右键**点击```同意并开始下载```复制下载链接，在**容器内**使用```wget```下载(**不是宿主机！**)
 

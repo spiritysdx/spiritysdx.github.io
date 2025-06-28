@@ -315,7 +315,7 @@ plt.scatter(X[:,0],X[:,1],c=y)
 
 
     
-![png](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_31_1.png)
+![png](https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_31_1.png)
     
 
 
@@ -430,7 +430,7 @@ plt.show()
 
 
     
-![png](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_41_0.png)
+![png](https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_41_0.png)
     
 
 
@@ -482,7 +482,7 @@ plt.show
 
 
     
-![png](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_46_1.png)
+![png](https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_46_1.png)
     
 
 
@@ -522,7 +522,7 @@ plt.show
 
 
     
-![png](https://cdn.spiritlhl.net/https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_47_1.png)
+![png](https://raw.githubusercontent.com/spiritLHL/tuchuang/master/output_47_1.png)
     
 
 

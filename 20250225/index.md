@@ -4,6 +4,22 @@
 ## 一般流程
 
 ```shell
+free -m
+```
+
+需要确保无SWAP，否则`kubelet`起不来
+
+然后需要
+
+```shell
+docker ps -a | grep etcd
+```
+
+看平面容器起来了没有，没有的话就得看容器日志排查问题
+
+然后
+
+```shell
 kubectl get pods -A
 ```
 
