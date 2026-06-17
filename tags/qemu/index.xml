@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Qemu on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/qemu/</link><description>Recent content in Qemu on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/qemu/index.xml" rel="self" type="application/rss+xml"/><item><title>一些关于IPV6分配和使用的闲聊</title><link>https://www.spiritysdx.top/20240111/</link><pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240111/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。&lt;/p&gt;
+&lt;h2 id="pve"&gt;pve&lt;/h2&gt;
+&lt;p&gt;proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方面还是一塌糊涂&lt;/p&gt;</description></item><item><title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title><link>https://www.spiritysdx.top/20230506/</link><pubDate>Sat, 06 May 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230506/</guid><description>&lt;h1 id="pve"&gt;PVE&lt;/h1&gt;
+&lt;p&gt;感谢 Proxmox VE 的免费订阅支持&lt;/p&gt;
+&lt;p&gt;原始仓库：&lt;a href="https://github.com/spiritLHLS/pve" target="_blank" rel="noopener noreffer"&gt;https://github.com/spiritLHLS/pve&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;说明文档&lt;/p&gt;
+&lt;p&gt;国内(China)：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://virt.spiritlhl.net/" target="_blank" rel="noopener noreffer"&gt;virt.spiritlhl.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;国际(Global)：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.spiritlhl.net/" target="_blank" rel="noopener noreffer"&gt;www.spiritlhl.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;说明文档中 Proxmox VE 分区内容&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/oneclickvirt/kvm_images" target="_blank" rel="noopener noreffer"&gt;https://github.com/oneclickvirt/kvm_images&lt;/a&gt; 为对应虚拟机镜像仓库&lt;/p&gt;
+&lt;h3 id="前言"&gt;前言&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;国内服务器请使用国内命令，国际服务器请使用国际命令&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>将WIN系统DD为Linux系统</title><link>https://www.spiritysdx.top/20230222/</link><pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230222/</guid><description>&lt;h3 id="前言"&gt;前言&lt;/h3&gt;
+&lt;p&gt;该方法的前提：&lt;/p&gt;
+&lt;p&gt;商家使用PVE虚拟化WIN服务器&lt;/p&gt;
+&lt;p&gt;WIN服务器可配置使用Network进行启动&lt;/p&gt;
+&lt;p&gt;启动时可使用NO VNC操控IPXE命令&lt;/p&gt;
+&lt;p&gt;已知符合条件的服务器：&lt;a href="https://hosting.netfront.net/aff.php?aff=126&amp;amp;pid=67" target="_blank" rel="noopener noreffer"&gt;NETFRONT&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

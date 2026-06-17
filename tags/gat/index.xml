@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GAT on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/gat/</link><description>Recent content in GAT on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/gat/index.xml" rel="self" type="application/rss+xml"/><item><title>GAT 详解</title><link>https://www.spiritysdx.top/20231024/</link><pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231024/</guid><description>&lt;h2 id="gat"&gt;GAT&lt;/h2&gt;
+&lt;p&gt;原文：&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;h2 id="流程"&gt;流程&lt;/h2&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;p&gt;上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.&lt;/p&gt;</description></item></channel></rss>

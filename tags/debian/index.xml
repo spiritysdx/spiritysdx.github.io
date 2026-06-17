@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Debian on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/debian/</link><description>Recent content in Debian on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 10 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/debian/index.xml" rel="self" type="application/rss+xml"/><item><title>在root权限下使用守护进程自托管Github的Runners</title><link>https://www.spiritysdx.top/20240510/</link><pubDate>Fri, 10 May 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240510/</guid><description>&lt;h2 id="前置条件"&gt;前置条件&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cd /root
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;apt install curl sudo -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="安装"&gt;安装&lt;/h2&gt;
+&lt;p&gt;执行下述命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;export&lt;/span&gt; &lt;span class="n"&gt;RUNNER_ALLOW_RUNASROOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;执行后正常安装至于&lt;code&gt;./config&lt;/code&gt;那一步，然后不要使用官方的启动方式，而是使用守护进程启动，做到runner开机自启以及日志记录&lt;/p&gt;</description></item><item><title>一些关于IPV6分配和使用的闲聊</title><link>https://www.spiritysdx.top/20240111/</link><pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240111/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;最近在玩IPV6，遇到不少没人记录和讨论过的问题，做做记录和吐槽。&lt;/p&gt;
+&lt;h2 id="pve"&gt;pve&lt;/h2&gt;
+&lt;p&gt;proxmox-ve虽然是开源的受大多数人使用的平台，但在网络管理方面还是一塌糊涂&lt;/p&gt;</description></item><item><title>为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)</title><link>https://www.spiritysdx.top/20230829/</link><pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230829/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;观望了全网的Docker启用IPV6的方法，要么是Docker版本更替法子不通了，要么是没说明一些前置条件的细节，导致方法也用不了，所以这里记录一下我走通的方法，一个兼容高低版本Docker和不同网络环境的方法&lt;/p&gt;</description></item><item><title>一键安装PVE并一键开设KVM虚拟化的NAT服务器-带内外网端口转发</title><link>https://www.spiritysdx.top/20230506/</link><pubDate>Sat, 06 May 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230506/</guid><description>&lt;h1 id="pve"&gt;PVE&lt;/h1&gt;
+&lt;p&gt;感谢 Proxmox VE 的免费订阅支持&lt;/p&gt;
+&lt;p&gt;原始仓库：&lt;a href="https://github.com/spiritLHLS/pve" target="_blank" rel="noopener noreffer"&gt;https://github.com/spiritLHLS/pve&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;说明文档&lt;/p&gt;
+&lt;p&gt;国内(China)：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://virt.spiritlhl.net/" target="_blank" rel="noopener noreffer"&gt;virt.spiritlhl.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;国际(Global)：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.spiritlhl.net/" target="_blank" rel="noopener noreffer"&gt;www.spiritlhl.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;说明文档中 Proxmox VE 分区内容&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/oneclickvirt/kvm_images" target="_blank" rel="noopener noreffer"&gt;https://github.com/oneclickvirt/kvm_images&lt;/a&gt; 为对应虚拟机镜像仓库&lt;/p&gt;
+&lt;h3 id="前言"&gt;前言&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;国内服务器请使用国内命令，国际服务器请使用国际命令&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pycharm on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/pycharm/</link><description>Recent content in Pycharm on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/pycharm/index.xml" rel="self" type="application/rss+xml"/><item><title>基于docker的在线IDE制作(支持浏览器直接访问)</title><link>https://www.spiritysdx.top/20250305/</link><pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20250305/</guid><description>&lt;h2 id="仓库"&gt;仓库&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/oneclickvirt/dockerfile-templates" target="_blank" rel="noopener noreffer"&gt;https://github.com/oneclickvirt/dockerfile-templates&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;适配境内环境，搭建带浏览器web查看NOVNC的在线IDE&lt;/p&gt;
+&lt;p&gt;对应开发环境支持 AMD64 ARM64&lt;/p&gt;
+&lt;p&gt;对应GPU/NPU的驱动支持&lt;/p&gt;
+&lt;p&gt;对应平台的AI插件支持&lt;/p&gt;
+&lt;p&gt;由于版权问题和镜像大小问题，tar包我就不传了&lt;/p&gt;</description></item><item><title>在Pycharm上连接远程虚拟环境进行使用</title><link>https://www.spiritysdx.top/20240514/</link><pubDate>Tue, 14 May 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240514/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;相信通过前面教程，大部分问题都解决了，目前就剩一个Pycharm怎么连接远程的LXC容器运行Python项目的问题了。&lt;/p&gt;
+&lt;p&gt;(为什么不用VSCODE？因为它没有官方支持的远程开发/SSH开发的功能，只有相关的第三方插件实现了类似的功能但并不好用，所以我选择了Pycharm)&lt;/p&gt;</description></item></channel></rss>

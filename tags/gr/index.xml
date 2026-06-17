@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GR on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/gr/</link><description>Recent content in GR on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/gr/index.xml" rel="self" type="application/rss+xml"/><item><title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title><link>https://www.spiritysdx.top/20230808/</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230808/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/1810.10659.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="training-data"&gt;Training Data&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer"&gt;https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="testing-data"&gt;Testing Data&lt;/h3&gt;
+&lt;h4 id="sat-competition-2017"&gt;SAT Competition 2017&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer"&gt;https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

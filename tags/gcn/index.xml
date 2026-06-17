@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GCN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/gcn/</link><description>Recent content in GCN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 22 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/gcn/index.xml" rel="self" type="application/rss+xml"/><item><title>GCN 详解</title><link>https://www.spiritysdx.top/20231022/</link><pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231022/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;GCN 可以说是一个函数拟合器。&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;p&gt;每个计算图就是一个样本&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true"
+ title="链接" /&gt;&lt;/p&gt;
+&lt;p&gt;感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则后续层数感受野会越来越相似。&lt;/p&gt;</description></item><item><title>高效探索学习解决组合图分区问题(基于强化学习的优化算法)</title><link>https://www.spiritysdx.top/20230823/</link><pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230823/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/2205.14105v1.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="er40ba40到er500ba500"&gt;ER40/BA40到ER500/BA500&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer"&gt;https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer"&gt;https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;分别命名为ER和BA数据集&lt;/p&gt;</description></item><item><title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title><link>https://www.spiritysdx.top/20230808/</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230808/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/1810.10659.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="training-data"&gt;Training Data&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer"&gt;https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="testing-data"&gt;Testing Data&lt;/h3&gt;
+&lt;h4 id="sat-competition-2017"&gt;SAT Competition 2017&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer"&gt;https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

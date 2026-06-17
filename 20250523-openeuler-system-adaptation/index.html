@@ -1,0 +1,401 @@
+<!doctype html><html lang=zh-CN><head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5991535488582679" crossorigin=anonymous></script><script id=LA_COLLECT src=//sdk.51.la/js-sdk-pro.min.js></script><script>LA.init({id:"JcYvzwJYoTs6XHSy",ck:"JcYvzwJYoTs6XHSy"})</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"><title>openEuler 22.03 arm64 离线包适配记录 - 二叉树的博客</title><meta name=Description content="个人技术记录、工程排障和系统实践日志"><meta property="og:url" content="https://www.spiritysdx.top/20250523-openeuler-system-adaptation/"><meta property="og:site_name" content="二叉树的博客"><meta property="og:title" content="openEuler 22.03 arm64 离线包适配记录"><meta property="og:description" content="这篇记录 openEuler 22.03 LTS SP4 arm64 环境下制作离线依赖包的过程。目标是对齐已有 amd64 离线源，补齐 arm64 目录中缺失的 Docker、NFS 和基础工具包，并在纯净环境中验证安装冲突。"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-05-23T14:19:06+08:00"><meta property="article:modified_time" content="2025-05-23T14:19:06+08:00"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Openeuler"><meta property="article:tag" content="Arm64"><meta property="article:tag" content="Rpm"><meta property="article:tag" content="Dnf"><meta property="article:tag" content="Docker"><meta property="og:image" content="https://www.spiritysdx.top/android-chrome-512x512.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.spiritysdx.top/android-chrome-512x512.png"><meta name=twitter:title content="openEuler 22.03 arm64 离线包适配记录"><meta name=twitter:description content="这篇记录 openEuler 22.03 LTS SP4 arm64 环境下制作离线依赖包的过程。目标是对齐已有 amd64 离线源，补齐 arm64 目录中缺失的 Docker、NFS 和基础工具包，并在纯净环境中验证安装冲突。"><meta name=application-name content="LoveIt"><meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/><link rel=prev href=https://www.spiritysdx.top/20250425/><link rel=next href=https://www.spiritysdx.top/20250523-ray-ascend-npu/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="PBUYROol_Ylr49S5WprAUHubcDCRVYTnSVBGmsM3iAY"><meta name=msvalidate.01 content="FC9B6B8BEB3D3B56844ADA69766DBB24"><meta name=yandex-verification content="a12c7b8653d13f5c"><meta name=baidu-site-verification content="code-PDms1QIQxn"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"openEuler 22.03 arm64 离线包适配记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.spiritysdx.top\/20250523-openeuler-system-adaptation\/"},"genre":"posts","keywords":"linux, openeuler, arm64, rpm, dnf, docker","wordcount":1469,"url":"https:\/\/www.spiritysdx.top\/20250523-openeuler-system-adaptation\/","datePublished":"2025-05-23T14:19:06+08:00","dateModified":"2025-05-23T14:19:06+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"二叉树上的我"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><script data-ad-client=ca-pub-5991535488582679 async src=https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script><a href=/ title=二叉树的博客></a></div><div class=menu><div class=menu-inner><a class=menu-item href=/ title=二叉树上的我>首页 </a><a class=menu-item href=/posts/ title=时间轴>时间轴 </a><a class=menu-item href=/tags/ title=文章相关标签>标签 </a><a class=menu-item href=/categories/ title=分类档案>归档 </a><a class=menu-item href=/about/ziyuan title=博客相关资源>资源 </a><a class=menu-item href=/about/about title=本站说明>关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=请输入关键字 id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i>
+</span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=二叉树的博客></a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=请输入关键字 id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/ title=二叉树上的我>首页</a><a class=menu-item href=/posts/ title=时间轴>时间轴</a><a class=menu-item href=/tags/ title=文章相关标签>标签</a><a class=menu-item href=/categories/ title=分类档案>归档</a><a class=menu-item href=/about/ziyuan title=博客相关资源>资源</a><a class=menu-item href=/about/about title=本站说明>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">openEuler 22.03 arm64 离线包适配记录</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>二叉树上的我</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/><i class="far fa-folder fa-fw"></i>电脑技巧</a>&nbsp;<a href=/categories/linux/><i class="far fa-folder fa-fw"></i>Linux</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2025-05-23>2025-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1469 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#下载目录结构>下载目录结构</a></li><li><a href=#批量下载脚本>批量下载脚本</a></li><li><a href=#初次安装验证>初次安装验证</a></li><li><a href=#单独补-docker-ce>单独补 Docker CE</a></li><li><a href=#对齐-amd64-与-arm64-包名>对齐 amd64 与 arm64 包名</a></li><li><a href=#纯净环境最终验证>纯净环境最终验证</a></li></ul></nav></div></div><div class=content id=content><p>这篇记录 openEuler 22.03 LTS SP4 arm64 环境下制作离线依赖包的过程。目标是对齐已有 amd64 离线源，补齐 arm64 目录中缺失的 Docker、NFS 和基础工具包，并在纯净环境中验证安装冲突。</p><h2 id=下载目录结构>下载目录结构</h2><p>按目标架构创建目录：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>mkdir -p aarch64/<span class=o>{</span>docker-ce,nfs-utils,tools<span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>离线包最终需要能放入类似目录：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>/data/bke/source_registry/OpenEuler/22/arm64
+</span></span></code></pre></td></tr></table></div></div><p>并与已有 amd64 目录做包名对齐。</p><h2 id=批量下载脚本>批量下载脚本</h2><p>以下脚本只使用 openEuler 源下载基础依赖，并尝试解析已有包的依赖：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nb>set</span> -e
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>RED</span><span class=o>=</span><span class=s1>&#39;\033[0;31m&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>GREEN</span><span class=o>=</span><span class=s1>&#39;\033[0;32m&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>YELLOW</span><span class=o>=</span><span class=s1>&#39;\033[1;33m&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>NC</span><span class=o>=</span><span class=s1>&#39;\033[0m&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>log_info<span class=o>()</span> <span class=o>{</span> <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>GREEN</span><span class=si>}</span><span class=s2>[INFO]</span><span class=si>${</span><span class=nv>NC</span><span class=si>}</span><span class=s2> </span><span class=nv>$1</span><span class=s2>&#34;</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>log_warn<span class=o>()</span> <span class=o>{</span> <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>YELLOW</span><span class=si>}</span><span class=s2>[WARN]</span><span class=si>${</span><span class=nv>NC</span><span class=si>}</span><span class=s2> </span><span class=nv>$1</span><span class=s2>&#34;</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>log_error<span class=o>()</span> <span class=o>{</span> <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>RED</span><span class=si>}</span><span class=s2>[ERROR]</span><span class=si>${</span><span class=nv>NC</span><span class=si>}</span><span class=s2> </span><span class=nv>$1</span><span class=s2>&#34;</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>check_root<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=nv>$EUID</span> -ne <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        log_error <span class=s2>&#34;需要root权限运行&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>check_arch<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> arch
+</span></span><span class=line><span class=cl>    <span class=nv>arch</span><span class=o>=</span><span class=k>$(</span>uname -m<span class=k>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=s2>&#34;</span><span class=nv>$arch</span><span class=s2>&#34;</span> !<span class=o>=</span> <span class=s2>&#34;aarch64&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        log_warn <span class=s2>&#34;当前系统架构为 </span><span class=nv>$arch</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>create_directories<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    mkdir -p aarch64/<span class=o>{</span>docker-ce,nfs-utils,tools<span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>download_packages<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>dir</span><span class=o>=</span><span class=nv>$1</span>
+</span></span><span class=line><span class=cl>    <span class=nb>shift</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>packages</span><span class=o>=(</span><span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>cd</span> <span class=s2>&#34;aarch64/</span><span class=nv>$dir</span><span class=s2>/&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> package in <span class=s2>&#34;</span><span class=si>${</span><span class=nv>packages</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>        log_info <span class=s2>&#34;正在下载: </span><span class=nv>$package</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> yum download --downloadonly --downloaddir<span class=o>=</span>. <span class=s2>&#34;</span><span class=nv>$package</span><span class=s2>&#34;</span> 2&gt;/dev/null<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            log_info <span class=s2>&#34;✓ </span><span class=nv>$package</span><span class=s2> 下载成功&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span>
+</span></span><span class=line><span class=cl>            log_warn <span class=s2>&#34;✗ </span><span class=nv>$package</span><span class=s2> 下载失败 - 可能在 openEuler 源中不存在&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    <span class=k>done</span>
+</span></span><span class=line><span class=cl>    <span class=nb>cd</span> ../..
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>download_docker_packages<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>docker_packages</span><span class=o>=(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;docker&#34;</span> <span class=s2>&#34;docker-engine&#34;</span> <span class=s2>&#34;containerd&#34;</span> <span class=s2>&#34;runc&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;container-selinux&#34;</span> <span class=s2>&#34;fuse3&#34;</span> <span class=s2>&#34;fuse-overlayfs&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;libcgroup&#34;</span> <span class=s2>&#34;slirp4netns&#34;</span> <span class=s2>&#34;tar&#34;</span> <span class=s2>&#34;socat&#34;</span> <span class=s2>&#34;checkpolicy&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=o>)</span>
+</span></span><span class=line><span class=cl>    download_packages <span class=s2>&#34;docker-ce&#34;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>docker_packages</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>download_nfs_packages<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>nfs_packages</span><span class=o>=(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;gssproxy&#34;</span> <span class=s2>&#34;keyutils&#34;</span> <span class=s2>&#34;krb5-libs&#34;</span> <span class=s2>&#34;nfs-utils&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;quota&#34;</span> <span class=s2>&#34;rpcbind&#34;</span> <span class=s2>&#34;libtirpc&#34;</span> <span class=s2>&#34;libnfsidmap&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=o>)</span>
+</span></span><span class=line><span class=cl>    download_packages <span class=s2>&#34;nfs-utils&#34;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>nfs_packages</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>download_tools_packages<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>tools_packages</span><span class=o>=(</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;haproxy&#34;</span> <span class=s2>&#34;jq&#34;</span> <span class=s2>&#34;keepalived&#34;</span> <span class=s2>&#34;lm_sensors&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;net-snmp&#34;</span> <span class=s2>&#34;net-snmp-libs&#34;</span> <span class=s2>&#34;telnet&#34;</span> <span class=s2>&#34;nano&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;curl&#34;</span> <span class=s2>&#34;wget&#34;</span> <span class=s2>&#34;vim&#34;</span> <span class=s2>&#34;htop&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=o>)</span>
+</span></span><span class=line><span class=cl>    download_packages <span class=s2>&#34;tools&#34;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>tools_packages</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>download_dependencies<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    log_info <span class=s2>&#34;开始解析和下载依赖包...&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> dir in aarch64/*/<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>[[</span> ! -d <span class=s2>&#34;</span><span class=nv>$dir</span><span class=s2>&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span> <span class=k>continue</span><span class=p>;</span> <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        <span class=nb>cd</span> <span class=s2>&#34;</span><span class=nv>$dir</span><span class=s2>&#34;</span> <span class=o>||</span> <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=nb>local</span> rpm_files
+</span></span><span class=line><span class=cl>        mapfile -t rpm_files &lt; &lt;<span class=o>(</span>find . -maxdepth <span class=m>1</span> -name <span class=s2>&#34;*.rpm&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>[[</span> <span class=si>${#</span><span class=nv>rpm_files</span><span class=p>[@]</span><span class=si>}</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>cd</span> - &gt;/dev/null
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        log_info <span class=s2>&#34;为 </span><span class=k>$(</span>basename <span class=s2>&#34;</span><span class=nv>$dir</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2> 解析依赖...&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> rpm in <span class=s2>&#34;</span><span class=si>${</span><span class=nv>rpm_files</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>            <span class=nb>local</span> pkg_name
+</span></span><span class=line><span class=cl>            <span class=nv>pkg_name</span><span class=o>=</span><span class=k>$(</span>rpm -qp --queryformat <span class=s2>&#34;%{NAME}&#34;</span> <span class=s2>&#34;</span><span class=nv>$rpm</span><span class=s2>&#34;</span> 2&gt;/dev/null <span class=o>||</span> <span class=nb>true</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&#34;</span><span class=nv>$pkg_name</span><span class=s2>&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>                yum deplist <span class=s2>&#34;</span><span class=nv>$pkg_name</span><span class=s2>&#34;</span> 2&gt;/dev/null <span class=p>|</span> grep <span class=s2>&#34;provider:&#34;</span> <span class=p>|</span> awk <span class=s1>&#39;{print $2}&#39;</span> <span class=p>|</span> sort -u <span class=p>|</span> <span class=k>while</span> <span class=nb>read</span> -r dep<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&#34;</span><span class=nv>$dep</span><span class=s2>&#34;</span> <span class=o>&amp;&amp;</span> <span class=s2>&#34;</span><span class=nv>$dep</span><span class=s2>&#34;</span> !<span class=o>=</span> <span class=s2>&#34;Not&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>                        yum download --downloadonly --downloaddir<span class=o>=</span>. <span class=s2>&#34;</span><span class=nv>$dep</span><span class=s2>&#34;</span> 2&gt;/dev/null <span class=o>||</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl>                    <span class=k>fi</span>
+</span></span><span class=line><span class=cl>                <span class=k>done</span>
+</span></span><span class=line><span class=cl>            <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        <span class=k>done</span>
+</span></span><span class=line><span class=cl>        <span class=nb>cd</span> - &gt;/dev/null
+</span></span><span class=line><span class=cl>    <span class=k>done</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>show_results<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    log_info <span class=s2>&#34;下载结果统计:&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>local</span> <span class=nv>total</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> dir in docker-ce nfs-utils tools<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>[[</span> -d <span class=s2>&#34;aarch64/</span><span class=nv>$dir</span><span class=s2>&#34;</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>local</span> count
+</span></span><span class=line><span class=cl>            <span class=nv>count</span><span class=o>=</span><span class=k>$(</span>find <span class=s2>&#34;aarch64/</span><span class=nv>$dir</span><span class=s2>&#34;</span> -name <span class=s2>&#34;*.rpm&#34;</span> 2&gt;/dev/null <span class=p>|</span> wc -l<span class=k>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;  </span><span class=nv>$dir</span><span class=s2>: </span><span class=nv>$count</span><span class=s2> 个包&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=nv>total</span><span class=o>=</span><span class=k>$((</span>total <span class=o>+</span> count<span class=k>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    <span class=k>done</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;  总计: </span><span class=nv>$total</span><span class=s2> 个包&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>restore_repos<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    log_info <span class=s2>&#34;恢复原有软件源配置...&#34;</span>
+</span></span><span class=line><span class=cl>    rm -f /etc/yum.repos.d/openeuler-only.repo
+</span></span><span class=line><span class=cl>    find /etc/yum.repos.d/ -name <span class=s2>&#34;*.repo.disabled&#34;</span> -exec bash -c <span class=s1>&#39;mv &#34;$1&#34; &#34;${1%.disabled}&#34;&#39;</span> _ <span class=o>{}</span> <span class=se>\;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>cleanup<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    restore_repos
+</span></span><span class=line><span class=cl>    yum clean all &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span> <span class=o>||</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    log_info <span class=s2>&#34;开始架构离线包下载，仅使用 openEuler 源&#34;</span>
+</span></span><span class=line><span class=cl>    check_root
+</span></span><span class=line><span class=cl>    check_arch
+</span></span><span class=line><span class=cl>    create_directories
+</span></span><span class=line><span class=cl>    download_docker_packages
+</span></span><span class=line><span class=cl>    download_nfs_packages
+</span></span><span class=line><span class=cl>    download_tools_packages
+</span></span><span class=line><span class=cl>    download_dependencies
+</span></span><span class=line><span class=cl>    show_results
+</span></span><span class=line><span class=cl>    cleanup
+</span></span><span class=line><span class=cl>    log_info <span class=s2>&#34;任务完成，包已保存在 aarch64/ 目录下&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>trap</span> cleanup EXIT
+</span></span><span class=line><span class=cl>main <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=初次安装验证>初次安装验证</h2><p>进入每个离线包目录执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>dnf install -y ./*.rpm --nobest --allowerasing --skip-broken
+</span></span></code></pre></td></tr></table></div></div><p>如果有冲突，先删除明显重复或不应替换系统基础组件的包。例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> docker-ce
+</span></span><span class=line><span class=cl>rm -rf docker-engine-18.09.0-345.oe2203sp4.aarch64.rpm
+</span></span><span class=line><span class=cl>rm -rf runc-1.1.3-30.oe2203sp4.aarch64.rpm
+</span></span><span class=line><span class=cl>rm -rf containerd-1.2.0-321.oe2203sp4.aarch64.rpm
+</span></span><span class=line><span class=cl>rm -rf systemd-*
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> nfs-utils
+</span></span><span class=line><span class=cl>rm -rf kernel-rt-headers-5.10.0-209.0.0.rt62.62.oe2203sp4.aarch64.rpm
+</span></span><span class=line><span class=cl>rm -rf systemd-*
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> tools
+</span></span><span class=line><span class=cl>rm -rf libcurl*
+</span></span><span class=line><span class=cl>rm -rf vim*
+</span></span><span class=line><span class=cl>rm -rf curl*
+</span></span><span class=line><span class=cl>rm -rf systemd-*
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ..
+</span></span></code></pre></td></tr></table></div></div><p>这些包不是永远都要删除，原则是避免用离线包覆盖纯净系统内已经存在且版本受系统管理的基础组件。</p><h2 id=单独补-docker-ce>单独补 Docker CE</h2><p>openEuler 源里的 <code>docker-engine</code> 版本较老。Docker CE 需要对照 CentOS 8 aarch64 的包下载：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> docker-ce
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/docker-ce-26.1.0-1.el8.aarch64.rpm
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/docker-ce-cli-26.1.0-1.el8.aarch64.rpm
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/containerd.io-1.6.31-3.1.el8.aarch64.rpm
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/docker-compose-plugin-2.26.1-1.el8.aarch64.rpm
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/docker-buildx-plugin-0.14.0-1.el8.aarch64.rpm
+</span></span><span class=line><span class=cl>wget https://mirrors.aliyun.com/docker-ce/linux/centos/8/aarch64/stable/Packages/docker-ce-rootless-extras-26.1.0-1.el8.aarch64.rpm
+</span></span></code></pre></td></tr></table></div></div><p>参考目录：</p><p><a href=https://download.docker.com/linux/centos/8/aarch64/stable/Packages/ target=_blank rel="noopener noreffer">https://download.docker.com/linux/centos/8/aarch64/stable/Packages/</a></p><h2 id=对齐-amd64-与-arm64-包名>对齐 amd64 与 arm64 包名</h2><p>可以用下面脚本比较两个架构目录的 RPM 主包名：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nv>base_dir</span><span class=o>=</span><span class=s2>&#34;/data/bke/source_registry/OpenEuler/22&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>amd64_dir</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$base_dir</span><span class=s2>/amd64&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>arm64_dir</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$base_dir</span><span class=s2>/arm64&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>extract_names<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    find <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> -type f -name <span class=s2>&#34;*.rpm&#34;</span> <span class=p>|</span> <span class=k>while</span> <span class=nb>read</span> -r file<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>        <span class=nv>rpm_file</span><span class=o>=</span><span class=k>$(</span>basename <span class=s2>&#34;</span><span class=nv>$file</span><span class=s2>&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$rpm_file</span><span class=s2>&#34;</span> <span class=p>|</span> sed -E <span class=s1>&#39;s/-(.*)\.rpm$//&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=k>done</span> <span class=p>|</span> sort -u
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>amd64_pkgs</span><span class=o>=</span><span class=k>$(</span>extract_names <span class=s2>&#34;</span><span class=nv>$amd64_dir</span><span class=s2>&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>arm64_pkgs</span><span class=o>=</span><span class=k>$(</span>extract_names <span class=s2>&#34;</span><span class=nv>$arm64_dir</span><span class=s2>&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;==== 在 arm64 中缺失的 amd64 包 ====&#34;</span>
+</span></span><span class=line><span class=cl>comm -23 &lt;<span class=o>(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$amd64_pkgs</span><span class=s2>&#34;</span><span class=o>)</span> &lt;<span class=o>(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$arm64_pkgs</span><span class=s2>&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;==== 在 amd64 中缺失的 arm64 包 ====&#34;</span>
+</span></span><span class=line><span class=cl>comm -13 &lt;<span class=o>(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$amd64_pkgs</span><span class=s2>&#34;</span><span class=o>)</span> &lt;<span class=o>(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$arm64_pkgs</span><span class=s2>&#34;</span><span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个比较结果不是直接照单全收，需要结合纯净环境安装结果判断哪些依赖是真缺失，哪些只是高版本或 <code>-devel</code> 包造成冲突。</p><h2 id=纯净环境最终验证>纯净环境最终验证</h2><p>重装系统为纯净环境后，先不要联网补依赖，直接测试离线包：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo dnf install ./*.rpm --allowerasing --nobest
+</span></span><span class=line><span class=cl>yum install ./*.rpm --disablerepo<span class=o>=</span>*
+</span></span></code></pre></td></tr></table></div></div><p>缺包时，如果 amd64 目录中有同名主包，通常说明 arm64 也必须补齐。可以到 openEuler 源查找：</p><p><a href=https://dl-cdn.openeuler.openatom.cn/openEuler-22.03-LTS-SP4/OS/aarch64/Packages/ target=_blank rel="noopener noreffer">https://dl-cdn.openeuler.openatom.cn/openEuler-22.03-LTS-SP4/OS/aarch64/Packages/</a></p><p>查询某个能力由哪个包提供：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>dnf provides <span class=s2>&#34;pkgconfig(liblzma)&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果冲突来自默认下载的 <code>-devel</code> 包，并且 amd64 目录也没有对应包，可以优先删除这些 <code>-devel</code> 包再验证。</p><p>最终发现系统自带 <code>libnetwork</code> 会与 Docker CE 依赖冲突，需要先移除：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>dnf remove libnetwork
+</span></span></code></pre></td></tr></table></div></div><p>之后再让 BKE init 自动安装离线包。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2025-05-23</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录" data-hashtags=linux,openeuler,arm64,rpm,dnf,docker><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-hashtag=linux><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录"><i class="fab fa-weibo fa-fw"></i></a><a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录" data-description><i data-svg-src=/lib/simple-icons/icons/myspace.min.svg></i></a><a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="分享到 百度" data-sharer=baidu data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录"><i data-svg-src=/lib/simple-icons/icons/baidu.min.svg></i></a><a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://www.spiritysdx.top/20250523-openeuler-system-adaptation/ data-title="openEuler 22.03 arm64 离线包适配记录"><i class="fab fa-evernote fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/linux/>Linux</a>,&nbsp;<a href=/tags/openeuler/>Openeuler</a>,&nbsp;<a href=/tags/arm64/>Arm64</a>,&nbsp;<a href=/tags/rpm/>Rpm</a>,&nbsp;<a href=/tags/dnf/>Dnf</a>,&nbsp;<a href=/tags/docker/>Docker</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/20250425/ class=prev rel=prev title="在线 IDE 的通用容器镜像打包流程"><i class="fas fa-angle-left fa-fw"></i>在线 IDE 的通用容器镜像打包流程</a>
+<a href=/20250523-ray-ascend-npu/ class=next rel=next title="Ray 支持昇腾 NPU 的 KubeRay 对接记录">Ray 支持昇腾 NPU 的 KubeRay 对接记录<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=telegram-comments class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://comments.app/>Telegram Comments</a>.</noscript></div></article></div></main><footer class=footer><div id=ezoic-pub-ad-placeholder-101></div><div id=ezoic-pub-ad-placeholder-102></div><div class=footer-container><div class=footer-line>Copyright
+<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2026</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank></a></span>保留所有权利&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div><a href=https://boringbay.com><img src=https://boringbay.com/api/badge/www.spiritysdx.top width=11% height=9%></img></a></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=/lib/object-fit-images/ofi.min.js></script><script type=text/javascript src=https://comments.app/js/widget.js?2 defer data-comments-app-website=zowkAKVw data-limit=10 data-colorful=1></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/lightgallery/lightgallery.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-thumbnail.min.js></script><script type=text/javascript src=/lib/lightgallery/lg-zoom.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-3TD0N5Q1SC",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-3TD0N5Q1SC" async></script></body></html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pytorch on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/pytorch/</link><description>Recent content in Pytorch on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Mon, 13 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/pytorch/index.xml" rel="self" type="application/rss+xml"/><item><title>给机房的Ubuntu22.04安装LXD共享GPU资源</title><link>https://www.spiritysdx.top/20240513/</link><pubDate>Mon, 13 May 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240513/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。&lt;/p&gt;</description></item><item><title>高效探索学习解决组合图分区问题(基于强化学习的优化算法)</title><link>https://www.spiritysdx.top/20230823/</link><pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230823/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/2205.14105v1.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="er40ba40到er500ba500"&gt;ER40/BA40到ER500/BA500&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer"&gt;https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer"&gt;https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;分别命名为ER和BA数据集&lt;/p&gt;</description></item><item><title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title><link>https://www.spiritysdx.top/20230808/</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230808/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/1810.10659.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="training-data"&gt;Training Data&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer"&gt;https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="testing-data"&gt;Testing Data&lt;/h3&gt;
+&lt;h4 id="sat-competition-2017"&gt;SAT Competition 2017&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer"&gt;https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

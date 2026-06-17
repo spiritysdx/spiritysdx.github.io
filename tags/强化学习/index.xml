@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>强化学习 on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link><description>Recent content in 强化学习 on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>Python相关的深度学习的学习路径</title><link>https://www.spiritysdx.top/20230909/</link><pubDate>Sat, 09 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230909/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;所有资源均免费，遇到付费推荐勿要付费&lt;/p&gt;
+&lt;p&gt;方向是 图神经网络 和 强化学习 的学习路径&lt;/p&gt;
+&lt;h2 id="基础知识"&gt;基础知识&lt;/h2&gt;
+&lt;p&gt;白月黑羽的网站：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.byhy.net/" target="_blank" rel="noopener noreffer"&gt;https://www.byhy.net/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;适合学习Python基础知识，有对应的B站讲解视频&lt;/p&gt;
+&lt;p&gt;他的自动化方面课程讲的也很好，爬虫中的selenium，以及Python的自动化测试，都算是他很好的课程了。(属于题外话了，这些东西在深度学习中用不到，没时间的别浪费时间看)&lt;/p&gt;</description></item><item><title>Actor-Critic Methods</title><link>https://www.spiritysdx.top/20230908/</link><pubDate>Fri, 08 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230908/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true"
+ title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true" /&gt;&lt;/p&gt;
+&lt;p&gt;Actor-Critic Methods 结合了价值学习和策略学习，同时训练了两个神经网络。&lt;/p&gt;
+&lt;p&gt;Actor 网络用于产生策略，Critic 网络用于评估策略。&lt;/p&gt;
+&lt;p&gt;&lt;img
+ class="lazyload"
+ src="https://www.spiritysdx.top/svg/loading.min.svg"
+ data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true"
+ data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true 2x"
+ data-sizes="auto"
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true"
+ title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true" /&gt;&lt;/p&gt;
+&lt;h2 id="目标"&gt;目标&lt;/h2&gt;
+&lt;p&gt;① 更新策略网络Π的参数，是为了增大状态价值V的值，要用价值网络q进行打分来训练。&lt;/p&gt;</description></item><item><title>Policy-Based learning</title><link>https://www.spiritysdx.top/20230907/</link><pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230907/</guid><description>&lt;h2 id="用策略函数指导动作"&gt;用策略函数指导动作&lt;/h2&gt;
+&lt;p&gt;使用策略函数随机抽样得到动作。&lt;/p&gt;
+&lt;h2 id="近似策略函数"&gt;近似策略函数&lt;/h2&gt;
+&lt;p&gt;由于实际的策略函数无法得到，需要用各种方式去近似策略函数，所以这里可以使用神经网络去近似实际的策略函数，记作&lt;code&gt;policy network&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Deep Q-Network (DQN) (Value-Based learning)</title><link>https://www.spiritysdx.top/20230906/</link><pubDate>Wed, 06 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230906/</guid><description>&lt;h2 id="寻找最佳的q值函数"&gt;寻找最佳的Q值函数&lt;/h2&gt;
+&lt;p&gt;实际并不知道最佳的Q值函数，需要使用神经网络 Q(s,a;w) 来近似最佳的Q值函数。&lt;/p&gt;
+&lt;p&gt;实际流程大致为当前状态转换为矩阵后，通过卷积层提取特征向量，再通过全连接层得到Q值向量，此时的Q值向量每一个元素代表某一个动作的得分。&lt;/p&gt;</description></item><item><title>强化学习术语翻译</title><link>https://www.spiritysdx.top/20230905/</link><pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230905/</guid><description>&lt;h2 id="state"&gt;State&lt;/h2&gt;
+&lt;p&gt;状态，即状态空间，表示环境中的当前状态。&lt;/p&gt;
+&lt;h2 id="action--agent"&gt;Action &amp;amp;&amp;amp; Agent&lt;/h2&gt;
+&lt;p&gt;动作，即动作空间，表示在当前状态下，执行的动作。&lt;/p&gt;
+&lt;p&gt;动作由谁做的就是&lt;code&gt;Agent&lt;/code&gt;，即智能体。&lt;/p&gt;
+&lt;h2 id="policy-π"&gt;Policy Π&lt;/h2&gt;
+&lt;p&gt;策略，即策略空间，表示在当前状态下，智能体可以采取的动作。&lt;/p&gt;</description></item></channel></rss>

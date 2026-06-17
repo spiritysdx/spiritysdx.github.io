@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubevirt on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/kubevirt/</link><description>Recent content in Kubevirt on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/kubevirt/index.xml" rel="self" type="application/rss+xml"/><item><title>kubevirt初体验</title><link>https://www.spiritysdx.top/20250415/</link><pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20250415/</guid><description>&lt;h2 id="确认当前k8s版本以及对应的kubevirt版本"&gt;确认当前k8s版本以及对应的kubevirt版本&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;显示&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client Version: version.Info{Major:&amp;#34;1&amp;#34;, Minor:&amp;#34;23&amp;#34;, GitVersion:&amp;#34;v1.23.17&amp;#34;, GitCommit:&amp;#34;953be8927218ec8067e1af2641e540238ffd7576&amp;#34;, GitTreeState:&amp;#34;clean&amp;#34;, BuildDate:&amp;#34;2023-02-22T13:34:27Z&amp;#34;, GoVersion:&amp;#34;go1.19.6&amp;#34;, Compiler:&amp;#34;gc&amp;#34;, Platform:&amp;#34;linux/amd64&amp;#34;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Server Version: version.Info{Major:&amp;#34;1&amp;#34;, Minor:&amp;#34;23&amp;#34;, GitVersion:&amp;#34;v1.23.17&amp;#34;, GitCommit:&amp;#34;953be8927218ec8067e1af2641e540238ffd7576&amp;#34;, GitTreeState:&amp;#34;clean&amp;#34;, BuildDate:&amp;#34;2023-02-22T13:27:46Z&amp;#34;, GoVersion:&amp;#34;go1.19.6&amp;#34;, Compiler:&amp;#34;gc&amp;#34;, Platform:&amp;#34;linux/amd64&amp;#34;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;根据&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md" target="_blank" rel="noopener noreffer"&gt;https://github.com/kubevirt/sig-release/commits/main/releases/k8s-support-matrix.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;查询历史支持的kubevirt版本，得知支持的最新的是kubevirt 0.58&lt;/p&gt;</description></item><item><title>通过ProxmoxVE制作kubevirt可用的Windows镜像</title><link>https://www.spiritysdx.top/20250325/</link><pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20250325/</guid><description>&lt;h2 id="通过proxmoxve制作kubevirt可用的win镜像"&gt;通过ProxmoxVE制作kubevirt可用的WIN镜像&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/ILLKX/Windows-VirtIO" target="_blank" rel="noopener noreffer"&gt;https://github.com/ILLKX/Windows-VirtIO&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载带virtio的虚拟机镜像&lt;/p&gt;
+&lt;p&gt;然后借鉴 &lt;a href="https://www.spiritlhl.net/guide/pve/pve_windows.html" target="_blank" rel="noopener noreffer"&gt;https://www.spiritlhl.net/guide/pve/pve_windows.html&lt;/a&gt; 开设虚拟机，到图形化安装后即可，不要配置网络&lt;/p&gt;
+&lt;p&gt;在虚拟机内需要设置一个bat脚本，设置系统启动后执行，脚本的内容是&lt;/p&gt;</description></item></channel></rss>

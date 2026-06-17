@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dd on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/dd/</link><description>Recent content in Dd on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 22 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/dd/index.xml" rel="self" type="application/rss+xml"/><item><title>将WIN系统DD为Linux系统</title><link>https://www.spiritysdx.top/20230222/</link><pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230222/</guid><description>&lt;h3 id="前言"&gt;前言&lt;/h3&gt;
+&lt;p&gt;该方法的前提：&lt;/p&gt;
+&lt;p&gt;商家使用PVE虚拟化WIN服务器&lt;/p&gt;
+&lt;p&gt;WIN服务器可配置使用Network进行启动&lt;/p&gt;
+&lt;p&gt;启动时可使用NO VNC操控IPXE命令&lt;/p&gt;
+&lt;p&gt;已知符合条件的服务器：&lt;a href="https://hosting.netfront.net/aff.php?aff=126&amp;amp;pid=67" target="_blank" rel="noopener noreffer"&gt;NETFRONT&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

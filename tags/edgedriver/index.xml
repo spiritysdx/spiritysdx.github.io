@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Edgedriver on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/edgedriver/</link><description>Recent content in Edgedriver on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 10 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/edgedriver/index.xml" rel="self" type="application/rss+xml"/><item><title>在seleniumwire中解决Not Secure问题</title><link>https://www.spiritysdx.top/20221212/</link><pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20221212/</guid><description>&lt;h3 id="解决上一篇文章的一些问题"&gt;解决上一篇文章的一些问题&lt;/h3&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/wkeeling/selenium-wire/issues/622" target="_blank" rel="noopener noreffer"&gt;https://github.com/wkeeling/selenium-wire/issues/622&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载证书&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt" target="_blank" rel="noopener noreffer"&gt;https://github.com/wkeeling/selenium-wire/raw/master/seleniumwire/ca.crt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;将该 ca.crt 添加到受信任的证书中&lt;/p&gt;
+&lt;p&gt;google浏览器打开&lt;code&gt;chrome://settings/security&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;点击管理证书，选择&lt;code&gt;受信任的的根证书颁发机构&lt;/code&gt;分区，选择导入&lt;/p&gt;</description></item><item><title>解决selenium爬虫加密代理问题(含socks5等一切代理)</title><link>https://www.spiritysdx.top/20221211/</link><pubDate>Fri, 09 Dec 2022 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20221211/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;爬虫过程中出现了cloudflare的高风险质询验证阻拦或者recaptcha的阻拦，想要破除验证要么使用干净的代理保证低风险爬虫，要么使用hcaptcha求解器求解，后者需要部署的东西过于复杂，为了提高效率，本文介绍第一种方法破除质询验证&lt;/p&gt;</description></item></channel></rss>

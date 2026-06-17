@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>D2l on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/d2l/</link><description>Recent content in D2l on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 27 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/d2l/index.xml" rel="self" type="application/rss+xml"/><item><title>深度学习环境安装(李沐老师相关)</title><link>https://www.spiritysdx.top/20230727/</link><pubDate>Thu, 27 Jul 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230727/</guid><description>&lt;p&gt;由于之前有写过一键安装jupyter的shell脚本，所以这里只需要找一个服务器就够了&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener noreffer"&gt;https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -L https://raw.githubusercontent.com/spiritLHLS/one-click-installation-script/main/install_scripts/jupyter.sh -o jupyter.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x jupyter.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash jupyter.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;又由于之前玩Linux积攒了很多机器，找了一台&lt;a href="https://curl.qcloud.com/MNyiQAB1" target="_blank" rel="noopener noreffer"&gt;腾讯云&lt;/a&gt;广州的4C3C80G和&lt;a href="https://hosting.skrime.eu/a/server" target="_blank" rel="noopener noreffer"&gt;OVH&lt;/a&gt;法国的4C2C25G的机器测试了一下&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Conda on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/conda/</link><description>Recent content in Conda on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/conda/index.xml" rel="self" type="application/rss+xml"/><item><title>nvidia-smi被自动升级无法与GPU通信了怎么办</title><link>https://www.spiritysdx.top/20240712/</link><pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240712/</guid><description>&lt;h2 id="问题"&gt;问题&lt;/h2&gt;
+&lt;p&gt;如题目所说，这里贴个报错&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nvidia-smi
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Failed to initialize NVML: Driver/library version mismatch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NVML library version: 535.183
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原先的版本是&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; NVIDIA-SMI 535.171.04 Driver Version: 535.171.04 CUDA Version: 12.2 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="修复方案"&gt;修复方案&lt;/h2&gt;
+&lt;h3 id="下载官方驱动"&gt;下载官方驱动&lt;/h3&gt;
+&lt;p&gt;打开官方网站：&lt;a href="https://www.nvidia.cn/Download/Find.aspx?lang=cn" target="_blank" rel="noopener noreffer"&gt;https://www.nvidia.cn/Download/Find.aspx?lang=cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;按照你的显卡版本进行选择，我的配置如下，你的与我一般不一致&lt;/p&gt;</description></item><item><title>conda使用GPU时的一些陷阱</title><link>https://www.spiritysdx.top/20240607/</link><pubDate>Fri, 07 Jun 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240607/</guid><description>&lt;h2 id="conda默认的python环境版本过高需要降级默认的python环境"&gt;conda默认的python环境版本过高，需要降级默认的Python环境&lt;/h2&gt;
+&lt;p&gt;假设原始环境是Python12的环境&lt;/p&gt;
+&lt;p&gt;直接使用&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;conda install python==3.11
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;类似上述方法指定python版本下载，注意这个命令要在conda的虚拟环境中执行才会替换当前python版本。&lt;/p&gt;</description></item><item><title>给机房的Ubuntu22.04安装LXD共享GPU资源</title><link>https://www.spiritysdx.top/20240513/</link><pubDate>Mon, 13 May 2024 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20240513/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;为什么使用LXD？ 因为宿主机不支持嵌套虚拟化，没有硬件加速没法搞PVE的虚拟机，开容器比较好。由于宿主机是Ubuntu22，自然选择LXD而不是INCUS了，因为后者在ubuntu24以上以及debian13以上才有官方支持包，其他低版本的系统只有第三方编译的包，有问题难处理。&lt;/p&gt;</description></item><item><title>高效探索学习解决组合图分区问题(基于强化学习的优化算法)</title><link>https://www.spiritysdx.top/20230823/</link><pubDate>Wed, 23 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230823/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/2205.14105v1.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/2205.14105v1.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大部分明白了但仍然有部分懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="er40ba40到er500ba500"&gt;ER40/BA40到ER500/BA500&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579" target="_blank" rel="noopener noreffer"&gt;https://ojs.aaai.org/index.php/AAAI/article/download/5723/5579&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47" target="_blank" rel="noopener noreffer"&gt;https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;分别命名为ER和BA数据集&lt;/p&gt;</description></item><item><title>通过GCN生成概率图引导树搜索解决图的组合优化问题</title><link>https://www.spiritysdx.top/20230808/</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230808/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+&lt;p&gt;老板下指示复现两篇文章，这是其中一篇&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/1810.10659.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/1810.10659.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的原理什么的已经大致明白了但仍然有小部分不懂，故而做下记录，以备后续复现或深入了解&lt;/p&gt;
+&lt;h2 id="原始数据"&gt;原始数据&lt;/h2&gt;
+&lt;h3 id="training-data"&gt;Training Data&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html" target="_blank" rel="noopener noreffer"&gt;https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="testing-data"&gt;Testing Data&lt;/h3&gt;
+&lt;h4 id="sat-competition-2017"&gt;SAT Competition 2017&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf" target="_blank" rel="noopener noreffer"&gt;https://helda.helsinki.fi/bitstream/handle/10138/224324/sc2017-proceedings.pdf&lt;/a&gt;&lt;/p&gt;</description></item><item><title>深度学习环境安装(李沐老师相关)</title><link>https://www.spiritysdx.top/20230727/</link><pubDate>Thu, 27 Jul 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230727/</guid><description>&lt;p&gt;由于之前有写过一键安装jupyter的shell脚本，所以这里只需要找一个服务器就够了&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener noreffer"&gt;https://github.com/spiritLHLS/one-click-installation-script#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85jupyter%E7%8E%AF%E5%A2%83&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -L https://raw.githubusercontent.com/spiritLHLS/one-click-installation-script/main/install_scripts/jupyter.sh -o jupyter.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x jupyter.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash jupyter.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;又由于之前玩Linux积攒了很多机器，找了一台&lt;a href="https://curl.qcloud.com/MNyiQAB1" target="_blank" rel="noopener noreffer"&gt;腾讯云&lt;/a&gt;广州的4C3C80G和&lt;a href="https://hosting.skrime.eu/a/server" target="_blank" rel="noopener noreffer"&gt;OVH&lt;/a&gt;法国的4C2C25G的机器测试了一下&lt;/p&gt;</description></item></channel></rss>
