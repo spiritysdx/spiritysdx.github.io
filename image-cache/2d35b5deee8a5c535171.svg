@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-3.412 -2.5 584.261 115.604" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+        text {
+            fill: #f5acb9;
+            font-weight: 900 !important;
+            font-family: system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
+        }
+        .fill-black {
+            fill: #f5acb9
+        }
+        .fill-white {
+            fill: #d0273e
+        }
+        @media (prefers-color-scheme: dark) {
+            text {
+                fill: #d0273e
+            }
+            .fill-black {
+                fill: #d0273e
+            }
+            .fill-white {
+                fill: #f5acb9
+            }
+        }
+    </style>
+  </defs>
+  
+<rect class="fill-white" width="577.762" height="110" style="stroke: rgb(189, 14, 43); stroke-width: 5;" rx="50"/>
+<text style="font-size: 38px; white-space: pre; text-anchor: middle;" x="335" y="48.074">二叉树的博客 🥱</text>
+<text style="font-size: 24px; white-space: pre; font-style: italic; text-anchor: middle;" x="335" y="91.615">UV: 5  Referer: 0  Level: 5</text>
+
+  <g transform="matrix(1, 0, 0, 1, 1.062999, 0.155999)" fill="none" fill-rule="evenodd">
+    <circle class="fill-black" cx="54.5" cy="54.5" r="48.5"/>
+    <g class="fill-white" transform="translate(19.587 30.779)">
+      <circle cx="14.861" cy="13.861" r="8.861"/>
+      <circle cx="54.966" cy="13.861" r="8.861"/>
+    </g>
+    <rect class="fill-white" x="31.5" y="71.2" width="47" height="8.529" rx="5"/>
+<rect class="fill-black" x="35.5" y="72.5" width="3" height="6" rx="1" /><rect class="fill-black" x="39.5" y="72.5" width="3" height="6" rx="1" /><rect class="fill-black" x="43.5" y="72.5" width="3" height="6" rx="1" /><rect class="fill-black" x="47.5" y="72.5" width="3" height="6" rx="1" /><rect class="fill-black" x="51.5" y="72.5" width="3" height="6" rx="1" /><rect fill="#d55f6f" x="55.5" y="72.5" width="3" height="6" rx="1" /><rect fill="#d55f6f" x="59.5" y="72.5" width="3" height="6" rx="1" /><rect fill="#d55f6f" x="63.5" y="72.5" width="3" height="6" rx="1" /><rect fill="#d55f6f" x="67.5" y="72.5" width="3" height="6" rx="1" /><rect fill="#d55f6f" x="71.5" y="72.5" width="3" height="6" rx="1" />
+    </g>
+  
+</svg>

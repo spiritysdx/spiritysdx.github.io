@@ -1,0 +1,13 @@
+# AI crawler guide for 二叉树的博客
+
+Use the canonical URLs from the sitemap and the Markdown alternates when extracting technical content.
+
+- Canonical base URL: https://www.spiritysdx.top/
+- Sitemap: https://www.spiritysdx.top/sitemap.xml
+- LLMs.txt: https://www.spiritysdx.top/llms.txt
+- AI JSON index: https://www.spiritysdx.top/ai-index.json
+- MCP metadata: https://www.spiritysdx.top/.well-known/mcp.json
+
+Preferred citation format: page title plus canonical URL.
+
+The site contains Linux, Docker, Kubernetes, virtualization, container image, and troubleshooting notes. Commands and configuration snippets are technical references; preserve code blocks and version context when summarizing.

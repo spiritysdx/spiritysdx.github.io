@@ -1,144 +1,126 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/gnn/</link><description>Recent content in GNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 09 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/gnn/index.xml" rel="self" type="application/rss+xml"/><item><title>神经网络(GNN)的表达能力</title><link>https://www.spiritysdx.top/20231101/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231101/</guid><description>&lt;h2 id="gnn"&gt;GNN&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/gnn/</link><description>Recent content in GNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/gnn/index.xml" rel="self" type="application/rss+xml"/><item><title>神经网络(GNN)的表达能力</title><link>https://www.spiritysdx.top/20231101/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231101/</guid><description>&lt;h2 id="gnn"&gt;GNN&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/1.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/1.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/1255201acb7f610caa8d.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/1255201acb7f610caa8d.png, https://www.spiritysdx.top/image-cache/1255201acb7f610caa8d.png 1.5x, https://www.spiritysdx.top/image-cache/1255201acb7f610caa8d.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/1.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/2.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/2.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/1adcb7bda6e460ff7b2a.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/1adcb7bda6e460ff7b2a.png, https://www.spiritysdx.top/image-cache/1adcb7bda6e460ff7b2a.png 1.5x, https://www.spiritysdx.top/image-cache/1adcb7bda6e460ff7b2a.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/2.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/3.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/3.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/3.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/3.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/44c33f9a52e46fba2f19.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/44c33f9a52e46fba2f19.png, https://www.spiritysdx.top/image-cache/44c33f9a52e46fba2f19.png 1.5x, https://www.spiritysdx.top/image-cache/44c33f9a52e46fba2f19.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/3.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/4.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/4.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/4.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/4.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/e5c49a9ae65bed03f4d4.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/e5c49a9ae65bed03f4d4.png, https://www.spiritysdx.top/image-cache/e5c49a9ae65bed03f4d4.png 1.5x, https://www.spiritysdx.top/image-cache/e5c49a9ae65bed03f4d4.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/4.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/5.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/5.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/5.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/5.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/98a398a815715a8c746c.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/98a398a815715a8c746c.png, https://www.spiritysdx.top/image-cache/98a398a815715a8c746c.png 1.5x, https://www.spiritysdx.top/image-cache/98a398a815715a8c746c.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/5.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/6.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/6.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/6.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/6.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/53075658561103a23956.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/53075658561103a23956.png, https://www.spiritysdx.top/image-cache/53075658561103a23956.png 1.5x, https://www.spiritysdx.top/image-cache/53075658561103a23956.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/6.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/7.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/7.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/7.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/7.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/05a546924cb4faaf33e3.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/05a546924cb4faaf33e3.png, https://www.spiritysdx.top/image-cache/05a546924cb4faaf33e3.png 1.5x, https://www.spiritysdx.top/image-cache/05a546924cb4faaf33e3.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/7.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/8.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/8.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/8.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/8.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/08a65158b69edd9a52f0.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/08a65158b69edd9a52f0.png, https://www.spiritysdx.top/image-cache/08a65158b69edd9a52f0.png 1.5x, https://www.spiritysdx.top/image-cache/08a65158b69edd9a52f0.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/8.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/9.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/9.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/9.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/9.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/71983d6185e9100efe48.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/71983d6185e9100efe48.png, https://www.spiritysdx.top/image-cache/71983d6185e9100efe48.png 1.5x, https://www.spiritysdx.top/image-cache/71983d6185e9100efe48.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/9.png?raw=true"
- title="链接" /&gt;
+ alt="链接" title="链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/10.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/10.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/10.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/10.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/b808e5d852ced60cb492.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/b808e5d852ced60cb492.png, https://www.spiritysdx.top/image-cache/b808e5d852ced60cb492.png 1.5x, https://www.spiritysdx.top/image-cache/b808e5d852ced60cb492.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231101/10.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;</description></item><item><title>图神经网络的前情提要</title><link>https://www.spiritysdx.top/20231021/</link><pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231021/</guid><description>&lt;p&gt;&lt;img
+ alt="链接" title="链接" /&gt;&lt;/p&gt;</description></item><item><title>图神经网络的前情提要</title><link>https://www.spiritysdx.top/20231021/</link><pubDate>Sat, 21 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231021/</guid><description>&lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/21.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/21.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/21.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/21.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/a2a9e8223eb005e83631.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/a2a9e8223eb005e83631.png, https://www.spiritysdx.top/image-cache/a2a9e8223eb005e83631.png 1.5x, https://www.spiritysdx.top/image-cache/a2a9e8223eb005e83631.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/21.png?raw=true"
- title="图片1链接" /&gt;
+ alt="图片1链接" title="图片1链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/22.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/22.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/22.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/22.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/41ba1090f5ba4bc496d4.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/41ba1090f5ba4bc496d4.png, https://www.spiritysdx.top/image-cache/41ba1090f5ba4bc496d4.png 1.5x, https://www.spiritysdx.top/image-cache/41ba1090f5ba4bc496d4.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/22.png?raw=true"
- title="图片2链接" /&gt;
+ alt="图片2链接" title="图片2链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/23.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/23.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/23.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/23.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/291f0b9b8cd81dfd2088.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/291f0b9b8cd81dfd2088.png, https://www.spiritysdx.top/image-cache/291f0b9b8cd81dfd2088.png 1.5x, https://www.spiritysdx.top/image-cache/291f0b9b8cd81dfd2088.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/23.png?raw=true"
- title="图片3链接" /&gt;
+ alt="图片3链接" title="图片3链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/24.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/24.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/24.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/24.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/89ca20b002ffabb3a791.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/89ca20b002ffabb3a791.png, https://www.spiritysdx.top/image-cache/89ca20b002ffabb3a791.png 1.5x, https://www.spiritysdx.top/image-cache/89ca20b002ffabb3a791.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/24.png?raw=true"
- title="图片4链接" /&gt;
+ alt="图片4链接" title="图片4链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/25.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/25.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/25.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/25.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/429fb0a996b72674a37b.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/429fb0a996b72674a37b.png, https://www.spiritysdx.top/image-cache/429fb0a996b72674a37b.png 1.5x, https://www.spiritysdx.top/image-cache/429fb0a996b72674a37b.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/25.png?raw=true"
- title="图片5链接" /&gt;
+ alt="图片5链接" title="图片5链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/26.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/26.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/26.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/26.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/784ce72bf3d3f191a6ca.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/784ce72bf3d3f191a6ca.png, https://www.spiritysdx.top/image-cache/784ce72bf3d3f191a6ca.png 1.5x, https://www.spiritysdx.top/image-cache/784ce72bf3d3f191a6ca.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/26.png?raw=true"
- title="图片6链接" /&gt;
+ alt="图片6链接" title="图片6链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/27.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/27.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/27.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/27.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/969e2d5622c9a72aff23.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/969e2d5622c9a72aff23.png, https://www.spiritysdx.top/image-cache/969e2d5622c9a72aff23.png 1.5x, https://www.spiritysdx.top/image-cache/969e2d5622c9a72aff23.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/27.png?raw=true"
- title="图片7链接" /&gt;
+ alt="图片7链接" title="图片7链接" /&gt;
 &lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/28.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/28.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/28.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/28.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/16921cc221eca9b9bb26.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/16921cc221eca9b9bb26.png, https://www.spiritysdx.top/image-cache/16921cc221eca9b9bb26.png 1.5x, https://www.spiritysdx.top/image-cache/16921cc221eca9b9bb26.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231021/28.png?raw=true"
- title="图片8链接" /&gt;&lt;/p&gt;</description></item></channel></rss>
+ alt="图片8链接" title="图片8链接" /&gt;&lt;/p&gt;</description></item></channel></rss>

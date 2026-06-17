@@ -1,48 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MPNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/mpnn/</link><description>Recent content in MPNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/mpnn/index.xml" rel="self" type="application/rss+xml"/><item><title>GAT 详解</title><link>https://www.spiritysdx.top/20231024/</link><pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231024/</guid><description>&lt;h2 id="gat"&gt;GAT&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MPNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/mpnn/</link><description>Recent content in MPNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/mpnn/index.xml" rel="self" type="application/rss+xml"/><item><title>GAT 详解</title><link>https://www.spiritysdx.top/20231024/</link><pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231024/</guid><description>&lt;h2 id="gat"&gt;GAT&lt;/h2&gt;
 &lt;p&gt;原文：&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/fd6804a036931fb65526.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/fd6804a036931fb65526.png, https://www.spiritysdx.top/image-cache/fd6804a036931fb65526.png 1.5x, https://www.spiritysdx.top/image-cache/fd6804a036931fb65526.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/52.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;h2 id="流程"&gt;流程&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/c9cda2bbdf9f2b2315fd.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/c9cda2bbdf9f2b2315fd.png, https://www.spiritysdx.top/image-cache/c9cda2bbdf9f2b2315fd.png 1.5x, https://www.spiritysdx.top/image-cache/c9cda2bbdf9f2b2315fd.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/73.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/ef0f176b15da6d6c33e8.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/ef0f176b15da6d6c33e8.png, https://www.spiritysdx.top/image-cache/ef0f176b15da6d6c33e8.png 1.5x, https://www.spiritysdx.top/image-cache/ef0f176b15da6d6c33e8.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/74.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;上面这个是计算每个邻居节点和当前节点之间的重要性，下面这里是softmax这些值，计算每个节点和当前节点之间的权重，权重和为1.&lt;/p&gt;</description></item><item><title>GraphSAGE 详解</title><link>https://www.spiritysdx.top/20231023/</link><pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231023/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/50.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/50.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/50.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/50.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/5e67ed586c3f40675dd3.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/5e67ed586c3f40675dd3.png, https://www.spiritysdx.top/image-cache/5e67ed586c3f40675dd3.png 1.5x, https://www.spiritysdx.top/image-cache/5e67ed586c3f40675dd3.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/50.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;空域提出 &amp;ndash;&amp;gt; 频域提出 &amp;ndash;&amp;gt; 图神经网络提出 &amp;ndash;&amp;gt; 主要回到空域发展&lt;/p&gt;
 &lt;p&gt;图表示学习 和 图神经网络 平行的两个方向，互补的方向。&lt;/p&gt;
 &lt;h2 id="mpnn"&gt;MPNN&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/53.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/53.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/53.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/53.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/09525dcfec68b763a291.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/09525dcfec68b763a291.png, https://www.spiritysdx.top/image-cache/09525dcfec68b763a291.png 1.5x, https://www.spiritysdx.top/image-cache/09525dcfec68b763a291.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/53.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;后面两个图神经网络都是基于 MPNN 进行改进的。&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,80 @@
+# 二叉树的博客
+
+> 个人技术记录、工程排障和系统实践日志
+
+Canonical site: https://www.spiritysdx.top/
+Primary language: zh-CN
+
+## Machine-readable indexes
+
+- Sitemap: https://www.spiritysdx.top/sitemap.xml
+- RSS feed: https://www.spiritysdx.top/index.xml
+- Search JSON: https://www.spiritysdx.top/index.json
+- AI content index: https://www.spiritysdx.top/ai-index.json
+- MCP discovery metadata: https://www.spiritysdx.top/.well-known/mcp.json
+
+## Content policy
+
+This site publishes public technical notes, troubleshooting records, and engineering practice logs. Public pages may be indexed, summarized, and cited by search engines, AI assistants, and MCP-aware clients when attribution links back to the canonical URL.
+
+## Recent technical posts
+- [Ray 支持昇腾 NPU 的 KubeRay 对接记录](https://www.spiritysdx.top/20250523-ray-ascend-npu/) - 2025-05-23 - Tags: ray, kuberay, kubernetes, ascend, npu, docker
+- [openEuler 22.03 arm64 离线包适配记录](https://www.spiritysdx.top/20250523-openeuler-system-adaptation/) - 2025-05-23 - Tags: linux, openeuler, arm64, rpm, dnf, docker
+- [在线 IDE 的通用容器镜像打包流程](https://www.spiritysdx.top/20250425/) - 2025-05-12 - Tags: docker, ide, dockerfile, jupyter, jetbrains, vnc, novnc, kasm, gpu
+- [麒麟 V10 安装时配置本地源](https://www.spiritysdx.top/20250512-kylin-v10-local-repo/) - 2025-05-12 - Tags: linux, kylin, repo, installation
+- [BKE 与 BMP 部署排障流程](https://www.spiritysdx.top/20250512-bmp-troubleshooting/) - 2025-05-12 - Tags: kubernetes, k3s, docker, bke, bmp, troubleshooting
+- [containerd 允许 HTTP 镜像仓库拉取](https://www.spiritysdx.top/20250512-containerd-http-registry/) - 2025-05-12 - Tags: containerd, docker, kubernetes, registry, http
+- [Red Hat 8 amd64 离线依赖适配记录](https://www.spiritysdx.top/20250512-redhat-system-adaptation/) - 2025-05-12 - Tags: linux, redhat, centos, rpm, dnf, bke
+- [kubevirt初体验](https://www.spiritysdx.top/20250415/) - 2025-04-15 - Tags: golang, kubevirt, kubernetes, kvm, windows, k8s
+- [魔改dockur制作可迁移的Windows镜像(单文件)](https://www.spiritysdx.top/20250405/) - 2025-04-05 - Tags: docker, dockur, kvm, windows
+- [通过dockur制作可迁移的Windows镜像(双文件)](https://www.spiritysdx.top/20250315/) - 2025-03-15 - Tags: docker, dockur, kvm, windows
+- [通过ProxmoxVE制作kubevirt可用的Windows镜像](https://www.spiritysdx.top/20250325/) - 2025-03-15 - Tags: golang, kubevirt, kubernetes, proxmox, proxmoxve, kvm, windows, k8s
+- [基于docker的在线IDE制作(支持浏览器直接访问)](https://www.spiritysdx.top/20250305/) - 2025-03-05 - Tags: docker, ide, dockerfile, jupyter, webstorm, idea, pycharm, eclipse, vscode, jetbrains, vnc, kasm
+- [k8s日常问题排障](https://www.spiritysdx.top/20250225/) - 2025-02-25 - Tags: golang, kubernetes, k8s
+- [jetbrains家的goland项目可用但老爆红](https://www.spiritysdx.top/20240714/) - 2024-07-14 - Tags: golang, goland
+- [机房本地服务器自建Gitea并使用](https://www.spiritysdx.top/20240713/) - 2024-07-13 - Tags: linux, ubuntu, gitea, ssh
+- [nvidia-smi被自动升级无法与GPU通信了怎么办](https://www.spiritysdx.top/20240712/) - 2024-07-12 - Tags: linux, ubuntu, gpu, conda
+- [conda使用GPU时的一些陷阱](https://www.spiritysdx.top/20240607/) - 2024-06-07 - Tags: linux, ubuntu, gpu, conda
+- [给机房的LXD容器配置跳板机进行连接](https://www.spiritysdx.top/20240515/) - 2024-05-14 - Tags: linux, ubuntu, lxd, ssh, sftp, 机房
+- [在Pycharm上连接远程虚拟环境进行使用](https://www.spiritysdx.top/20240514/) - 2024-05-14 - Tags: linux, ubuntu, lxd, ssh, sftp, pycharm, 机房
+- [给机房的Ubuntu22.04安装LXD共享GPU资源](https://www.spiritysdx.top/20240513/) - 2024-05-13 - Tags: linux, ubuntu, lxd, incus, https, gpu, LTS, conda, nvidia, pytorch, cuda, 机房
+- [给机房的Ubuntu22.04的Linux进行内穿映射端口](https://www.spiritysdx.top/20240512/) - 2024-05-12 - Tags: linux, ubuntu, goproxy, proxy, port, 内穿, 映射端口, 机房
+- [给机房的Ubuntu22.04的Linux安装SSH的server](https://www.spiritysdx.top/20240511/) - 2024-05-11 - Tags: linux, ubuntu, ssh, server, 机房
+- [在root权限下使用守护进程自托管Github的Runners](https://www.spiritysdx.top/20240510/) - 2024-05-10 - Tags: linux, ubuntu, debian, github, runner, docker, root, 机房
+- [给机房的windows11系统安装Ubuntu22.04的Linux双系统](https://www.spiritysdx.top/20240509/) - 2024-05-09 - Tags: linux, windows11, rufus, 双系统, BIOS, GOST, UEFI, GPU, easyuefi, ubuntu, 机房
+- [Golang的重定向比Python的重定向次数要多](https://www.spiritysdx.top/20240328/) - 2024-03-28 - Tags: requests, gorequest, 重定向
+- [一些关于IPV6分配和使用的闲聊](https://www.spiritysdx.top/20240111/) - 2024-01-11 - Tags: linux, pve, vps, kvm, virtual, qemu, ipv6, debian, slaac, DHCPV6
+- [神经网络(GNN)的表达能力](https://www.spiritysdx.top/20231101/) - 2023-11-09 - Tags: 机器学习, 深度学习, 图神经网络, GNN, GIN, CS244W
+- [阿里云、腾讯云、甲骨文云、华为云、UCLOUD的监控卸载](https://www.spiritysdx.top/20231025/) - 2023-10-25 - Tags: linux
+- [GAT 详解](https://www.spiritysdx.top/20231024/) - 2023-10-24 - Tags: 机器学习, 深度学习, 图神经网络, GAT, MPNN, CS244W
+- [GraphSAGE 详解](https://www.spiritysdx.top/20231023/) - 2023-10-23 - Tags: 机器学习, 深度学习, 图神经网络, GraphSAGE, MPNN, CS244W
+- [GCN 详解](https://www.spiritysdx.top/20231022/) - 2023-10-22 - Tags: 机器学习, 深度学习, 图神经网络, CNN, GCN, CS244W
+- [图神经网络的前情提要](https://www.spiritysdx.top/20231021/) - 2023-10-21 - Tags: 机器学习, 深度学习, 图神经网络, GNN, CS244W
+- [深度学习前情提要](https://www.spiritysdx.top/20231020/) - 2023-10-20 - Tags: 机器学习, 深度学习, 图神经网络, CS244W
+- [给轻量应用腾讯云服务器或阿里云服务器加上IPV6地址隧道(2023)](https://www.spiritysdx.top/20211231/) - 2023-09-29 - Tags: linux, ipv6
+- [半监督节点分类](https://www.spiritysdx.top/20230928/) - 2023-09-28 - Tags: 机器学习, 深度学习, 图神经网络, CS244W
+- [PageRank实战-西游记人物节点重要程度](https://www.spiritysdx.top/20230927/) - 2023-09-27 - Tags: 机器学习, 深度学习, 图神经网络, PageRank, CS244W
+- [PageRank](https://www.spiritysdx.top/20230926/) - 2023-09-26 - Tags: 机器学习, 深度学习, 图神经网络, PageRank, CS244W
+- [用图卷积和树搜索解决组合优化问题(含笔记)](https://www.spiritysdx.top/20230925/) - 2023-09-25 - Tags: 机器学习, 深度学习, 图神经网络, 树搜索, 组合优化, 局部搜索, 图缩减
+- [Node2Vec](https://www.spiritysdx.top/20230924/) - 2023-09-24 - Tags: 机器学习, 深度学习, 图神经网络, Node2Vec, CS244W
+- [DeepWalk实战-维基百科词条图嵌入可视化](https://www.spiritysdx.top/20230923/) - 2023-09-23 - Tags: 机器学习, 深度学习, 图神经网络, DeepWalk, CS244W
+- [DeepWalk](https://www.spiritysdx.top/20230922/) - 2023-09-22 - Tags: 机器学习, 深度学习, 图神经网络, DeepWalk, CS244W
+- [嵌入整张图](https://www.spiritysdx.top/20230921/) - 2023-09-21 - Tags: 机器学习, 深度学习, 图神经网络, DeepWalk, Node2Vec, CS244W
+- [矩阵分解角度 - 图嵌入(节点嵌入)和随机游走](https://www.spiritysdx.top/20230920/) - 2023-09-20 - Tags: 机器学习, 深度学习, 图神经网络, DeepWalk, Node2Vec, CS244W
+- [Random Walk & Node2vec - 图表示学习起始](https://www.spiritysdx.top/20230919/) - 2023-09-19 - Tags: 机器学习, 深度学习, 图神经网络, MiniBatch, RandomWalk, Node2Vec, CS244W
+- [NetworkX实战](https://www.spiritysdx.top/20230918/) - 2023-09-18 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, networkx, CS244W
+- [NetworkX实用模板案例](https://www.spiritysdx.top/20230917/) - 2023-09-17 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, networkx, CS244W
+- [NetworkX可视化](https://www.spiritysdx.top/20230916/) - 2023-09-16 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, networkx, CS244W
+- [NetworkX基本操作](https://www.spiritysdx.top/20230915/) - 2023-09-15 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, networkx, CS244W
+- [传统图机器学习和图特征工程(全图层面的特征工程)](https://www.spiritysdx.top/20230914/) - 2023-09-14 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, 核方法, Bow, gklearn, CS244W
+- [传统图机器学习和图特征工程(连接层面的特征工程)](https://www.spiritysdx.top/20230913/) - 2023-09-13 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, CS244W
+- [传统图机器学习和图特征工程(节点层面的特征工程)](https://www.spiritysdx.top/20230912/) - 2023-09-12 - Tags: 机器学习, 深度学习, 特征工程, 图神经网络, CS244W
+- [图的基本表示](https://www.spiritysdx.top/20230911/) - 2023-09-11 - Tags: 机器学习, 深度学习, 图神经网络, CS244W
+- [图神经网络基础](https://www.spiritysdx.top/20230910/) - 2023-09-10 - Tags: 机器学习, 深度学习, 图神经网络, Python, CS244W
+- [Python相关的深度学习的学习路径](https://www.spiritysdx.top/20230909/) - 2023-09-09 - Tags: 机器学习, 深度学习, 强化学习, 图神经网络, Python, CS244W
+- [Actor-Critic Methods](https://www.spiritysdx.top/20230908/) - 2023-09-08 - Tags: 机器学习, 深度学习, 强化学习, Python
+- [Policy-Based learning](https://www.spiritysdx.top/20230907/) - 2023-09-07 - Tags: 机器学习, 深度学习, 强化学习, Python
+- [Deep Q-Network (DQN) (Value-Based learning)](https://www.spiritysdx.top/20230906/) - 2023-09-06 - Tags: 机器学习, 深度学习, 强化学习, Python, DQN
+- [强化学习术语翻译](https://www.spiritysdx.top/20230905/) - 2023-09-05 - Tags: 机器学习, 深度学习, 强化学习, Python, gym
+- [为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)](https://www.spiritysdx.top/20230829/) - 2023-08-29 - Tags: linux, docker, nat, radvd, ndppd, ndpresponder, ifupdown, shell, debian, ipv6
+- [高效探索学习解决组合图分区问题(基于强化学习的优化算法)](https://www.spiritysdx.top/20230823/) - 2023-08-23 - Tags: 机器学习, 深度学习, jupyter, pytorch, conda, Python, GCN, RNN

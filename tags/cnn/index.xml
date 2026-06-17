@@ -1,28 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/cnn/</link><description>Recent content in CNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 22 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/cnn/index.xml" rel="self" type="application/rss+xml"/><item><title>GCN 详解</title><link>https://www.spiritysdx.top/20231022/</link><pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231022/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CNN on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/cnn/</link><description>Recent content in CNN on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/cnn/index.xml" rel="self" type="application/rss+xml"/><item><title>GCN 详解</title><link>https://www.spiritysdx.top/20231022/</link><pubDate>Sun, 22 Oct 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20231022/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
 &lt;p&gt;GCN 可以说是一个函数拟合器。&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/81d86bfe489c4d9c715b.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/81d86bfe489c4d9c715b.png, https://www.spiritysdx.top/image-cache/81d86bfe489c4d9c715b.png 1.5x, https://www.spiritysdx.top/image-cache/81d86bfe489c4d9c715b.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/1.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/4b5c7d557b32fa096a35.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/4b5c7d557b32fa096a35.png, https://www.spiritysdx.top/image-cache/4b5c7d557b32fa096a35.png 1.5x, https://www.spiritysdx.top/image-cache/4b5c7d557b32fa096a35.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/2.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;每个计算图就是一个样本&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/92a3f8b18ae97707c7be.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/92a3f8b18ae97707c7be.png, https://www.spiritysdx.top/image-cache/92a3f8b18ae97707c7be.png 1.5x, https://www.spiritysdx.top/image-cache/92a3f8b18ae97707c7be.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20231022/3.png?raw=true"
- title="链接" /&gt;&lt;/p&gt;
+ alt="链接" title="链接" /&gt;&lt;/p&gt;
 &lt;p&gt;感受野是指神经网络中某一层输出的单元对输入的局部区域的敏感程度。实际上层数不宜过多，否则后续层数感受野会越来越相似。&lt;/p&gt;</description></item></channel></rss>

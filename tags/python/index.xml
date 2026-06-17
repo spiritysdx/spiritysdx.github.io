@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/python/</link><description>Recent content in Python on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 10 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>图神经网络基础</title><link>https://www.spiritysdx.top/20230910/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230910/</guid><description>&lt;h2 id="传统机器学习"&gt;传统机器学习&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/python/</link><description>Recent content in Python on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>图神经网络基础</title><link>https://www.spiritysdx.top/20230910/</link><pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230910/</guid><description>&lt;h2 id="传统机器学习"&gt;传统机器学习&lt;/h2&gt;
 &lt;p&gt;默认二者独立同分布，只需要拟合决策边界分类或拟合回归的曲线即可。&lt;/p&gt;
 &lt;h2 id="现代神经网络"&gt;现代神经网络&lt;/h2&gt;
 &lt;p&gt;斯坦福CS的相关课程：&lt;/p&gt;
@@ -51,21 +51,19 @@
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/fe96150b0587226ca79c.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/fe96150b0587226ca79c.png, https://www.spiritysdx.top/image-cache/fe96150b0587226ca79c.png 1.5x, https://www.spiritysdx.top/image-cache/fe96150b0587226ca79c.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/10.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;Actor-Critic Methods 结合了价值学习和策略学习，同时训练了两个神经网络。&lt;/p&gt;
 &lt;p&gt;Actor 网络用于产生策略，Critic 网络用于评估策略。&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/ee3c15cb2ac22fb3a435.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/ee3c15cb2ac22fb3a435.png, https://www.spiritysdx.top/image-cache/ee3c15cb2ac22fb3a435.png 1.5x, https://www.spiritysdx.top/image-cache/ee3c15cb2ac22fb3a435.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230908/11.png?raw=true" /&gt;&lt;/p&gt;
 &lt;h2 id="目标"&gt;目标&lt;/h2&gt;
 &lt;p&gt;① 更新策略网络Π的参数，是为了增大状态价值V的值，要用价值网络q进行打分来训练。&lt;/p&gt;</description></item><item><title>Policy-Based learning</title><link>https://www.spiritysdx.top/20230907/</link><pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230907/</guid><description>&lt;h2 id="用策略函数指导动作"&gt;用策略函数指导动作&lt;/h2&gt;
 &lt;p&gt;使用策略函数随机抽样得到动作。&lt;/p&gt;

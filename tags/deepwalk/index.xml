@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DeepWalk on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/deepwalk/</link><description>Recent content in DeepWalk on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/deepwalk/index.xml" rel="self" type="application/rss+xml"/><item><title>DeepWalk实战-维基百科词条图嵌入可视化</title><link>https://www.spiritysdx.top/20230923/</link><pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230923/</guid><description>&lt;h2 id="参考资料"&gt;参考资料&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DeepWalk on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/deepwalk/</link><description>Recent content in DeepWalk on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/deepwalk/index.xml" rel="self" type="application/rss+xml"/><item><title>DeepWalk实战-维基百科词条图嵌入可视化</title><link>https://www.spiritysdx.top/20230923/</link><pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230923/</guid><description>&lt;h2 id="参考资料"&gt;参考资料&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/" target="_blank" rel="noopener noreffer"&gt;https://www.analyticsvidhya.com/blog/2019/11/graph-feature-extraction-deepwalk/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/prateekjoshi565/DeepWalk" target="_blank" rel="noopener noreffer"&gt;https://github.com/prateekjoshi565/DeepWalk&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="安装工具包"&gt;安装工具包&lt;/h2&gt;
@@ -151,81 +151,72 @@ Successfully installed contourpy-1.1.1 cycler-0.12.1 fonttools-4.43.1 gensim-4.3
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/f9439a007ad3e4e0056a.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/f9439a007ad3e4e0056a.png, https://www.spiritysdx.top/image-cache/f9439a007ad3e4e0056a.png 1.5x, https://www.spiritysdx.top/image-cache/f9439a007ad3e4e0056a.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/27.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;Random Walk 是一种遍历图的基本方法，而 Deep Walk 则是一种利用 Random Walk 生成的序列来学习节点嵌入的具体方法。&lt;/p&gt;</description></item><item><title>嵌入整张图</title><link>https://www.spiritysdx.top/20230921/</link><pubDate>Thu, 21 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230921/</guid><description>&lt;h2 id="如何嵌入"&gt;如何嵌入&lt;/h2&gt;
 &lt;h3 id="全图进行编码嵌入"&gt;全图进行编码嵌入&lt;/h3&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/d4822267863814ea5d2f.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/d4822267863814ea5d2f.png, https://www.spiritysdx.top/image-cache/d4822267863814ea5d2f.png 1.5x, https://www.spiritysdx.top/image-cache/d4822267863814ea5d2f.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/13.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/9d6194e6d5c32c75d12b.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/9d6194e6d5c32c75d12b.png, https://www.spiritysdx.top/image-cache/9d6194e6d5c32c75d12b.png 1.5x, https://www.spiritysdx.top/image-cache/9d6194e6d5c32c75d12b.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/14.png?raw=true" /&gt;&lt;/p&gt;
 &lt;h3 id="引入虚拟节点"&gt;引入虚拟节点&lt;/h3&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/599a388783d8d6cdcac7.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/599a388783d8d6cdcac7.png, https://www.spiritysdx.top/image-cache/599a388783d8d6cdcac7.png 1.5x, https://www.spiritysdx.top/image-cache/599a388783d8d6cdcac7.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/15.png?raw=true" /&gt;&lt;/p&gt;
 &lt;h3 id="匿名随机游走"&gt;匿名随机游走&lt;/h3&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/44ff11c2beb651dbe6c4.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/44ff11c2beb651dbe6c4.png, https://www.spiritysdx.top/image-cache/44ff11c2beb651dbe6c4.png 1.5x, https://www.spiritysdx.top/image-cache/44ff11c2beb651dbe6c4.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/16.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://arxiv.org/pdf/1805.11921.pdf" target="_blank" rel="noopener noreffer"&gt;https://arxiv.org/pdf/1805.11921.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/a7f6402bb8c4dd1fd1a3.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/a7f6402bb8c4dd1fd1a3.png, https://www.spiritysdx.top/image-cache/a7f6402bb8c4dd1fd1a3.png 1.5x, https://www.spiritysdx.top/image-cache/a7f6402bb8c4dd1fd1a3.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/17.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;只要是新节点就标记新的一号，认号不认原来的节点标识。&lt;/p&gt;</description></item><item><title>矩阵分解角度 - 图嵌入(节点嵌入)和随机游走</title><link>https://www.spiritysdx.top/20230920/</link><pubDate>Wed, 20 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230920/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/a06cb5990511e02588ec.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/a06cb5990511e02588ec.png, https://www.spiritysdx.top/image-cache/a06cb5990511e02588ec.png 1.5x, https://www.spiritysdx.top/image-cache/a06cb5990511e02588ec.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/0.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;矩阵分解和随机游走在数学上意义是一样的。&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/7018ec06c35b2b1dc03e.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/7018ec06c35b2b1dc03e.png, https://www.spiritysdx.top/image-cache/7018ec06c35b2b1dc03e.png 1.5x, https://www.spiritysdx.top/image-cache/7018ec06c35b2b1dc03e.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/1.png?raw=true" /&gt;&lt;/p&gt;
 &lt;h2 id="矩阵分解计算"&gt;矩阵分解计算&lt;/h2&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/bbc1dbebb34f97781906.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/bbc1dbebb34f97781906.png, https://www.spiritysdx.top/image-cache/bbc1dbebb34f97781906.png 1.5x, https://www.spiritysdx.top/image-cache/bbc1dbebb34f97781906.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230921/2.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;矩阵分解这里可能解析解不能直接求得，且可能不唯一，所以实际计算用的数值解。&lt;/p&gt;</description></item></channel></rss>

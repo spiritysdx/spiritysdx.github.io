@@ -1,22 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bow on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/bow/</link><description>Recent content in Bow on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 14 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/bow/index.xml" rel="self" type="application/rss+xml"/><item><title>传统图机器学习和图特征工程(全图层面的特征工程)</title><link>https://www.spiritysdx.top/20230914/</link><pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230914/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bow on 二叉树的博客</title><link>https://www.spiritysdx.top/tags/bow/</link><description>Recent content in Bow on 二叉树的博客</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 17 Jun 2026 11:53:04 +0800</lastBuildDate><atom:link href="https://www.spiritysdx.top/tags/bow/index.xml" rel="self" type="application/rss+xml"/><item><title>传统图机器学习和图特征工程(全图层面的特征工程)</title><link>https://www.spiritysdx.top/20230914/</link><pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate><guid>https://www.spiritysdx.top/20230914/</guid><description>&lt;h2 id="前言"&gt;前言&lt;/h2&gt;
 &lt;p&gt;需要提取特征反映全图结构特定&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/a5cfad52a0ce6fa91881.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/a5cfad52a0ce6fa91881.png, https://www.spiritysdx.top/image-cache/a5cfad52a0ce6fa91881.png 1.5x, https://www.spiritysdx.top/image-cache/a5cfad52a0ce6fa91881.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/14.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;依然是在数数字&lt;/p&gt;
 &lt;h2 id="bag-of-words---bow"&gt;Bag-of-Words - (BoW)&lt;/h2&gt;
 &lt;p&gt;数节点是否存在，存在为0，不存在为1：&lt;/p&gt;
 &lt;p&gt;&lt;img
  class="lazyload"
  src="https://www.spiritysdx.top/svg/loading.min.svg"
- data-src="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true"
- data-srcset="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true 1.5x, https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true 2x"
+ data-src="https://www.spiritysdx.top/image-cache/c26efb86ce1c33103f3f.png"
+ data-srcset="https://www.spiritysdx.top/image-cache/c26efb86ce1c33103f3f.png, https://www.spiritysdx.top/image-cache/c26efb86ce1c33103f3f.png 1.5x, https://www.spiritysdx.top/image-cache/c26efb86ce1c33103f3f.png 2x"
  data-sizes="auto"
- alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true"
- title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true" /&gt;&lt;/p&gt;
+ alt="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true" title="https://cdn.spiritlhl.net/https://github.com/spiritysdx/images/blob/main/20230919/15.png?raw=true" /&gt;&lt;/p&gt;
 &lt;p&gt;数节点度数为xx的节点有几个：&lt;/p&gt;</description></item></channel></rss>
