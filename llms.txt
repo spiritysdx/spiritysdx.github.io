@@ -18,7 +18,7 @@ Primary language: zh-CN
 This site publishes public technical notes, troubleshooting records, and engineering practice logs. Public pages may be indexed, summarized, and cited by search engines, AI assistants, and MCP-aware clients when attribution links back to the canonical URL.
 
 ## Recent technical posts
-- [科研与小团队 GPU 共享容器落地方案：Agent 模式纳管内网节点与内网穿透全流程](https://www.spiritysdx.top/20260703/) - 2026-07-03 - Tags: linux, lxd, incus, gpu, agent, 内网穿透, 虚拟化, nvidia, cuda, 容器
+- [科研与小团队 GPU 共享容器完整方案：从零搭建 OneClickVirt 管理平台并通过 Agent 模式纳管内网 GPU 节点](https://www.spiritysdx.top/20260703/) - 2026-07-03 - Tags: linux, lxd, incus, gpu, agent, 内网穿透, 虚拟化, nvidia, cuda, 容器, oneclickvirt
 - [Ray 支持昇腾 NPU 的 KubeRay 对接记录](https://www.spiritysdx.top/20250523-ray-ascend-npu/) - 2025-05-23 - Tags: ray, kuberay, kubernetes, ascend, npu, docker
 - [openEuler 22.03 arm64 离线包适配记录](https://www.spiritysdx.top/20250523-openeuler-system-adaptation/) - 2025-05-23 - Tags: linux, openeuler, arm64, rpm, dnf, docker
 - [在线 IDE 的通用容器镜像打包流程](https://www.spiritysdx.top/20250425/) - 2025-05-12 - Tags: docker, ide, dockerfile, jupyter, jetbrains, vnc, novnc, kasm, gpu
