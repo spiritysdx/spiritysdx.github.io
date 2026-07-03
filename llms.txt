@@ -18,6 +18,7 @@ Primary language: zh-CN
 This site publishes public technical notes, troubleshooting records, and engineering practice logs. Public pages may be indexed, summarized, and cited by search engines, AI assistants, and MCP-aware clients when attribution links back to the canonical URL.
 
 ## Recent technical posts
+- [科研与小团队 GPU 共享容器落地方案：Agent 模式纳管内网节点与内网穿透全流程](https://www.spiritysdx.top/20260703/) - 2026-07-03 - Tags: linux, lxd, incus, gpu, agent, 内网穿透, 虚拟化, nvidia, cuda, 容器
 - [Ray 支持昇腾 NPU 的 KubeRay 对接记录](https://www.spiritysdx.top/20250523-ray-ascend-npu/) - 2025-05-23 - Tags: ray, kuberay, kubernetes, ascend, npu, docker
 - [openEuler 22.03 arm64 离线包适配记录](https://www.spiritysdx.top/20250523-openeuler-system-adaptation/) - 2025-05-23 - Tags: linux, openeuler, arm64, rpm, dnf, docker
 - [在线 IDE 的通用容器镜像打包流程](https://www.spiritysdx.top/20250425/) - 2025-05-12 - Tags: docker, ide, dockerfile, jupyter, jetbrains, vnc, novnc, kasm, gpu
@@ -77,4 +78,3 @@ This site publishes public technical notes, troubleshooting records, and enginee
 - [Deep Q-Network (DQN) (Value-Based learning)](https://www.spiritysdx.top/20230906/) - 2023-09-06 - Tags: 机器学习, 深度学习, 强化学习, Python, DQN
 - [强化学习术语翻译](https://www.spiritysdx.top/20230905/) - 2023-09-05 - Tags: 机器学习, 深度学习, 强化学习, Python, gym
 - [为Docker配置启用IPV6网络并配置给容器自动分配IPV6地址(2023最新)](https://www.spiritysdx.top/20230829/) - 2023-08-29 - Tags: linux, docker, nat, radvd, ndppd, ndpresponder, ifupdown, shell, debian, ipv6
-- [高效探索学习解决组合图分区问题(基于强化学习的优化算法)](https://www.spiritysdx.top/20230823/) - 2023-08-23 - Tags: 机器学习, 深度学习, jupyter, pytorch, conda, Python, GCN, RNN
